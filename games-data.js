@@ -14,7 +14,7 @@ var gamesData = [
       "images/Screenshot_20260902_131118_TikTok.jpg"
     ],
     "downloadUrl": "https://selar.com/8z3yp9tnyv",
-    "altDownloadUrl": "https://wa.me/255692752060?text=Hello%20Squad%20Games%2C%20I%20want%20to%20buy%20Tanzania%20Euro%20Truck%20Simulator%202%20%2B%2050%20TZ%20mods%20packs%20(TZS%2020%2C000)%20via%20Vodacom."
+    "altDownloadUrl": "https://wa.me/255692752060?text=Hello%20SquadGames%2C%20I%20want%20to%20buy%20Tanzania%20Euro%20Truck%20Simulator%202%20%2B%2050%20TZ%20mods%20packs%20(TZS%2020%2C000)%20via%20Vodacom."
   },
   {
     "id": "ets2-mobile",
@@ -31,7 +31,7 @@ var gamesData = [
       "images/be9b02184c2d31b4c53e8500366db61e.webp"
     ],
     "downloadUrl": "https://selar.com/8002i2803s",
-    "altDownloadUrl": "https://wa.me/255692752060?text=Hello%20Squad%20Games%2C%20I%20want%20to%20buy%20Tanzania%20Euro%20Truck%20Simulator%202%20Mobile%20(TZS%2010%2C000)%20via%20Vodacom."
+    "altDownloadUrl": "https://wa.me/255692752060?text=Hello%20SquadGames%2C%20I%20want%20to%20buy%20Tanzania%20Euro%20Truck%20Simulator%202%20Mobile%20(TZS%2010%2C000)%20via%20Vodacom."
   },
   {
     "id": "ets2-v157",
@@ -154,8 +154,8 @@ var gamesData = [
     "category": "First-person shooter",
     "description": "Call of Duty: Black Ops 1 (7.27 GB) is a classic action, first-person shooter set during the Cold War, placing players in intense covert missions across global hotspots. Experience gripping single-player campaigns, tactical combat, and realistic weapons as you complete stealthy objectives.",
     "requirements": "OS: Windows XP/Vista/7 CPU: Intel Core2 Duo E6600 or AMD Phenom X3 8750 or better RAM: 2 GB Hard Drive Space: 12 GB Video Card: Shader 3.0 or better 256MB NVIDIA GeForce 8600GT or better Sound Card: DirectX 9.0 Compliant DirectX: 9.0c",
-    "price": "FREE",
     "image": "images/codbo.png",
+    "price": "FREE",
     "screenshots": [
       "images/codbo1.png",
       "images/codbo2.png",
