@@ -1,13 +1,20 @@
 let loadedGamesData = [];
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Detects gamesData or games automatically
     const dataList = (typeof gamesData !== "undefined") ? gamesData : ((typeof games !== "undefined") ? games : null);
 
     if (dataList) {
         renderGameStore(dataList);
     } else {
-        console.error("No game array found. Check games-data.js.");
+        fetch("./games.json")
+            .then(response => {
+                if (!response.ok) throw new Error("Failed to load games.json");
+                return response.json();
+            })
+            .then(games => renderGameStore(games))
+            .catch(err => {
+                console.warn("Using fallback data:", err);
+            });
     }
 });
 
@@ -22,22 +29,18 @@ function renderGameStore(gameList) {
         const card = document.createElement("div");
         card.classList.add("game-card");
 
-        // Dynamic check for free pricing
         const priceText = String(game.price || "").trim().toUpperCase();
         const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
 
-        // Label buttons as "Download" for free items and "Buy Now" for paid items
-        const actionBtnText = isFree ? "Download" : "Buy Now";
+        const actionBtnText = isFree ? "Get" : "Buy Now";
         const actionBtnClass = isFree ? "btn-get" : "btn-download";
-
-        // Fallback target URL if downloadUrl is missing
         const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
-        // Action group HTML builder supporting optional secondary Vodacom payment link
         let actionButtonsHTML = `
-            <a href="${targetUrl}" target="_blank" ${isFree ? 'download' : ''} class="btn-action ${actionBtnClass}">${actionBtnText}</a>
+            <a href="${targetUrl}" target="_blank" ${isFree ? '' : ''} class="btn-action ${actionBtnClass}">${actionBtnText}</a>
         `;
 
+        // Adds Vodacom WhatsApp alt payment button exclusively for paid games with altDownloadUrl
         if (game.altDownloadUrl) {
             actionButtonsHTML += `
                 <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" title="Buy via WhatsApp using Vodacom network">
@@ -80,7 +83,7 @@ function openDetails(index) {
     const priceText = String(game.price || "").trim().toUpperCase();
     const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
 
-    const modalBtnText = isFree ? "Download" : "Buy Now";
+    const modalBtnText = isFree ? "Get" : "Buy Now";
     const modalBtnClass = isFree ? "btn-get" : "btn-download";
     const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
@@ -89,11 +92,10 @@ function openDetails(index) {
     document.getElementById("modal-req").innerText = game.requirements || "Standard System Requirements";
     document.getElementById("modal-price").innerText = game.price;
 
-    // Build modal action container supporting both primary and optional secondary checkout buttons
     const actionGroupContainer = document.getElementById("modal-buy").parentNode;
     
     let modalButtonsHTML = `
-        <a id="modal-buy" href="${targetUrl}" target="_blank" ${isFree ? 'download' : ''} class="btn-action ${modalBtnClass}">${modalBtnText}</a>
+        <a id="modal-buy" href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
     `;
 
     if (game.altDownloadUrl) {
