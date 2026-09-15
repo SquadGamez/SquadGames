@@ -1,4 +1,4 @@
-# 🎮 Squad Games Store TZ
+# 🎮 SquadGames
 
 Get the ultimate **Euro Truck Simulator 2** game package loaded with top maps, mods, and everything you need for the best driving experience!
 
