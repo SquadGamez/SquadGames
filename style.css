@@ -280,8 +280,9 @@ body {
 /* Action Group & Buttons */
 .action-group {
     display: flex;
-    gap: 8px;
-    align-items: center;
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-end;
 }
 
 .btn-details {
@@ -314,6 +315,7 @@ body {
     transition: all 0.2s ease;
     cursor: pointer;
     border: none;
+    text-align: center;
 }
 
 /* Paid Game Button (Buy Now) */
@@ -336,6 +338,19 @@ body {
     background: #1da851;
     transform: translateY(-1px);
     box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+}
+
+/* Vodacom / WhatsApp Red-Accent Payment Button */
+.btn-vodacom {
+    background: linear-gradient(135deg, #e60000, #b30000);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(230, 0, 0, 0.25);
+}
+
+.btn-vodacom:hover {
+    background: linear-gradient(135deg, #ff1a1a, #cc0000);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(230, 0, 0, 0.4);
 }
 
 /* Free Game Button (Get / Download) */
