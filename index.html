@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Squad Games Store TZ</title>
+    <title>SquadGames - PC & Mobile Game Store TZ</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -12,11 +12,11 @@
     <header class="navbar">
         <div class="brand">
             <div class="avatar-glow">
-                <img src="images/profile.jpg" alt="Squad Games Profile" class="nav-avatar" />
+                <img src="images/profile.jpg" alt="SquadGames Profile" class="nav-avatar" />
             </div>
             <div class="brand-text">
-                <span class="brand-title">Squad Games Store TZ</span>
-                <span class="brand-sub">Download ETS 2 PC Mods, Maps & Free Action Games</span>
+                <span class="brand-title">SquadGames</span>
+                <span class="brand-sub">Download ETS 2 PC Mods, Maps & Free PC Games</span>
             </div>
         </div>
         <nav class="nav-links">
@@ -27,53 +27,31 @@
     </header>
 
     <div class="container">
-        <!-- Featured Games Slider (ApunkaGames Style Sliding Banner) -->
-        <div class="featured-slider-container">
-            <div class="slider-header-title">🔥 Featured Epic Releases</div>
-            <div class="slider-track" id="featured-slider-track">
-                <!-- Dynamically populated or static cards sliding right-to-left -->
-                <div class="slider-item">
-                    <img src="images/ets-2-pc.jpg" alt="ETS 2 TZ">
-                    <div class="slider-caption">
-                        <span class="slider-tag">Featured PC</span>
-                        <h4>Tanzania Euro Truck Simulator 2 + 50 TZ Mods</h4>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="images/gta5.png" alt="GTA V">
-                    <div class="slider-caption">
-                        <span class="slider-tag">Free Download</span>
-                        <h4>Grand Theft Auto V Legacy</h4>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="images/carxstreet.png" alt="CarX Street">
-                    <div class="slider-caption">
-                        <span class="slider-tag">Free Download</span>
-                        <h4>CarX Street Open World Racing</h4>
-                    </div>
-                </div>
-                <div class="slider-item">
-                    <img src="images/codaw1.png" alt="COD">
-                    <div class="slider-caption">
-                        <span class="slider-tag">Free Download</span>
-                        <h4>Call of Duty: Advanced Warfare</h4>
-                    </div>
+        <!-- Featured Games Sliding Carousel (ApunkaGames Style) -->
+        <section class="featured-slider-container">
+            <div class="slider-header">
+                <h2>🔥 Featured & Popular Games</h2>
+                <div class="slider-controls">
+                    <button class="slider-arrow" onclick="moveSlide(-1)">&#10094;</button>
+                    <button class="slider-arrow" onclick="moveSlide(1)">&#10095;</button>
                 </div>
             </div>
-        </div>
-
-        <!-- Introductory Information Box -->
-        <div class="intro-banner">
-            <h2>Welcome to Squad Games Store TZ 🎮</h2>
-            <p>Get the absolute best custom Tanzania truck simulator packages, mobile conversions, and completely free high-end PC action & racing titles. Fast, reliable downloads with secure local payment alternatives!</p>
-        </div>
+            <div class="featured-slider" id="featured-slider">
+                <!-- Dynamically populated slides -->
+            </div>
+        </section>
 
         <!-- Trust Indicators Bar -->
         <div class="trust-bar">
-            <div class="trust-item"><span class="trust-icon">⚡</span> Instant WhatsApp & Direct Delivery</div>
-            <div class="trust-item"><span class="trust-icon">🔒</span> Safe Local Payments (Selar & Vodacom)</div>
-            <div class="trust-item"><span class="trust-icon">🎮</span> 100% Tested Mods, Maps & Repacks</div>
+            <div class="trust-item"><span class="trust-icon">⚡</span> Instant WhatsApp & Direct Downloads</div>
+            <div class="trust-item"><span class="trust-icon">🔒</span> Safe Local Payments via Vodacom</div>
+            <div class="trust-item"><span class="trust-icon">🎮</span> Tested PC Repacks & Mobile Mods</div>
+        </div>
+
+        <!-- Store Header Info Section -->
+        <div class="store-intro">
+            <h2>Welcome to SquadGames Store Tanzania</h2>
+            <p>Explore our library of top-tier simulation racing games, mobile titles, and AAA blockbusters. Get free direct downloads or secure premium Tanzania truck mod packs instantly!</p>
         </div>
 
         <main id="game-grid" class="game-grid">
@@ -83,14 +61,8 @@
             </div>
         </main>
 
-        <!-- Bottom Additional Content Box -->
-        <div class="footer-info-box">
-            <h3>Why Download From Squad Games Store TZ?</h3>
-            <p>We provide verified offline installers, direct Google Drive and MediaFire links for popular action and racing titles, and dedicated local support via WhatsApp for all Tanzanian gamers. Enjoy seamless gaming on both PC and Android!</p>
-        </div>
-
         <footer class="footer-note">
-            Squad Games Store TZ &copy; 2026. All rights reserved.
+            SquadGames &copy; 2026. All rights reserved.
         </footer>
     </div>
 
@@ -109,11 +81,9 @@
             <strong style="color: #ffffff; font-size: 0.9rem;">📸 Game Preview (Click to Enlarge):</strong>
             <div id="modal-gallery" class="screenshots-container"></div>
 
-            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+            <div id="modal-actions-container" style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
                 <span id="modal-price" style="font-size: 1.2rem; font-weight: bold; color: #25d366;"></span>
-                <div class="action-group" style="align-items: flex-end;">
-                    <a id="modal-buy" href="#" target="_blank" class="btn-action">Buy Now</a>
-                </div>
+                <div id="modal-btn-group" class="action-group"></div>
             </div>
         </div>
     </div>
@@ -124,7 +94,6 @@
         <img id="fullscreen-img" class="fullscreen-img" src="" alt="Full Screen Preview">
     </div>
 
-    <script src="games-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
