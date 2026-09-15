@@ -33,7 +33,7 @@
             <p>Your ultimate destination for lightning-fast free PC and mobile game repacks, simulation maps, and custom TZ mods. Enjoy instant WhatsApp and local support for premium titles!</p>
         </div>
 
-        <!-- Featured Games Slider Section (ApunkaGames Style) -->
+        <!-- Featured Games Slider Section -->
         <div class="featured-section-title">🔥 Featured Epic Games</div>
         <div class="featured-slider-container">
             <div class="featured-slider" id="featured-slider">
@@ -138,7 +138,6 @@
             const dotsContainer = document.getElementById("slider-dots");
             if (!slider) return;
 
-            // Target specified featured games: Top 2 TZ paid games, GTA V Legacy, COD Advanced Warfare, NFS Payback
             const featuredIds = [1, "ets2-mobile", 5, 6, 8];
             const featuredGames = gameList.filter(g => featuredIds.includes(g.id) || featuredIds.includes(String(g.id)));
 
@@ -209,7 +208,7 @@
             autoSlideTimer = setInterval(() => {
                 currentSlideIndex++;
                 showSlide(currentSlideIndex);
-            }, 5000); // Changes slide every 5 seconds automatically
+            }, 5000);
         }
 
         // --- GRID RENDERING ---
