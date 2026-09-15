@@ -111,123 +111,127 @@ body {
     padding: 24px 20px;
 }
 
-/* Featured Slider Styles (ApunkaGames style right-to-left scrolling banner) */
+/* Featured Games Slider (ApunkaGames Style Carousel) */
 .featured-slider-container {
+    margin-bottom: 30px;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
     border-radius: 14px;
     padding: 16px;
-    margin-bottom: 24px;
-    overflow: hidden;
     backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.slider-header-title {
-    font-size: 1.05rem;
-    font-weight: 800;
-    color: #ffffff;
-    margin-bottom: 12px;
+.slider-header {
     display: flex;
+    justify-content: space-between;
     align-items: center;
+    margin-bottom: 14px;
+}
+
+.slider-header h2 {
+    font-size: 1.1rem;
+    margin: 0;
+    color: #ffffff;
+}
+
+.slider-controls {
+    display: flex;
     gap: 8px;
 }
 
-.slider-track {
+.slider-arrow {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid var(--border-color);
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
     display: flex;
-    gap: 16px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 8px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-blue) rgba(255,255,255,0.05);
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
 }
 
-.slider-track::-webkit-scrollbar {
-    height: 6px;
-}
-
-.slider-track::-webkit-scrollbar-thumb {
+.slider-arrow:hover {
     background: var(--accent-blue);
-    border-radius: 4px;
+    border-color: var(--accent-blue);
+}
+
+.featured-slider {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .slider-item {
-    min-width: 280px;
-    height: 150px;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    flex-shrink: 0;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+    display: flex;
+    flex-direction: column;
+}
+
+.slider-item.active {
+    opacity: 1;
+    visibility: visible;
 }
 
 .slider-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.4s ease;
+    position: absolute;
+    inset: 0;
+    z-index: 1;
 }
 
-.slider-item:hover img {
-    transform: scale(1.05);
+.slider-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,10,12,0.95) 10%, rgba(10,10,12,0.3) 70%, transparent 100%);
+    z-index: 2;
 }
 
 .slider-caption {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(transparent, rgba(10, 10, 12, 0.95));
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 3;
 }
 
-.slider-tag {
-    background: var(--accent-blue);
-    color: #fff;
-    font-size: 0.65rem;
-    font-weight: 700;
-    padding: 2px 6px;
-    border-radius: 4px;
-    width: fit-content;
-    text-transform: uppercase;
-}
-
-.slider-caption h4 {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #fff;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Intro & Info Banner Boxes */
-.intro-banner, .footer-info-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 20px;
-    margin-bottom: 24px;
-    backdrop-filter: blur(10px);
-}
-
-.intro-banner h2, .footer-info-box h3 {
-    margin-top: 0;
-    font-size: 1.2rem;
+.slider-caption h3 {
+    margin: 6px 0;
+    font-size: 1.3rem;
     color: #ffffff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.8);
 }
 
-.intro-banner p, .footer-info-box p {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 0;
-    line-height: 1.5;
+.slider-caption p {
+    margin: 0 0 12px 0;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+.slider-actions {
+    display: flex;
+    gap: 10px;
 }
 
 /* Trust Bar */
@@ -256,6 +260,29 @@ body {
 
 .trust-icon {
     font-size: 1rem;
+}
+
+/* Store Intro Info Box */
+.store-intro {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.store-intro h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    color: #ffffff;
+}
+
+.store-intro p {
+    margin-bottom: 0;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 /* Loading State */
@@ -309,9 +336,6 @@ body {
 }
 
 .card-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
     background: rgba(0, 122, 255, 0.85);
     backdrop-filter: blur(4px);
     color: #fff;
@@ -322,6 +346,13 @@ body {
     letter-spacing: 0.5px;
     z-index: 2;
     box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+    display: inline-block;
+}
+
+.game-card .card-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
 }
 
 .game-img-wrapper {
@@ -440,7 +471,6 @@ body {
 .btn-download {
     background: var(--accent-green);
     color: #ffffff;
-    text-decoration: none;
     padding: 8px 14px;
     border-radius: 8px;
     font-weight: 700;
@@ -451,7 +481,6 @@ body {
 .btn-download:hover {
     background: #1da851;
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
 }
 
 /* Vodacom / WhatsApp Red-Accent Payment Button */
@@ -464,7 +493,6 @@ body {
 .btn-vodacom:hover {
     background: linear-gradient(135deg, #ff1a1a, #cc0000);
     transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(230, 0, 0, 0.4);
 }
 
 /* Free Game Button (Get) */
@@ -477,12 +505,10 @@ body {
     font-size: 0.82rem;
     text-decoration: none;
     box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-    transition: all 0.2s ease;
 }
 
 .btn-get:hover {
     background: linear-gradient(135deg, #34d399, #10b981);
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
     transform: translateY(-1px);
 }
 
@@ -504,7 +530,6 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -539,6 +564,12 @@ body {
     transform: scale(1);
 }
 
+.modal-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+}
+
 .close-btn {
     position: absolute;
     top: 14px;
@@ -547,7 +578,6 @@ body {
     color: var(--text-muted);
     cursor: pointer;
     line-height: 1;
-    transition: color 0.2s ease;
 }
 
 .close-btn:hover {
@@ -565,6 +595,7 @@ body {
     line-height: 1.45;
 }
 
+/* Screenshot Grid Layout */
 .screenshots-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -587,6 +618,7 @@ body {
     border-color: var(--accent-blue);
 }
 
+/* Full Screen Image Viewer Modal */
 .fullscreen-overlay {
     position: fixed;
     top: 0;
@@ -628,6 +660,11 @@ body {
     opacity: 0.8;
 }
 
+.fullscreen-close:hover {
+    opacity: 1;
+}
+
+/* Mobile Responsiveness */
 @media (max-width: 600px) {
     .navbar {
         flex-direction: column;
@@ -636,15 +673,13 @@ body {
         padding: 12px 16px;
     }
 
-    .nav-links {
-        width: 100%;
-    }
-
-    .nav-btn {
-        display: flex;
-        text-align: center;
+    .nav-links, .nav-btn {
         width: 100%;
         box-sizing: border-box;
         justify-content: center;
+    }
+
+    .featured-slider {
+        height: 260px;
     }
 }
