@@ -33,13 +33,28 @@ function renderGameStore(gameList) {
         // Fallback target URL if downloadUrl is missing
         const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
+        // Action group HTML builder supporting optional secondary Vodacom payment link
+        let actionButtonsHTML = `
+            <a href="${targetUrl}" target="_blank" ${isFree ? 'download' : ''} class="btn-action ${actionBtnClass}">${actionBtnText}</a>
+        `;
+
+        if (game.altDownloadUrl) {
+            actionButtonsHTML += `
+                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" title="Buy via WhatsApp using Vodacom network">
+                    💬 Buy (Vodacom)
+                </a>
+            `;
+        }
+
         card.innerHTML = `
             <div class="card-badge">${game.platform || "Game"}</div>
-            <img src="${game.image}" 
-                 alt="${game.title}" 
-                 class="game-img" 
-                 loading="lazy" 
-                 onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
+            <div class="game-img-wrapper">
+                <img src="${game.image}" 
+                     alt="${game.title}" 
+                     class="game-img" 
+                     loading="lazy" 
+                     onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
+            </div>
             <div class="game-details">
                 <span class="category-tag">${game.category || "General"}</span>
                 <h3>${game.title}</h3>
@@ -48,7 +63,7 @@ function renderGameStore(gameList) {
                     <span class="price">${game.price}</span>
                     <div class="action-group">
                         <button class="btn-details" onclick="openDetails(${index})">Details</button>
-                        <a href="${targetUrl}" target="_blank" ${isFree ? 'download' : ''} class="btn-action ${actionBtnClass}">${actionBtnText}</a>
+                        ${actionButtonsHTML}
                     </div>
                 </div>
             </div>
@@ -73,18 +88,22 @@ function openDetails(index) {
     document.getElementById("modal-desc").innerText = game.description || "";
     document.getElementById("modal-req").innerText = game.requirements || "Standard System Requirements";
     document.getElementById("modal-price").innerText = game.price;
-    
-    const buyBtn = document.getElementById("modal-buy");
-    buyBtn.href = targetUrl;
-    buyBtn.innerText = modalBtnText;
-    buyBtn.className = `btn-action ${modalBtnClass}`;
 
-    // Add download attribute if free to force direct downloading
-    if (isFree) {
-        buyBtn.setAttribute("download", "");
-    } else {
-        buyBtn.removeAttribute("download");
+    // Build modal action container supporting both primary and optional secondary checkout buttons
+    const actionGroupContainer = document.getElementById("modal-buy").parentNode;
+    
+    let modalButtonsHTML = `
+        <a id="modal-buy" href="${targetUrl}" target="_blank" ${isFree ? 'download' : ''} class="btn-action ${modalBtnClass}">${modalBtnText}</a>
+    `;
+
+    if (game.altDownloadUrl) {
+        modalButtonsHTML += `
+            <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 8px;">
+                💬 Buy via WhatsApp (Vodacom)
+            </a>
+        `;
     }
+    actionGroupContainer.innerHTML = modalButtonsHTML;
 
     const gallery = document.getElementById("modal-gallery");
     gallery.innerHTML = "";
