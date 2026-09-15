@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SquadGames - PC & Mobile Game Store TZ</title>
+    <title>SquadGames - Free PC & Mobile Games Store TZ</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
             </div>
             <div class="brand-text">
                 <span class="brand-title">SquadGames</span>
-                <span class="brand-sub">Download ETS 2 PC Mods, Maps & Free PC Games</span>
+                <span class="brand-sub">Download ETS 2 PC Mods, Maps & Free High-End Games</span>
             </div>
         </div>
         <nav class="nav-links">
@@ -27,39 +27,44 @@
     </header>
 
     <div class="container">
-        <!-- Featured Games Sliding Carousel (ApunkaGames Style) -->
-        <section class="featured-slider-container">
-            <div class="slider-header">
-                <h2>🔥 Featured & Popular Games</h2>
-                <div class="slider-controls">
-                    <button class="slider-arrow" onclick="moveSlide(-1)">&#10094;</button>
-                    <button class="slider-arrow" onclick="moveSlide(1)">&#10095;</button>
-                </div>
-            </div>
+        <!-- Top Informational Welcome Banner -->
+        <div class="intro-banner">
+            <h2>Welcome to SquadGames Tanzania 🇹🇿</h2>
+            <p>Your ultimate destination for lightning-fast free PC and mobile game repacks, simulation maps, and custom TZ mods. Enjoy instant WhatsApp and local support for premium titles!</p>
+        </div>
+
+        <!-- Featured Games Slider Section (ApunkaGames Style) -->
+        <div class="featured-section-title">🔥 Featured Epic Games</div>
+        <div class="featured-slider-container">
             <div class="featured-slider" id="featured-slider">
-                <!-- Dynamically populated slides -->
+                <!-- Dynamically populated via JS -->
             </div>
-        </section>
+            <button class="slider-btn slider-prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="slider-btn slider-next" onclick="moveSlide(1)">&#10095;</button>
+            <div class="slider-dots" id="slider-dots"></div>
+        </div>
 
         <!-- Trust Indicators Bar -->
         <div class="trust-bar">
-            <div class="trust-item"><span class="trust-icon">⚡</span> Instant WhatsApp & Direct Downloads</div>
-            <div class="trust-item"><span class="trust-icon">🔒</span> Safe Local Payments via Vodacom</div>
-            <div class="trust-item"><span class="trust-icon">🎮</span> Tested PC Repacks & Mobile Mods</div>
+            <div class="trust-item"><span class="trust-icon">⚡</span> Instant WhatsApp & Direct Delivery</div>
+            <div class="trust-item"><span class="trust-icon">🔒</span> Safe Local Payments & Free Repacks</div>
+            <div class="trust-item"><span class="trust-icon">🎮</span> Tested Games & Custom TZ Mods</div>
         </div>
 
-        <!-- Store Header Info Section -->
-        <div class="store-intro">
-            <h2>Welcome to SquadGames Store Tanzania</h2>
-            <p>Explore our library of top-tier simulation racing games, mobile titles, and AAA blockbusters. Get free direct downloads or secure premium Tanzania truck mod packs instantly!</p>
-        </div>
-
+        <!-- All Games Grid -->
+        <h2 style="margin-top: 30px; font-size: 1.4rem; color: #ffffff;">Available Games Library</h2>
         <main id="game-grid" class="game-grid">
             <div class="loading-state">
                 <div class="spinner"></div>
                 <p>Loading epic games...</p>
             </div>
         </main>
+
+        <!-- Bottom Informational Footer Note / SEO Section -->
+        <div class="bottom-info-box">
+            <h3>Why Download From SquadGames?</h3>
+            <p>All files are thoroughly checked, highly compressed, and provided with direct Google Drive, Mediafire, or local Selar/Vodacom secure payment links. Whether you are looking for open-world action titles like GTA V and GTA IV, heavy-duty truck driving simulators across Tanzania, or high-octane racing like Need for Speed and CarX Street, SquadGames delivers the best gaming experience tailored for Tanzanian gamers.</p>
+        </div>
 
         <footer class="footer-note">
             SquadGames &copy; 2026. All rights reserved.
@@ -81,9 +86,11 @@
             <strong style="color: #ffffff; font-size: 0.9rem;">📸 Game Preview (Click to Enlarge):</strong>
             <div id="modal-gallery" class="screenshots-container"></div>
 
-            <div id="modal-actions-container" style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <span id="modal-price" style="font-size: 1.2rem; font-weight: bold; color: #25d366;"></span>
-                <div id="modal-btn-group" class="action-group"></div>
+                <div id="modal-action-wrapper" style="display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 250px;">
+                    <!-- Injected dynamically -->
+                </div>
             </div>
         </div>
     </div>
@@ -94,6 +101,240 @@
         <img id="fullscreen-img" class="fullscreen-img" src="" alt="Full Screen Preview">
     </div>
 
-    <script src="script.js"></script>
+    <!-- Script inclusion supporting games-data.js or dynamic fetch -->
+    <script src="games-data.js"></script>
+    <script>
+        let loadedGamesData = [];
+        let currentSlideIndex = 0;
+        let autoSlideTimer = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const dataList = (typeof gamesData !== "undefined") ? gamesData : null;
+            if (dataList) {
+                initStore(dataList);
+            } else {
+                fetch("./games.json")
+                    .then(response => {
+                        if (!response.ok) throw new Error("Failed to load games.json");
+                        return response.json();
+                    })
+                    .then(games => initStore(games))
+                    .catch(err => {
+                        console.warn("Using fallback loading:", err);
+                    });
+            }
+        });
+
+        function initStore(gameList) {
+            loadedGamesData = gameList;
+            renderFeaturedSlider(gameList);
+            renderGameGrid(gameList);
+            startAutoSlide();
+        }
+
+        // --- FEATURED SLIDER LOGIC ---
+        function renderFeaturedSlider(gameList) {
+            const slider = document.getElementById("featured-slider");
+            const dotsContainer = document.getElementById("slider-dots");
+            if (!slider) return;
+
+            // Target specified featured games: Top 2 TZ paid games, GTA V Legacy, COD Advanced Warfare, NFS Payback
+            const featuredIds = [1, "ets2-mobile", 5, 6, 8];
+            const featuredGames = gameList.filter(g => featuredIds.includes(g.id) || featuredIds.includes(String(g.id)));
+
+            slider.innerHTML = "";
+            dotsContainer.innerHTML = "";
+
+            featuredGames.forEach((game, index) => {
+                const priceText = String(game.price || "").trim().toUpperCase();
+                const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
+                const btnText = isFree ? "Get Game" : "Buy Now";
+
+                const slide = document.createElement("div");
+                slide.classList.add("slider-item");
+                if (index === 0) slide.classList.add("active");
+
+                slide.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
+                    <div class="slider-caption">
+                        <span class="slider-badge">${game.platform || "PC"}</span>
+                        <h3>${game.title}</h3>
+                        <p>${game.description}</p>
+                        <div class="slider-footer">
+                            <span class="price">${game.price}</span>
+                            <a href="${game.downloadUrl}" target="_blank" class="btn-action ${isFree ? 'btn-get' : 'btn-download'}">${btnText}</a>
+                        </div>
+                    </div>
+                `;
+                slider.appendChild(slide);
+
+                const dot = document.createElement("span");
+                dot.classList.add("slider-dot");
+                if (index === 0) dot.classList.add("active");
+                dot.onclick = () => currentSlide(index);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll(".slider-item");
+            const dots = document.querySelectorAll(".slider-dot");
+            if (!slides.length) return;
+
+            if (n >= slides.length) currentSlideIndex = 0;
+            if (n < 0) currentSlideIndex = slides.length - 1;
+
+            slides.forEach(s => s.classList.remove("active"));
+            dots.forEach(d => d.classList.remove("active"));
+
+            slides[currentSlideIndex].classList.add("active");
+            dots[currentSlideIndex].classList.add("active");
+        }
+
+        function moveSlide(n) {
+            clearInterval(autoSlideTimer);
+            currentSlideIndex += n;
+            showSlide(currentSlideIndex);
+            startAutoSlide();
+        }
+
+        function currentSlide(n) {
+            clearInterval(autoSlideTimer);
+            currentSlideIndex = n;
+            showSlide(currentSlideIndex);
+            startAutoSlide();
+        }
+
+        function startAutoSlide() {
+            autoSlideTimer = setInterval(() => {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }, 5000); // Changes slide every 5 seconds automatically
+        }
+
+        // --- GRID RENDERING ---
+        function renderGameGrid(gameList) {
+            const container = document.getElementById("game-grid");
+            if (!container) return;
+            container.innerHTML = "";
+
+            gameList.forEach((game, index) => {
+                const card = document.createElement("div");
+                card.classList.add("game-card");
+
+                const priceText = String(game.price || "").trim().toUpperCase();
+                const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
+
+                const actionBtnText = isFree ? "Get Game" : "Buy Now";
+                const actionBtnClass = isFree ? "btn-get" : "btn-download";
+                const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+
+                let actionButtonsHTML = `
+                    <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
+                `;
+
+                if (game.altDownloadUrl) {
+                    actionButtonsHTML += `
+                        <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" title="Buy via WhatsApp using Vodacom">
+                            💬 Buy (Vodacom)
+                        </a>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="card-badge">${game.platform || "Game"}</div>
+                    <div class="game-img-wrapper">
+                        <img src="${game.image}" alt="${game.title}" class="game-img" loading="lazy" onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
+                    </div>
+                    <div class="game-details">
+                        <span class="category-tag">${game.category || "General"}</span>
+                        <h3>${game.title}</h3>
+                        <p>${game.description || ""}</p>
+                        <div class="card-action">
+                            <span class="price">${game.price}</span>
+                            <div class="action-group">
+                                <button class="btn-details" onclick="openDetails(${index})">Details</button>
+                                ${actionButtonsHTML}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // --- MODAL HANDLING ---
+        function openDetails(index) {
+            const game = loadedGamesData[index];
+            if (!game) return;
+
+            const priceText = String(game.price || "").trim().toUpperCase();
+            const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
+
+            const modalBtnText = isFree ? "Get Game" : "Buy Now";
+            const modalBtnClass = isFree ? "btn-get" : "btn-download";
+            const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+
+            document.getElementById("modal-title").innerText = game.title;
+            document.getElementById("modal-desc").innerText = game.description || "";
+            document.getElementById("modal-req").innerText = game.requirements || "Standard System Requirements";
+            document.getElementById("modal-price").innerText = game.price;
+
+            const actionWrapper = document.getElementById("modal-action-wrapper");
+            let modalButtonsHTML = `
+                <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}" style="width: 100%; box-sizing: border-box; text-align: center;">${modalBtnText}</a>
+            `;
+
+            if (game.altDownloadUrl) {
+                modalButtonsHTML += `
+                    <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="width: 100%; box-sizing: border-box; text-align: center;">
+                        💬 Buy via WhatsApp (Vodacom)
+                    </a>
+                `;
+            }
+            actionWrapper.innerHTML = modalButtonsHTML;
+
+            const gallery = document.getElementById("modal-gallery");
+            gallery.innerHTML = "";
+
+            if (game.screenshots && game.screenshots.length > 0) {
+                game.screenshots.forEach((imgSrc) => {
+                    const img = document.createElement("img");
+                    img.src = imgSrc;
+                    img.alt = "Screenshot";
+                    img.onerror = function () { this.src = "images/nfsmw-shot1.png"; };
+                    img.onclick = function () { openFullScreen(imgSrc); };
+                    gallery.appendChild(img);
+                });
+            } else {
+                const img = document.createElement("img");
+                img.src = game.image;
+                img.onclick = function () { openFullScreen(game.image); };
+                gallery.appendChild(img);
+            }
+
+            document.getElementById("details-modal").classList.add("active");
+        }
+
+        function closeModal(event) {
+            if (event.target.classList.contains("modal-overlay")) {
+                closeModalDirect();
+            }
+        }
+
+        function closeModalDirect() {
+            document.getElementById("details-modal").classList.remove("active");
+        }
+
+        function openFullScreen(imgSrc) {
+            const fullImg = document.getElementById("fullscreen-img");
+            fullImg.src = imgSrc;
+            document.getElementById("fullscreen-modal").classList.add("active");
+        }
+
+        function closeFullScreen() {
+            document.getElementById("fullscreen-modal").classList.remove("active");
+        }
+    </script>
 </body>
 </html>
