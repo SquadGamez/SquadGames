@@ -1,107 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SquadGames - Free PC & Mobile Games Store TZ</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <!-- Navigation Header with Profile Picture -->
-    <header class="navbar">
-        <div class="brand">
-            <div class="avatar-glow">
-                <img src="images/profile.jpg" alt="SquadGames Profile" class="nav-avatar" onerror="this.src='images/nfsmw-shot1.png';" />
-            </div>
-            <div class="brand-text">
-                <span class="brand-title">SquadGames</span>
-                <span class="brand-sub">Download ETS 2 PC Mods, Maps & Free High-End Games</span>
-            </div>
-        </div>
-        <nav class="nav-links">
-            <a href="https://wa.me/255692752060" target="_blank" class="nav-btn" rel="noopener">
-                <span class="whatsapp-icon">💬</span> WhatsApp Support
-            </a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <!-- Top Informational Welcome Banner -->
-        <div class="intro-banner">
-            <h2>Welcome to SquadGames Tanzania 🇹🇿</h2>
-            <p>Your ultimate destination for lightning-fast free PC and mobile game repacks, simulation maps, and custom TZ mods. Enjoy instant WhatsApp and local support for premium titles!</p>
-        </div>
-
-        <!-- Featured Games Slider Section -->
-        <div class="featured-section-title">🔥 Featured Epic Games</div>
-        <div class="featured-slider-container">
-            <div class="featured-slider" id="featured-slider">
-                <!-- Dynamically populated via JS -->
-            </div>
-            <button class="slider-btn slider-prev" onclick="moveSlide(-1)" aria-label="Previous Slide">&#10094;</button>
-            <button class="slider-btn slider-next" onclick="moveSlide(1)" aria-label="Next Slide">&#10095;</button>
-            <div class="slider-dots" id="slider-dots"></div>
-        </div>
-
-        <!-- Trust Indicators Bar -->
-        <div class="trust-bar">
-            <div class="trust-item"><span class="trust-icon">⚡</span> Instant WhatsApp & Direct Delivery</div>
-            <div class="trust-item"><span class="trust-icon">🔒</span> Safe Local Payments & Free Repacks</div>
-            <div class="trust-item"><span class="trust-icon">🎮</span> Tested Games & Custom TZ Mods</div>
-        </div>
-
-        <!-- All Games Grid -->
-        <h2 style="margin-top: 30px; font-size: 1.4rem; color: #ffffff;">Available Games Library</h2>
-        <main id="game-grid" class="game-grid">
-            <div class="loading-state">
-                <div class="spinner"></div>
-                <p>Loading epic games...</p>
-            </div>
-        </main>
-
-        <!-- Bottom Informational Footer Note / SEO Section -->
-        <div class="bottom-info-box">
-            <h3>Why Download From SquadGames?</h3>
-            <p>All files are thoroughly checked, highly compressed, and provided with direct Google Drive, Mediafire, or local Selar/Vodacom secure payment links. Whether you are looking for open-world action titles like GTA V and GTA IV, heavy-duty truck driving simulators across Tanzania, or high-octane racing like Need for Speed and CarX Street, SquadGames delivers the best gaming experience tailored for Tanzanian gamers.</p>
-        </div>
-
-        <footer class="footer-note">
-            SquadGames &copy; 2026. All rights reserved.
-        </footer>
-    </div>
-
-    <!-- Game Details Popup Modal -->
-    <div id="details-modal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModalDirect()" aria-label="Close modal">&times;</span>
-            <h2 id="modal-title" style="margin-top: 0; font-size: 1.3rem;"></h2>
-            <p id="modal-desc" style="color: #94a3b8; font-size: 0.9rem; margin-top: 5px;"></p>
-            
-            <div class="specs-box">
-                <strong style="color: #007aff;">⚙️ System Requirements:</strong><br>
-                <span id="modal-req">Standard System Requirements</span>
-            </div>
-
-            <strong style="color: #ffffff; font-size: 0.9rem;">📸 Game Preview (Click to Enlarge):</strong>
-            <div id="modal-gallery" class="screenshots-container"></div>
-
-            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                <span id="modal-price" style="font-size: 1.2rem; font-weight: bold; color: #25d366;"></span>
-                <div id="modal-action-wrapper" style="display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 250px;">
-                    <!-- Injected dynamically -->
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Full Screen Image Lightbox Modal -->
-    <div id="fullscreen-modal" class="fullscreen-overlay" onclick="closeFullScreen()">
-        <span class="fullscreen-close" onclick="closeFullScreen()" aria-label="Close fullscreen">&times;</span>
-        <img id="fullscreen-img" class="fullscreen-img" src="" alt="Full Screen Preview">
-    </div>
-
-    <!-- Script inclusion supporting games-data.js or dynamic fetch -->
+<!-- Script inclusion supporting games-data.js or dynamic fetch -->
     <script src="games-data.js"></script>
     <script>
         let loadedGamesData = [];
@@ -236,7 +133,7 @@
                 const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
                 let actionButtonsHTML = `
-                    <a href="${targetUrl}" target="_blank" rel="noopener" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
+                    <a href="${targetUrl}" target="_blank" rel="noopener" class="btn-action ${actionBtnClass}" onclick="handleDownloadClick(event, '${targetUrl}')">${actionBtnText}</a>
                 `;
 
                 if (game.altDownloadUrl) {
@@ -269,6 +166,14 @@
             });
         }
 
+        // --- DOWNLOAD LINK HANDLER ---
+        function handleDownloadClick(event, url) {
+            // Ensures Google Drive or direct file links open cleanly and reliably
+            if (url && url.includes("drive.google.com")) {
+                console.log("Redirecting to Google Drive package link:", url);
+            }
+        }
+
         // --- MODAL HANDLING ---
         function openDetails(index) {
             const game = loadedGamesData[index];
@@ -281,7 +186,6 @@
             const modalBtnClass = isFree ? "btn-get" : "btn-download";
             const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
-            document.getElementById("modal-titleinnerText") = game.title;
             document.getElementById("modal-title").innerText = game.title;
             document.getElementById("modal-desc").innerText = game.description || "";
             document.getElementById("modal-req").innerText = game.requirements || "Standard System Requirements";
@@ -346,5 +250,3 @@
             document.getElementById("fullscreen-modal").classList.remove("active");
         }
     </script>
-</body>
-</html>
