@@ -3,6 +3,24 @@ let currentSlideIndex = 0;
 let slideInterval;
 
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Restore scroll position instantly if it was saved before leaving
+    const savedPosition = localStorage.getItem('scrollPosition');
+    if (savedPosition !== null) {
+        window.scrollTo({
+            top: parseInt(savedPosition),
+            behavior: 'instant'
+        });
+        localStorage.removeItem('scrollPosition');
+    }
+
+    // 2. Save scroll position whenever any action/download button is clicked
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.btn-action')) {
+            localStorage.setItem('scrollPosition', window.scrollY);
+        }
+    });
+
+    // 3. Fetch games data
     fetch("./games.json")
         .then(response => {
             if (!response.ok) throw new Error("Failed to load games.json");
