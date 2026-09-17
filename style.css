@@ -214,8 +214,8 @@ body {
 
 .marquee-game-img {
     width: 100%;
-    height: 130px;
-    object-fit: contain; /* Ensures the whole picture is visible without clipping */
+    height: 140px;
+    object-fit: cover; /* Updated to cover the container cleanly and neatly fit the card layout */
     background-color: #000;
 }
 
