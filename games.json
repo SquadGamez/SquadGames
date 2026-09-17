@@ -190,9 +190,9 @@
     "price": "FREE",
     "image": "sm.png",
     "screenshots": [
-      "sm1.png",
-      "sm2.png",
-      "sm3.png"
+      "images/sm1.png",
+      "images/sm2.png",
+      "images/sm3.png"
     ],
     "downloadUrl": "https://drive.google.com/file/d/1jvc3KFNGQK5qLJH4hyKt41MM2woSTJ45/view?usp=drive_link"
   }
