@@ -12,7 +12,7 @@
     <header class="navbar">
         <div class="brand">
             <div class="avatar-glow">
-                <img src="images/profile.jpg" alt="SquadGames Profile" class="nav-avatar" />
+                <img src="images/profile.jpg" alt="SquadGames Profile" class="nav-avatar" onerror="this.src='images/nfsmw-shot1.png';" />
             </div>
             <div class="brand-text">
                 <span class="brand-title">SquadGames</span>
@@ -20,7 +20,7 @@
             </div>
         </div>
         <nav class="nav-links">
-            <a href="https://wa.me/255692752060" target="_blank" class="nav-btn">
+            <a href="https://wa.me/255692752060" target="_blank" class="nav-btn" rel="noopener">
                 <span class="whatsapp-icon">💬</span> WhatsApp Support
             </a>
         </nav>
@@ -39,8 +39,8 @@
             <div class="featured-slider" id="featured-slider">
                 <!-- Dynamically populated via JS -->
             </div>
-            <button class="slider-btn slider-prev" onclick="moveSlide(-1)">&#10094;</button>
-            <button class="slider-btn slider-next" onclick="moveSlide(1)">&#10095;</button>
+            <button class="slider-btn slider-prev" onclick="moveSlide(-1)" aria-label="Previous Slide">&#10094;</button>
+            <button class="slider-btn slider-next" onclick="moveSlide(1)" aria-label="Next Slide">&#10095;</button>
             <div class="slider-dots" id="slider-dots"></div>
         </div>
 
@@ -74,7 +74,7 @@
     <!-- Game Details Popup Modal -->
     <div id="details-modal" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModalDirect()">&times;</span>
+            <span class="close-btn" onclick="closeModalDirect()" aria-label="Close modal">&times;</span>
             <h2 id="modal-title" style="margin-top: 0; font-size: 1.3rem;"></h2>
             <p id="modal-desc" style="color: #94a3b8; font-size: 0.9rem; margin-top: 5px;"></p>
             
@@ -97,7 +97,7 @@
 
     <!-- Full Screen Image Lightbox Modal -->
     <div id="fullscreen-modal" class="fullscreen-overlay" onclick="closeFullScreen()">
-        <span class="fullscreen-close" onclick="closeFullScreen()">&times;</span>
+        <span class="fullscreen-close" onclick="closeFullScreen()" aria-label="Close fullscreen">&times;</span>
         <img id="fullscreen-img" class="fullscreen-img" src="" alt="Full Screen Preview">
     </div>
 
@@ -121,6 +121,10 @@
                     .then(games => initStore(games))
                     .catch(err => {
                         console.warn("Using fallback loading:", err);
+                        document.getElementById("game-grid").innerHTML = `
+                            <div class="loading-state">
+                                <p style="color: #ff5555;">Failed to load game catalog. Please check your connection or games-data.js file.</p>
+                            </div>`;
                     });
             }
         });
@@ -138,13 +142,16 @@
             const dotsContainer = document.getElementById("slider-dots");
             if (!slider) return;
 
-            const featuredIds = [1, "ets2-mobile", 5, 6, 8];
+            const featuredIds = [1, "ets2-mobile", "5", "6", "8", 5, 6, 8];
             const featuredGames = gameList.filter(g => featuredIds.includes(g.id) || featuredIds.includes(String(g.id)));
+            
+            // Fallback if no matching IDs are found in custom JSON
+            const activeSliderList = featuredGames.length > 0 ? featuredGames : gameList.slice(0, 4);
 
             slider.innerHTML = "";
             dotsContainer.innerHTML = "";
 
-            featuredGames.forEach((game, index) => {
+            activeSliderList.forEach((game, index) => {
                 const priceText = String(game.price || "").trim().toUpperCase();
                 const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
                 const btnText = isFree ? "Get Game" : "Buy Now";
@@ -161,7 +168,7 @@
                         <p>${game.description}</p>
                         <div class="slider-footer">
                             <span class="price">${game.price}</span>
-                            <a href="${game.downloadUrl}" target="_blank" class="btn-action ${isFree ? 'btn-get' : 'btn-download'}">${btnText}</a>
+                            <a href="${game.downloadUrl || 'https://wa.me/255692752060'}" target="_blank" rel="noopener" class="btn-action ${isFree ? 'btn-get' : 'btn-download'}">${btnText}</a>
                         </div>
                     </div>
                 `;
@@ -229,12 +236,12 @@
                 const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
                 let actionButtonsHTML = `
-                    <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
+                    <a href="${targetUrl}" target="_blank" rel="noopener" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
                 `;
 
                 if (game.altDownloadUrl) {
                     actionButtonsHTML += `
-                        <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" title="Buy via WhatsApp using Vodacom">
+                        <a href="${game.altDownloadUrl}" target="_blank" rel="noopener" class="btn-action btn-vodacom" title="Buy via WhatsApp using Vodacom">
                             💬 Buy (Vodacom)
                         </a>
                     `;
@@ -274,6 +281,7 @@
             const modalBtnClass = isFree ? "btn-get" : "btn-download";
             const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
+            document.getElementById("modal-titleinnerText") = game.title;
             document.getElementById("modal-title").innerText = game.title;
             document.getElementById("modal-desc").innerText = game.description || "";
             document.getElementById("modal-req").innerText = game.requirements || "Standard System Requirements";
@@ -281,12 +289,12 @@
 
             const actionWrapper = document.getElementById("modal-action-wrapper");
             let modalButtonsHTML = `
-                <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}" style="width: 100%; box-sizing: border-box; text-align: center;">${modalBtnText}</a>
+                <a href="${targetUrl}" target="_blank" rel="noopener" class="btn-action ${modalBtnClass}" style="width: 100%; box-sizing: border-box; text-align: center;">${modalBtnText}</a>
             `;
 
             if (game.altDownloadUrl) {
                 modalButtonsHTML += `
-                    <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="width: 100%; box-sizing: border-box; text-align: center;">
+                    <a href="${game.altDownloadUrl}" target="_blank" rel="noopener" class="btn-action btn-vodacom" style="width: 100%; box-sizing: border-box; text-align: center;">
                         💬 Buy via WhatsApp (Vodacom)
                     </a>
                 `;
@@ -301,6 +309,7 @@
                     const img = document.createElement("img");
                     img.src = imgSrc;
                     img.alt = "Screenshot";
+                    img.loading = "lazy";
                     img.onerror = function () { this.src = "images/nfsmw-shot1.png"; };
                     img.onclick = function () { openFullScreen(imgSrc); };
                     gallery.appendChild(img);
@@ -308,6 +317,8 @@
             } else {
                 const img = document.createElement("img");
                 img.src = game.image;
+                img.alt = game.title;
+                img.loading = "lazy";
                 img.onclick = function () { openFullScreen(game.image); };
                 gallery.appendChild(img);
             }
@@ -328,7 +339,7 @@
         function openFullScreen(imgSrc) {
             const fullImg = document.getElementById("fullscreen-img");
             fullImg.src = imgSrc;
-            document.getElementById("fullscreen-modal").classList.add("active");
+            document.getElementById("fullscreen-modal").classList.add("active"); 
         }
 
         function closeFullScreen() {
