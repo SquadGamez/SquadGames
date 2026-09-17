@@ -1,4 +1,4 @@
-[
+const gamesData = [
   {
     "id": 1,
     "title": "Tanzania Euro Truck Simulator 2 + 50 TZ mods packs",
@@ -180,4 +180,4 @@
     ],
     "downloadUrl": "https://drive.google.com/file/d/1rvLh9KRmUwsGFeHKW6KRguU1t_RipJsM/view?usp=sharing"
   }
-]
+];
