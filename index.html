@@ -33,15 +33,27 @@
             <p>Your ultimate destination for lightning-fast free PC and mobile game repacks, simulation maps, and custom TZ mods. Enjoy instant WhatsApp and local support for premium titles!</p>
         </div>
 
-        <!-- Featured Games Slider Section -->
-        <div class="featured-section-title">🔥 Featured Epic Games</div>
-        <div class="featured-slider-container">
-            <div class="featured-slider" id="featured-slider">
-                <!-- Dynamically populated via JS -->
+        <!-- Top Section Split Layout (3/5 Marquee & 2/5 Most Popular) -->
+        <div class="top-split-container">
+            
+            <!-- Featured Marquee Section (3/5 Width) -->
+            <div class="featured-epic-wrapper">
+                <div class="section-title">🔥 Featured Epic Games</div>
+                <div class="featured-marquee-container">
+                    <div class="featured-marquee-track" id="featured-marquee-track">
+                        <!-- Dynamically populated via JS -->
+                    </div>
+                </div>
             </div>
-            <button class="slider-btn slider-prev" onclick="moveSlide(-1)" aria-label="Previous Slide">&#10094;</button>
-            <button class="slider-btn slider-next" onclick="moveSlide(1)" aria-label="Next Slide">&#10095;</button>
-            <div class="slider-dots" id="slider-dots"></div>
+
+            <!-- Most Popular Games Section (2/5 Width) -->
+            <div class="most-popular-wrapper">
+                <div class="section-title">⭐ Most Popular</div>
+                <div class="popular-list" id="popular-games-list">
+                    <!-- Dynamically populated via JS -->
+                </div>
+            </div>
+
         </div>
 
         <!-- Trust Indicators Bar -->
@@ -123,8 +135,6 @@
     <script src="games-data.js"></script>
     <script>
         let loadedGamesData = [];
-        let currentSlideIndex = 0;
-        let autoSlideTimer = null;
 
         document.addEventListener("DOMContentLoaded", () => {
             const dataList = (typeof gamesData !== "undefined") ? gamesData : null;
@@ -149,96 +159,75 @@
 
         function initStore(gameList) {
             loadedGamesData = gameList;
-            renderFeaturedSlider(gameList);
+            renderFeaturedMarquee(gameList);
+            renderMostPopular(gameList);
             renderGameGrid(gameList);
-            startAutoSlide();
         }
 
-        // --- FEATURED SLIDER LOGIC ---
-        function renderFeaturedSlider(gameList) {
-            const slider = document.getElementById("featured-slider");
-            const dotsContainer = document.getElementById("slider-dots");
-            if (!slider) return;
+        // --- FEATURED CONTINUOUS MARQUEE LOGIC ---
+        function renderFeaturedMarquee(gameList) {
+            const track = document.getElementById("featured-marquee-track");
+            if (!track) return;
 
             const featuredIds = [1, "ets2-mobile", "5", "6", "8", 5, 6, 8];
-            const featuredGames = gameList.filter(g => featuredIds.includes(g.id) || featuredIds.includes(String(g.id)));
-            
-            const activeSliderList = featuredGames.length > 0 ? featuredGames : gameList.slice(0, 4);
+            let featuredGames = gameList.filter(g => featuredIds.includes(g.id) || featuredIds.includes(String(g.id)));
+            if (featuredGames.length === 0) featuredGames = gameList.slice(0, 5);
 
-            slider.innerHTML = "";
-            dotsContainer.innerHTML = "";
+            // Duplicate items to ensure a seamless infinite scrolling effect loop
+            const marqueeItems = [...featuredGames, ...featuredGames];
 
-            activeSliderList.forEach((game, index) => {
+            track.innerHTML = "";
+
+            marqueeItems.forEach(game => {
                 const priceText = String(game.price || "").trim().toUpperCase();
                 const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
-                const btnText = isFree ? "Get Game" : "Buy Now";
+                const btnText = isFree ? "Get" : "Buy";
 
-                const slide = document.createElement("div");
-                slide.classList.add("slider-item");
-                if (index === 0) slide.classList.add("active");
-
-                // Check if link is google drive
                 const url = game.downloadUrl || 'https://wa.me/255692752060';
                 const isDrive = url.includes("drive.google.com");
                 const clickAction = (isFree && isDrive) ? `onclick="openGdriveModalLink('${url.replace(/'/g, "\\'")}')"` : '';
                 const hrefAttr = (isFree && isDrive) ? '#' : url;
 
-                slide.innerHTML = `
-                    <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
-                    <div class="slider-caption">
-                        <span class="slider-badge">${game.platform || "PC"}</span>
-                        <h3>${game.title}</h3>
-                        <p>${game.description}</p>
-                        <div class="slider-footer">
-                            <span class="price">${game.price}</span>
-                            <a href="${hrefAttr}" ${isFree && isDrive ? clickAction : 'target="_blank" rel="noopener"'} class="btn-action ${isFree ? 'btn-get' : 'btn-download'}">${btnText}</a>
+                const card = document.createElement("div");
+                card.classList.add("marquee-game-card");
+                card.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}" class="marquee-game-img" onerror="this.src='images/nfsmw-shot1.png';">
+                    <div class="marquee-game-content">
+                        <span class="marquee-game-badge">${game.platform || "PC"}</span>
+                        <h4>${game.title}</h4>
+                        <p>${game.description || ""}</p>
+                        <div class="marquee-game-footer">
+                            <span class="marquee-price">${game.price}</span>
+                            <a href="${hrefAttr}" ${isFree && isDrive ? clickAction : 'target="_blank" rel="noopener"'} class="btn-action ${isFree ? 'btn-get' : 'btn-download'}" style="padding: 5px 10px; font-size: 0.75rem;">${btnText}</a>
                         </div>
                     </div>
                 `;
-                slider.appendChild(slide);
-
-                const dot = document.createElement("span");
-                dot.classList.add("slider-dot");
-                if (index === 0) dot.classList.add("active");
-                dot.onclick = () => currentSlide(index);
-                dotsContainer.appendChild(dot);
+                track.appendChild(card);
             });
         }
 
-        function showSlide(n) {
-            const slides = document.querySelectorAll(".slider-item");
-            const dots = document.querySelectorAll(".slider-dot");
-            if (!slides.length) return;
+        // --- MOST POPULAR GAMES LIST LOGIC ---
+        function renderMostPopular(gameList) {
+            const listContainer = document.getElementById("popular-games-list");
+            if (!listContainer) return;
 
-            if (n >= slides.length) currentSlideIndex = 0;
-            if (n < 0) currentSlideIndex = slides.length - 1;
+            // Pick top popular items or slice first 4 items
+            const popularGames = gameList.slice(0, 4);
+            listContainer.innerHTML = "";
 
-            slides.forEach(s => s.classList.remove("active"));
-            dots.forEach(d => d.classList.remove("active"));
-
-            slides[currentSlideIndex].classList.add("active");
-            dots[currentSlideIndex].classList.add("active");
-        }
-
-        function moveSlide(n) {
-            clearInterval(autoSlideTimer);
-            currentSlideIndex += n;
-            showSlide(currentSlideIndex);
-            startAutoSlide();
-        }
-
-        function currentSlide(n) {
-            clearInterval(autoSlideTimer);
-            currentSlideIndex = n;
-            showSlide(currentSlideIndex);
-            startAutoSlide();
-        }
-
-        function startAutoSlide() {
-            autoSlideTimer = setInterval(() => {
-                currentSlideIndex++;
-                showSlide(currentSlideIndex);
-            }, 5000);
+            popularGames.forEach((game, index) => {
+                const item = document.createElement("div");
+                item.classList.add("popular-item");
+                item.onclick = () => openDetails(loadedGamesData.findIndex(g => g.title === game.title));
+                item.innerHTML = `
+                    <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
+                    <div class="popular-item-info">
+                        <h5>${game.title}</h5>
+                        <span>${game.price}</span>
+                    </div>
+                `;
+                listContainer.appendChild(item);
+            });
         }
 
         // --- GRID RENDERING ---
