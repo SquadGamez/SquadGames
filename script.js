@@ -81,8 +81,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initStore(games) {
     loadedGamesData = games;
-    renderFeaturedMarquee(games.slice(0, 5)); 
-    renderPopularList(games.slice(0, 4));
+    
+    // Configured Featured Games: Replaced NFS Most Wanted with FIFA 22 (Index 12)
+    const featuredGames = [
+        games[0], // ETS2 PC
+        games[1], // ETS2 Mobile
+        games[2], // ETS2 v1.57
+        games[5], // Call of Duty: Advanced Warfare
+        games[6], // CarX Street
+        games[12] // FIFA 22
+    ].filter(Boolean);
+    renderFeaturedMarquee(featuredGames); 
+
+    // Configured Popular Games: Includes Spider-Man (Index 11) and FIFA 22 (Index 12)
+    const popularGames = [
+        games[0], // ETS2 PC
+        games[7], // GTA V Legacy
+        games[11], // Marvel’s Spider-Man: Miles Morales
+        games[12]  // FIFA 22
+    ].filter(Boolean);
+    renderPopularList(popularGames);
+
     applyFilters(); 
 
     // Bind Search Input Listener
