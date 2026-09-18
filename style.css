@@ -31,6 +31,9 @@ body {
     padding: 16px 20px;
     margin-bottom: 24px;
     backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 .portal-logo-area {
@@ -44,17 +47,6 @@ body {
     font-size: 1.25rem;
     font-weight: 800;
     margin: 0;
-}
-
-.nav-btn {
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid var(--border-color);
-    color: var(--text-main);
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    text-decoration: none;
-    font-weight: 600;
 }
 
 .portal-navbar {
@@ -78,6 +70,7 @@ body {
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
+    cursor: pointer;
 }
 
 .portal-navbar .nav-tab.active {
@@ -114,6 +107,7 @@ body {
 .search-icon {
     position: absolute;
     left: 14px;
+    color: var(--text-muted);
 }
 
 .search-bar-wrapper input {
@@ -124,6 +118,7 @@ body {
     border-radius: 12px;
     color: #fff;
     font-size: 0.95rem;
+    box-sizing: border-box;
 }
 
 /* --- Top Split Layout --- */
@@ -152,6 +147,9 @@ body {
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /* Marquee & Popular lists */
@@ -164,12 +162,110 @@ body {
     gap: 12px;
     overflow-x: auto;
     padding-bottom: 6px;
+    scrollbar-width: none;
+}
+
+.featured-marquee-track::-webkit-scrollbar {
+    display: none;
+}
+
+.marquee-game-card {
+    min-width: 220px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.marquee-game-img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+}
+
+.marquee-game-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.marquee-game-badge {
+    font-size: 0.65rem;
+    background: var(--accent-blue);
+    color: #fff;
+    padding: 2px 6px;
+    border-radius: 4px;
+    width: fit-content;
+    font-weight: 700;
+}
+
+.marquee-game-content h4 {
+    margin: 0;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.marquee-game-content p {
+    margin: 0;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.marquee-game-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+.marquee-price {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--accent-green);
 }
 
 .popular-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+.popular-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color);
+    padding: 8px;
+    border-radius: 10px;
+}
+
+.popular-item img {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.popular-item-info h5 {
+    margin: 0 0 2px 0;
+    font-size: 0.85rem;
+}
+
+.popular-item-info span {
+    font-size: 0.75rem;
+    color: var(--accent-green);
+    font-weight: 700;
 }
 
 /* --- Trust Bar --- */
@@ -191,7 +287,7 @@ body {
     gap: 8px;
 }
 
-/* --- Game Cards Grid & Image Fix --- */
+/* --- Game Cards Grid & Image Container Fix --- */
 .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -205,6 +301,21 @@ body {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.card-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    z-index: 2;
+    border: 1px solid var(--border-color);
 }
 
 .game-img-wrapper {
@@ -219,64 +330,6 @@ body {
     height: 100%;
     object-fit: cover;
 }
-
-/* --- Bottom Box & Footer --- */
-.bottom-info-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 20px;
-    margin-top: 30px;
-    margin-bottom: 15px;
-}
-
-.footer-note {
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    padding-bottom: 20px;
-}
-
-/* --- Modals --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.75);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-}
-
-.modal-overlay.active {
-    display: flex;
-}
-
-.modal-content {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 24px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-}
-
-.close-btn {
-    position: absolute;
-    top: 14px;
-    right: 18px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-muted);
-}
-
-/* ==========================================================
-   ADDED SAFELY TO SUPPORT YOUR NEW CARDS, BUTTONS & G-DRIVE MODAL
-   ================================================---------- */
 
 .game-details {
     padding: 16px;
@@ -345,84 +398,102 @@ body {
     border-color: var(--accent-blue);
 }
 
-/* Marquee Cards Extra Styling */
-.marquee-game-card {
-    min-width: 220px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.marquee-game-img {
+/* --- Modals & Lightbox --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 110px;
-    object-fit: cover;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
-.marquee-game-content {
-    padding: 10px;
+.modal-overlay.active {
     display: flex;
-    flex-direction: column;
-    gap: 4px;
 }
 
-/* Google Drive Download Modal Layout */
-.gdrive-modal-box {
-    text-align: center;
-    max-width: 440px;
-}
-
-.modal-header-icon {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-}
-
-.gdrive-popup-box {
-    margin-top: 16px;
-    background: rgba(0, 0, 0, 0.2);
-    padding: 14px;
-    border-radius: 12px;
+.modal-content {
+    background: var(--bg-card);
     border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
-.gdrive-link-input {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    padding: 10px;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 0.85rem;
-    margin-bottom: 12px;
-    box-sizing: border-box;
-    text-align: center;
-}
-
-.gdrive-btn-row {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.btn-gdrive-primary {
-    background: var(--accent-blue);
-    color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    display: block;
-}
-
-.btn-gdrive-copy {
-    background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    font-weight: 600;
+.close-btn {
+    position: absolute;
+    top: 14px;
+    right: 18px;
+    font-size: 1.5rem;
     cursor: pointer;
+    color: var(--text-muted);
+}
+
+.fullscreen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1100;
+}
+
+.fullscreen-overlay.active {
+    display: flex;
+}
+
+.fullscreen-img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.fullscreen-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* --- Bottom Box & Footer --- */
+.bottom-info-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.bottom-info-box h3 {
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+.bottom-info-box p {
+    margin-bottom: 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.footer-note {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding-bottom: 20px;
 }
