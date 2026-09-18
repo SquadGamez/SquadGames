@@ -76,13 +76,11 @@
         <nav class="portal-navbar">
             <a href="index.html" class="nav-tab active" data-category="all">Home</a>
             <a href="#" class="nav-tab" data-category="action">Action</a>
-            <a href="#" class="nav-tab" data-category="fighting">Fighting</a>
+            <a href="#" class="nav-tab" data-category="simulation">Simulation</a>
             <a href="#" class="nav-tab" data-category="shooting">Shooting</a>
-            <a href="#" class="nav-tab" data-category="sports">Sports</a>
             <a href="#" class="nav-tab" data-category="racing">Racing</a>
-            <a href="#" class="nav-tab" data-category="all">All Categories</a>
-            <a href="#" class="nav-tab" data-category="pc games">PC Games List</a>
-            <a href="#" class="nav-tab" data-category="mobile games">Mobile Games</a>
+            <a href="#" class="nav-tab" data-category="pc">PC Games</a>
+            <a href="#" class="nav-tab" data-category="android">Mobile Games</a>
         </nav>
     </div>
 
@@ -154,44 +152,25 @@
 
     </div>
 
-    <!-- Full Screen Lightbox for Screenshots -->
-    <div class="fullscreen-overlay" id="fullscreenOverlay">
-        <span class="fullscreen-close" id="fullscreenClose">&times;</span>
-        <img class="fullscreen-img" id="fullscreenImg" src="" alt="Fullscreen Screenshot">
-    </div>
-
     <!-- Application Script -->
     <script>
         // --- SMART AUTO-CATEGORIZER ENGINE ---
         function getSmartCategories(game) {
             let categories = new Set();
 
-            if (game.category) categories.add(game.category.toLowerCase());
-            if (game.platform) categories.add(game.platform.toLowerCase());
+            if (game.category) {
+                game.category.split(',').forEach(c => categories.add(c.trim().toLowerCase()));
+            }
+            if (game.platform) {
+                categories.add(game.platform.trim().toLowerCase());
+            }
 
             const textCheck = (game.title + " " + (game.description || "")).toLowerCase();
 
-            if (textCheck.match(/gta|grand theft auto|call of duty|action|battlefield|spiderman|god of war|resident evil/)) {
-                categories.add('action');
-            }
-            if (textCheck.match(/tekken|street fighter|ufc|mortal kombat|boxing|wwe|fight/)) {
-                categories.add('fighting');
-            }
-            if (textCheck.match(/shooting|gun|fps|call of duty|counter strike|pubg|free fire|sniper/)) {
-                categories.add('shooting');
-            }
-            if (textCheck.match(/fifa|pes|efootball|nba|sports|cricket|tennis|madden|fc 24|fc 25/)) {
-                categories.add('sports');
-            }
-            if (textCheck.match(/carx|nfs|need for speed|racing|asphalt|truck|simulator|euro truck/)) {
-                categories.add('racing');
-            }
-
-            if (textCheck.match(/apk|android|ios|mobile|phone|samsung/)) {
-                categories.add('mobile games');
-            } else {
-                categories.add('pc games');
-            }
+            if (textCheck.match(/gta|grand theft auto|action/)) categories.add('action');
+            if (textCheck.match(/truck|simulator/)) categories.add('simulation');
+            if (textCheck.match(/shooting|fps|call of duty/)) categories.add('shooting');
+            if (textCheck.match(/carx|nfs|racing|need for speed/)) categories.add('racing');
 
             return Array.from(categories);
         }
@@ -258,17 +237,19 @@
 
             grid.innerHTML = filtered.map(game => {
                 const smartCats = getSmartCategories(game);
-                const primaryCat = smartCats[0] ? smartCats[0].toUpperCase() : 'GAME';
-                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                const primaryCat = game.platform || 'PC';
+                const gameId = game.id; // Matches numeric/string IDs from games.json
                 
-                // Direct download link from games.json without alerts
-                const downloadUrl = game.downloadLink || '#';
+                // Uses downloadUrl mapping directly from games.json
+                const downloadUrl = game.downloadUrl || '#';
+                const isPaid = game.price && game.price !== 'FREE';
+                const buttonText = isPaid ? 'Buy / Order' : 'Download';
 
                 return `
                     <div class="game-card">
                         <span class="card-badge">${primaryCat}</span>
                         <div class="game-img-wrapper">
-                            <img class="game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}" loading="lazy">
+                            <img class="game-img" src="${game.image \vert{}\vert{} 'images/default.jpg'}" alt="${game.title}" loading="lazy">
                         </div>
                         <div class="game-details">
                             <span class="category-tag">${smartCats.join(' • ')}</span>
@@ -278,7 +259,7 @@
                                 <span class="price">${game.price || 'FREE'}</span>
                                 <div class="action-group">
                                     <a href="details.html?id=${gameId}" class="btn-details">Details &rarr;</a>
-                                    <a href="${downloadUrl}" class="btn-action btn-download" target="_blank">Download</a>
+                                    <a href="${downloadUrl}" class="btn-action btn-download" target="_blank">${buttonText}</a>
                                 </div>
                             </div>
                         </div>
@@ -295,17 +276,16 @@
 
             marqueeTrack.innerHTML = doubleFeatured.map(game => {
                 const smartCats = getSmartCategories(game);
-                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
                 return `
                     <div class="marquee-game-card">
-                        <img class="marquee-game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}">
+                        <img class="marquee-game-img" src="${game.image \vert{}\vert{} 'images/default.jpg'}" alt="${game.title}">
                         <div class="marquee-game-content">
-                            <span class="marquee-game-badge">${smartCats[0]}</span>
+                            <span class="marquee-game-badge">${smartCats[0] || 'GAME'}</span>
                             <h4>${game.title}</h4>
                             <p>${game.description || ''}</p>
                             <div class="marquee-game-footer">
                                 <span class="marquee-price">${game.price || 'FREE'}</span>
-                                <a href="details.html?id=${gameId}" class="btn-details" style="padding: 4px 8px; font-size: 0.75rem;">View</a>
+                                <a href="details.html?id=${game.id}" class="btn-details" style="padding: 4px 8px; font-size: 0.75rem;">View</a>
                             </div>
                         </div>
                     </div>
@@ -317,10 +297,9 @@
             const popularGames = games.slice(0, 5);
 
             popularList.innerHTML = popularGames.map(game => {
-                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
                 return `
-                    <a href="details.html?id=${gameId}" class="popular-item">
-                        <img src="${game.image || 'images/default.jpg'}" alt="${game.title}">
+                    <a href="details.html?id=${game.id}" class="popular-item">
+                        <img src="${game.image \vert{}\vert{} 'images/default.jpg'}" alt="${game.title}">
                         <div class="popular-item-info">
                             <h5>${game.title}</h5>
                             <span>${game.price || 'FREE'}</span>
