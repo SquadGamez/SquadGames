@@ -238,9 +238,8 @@
             grid.innerHTML = filtered.map(game => {
                 const smartCats = getSmartCategories(game);
                 const primaryCat = game.platform || 'PC';
-                const gameId = game.id; // Matches numeric/string IDs from games.json
+                const gameId = game.id; 
                 
-                // Uses downloadUrl mapping directly from games.json
                 const downloadUrl = game.downloadUrl || '#';
                 const isPaid = game.price && game.price !== 'FREE';
                 const buttonText = isPaid ? 'Buy / Order' : 'Download';
@@ -249,7 +248,7 @@
                     <div class="game-card">
                         <span class="card-badge">${primaryCat}</span>
                         <div class="game-img-wrapper">
-                            <img class="game-img" src="${game.image \vert{}\vert{} 'images/default.jpg'}" alt="${game.title}" loading="lazy">
+                            <img class="game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}" loading="lazy">
                         </div>
                         <div class="game-details">
                             <span class="category-tag">${smartCats.join(' • ')}</span>
@@ -278,7 +277,7 @@
                 const smartCats = getSmartCategories(game);
                 return `
                     <div class="marquee-game-card">
-                        <img class="marquee-game-img" src="${game.image \vert{}\vert{} 'images/default.jpg'}" alt="${game.title}">
+                        <img class="marquee-game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}">
                         <div class="marquee-game-content">
                             <span class="marquee-game-badge">${smartCats[0] || 'GAME'}</span>
                             <h4>${game.title}</h4>
@@ -299,7 +298,7 @@
             popularList.innerHTML = popularGames.map(game => {
                 return `
                     <a href="details.html?id=${game.id}" class="popular-item">
-                        <img src="${game.image \vert{}\vert{} 'images/default.jpg'}" alt="${game.title}">
+                        <img src="${game.image || 'images/default.jpg'}" alt="${game.title}">
                         <div class="popular-item-info">
                             <h5>${game.title}</h5>
                             <span>${game.price || 'FREE'}</span>
