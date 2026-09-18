@@ -749,28 +749,6 @@ body {
     transform: translateY(-1px);
 }
 
-/* --- Separate Details Page Styles --- */
-.game-details-page-wrapper {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 30px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-}
-
-.details-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 30px;
-}
-
-@media (max-width: 768px) {
-    .details-grid {
-        grid-template-columns: 1fr !important;
-    }
-}
-
 /* Bottom Information Box */
 .bottom-info-box {
     background: var(--bg-card);
@@ -955,6 +933,7 @@ body {
     margin-top: 16px;
     text-align: center;
 }
+
 .gdrive-link-input {
     width: 100%;
     padding: 10px 12px;
@@ -967,11 +946,13 @@ body {
     box-sizing: border-box;
     text-align: center;
 }
+
 .gdrive-btn-row {
     display: flex;
     gap: 8px;
     justify-content: center;
 }
+
 .btn-gdrive-primary {
     background: var(--accent-blue);
     color: #fff;
@@ -988,10 +969,12 @@ body {
     box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
     transition: all 0.2s;
 }
+
 .btn-gdrive-primary:hover {
     background: #0062cc;
     transform: translateY(-1px);
 }
+
 .btn-gdrive-copy {
     background: rgba(255, 255, 255, 0.1);
     color: #fff;
@@ -1003,6 +986,7 @@ body {
     cursor: pointer;
     transition: all 0.2s;
 }
+
 .btn-gdrive-copy:hover {
     background: rgba(255, 255, 255, 0.2);
 }
