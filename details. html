@@ -65,8 +65,9 @@
                 }
 
                 const smartCats = getSmartCategories(game);
-                const downloadTarget = (game.downloadLink && game.downloadLink !== '#') ? game.downloadLink : '#';
-                const downloadAttr = (game.downloadLink && game.downloadLink !== '#') ? 'target="_blank"' : 'onclick="event.preventDefault(); alert(\'Download link coming soon!\');"';
+                
+                // Direct download link from games.json without alerts
+                const downloadUrl = game.downloadLink || '#';
 
                 // Render extra screenshots/gallery if provided in your JSON
                 let screenshotsHTML = '';
@@ -112,7 +113,7 @@
 
                             <div style="margin-top: 30px; display: flex; gap: 15px; align-items: center;">
                                 <span class="price" style="font-size: 1.6rem; font-weight: 800; color: #fff;">${game.price || 'FREE'}</span>
-                                <a href="${downloadTarget}" class="btn-action btn-download" ${downloadAttr} style="padding: 12px 24px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                                <a href="${downloadUrl}" class="btn-action btn-download" target="_blank" style="padding: 12px 24px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
                                     <i class="fa-solid fa-download"></i> Download Game (Google Drive)
                                 </a>
                             </div>
