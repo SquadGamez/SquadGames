@@ -8,18 +8,94 @@
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- Cool Box Category Navigation Styling --- */
+        /* --- Cool Box Category Navigation & Search Styling --- */
         .portal-header-wrapper {
             background: var(--bg-card, rgba(22, 22, 26, 0.88));
             border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
             border-radius: 16px;
-            padding: 16px 20px;
+            padding: 18px 24px;
             margin-bottom: 24px;
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             position: sticky;
             top: 0;
             z-index: 999;
+        }
+
+        .portal-logo-area {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .portal-logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #ffffff;
+            letter-spacing: -0.3px;
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        /* --- Sleek Modern Search Box Styling --- */
+        .portal-search-wrapper {
+            position: relative;
+            width: 280px;
+            max-width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 0 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(8px);
+        }
+
+        .portal-search-wrapper:hover {
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Glowing accent border when you click/type in the search box */
+        .portal-search-wrapper:focus-within {
+            background: rgba(0, 122, 255, 0.05);
+            border-color: var(--accent-blue, #007aff);
+            box-shadow: 0 0 16px rgba(0, 122, 255, 0.25);
+        }
+
+        .portal-search-wrapper .search-icon {
+            position: static;
+            transform: none;
+            color: var(--text-muted, #94a3b8);
+            font-size: 0.85rem;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .portal-search-wrapper:focus-within .search-icon {
+            color: var(--accent-blue, #007aff);
+        }
+
+        .portal-search-wrapper #gameSearchInput {
+            width: 100%;
+            background: transparent;
+            border: none;
+            padding: 10px 0;
+            color: #ffffff;
+            font-size: 0.85rem;
+            outline: none;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .portal-search-wrapper #gameSearchInput::placeholder {
+            color: var(--text-muted, #94a3b8);
+            opacity: 0.7;
         }
 
         .portal-navbar {
@@ -67,13 +143,13 @@
 
     <!-- Permanent Portal Header Navigation Bar with Profile Logo & Search Bar -->
     <div class="portal-header-wrapper">
-        <div class="portal-logo-area" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 12px;">
+        <div class="portal-logo-area">
             <div style="display: flex; align-items: center; gap: 12px;">
-                <img src="images/profile.jpg" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-blue);">
-                <h1 class="portal-logo" style="margin: 0;">SquadGames <span style="color: var(--accent-blue);">Store TZ</span></h1>
+                <img src="images/profile.jpg" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-blue, #007aff);">
+                <h1 class="portal-logo">SquadGames <span style="color: var(--accent-blue, #007aff);">Store TZ</span></h1>
             </div>
-            <!-- Search Bar Moved to Header -->
-            <div class="search-bar-wrapper" style="max-width: 280px; width: 100%; flex-grow: 1; margin: 0;">
+            <!-- Sleek Modern Search Bar Wrapper -->
+            <div class="portal-search-wrapper">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
                 <input type="text" id="gameSearchInput" placeholder="Search games by title, keyword...">
             </div>
@@ -123,8 +199,8 @@
 
         <!-- Trust Bar -->
         <div class="trust-bar">
-            <div class="trust-item"><i class="fa-solid fa-shield-halved trust-icon" style="color: var(--accent-green);"></i> Verified Safe Downloads</div>
-            <div class="trust-item"><i class="fa-solid fa-bolt trust-icon" style="color: var(--accent-blue);"></i> High-Speed Torrents & Repacks</div>
+            <div class="trust-item"><i class="fa-solid fa-shield-halved trust-icon" style="color: var(--accent-green, #25d366);"></i> Verified Safe Downloads</div>
+            <div class="trust-item"><i class="fa-solid fa-bolt trust-icon" style="color: var(--accent-blue, #007aff);"></i> High-Speed Torrents & Repacks</div>
             <div class="trust-item"><i class="fa-solid fa-headset trust-icon" style="color: #ff9500;"></i> 24/7 Community Support</div>
         </div>
 
@@ -149,14 +225,13 @@
 
     </div>
 
-    <!-- Details Modal Structure (Required for displaying PC specs from games.json) -->
+    <!-- Details Modal Structure -->
     <div class="modal-overlay" id="details-modal" onclick="closeModal(event)">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModalDirect()">&times;</span>
             <h2 id="modal-title">Game Title</h2>
             <p id="modal-desc">Game description goes here...</p>
             
-            <!-- This ID pulls requirements from your script/games.json -->
             <div class="specs-box" id="modal-req">
                 OS: Windows 10 | RAM: 8 GB
             </div>
@@ -176,7 +251,6 @@
 
     <!-- Application Script -->
     <script>
-        // --- SMART AUTO-CATEGORIZER ENGINE ---
         function getSmartCategories(game) {
             let categories = new Set();
 
@@ -201,7 +275,6 @@
         let activeCategory = 'all';
         let searchQuery = '';
 
-        // Fetch Games Catalog JSON
         fetch('games.json')
             .then(response => response.json())
             .then(data => {
@@ -220,20 +293,17 @@
             renderFeaturedAndPopular(allGames);
             filterAndRenderGrid();
 
-            // Search input listener
             document.getElementById('gameSearchInput').addEventListener('input', (e) => {
                 searchQuery = e.target.value.toLowerCase();
                 filterAndRenderGrid();
             });
 
-            // Top Header Nav Tabs listener
             document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
                 tab.addEventListener('click', (e) => {
                     e.preventDefault();
                     document.querySelectorAll('.portal-navbar .nav-tab').forEach(t => t.classList.remove('active'));
                     e.target.classList.add('active');
                     activeCategory = e.target.getAttribute('data-category');
-
                     filterAndRenderGrid();
                 });
             });
@@ -290,7 +360,6 @@
         }
 
         function renderFeaturedAndPopular(games) {
-            // Marquee Track (Featured)
             const marqueeTrack = document.getElementById('featuredTrack');
             const featuredGames = games.slice(0, 6);
             const doubleFeatured = [...featuredGames, ...featuredGames];
@@ -314,7 +383,6 @@
                 `;
             }).join('');
 
-            // Most Popular List
             const popularList = document.getElementById('popularList');
             const popularGames = games.slice(0, 5);
 
@@ -333,7 +401,6 @@
             }).join('');
         }
 
-        // Modal Functionality for PC Requirements
         function openDetails(index) {
             const game = allGames[index];
             if (!game) return;
