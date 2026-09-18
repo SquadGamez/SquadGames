@@ -1,208 +1,199 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Squad Games Store TZ</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .portal-header-wrapper {
-            background: var(--bg-card, rgba(22, 22, 26, 0.88));
-            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-            border-radius: 16px;
-            padding: 16px 20px;
-            margin-bottom: 24px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-        .portal-navbar {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 4px;
-            scrollbar-width: none;
-        }
-        .portal-navbar::-webkit-scrollbar { display: none; }
-        .portal-navbar .nav-tab {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-muted, #94a3b8);
-            padding: 7px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-decoration: none;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .portal-navbar .nav-tab:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
-        .portal-navbar .nav-tab.active {
-            background: var(--accent-blue, #007aff);
-            color: #fff;
-            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
-        }
-    </style>
-</head>
-<body>
-    <div class="portal-header-wrapper">
-        <div class="portal-logo-area" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
-            <div style="display: flex; align-items: center; gap: 12px;">
-                <img src="images/profile.jpg" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-blue);">
-                <h1 class="portal-logo" style="margin: 0;">SquadGames <span style="color: var(--accent-blue);">Store TZ</span></h1>
-            </div>
-        </div>
-        <nav class="portal-navbar">
-            <a href="index.html" class="nav-tab active" data-category="all">Home</a>
-            <a href="#" class="nav-tab" data-category="action">Action</a>
-            <a href="#" class="nav-tab" data-category="fighting">Fighting</a>
-            <a href="#" class="nav-tab" data-category="shooting">Shooting</a>
-            <a href="#" class="nav-tab" data-category="sports">Sports</a>
-            <a href="#" class="nav-tab" data-category="racing">Racing</a>
-            <a href="#" class="nav-tab" data-category="simulation">Simulation</a>
-            <a href="#" class="nav-tab" data-category="all">All Categories</a>
-            <a href="#" class="nav-tab" data-category="pc">PC Games</a>
-            <a href="#" class="nav-tab" data-category="android">Mobile Games</a>
-        </nav>
-    </div>
-
-    <div class="container">
-        <div class="intro-banner">
-            <h2>Welcome to Squad Games Store TZ</h2>
-            <p>Your ultimate destination for high-speed racing, action-packed adventures, and custom Tanzanian mods.</p>
-        </div>
-
-        <div class="search-filter-section">
-            <div class="search-bar-wrapper">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="gameSearchInput" placeholder="Search games by title, keyword, or genre...">
-            </div>
-        </div>
-
-        <div class="top-split-container">
-            <div class="featured-epic-wrapper">
-                <h3 class="section-title"><i class="fa-solid fa-fire"></i> Featured Epic Games</h3>
-                <div class="featured-marquee-container">
-                    <div class="featured-marquee-track" id="featuredTrack"></div>
-                </div>
-            </div>
-            <div class="most-popular-wrapper">
-                <h3 class="section-title"><i class="fa-solid fa-bolt"></i> Most Popular</h3>
-                <div class="popular-list" id="popularList"></div>
-            </div>
-        </div>
-
-        <h2 style="font-size: 1.2rem; font-weight: 800; margin: 30px 0 15px 0; color: #fff;">Game Library</h2>
-        <div class="game-grid" id="gameGrid">
-            <div class="loading-state"><div class="spinner"></div><p>Loading game catalog...</p></div>
-        </div>
-
-        <div class="footer-note">&copy; 2026 Squad Games Store TZ. Hosted via GitHub Pages.</div>
-    </div>
-
-    <script>
-        let allGames = [];
-        let activeCategory = 'all';
-        let searchQuery = '';
-
-        fetch('games.json')
-            .then(res => res.json())
-            .then(data => { allGames = data; initStore(); })
-            .catch(err => { console.error(err); document.getElementById('gameGrid').innerHTML = '<p style="color: #ff4d4d;">Failed to load catalog.</p>'; });
-
-        function initStore() {
-            renderFeaturedAndPopular(allGames);
-            filterAndRenderGrid();
-            document.getElementById('gameSearchInput').addEventListener('input', (e) => {
-                searchQuery = e.target.value.toLowerCase();
-                filterAndRenderGrid();
-            });
-            document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
-                tab.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.querySelectorAll('.portal-navbar .nav-tab').forEach(t => t.classList.remove('active'));
-                    e.target.classList.add('active');
-                    activeCategory = e.target.getAttribute('data-category');
-                    filterAndRenderGrid();
-                });
-            });
-        }
-
-        function filterAndRenderGrid() {
-            const grid = document.getElementById('gameGrid');
-            const filtered = allGames.filter(game => {
-                const catLower = (game.category || '').toLowerCase();
-                const platformLower = (game.platform || '').toLowerCase();
-                const matchesCategory = (activeCategory === 'all' || catLower.includes(activeCategory) || platformLower.includes(activeCategory));
-                const matchesSearch = ((game.title || '').toLowerCase().includes(searchQuery) || (game.description || '').toLowerCase().includes(searchQuery));
-                return matchesCategory && matchesSearch;
-            });
-
-            if (filtered.length === 0) {
-                grid.innerHTML = '<div class="loading-state"><p>No games found matching your search.</p></div>';
-                return;
-            }
-
-            grid.innerHTML = filtered.map(game => {
-                const gameId = game.id !== undefined ? game.id : game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
-                // Correctly checking downloadUrl from your json
-                const downloadUrl = game.downloadUrl || game.altDownloadUrl || '#';
-                const primaryCat = game.category ? game.category.split('/')[0].trim().toUpperCase() : 'GAME';
-
-                return `
-                    <div class="game-card">
-                        <span class="card-badge">${primaryCat}</span>
-                        <div class="game-img-wrapper">
-                            <img class="game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}" loading="lazy">
-                        </div>
-                        <div class="game-details">
-                            <span class="category-tag">${game.category || game.platform}</span>
-                            <h3>${game.title}</h3>
-                            <p>${game.description || 'No description provided.'}</p>
-                            <div class="card-action">
-                                <span class="price">${game.price || 'FREE'}</span>
-                                <div class="action-group">
-                                    <a href="details.html?id=${gameId}" class="btn-details">Details &rarr;</a>
-                                    <a href="${downloadUrl}" class="btn-action btn-download" target="_blank">Download</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        function renderFeaturedAndPopular(games) {
-            const marqueeTrack = document.getElementById('featuredTrack');
-            const featured = games.slice(0, 6);
-            marqueeTrack.innerHTML = [...featured, ...featured].map(game => {
-                const gameId = game.id !== undefined ? game.id : game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
-                return `
-                    <div class="marquee-game-card">
-                        <img class="marquee-game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}">
-                        <div class="marquee-game-content">
-                            <h4>${game.title}</h4>
-                            <a href="details.html?id=${gameId}" class="btn-details" style="padding: 4px 8px; font-size: 0.75rem;">View</a>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-
-            const popularList = document.getElementById('popularList');
-            popularList.innerHTML = games.slice(0, 5).map(game => {
-                const gameId = game.id !== undefined ? game.id : game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
-                return `
-                    <a href="details.html?id=${gameId}" class="popular-item">
-                        <img src="${game.image || 'images/default.jpg'}" alt="${game.title}">
-                        <div class="popular-item-info"><h5>${game.title}</h5><span>${game.price || 'FREE'}</span></div>
-                    </a>
-                `;
-            }).join('');
-        }
-    </script>
-</body>
-</html>
+[
+  {
+    "id": 1,
+    "title": "Tanzania Euro Truck Simulator 2 + 50 TZ mods packs",
+    "platform": "PC",
+    "category": "Simulation / PC",
+    "description": "Full Euro Truck Simulator 2 PC game bundled with 50 custom TZ mods.",
+    "requirements": "OS: Windows 10/11 (64-bit) | RAM: 8 GB | Storage: 25 GB | GPU: Intel HD 620 / NVIDIA GTX 660",
+    "price": "TZS 20,000",
+    "image": "images/ets-2-pc.jpg",
+    "screenshots": [
+      "images/4193b766a912970fac32e8b171d693df.webp",
+      "images/f645a854f358ea2a930c5be36d485616.webp",
+      "images/Screenshot_20260902_131118_TikTok.jpg"
+    ],
+    "downloadUrl": "https://selar.com/8z3yp9tnyv",
+    "altDownloadUrl": "https://wa.me/255692752060?text=Hello%20SquadGames%2C%20I%20want%20to%20buy%20Tanzania%20Euro%20Truck%20Simulator%202%20%2B%2050%20TZ%20mods%20packs%20(TZS%2020%2C000)%20via%20Vodacom."
+  },
+  {
+    "id": "ets2-mobile",
+    "title": "Tanzania Euro Truck Simulator 2 Mobile",
+    "platform": "Android",
+    "category": "Mobile Games",
+    "description": "Experience driving heavy trucks across Tanzania directly on your Android phone.",
+    "requirements": "OS: Android 8.0+ | RAM: 4 GB minimum | Storage: 3 GB free space",
+    "price": "TZS 10,000",
+    "image": "images/ets-2-mobile.jpg",
+    "screenshots": [
+      "images/Screenshot_20260902_131001_TikTok.jpg",
+      "images/Screenshot_20260902_130935_TikTok.jpg",
+      "images/be9b02184c2d31b4c53e8500366db61e.webp"
+    ],
+    "downloadUrl": "https://selar.com/8002i2803s",
+    "altDownloadUrl": "https://wa.me/255692752060?text=Hello%20SquadGames%2C%20I%20want%20to%20buy%20Tanzania%20Euro%20Truck%20Simulator%202%20Mobile%20(TZS%2010%2C000)%20via%20Vodacom."
+  },
+  {
+    "id": "ets2-v157",
+    "title": "Euro Truck Simulator 2 v1.57.2.2s + 103 DLCs + Multiplayer Game",
+    "platform": "PC",
+    "category": "Open World / Simulation",
+    "description": "It includes 103 DLCs + Multiplayer Game",
+    "requirements": "OS: Windows 7/8.1/10/11 (64-bit) | RAM: 8 GB | Storage: 25 GB | GPU: Nvidia GTX 660 / AMD HD 7870",
+    "price": "FREE",
+    "image": "images/ets 2 1.57.png",
+    "screenshots": [
+      "images/Annotation 2026-09-02 125957.png",
+      "images/Annotation 2026-09-02 130017.png",
+      "images/Annotation 2026-09-02 125943.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/1i5fqqoHh8MwYoLDL3LCuGsGt6M-B9LUk/view?usp=sharing"
+  },
+  {
+    "id": 4,
+    "title": "Need for Speed Most Wanted 2005",
+    "platform": "PC",
+    "category": "Racing / Open world",
+    "description": "Need for Speed Most Wanted 2005 or NFS mw is one of the racing games nowadays, wherein you can simply download it 100 percent of its free version for free, working no survey and any charges.",
+    "requirements": "OS: Windows 2000/XP/7 | CPU: 1.4GHz Processor | RAM: 256 MB | Storage: 3 GB | GPU: 64 MB | DirectX: Version 9.0c",
+    "price": "FREE",
+    "image": "images/nfsmw-shot4.png",
+    "screenshots": [
+      "images/nfsmw-shot1.png",
+      "images/nfsmw-shot2.png",
+      "images/nfsmw-shot3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file_premium/adkj9ovmehh2mva/NFS_Most_Wanted_2005_-_%2528www.apunkagames.com%2529.zip/file"
+  },
+  {
+    "id": 5,
+    "title": "Need for Speed Payback",
+    "platform": "PC",
+    "category": "Racing",
+    "description": "Need for Speed Payback (21.8 GB) is an action-packed arcade racing video game featuring intense police pursuits, off-road races, and custom car builds.",
+    "requirements": "OS: Windows 7/8/10 (64-bit) | Processor: Intel i3 6300 @ 3.8GHz | RAM: 6 GB | Storage: 30 GB | Graphics: NVIDIA GTX 750 Ti / AMD HD 7870 | DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/nfspb1.png",
+    "screenshots": [
+      "images/nfspb2.png",
+      "images/nfspb3.png",
+      "images/nfspb5.png",
+      "images/nfspb4.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/1EcqRQoaAxUYdiAF5cYJk66-xzVYhTioE/view?usp=sharing"
+  },
+  {
+    "id": 6,
+    "title": "Call of Duty: Advanced Warfare",
+    "platform": "PC",
+    "category": "Action, Shooting",
+    "description": "Call of Duty: Advanced Warfare (24.4 GB) is a first-person shooter featuring futuristic exoskeletons and holographic projections relayed directly from equipped weapons.",
+    "requirements": "OS: Windows 7/8/8.1 (64-Bit) | Processor: Intel Core i3-530 @ 2.93 GHz | RAM: 6 GB | Storage: 55 GB | Graphics: NVIDIA GTS 450 / ATI HD 5870 | DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/codaw1.png",
+    "screenshots": [
+      "images/codaw2.png",
+      "images/codaw3.png",
+      "images/codaw4.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/1AViNgFCiyE-l7U488YC2FIyg8TZI3nMb/view?usp=sharing"
+  },
+  {
+    "id": 7,
+    "title": "CarX Street",
+    "platform": "PC",
+    "category": "Racing, Sports",
+    "description": "CarX Street (10.8 GB) is an Racing, Sports video game. Developed and published by CarX Technologies, LLC. It was released on August 29, 2024 for Windows.CarX Street is an open-world driving game that blends street racing, car customization, and exploration.",
+    "requirements": "OS: Windows 10 or higher (64‑bit) Processor: Ryzen 5 2600 @ 3.4 GHz / Intel® Core™ I5-8400 @ 2.5 GHz RAM: 8 GB Hard Disk: 20 GB available space Graphics Card: Nvidia Geforce GTX 1050 TI 4 GB / Radeon RX 570 8 GB Network: Broadband Internet connection DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/carxstreet.png",
+    "screenshots": [
+      "images/carxstreet1.png",
+      "images/carxstreet2.png",
+      "images/carxstreet3.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/1Vk6GuvYLslrG9CGLa-vDihXkoHOGScmO/view?usp=sharing"
+  },
+  {
+    "id": 8,
+    "title": "Grand Theft Auto V Legacy",
+    "platform": "PC",
+    "category": "Action-adventure, Open world",
+    "description": "Grand Theft Auto V Legacy (53.7 GB) is an Action-adventure, Open World video game. Developed and published by Rockstar North, Rockstar Games. It was released on April 14, 2015 for Windows. GTA V Legacy combines cinematic storytelling with classic GTA sandbox gameplay, featuring a massive open world, memorable characters, intense missions, and countless ways to interact with the city of Los Santos",
+    "requirements": "OS: Windows 10 (64‑bit) Processor: Intel Core 2 Quad CPU Q6600 @ 2.40GHz (4 CPUs) / AMD Phenom 9850 Quad-Core (4 CPUs) @ 2.5GHz RAM: 4 GB Hard Disk: 125 GB available space Graphics Card: NVIDIA 9800 GT 1GB / AMD HD 4870 1GB (DX 10, 10.1, 11) Sound Card: 100% DirectX 10 compatible DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/gta5.png",
+    "screenshots": [
+      "images/gta51.png",
+      "images/gta52.png",
+      "images/gta53.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/1QeO0_5yfWy4B9LkzKzAT5YKi7WnNcnfJ/view?usp=sharing"
+  },
+  {
+    "id": 9,
+    "title": "GTA 4",
+    "platform": "PC",
+    "category": "Action-adventure, Open World",
+    "description": "GTA 4 (13.2 GB) is a popular open-world action video game. Developed and published by Rockstar North, Rockstar Games. It was released on December 2, 2008 for Windows.GTA IV is a legendary open-world game centered on Niko Bellic’s journey through Liberty City",
+    "requirements": "OS: Windows XP/Vista/7 Processor: Intel Core 2 DUO @ 1.8 GHz / AMD Athlon 64 X2 @ 2.4 GHz RAM: 2 GB Hard Disk: 16 GB available space Graphics Card: 256 MB, nVidia GeForce 7900 / ATI Radeon X1900 Sound Card: DirectX Compatible DirectX: Version 9.0c DVD Rom Drive",
+    "price": "FREE",
+    "image": "images/gta4.png",
+    "screenshots": [
+      "images/gta41.png",
+      "images/gta42.png",
+      "images/gta43.png",
+      "images/gta44.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/1agvSrTvs6oQ9BbwttdbhTqqJPIZ2h6Pf/view?usp=sharing"
+  },
+  {
+    "id": 10,
+    "title": "Call of Duty: Black Ops 1",
+    "platform": "PC",
+    "category": "First-person shooter",
+    "description": "Call of Duty: Black Ops 1 (7.27 GB) is a classic action, first-person shooter set during the Cold War, placing players in intense covert missions across global hotspots. Experience gripping single-player campaigns, tactical combat, and realistic weapons as you complete stealthy objectives.",
+    "requirements": "OS: Windows XP/Vista/7 CPU: Intel Core2 Duo E6600 or AMD Phenom X3 8750 or better RAM: 2 GB Hard Drive Space: 12 GB Video Card: Shader 3.0 or better 256MB NVIDIA GeForce 8600GT or better Sound Card: DirectX 9.0 Compliant DirectX: 9.0c",
+    "price": "FREE",
+    "image": "images/codbo.png",
+    "screenshots": [
+      "images/codbo1.png",
+      "images/codbo2.png",
+      "images/codbo3.png",
+      "images/codbo4.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/18ZrwpQ_uZwY3eW7mM_EpgQsie_vnxqY_/view?usp=sharing"
+  },
+  {
+    "id": 11,
+    "title": "Call of Duty: Infinite Warfare",
+    "platform": "PC",
+    "category": "Action, Adventure, Shooting",
+    "description": "Call of Duty: Infinite Warfare (39.8 GB) is a first-person shooter video game. Developed by Infinity Ward and published by Activision. It was released on November 4, 2016 for Windows. Call of Duty: Infinite Warfare is a futuristic FPS that takes the battle beyond Earth into intense space warfare",
+    "requirements": "OS: Windows 7 (64-Bit) or later Processor: Intel Core i3-3225 @ 3.30GHz or equivalent RAM: 8 GB Hard Drive: 70 GB available space Video Card: NVIDIA GeForce GTX 660 2GB / AMD Radeon HD 7850 2GB Network: Broadband Internet connection DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/codiw.png",
+    "screenshots": [
+      "images/codiw1.png",
+      "images/codiw2.png",
+      "images/codiw3.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/1rvLh9KRmUwsGFeHKW6KRguU1t_RipJsM/view?usp=sharing"
+  },
+  {
+    "id": 12,
+    "title": "Marvel’s Spider-Man: Miles Morales",
+    "platform": "PC",
+    "category": "Action-adventure",
+    "description": "Marvel’s Spider-Man: Miles Morales (36.7 GB) is an Action-adventure video game. Developed and published by Insomniac Games, Nixxes Software, PlayStation Publishing LLC. It was released on November 18, 2022 for Windows. Marvel’s Spider-Man: Miles Morales delivers a thrilling superhero adventure as Miles protects New York City with new bio-electric and camouflage powers",
+    "requirements": "OS: Windows 10 64-bit 1909 Processor: Intel Core i3-4160, 3.6 GHz or AMD equivalent RAM: 8 GB Hard Disk: 75 GB available space Graphics Card: NVIDIA GTX 950 or AMD Radeon RX 470 DirectX: Version 12",
+    "price": "FREE",
+    "image": "images/sm.png",
+    "screenshots": [
+      "images/sm1.png",
+      "images/sm2.png",
+      "images/sm3.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/1jvc3KFNGQK5qLJH4hyKt41MM2woSTJ45/view?usp=drive_link"
+  }
+]
