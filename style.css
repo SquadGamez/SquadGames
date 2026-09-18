@@ -281,10 +281,10 @@ body {
     box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
 }
 
-/* --- 3/5 and 2/5 Top Section Split Layout --- */
+/* --- Updated Top Section Split Layout (Featured ~66%, Popular ~33%) --- */
 .top-split-container {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 2fr 1fr;
     gap: 20px;
     margin-bottom: 24px;
     align-items: stretch;
@@ -296,7 +296,7 @@ body {
     }
 }
 
-/* Featured Section (3/5 Width) */
+/* Featured Section */
 .featured-epic-wrapper {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -421,7 +421,7 @@ body {
     color: #fff;
 }
 
-/* Most Popular Games Section (2/5 Width) */
+/* Most Popular Games Section */
 .most-popular-wrapper {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
