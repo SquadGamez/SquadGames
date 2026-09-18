@@ -1,450 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SquadGames - Free PC & Mobile Games Store TZ</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squad Games Store TZ</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Navigation Header with Profile Picture -->
-    <header class="navbar">
-        <div class="brand">
-            <div class="avatar-glow">
-                <img src="images/profile.jpg" alt="SquadGames Profile" class="nav-avatar" onerror="this.src='images/nfsmw-shot1.png';" />
-            </div>
-            <div class="brand-text">
-                <span class="brand-title">SquadGames</span>
-                <span class="brand-sub">Download ETS 2 PC Mods, Maps & Free High-End Games</span>
-            </div>
-        </div>
-        <nav class="nav-links">
-            <a href="https://wa.me/255692752060" target="_blank" class="nav-btn" rel="noopener">
-                <span class="whatsapp-icon">💬</span> WhatsApp Support
-            </a>
-        </nav>
-    </header>
+    <!-- Permanent Portal Header Navigation Bar -->
+    <div class="portal-header-wrapper">
+        <div class="portal-logo-area">
+            <h1 class="portal-logo">SQUAD GAMES <span style="color: var(--accent-blue);">STORE TZ</span></h1>
+        </div>
+        <nav class="portal-navbar">
+            <a href="index.html" class="nav-tab active" data-category="all">Home</a>
+            <a href="#" class="nav-tab" data-category="action">Action</a>
+            <a href="#" class="nav-tab" data-category="fighting">Fighting</a>
+            <a href="#" class="nav-tab" data-category="shooting">Shooting</a>
+            <a href="#" class="nav-tab" data-category="sports">Sports</a>
+            <a href="#" class="nav-tab" data-category="racing">Racing</a>
+            <a href="#" class="nav-tab" data-category="all">All Categories</a>
+            <a href="#" class="nav-tab" data-category="pc games">PC Games List</a>
+            <a href="#" class="nav-tab" data-category="mobile games">Mobile Games</a>
+        </nav>
+    </div>
 
-    <div class="container">
-        <!-- Top Informational Welcome Banner -->
-        <div class="intro-banner">
-            <h2>Welcome to SquadGames Tanzania 🇹🇿</h2>
-            <p>Your ultimate destination for lightning-fast free PC and mobile game repacks, simulation maps, and custom TZ mods. Enjoy instant WhatsApp and local support for premium titles!</p>
-        </div>
+    <!-- Main Container -->
+    <div class="container">
 
-        <!-- Search and Category Filter Section (Placed right below Welcome Banner) -->
-        <div class="search-filter-section">
-            <div class="search-bar-wrapper">
-                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-                <input type="text" id="gameSearchInput" placeholder="Search games by title, keyword, or description..." onkeyup="filterGames()">
-            </div>
-            
-            <div class="category-pills-container" id="categoryPills">
-                <button class="cat-pill active" onclick="filterByCategory('all', this)">🔥 All Games</button>
-                <button class="cat-pill" onclick="filterByCategory('PC', this)">💻 PC Games</button>
-                <button class="cat-pill" onclick="filterByCategory('Mobile', this)">📱 Mobile Games</button>
-                <button class="cat-pill" onclick="filterByCategory('Simulation', this)">🚚 Simulators & Mods</button>
-                <button class="cat-pill" onclick="filterByCategory('Action', this)">⚡ Action & Shooter</button>
-            </div>
-        </div>
+        <!-- Intro Banner -->
+        <div class="intro-banner">
+            <h2>Welcome to Squad Games Store TZ</h2>
+            <p>Your ultimate destination for high-speed racing, action-packed adventures, and top-tier repacks. Download safely and level up your library!</p>
+        </div>
 
-        <!-- Top Section Split Layout (3/5 Marquee & 2/5 Most Popular) -->
-        <div class="top-split-container">
+        <!-- Search Section -->
+        <div class="search-filter-section">
+            <div class="search-bar-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="gameSearchInput" placeholder="Search games by title, keyword, or genre...">
+            </div>
+            <div class="category-pills-container" id="categoryPills">
+                <button class="cat-pill active" data-cat="all">All</button>
+                <button class="cat-pill" data-cat="action">Action</button>
+                <button class="cat-pill" data-cat="fighting">Fighting</button>
+                <button class="cat-pill" data-cat="shooting">Shooting</button>
+                <button class="cat-pill" data-cat="sports">Sports</button>
+                <button class="cat-pill" data-cat="racing">Racing</button>
+                <button class="cat-pill" data-cat="pc games">PC Games</button>
+                <button class="cat-pill" data-cat="mobile games">Mobile Games</button>
+            </div>
+        </div>
 
-            <!-- Featured Marquee Section (3/5 Width) -->
-            <div class="featured-epic-wrapper">
-                <div class="section-title">🔥 Featured Epic Games</div>
-                <div class="featured-marquee-container">
-                    <div class="featured-marquee-track" id="featured-marquee-track">
-                        <!-- Dynamically populated via JS -->
-                    </div>
-                </div>
-            </div>
+        <!-- Top Split Section (Featured Marquee & Popular Games) -->
+        <div class="top-split-container">
+            
+            <!-- Featured Section (3/5) -->
+            <div class="featured-epic-wrapper">
+                <h3 class="section-title"><i class="fa-solid fa-fire"></i> Featured Epic Games</h3>
+                <div class="featured-marquee-container">
+                    <div class="featured-marquee-track" id="featuredTrack">
+                        <!-- Loaded dynamically via script -->
+                    </div>
+                </div>
+            </div>
 
-            <!-- Most Popular Games Section (2/5 Width) -->
-            <div class="most-popular-wrapper">
-                <div class="section-title">⭐ Most Popular</div>
-                <div class="popular-list" id="popular-games-list">
-                    <!-- Dynamically populated via JS -->
-                </div>
-            </div>
+            <!-- Most Popular Games Section (2/5) -->
+            <div class="most-popular-wrapper">
+                <h3 class="section-title"><i class="fa-solid fa-bolt"></i> Most Popular</h3>
+                <div class="popular-list" id="popularList">
+                    <!-- Loaded dynamically via script -->
+                </div>
+            </div>
 
-        </div>
+        </div>
 
-        <!-- Trust Indicators Bar -->
-        <div class="trust-bar">
-            <div class="trust-item"><span class="trust-icon">⚡</span> Instant WhatsApp & Direct Delivery</div>
-            <div class="trust-item"><span class="trust-icon">🔒</span> Safe Local Payments & Free Repacks</div>
-            <div class="trust-item"><span class="trust-icon">🎮</span> Tested Games & Custom TZ Mods</div>
-        </div>
+        <!-- Trust Bar -->
+        <div class="trust-bar">
+            <div class="trust-item"><i class="fa-solid fa-shield-halved trust-icon" style="color: var(--accent-green);"></i> Verified Safe Downloads</div>
+            <div class="trust-item"><i class="fa-solid fa-bolt trust-icon" style="color: var(--accent-blue);"></i> High-Speed Torrents & Repacks</div>
+            <div class="trust-item"><i class="fa-solid fa-headset trust-icon" style="color: #ff9500;"></i> 24/7 Community Support</div>
+        </div>
 
-        <!-- All Games Grid -->
-        <h2 style="margin-top: 30px; font-size: 1.4rem; color: #ffffff;">Available Games Library</h2>
-        <main id="game-grid" class="game-grid">
-            <div class="loading-state">
-                <div class="spinner"></div>
-                <p>Loading epic games...</p>
-            </div>
-        </main>
+        <!-- Main Game Catalog Grid -->
+        <h2 style="font-size: 1.2rem; font-weight: 800; margin: 30px 0 15px 0; color: #fff;">Game Library</h2>
+        <div class="game-grid" id="gameGrid">
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading game catalog...</p>
+            </div>
+        </div>
 
-        <!-- Bottom Informational Footer Note / SEO Section -->
-        <div class="bottom-info-box">
-            <h3>Why Download From SquadGames?</h3>
-            <p>All files are thoroughly checked, highly compressed, and provided with direct Google Drive, Mediafire, or local Selar/Vodacom secure payment links. Whether you are looking for open-world action titles like GTA V and GTA IV, heavy-duty truck driving simulators across Tanzania, or high-octane racing like Need for Speed and CarX Street, SquadGames delivers the best gaming experience tailored for Tanzanian gamers.</p>
-        </div>
+        <!-- Bottom Information Box -->
+        <div class="bottom-info-box">
+            <h3>About Squad Games Store TZ</h3>
+            <p>We provide streamlined access to top-quality PC repacks, custom mods for Euro Truck Simulator 2, and mobile racing titles. Enjoy clean navigation, quick downloads, and optimized performance tracking.</p>
+        </div>
 
-        <footer class="footer-note">
-            SquadGames &copy; 2026. All rights reserved.
-        </footer>
-    </div>
+        <div class="footer-note">
+            &copy; 2026 Squad Games Store TZ. Hosted via GitHub Pages. All rights reserved.
+        </div>
 
-    <!-- Game Details Popup Modal -->
-    <div id="details-modal" class="modal-overlay" onclick="closeModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="closeModalDirect()" aria-label="Close modal">&times;</span>
-            <h2 id="modal-title" style="margin-top: 0; font-size: 1.3rem;"></h2>
-            <p id="modal-desc" style="color: #94a3b8; font-size: 0.9rem; margin-top: 5px;"></p>
+    </div>
 
-            <div class="specs-box">
-                <strong style="color: #007aff;">⚙️ System Requirements:</strong><br>
-                <span id="modal-req">Standard System Requirements</span>
-            </div>
+    <!-- Full Screen Lightbox for Screenshots -->
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <span class="fullscreen-close" id="fullscreenClose">&times;</span>
+        <img class="fullscreen-img" id="fullscreenImg" src="" alt="Fullscreen Screenshot">
+    </div>
 
-            <strong style="color: #ffffff; font-size: 0.9rem;">📸 Game Preview (Click to Enlarge):</strong>
-            <div id="modal-gallery" class="screenshots-container"></div>
+    <!-- Application Script -->
+    <script>
+        // --- SMART AUTO-CATEGORIZER ENGINE ---
+        function getSmartCategories(game) {
+            let categories = new Set();
+            
+            if (game.category) categories.add(game.category.toLowerCase());
+            if (game.platform) categories.add(game.platform.toLowerCase());
 
-            <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                <span id="modal-price" style="font-size: 1.2rem; font-weight: bold; color: #25d366;"></span>
-                <div id="modal-action-wrapper" style="display: flex; flex-direction: column; gap: 6px; width: 100%; max-width: 250px;">
-                    <!-- Injected dynamically -->
-                </div>
-            </div>
-        </div>
-    </div>
+            const textCheck = (game.title + " " + (game.description || "")).toLowerCase();
 
-    <!-- Google Drive Quick Download Link Modal -->
-    <div id="gdrive-modal" class="modal-overlay" onclick="closeGdriveModal(event)">
-        <div class="modal-content" onclick="event.stopPropagation()" style="max-width: 420px; text-align: center;">
-            <span class="close-btn" onclick="closeGdriveModalDirect()" aria-label="Close modal">&times;</span>
-            <h3 style="margin-top: 0; color: #25d366; font-size: 1.2rem;">📥 Google Drive Direct Download</h3>
-            <p style="font-size: 0.85rem; color: #94a3b8; margin-bottom: 14px;">Your Google Drive download link is ready. Click below to start downloading or copy the secure link.</p>
+            if (textCheck.match(/gta|grand theft auto|call of duty|action|battlefield|spiderman|god of war|resident evil/)) {
+                categories.add('action');
+            }
+            if (textCheck.match(/tekken|street fighter|ufc|mortal kombat|boxing|wwe|fight/)) {
+                categories.add('fighting');
+            }
+            if (textCheck.match(/shooting|gun|fps|call of duty|counter strike|pubg|free fire|sniper/)) {
+                categories.add('shooting');
+            }
+            if (textCheck.match(/fifa|pes|efootball|nba|sports|cricket|tennis|madden|fc 24|fc 25/)) {
+                categories.add('sports');
+            }
+            if (textCheck.match(/carx|nfs|need for speed|racing|asphalt|truck|simulator|euro truck/)) {
+                categories.add('racing');
+            }
 
-            <div class="gdrive-popup-box">
-                <input type="text" id="gdrive-link-input" class="gdrive-link-input" readonly value="">
-                <div class="gdrive-btn-row">
-                    <a id="gdrive-open-btn" href="#" target="_blank" rel="noopener" class="btn-gdrive-primary">🚀 Open Google Drive</a>
-                    <button class="btn-gdrive-copy" onclick="copyGdriveLink()">📋 Copy Link</button>
-                </div>
-                <div id="gdrive-copy-alert" style="font-size: 0.75rem; color: #25d366; margin-top: 8px; display: none;">Link copied to clipboard successfully!</div>
-            </div>
-        </div>
-    </div>
+            if (textCheck.match(/apk|android|ios|mobile|phone|samsung/)) {
+                categories.add('mobile games');
+            } else {
+                categories.add('pc games');
+            }
 
-    <!-- Full Screen Image Lightbox Modal -->
-    <div id="fullscreen-modal" class="fullscreen-overlay" onclick="closeFullScreen()">
-        <span class="fullscreen-close" onclick="closeFullScreen()" aria-label="Close fullscreen">&times;</span>
-        <img id="fullscreen-img" class="fullscreen-img" src="" alt="Full Screen Preview">
-    </div>
+            return Array.from(categories);
+        }
 
-    <!-- Script inclusion supporting games-data.js or dynamic fetch -->
-    <script src="games-data.js"></script>
-    <script>
-        let loadedGamesData = [];
+        let allGames = [];
+        let activeCategory = 'all';
+        let searchQuery = '';
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const dataList = (typeof gamesData !== "undefined") ? gamesData : null;
-            if (dataList) {
-                initStore(dataList);
-            } else {
-                fetch("./games.json")
-                    .then(response => {
-                        if (!response.ok) throw new Error("Failed to load games.json");
-                        return response.json();
-                    })
-                    .then(games => initStore(games))
-                    .catch(err => {
-                        console.warn("Using fallback loading:", err);
-                        document.getElementById("game-grid").innerHTML = `
-                            <div class="loading-state">
-                                <p style="color: #ff5555;">Failed to load game catalog. Please check your connection or games-data.js file.</p>
-                            </div>`;
-                    });
-            }
-        });
+        // Fetch Games Catalog JSON
+        fetch('games.json')
+            .then(response => response.json())
+            .then(data => {
+                allGames = data;
+                initStore();
+            })
+            .catch(error => {
+                console.error('Error loading games catalog:', error);
+                document.getElementById('gameGrid').innerHTML = `
+                    <div class="loading-state">
+                        <p style="color: #ff4d4d;">Failed to load game catalog. Please check your games.json file path.</p>
+                    </div>`;
+            });
 
-        function initStore(gameList) {
-            loadedGamesData = gameList;
-            renderFeaturedMarquee(gameList);
-            renderMostPopular(gameList);
-            renderGameGrid(gameList);
-        }
+        function initStore() {
+            renderFeaturedAndPopular(allGames);
+            filterAndRenderGrid();
 
-        // --- SEARCH & CATEGORY FILTER LOGIC ---
-        function filterGames() {
-            let input = document.getElementById('gameSearchInput').value.toLowerCase();
-            let cards = document.querySelectorAll('.game-grid .game-card');
+            // Search input listener
+            document.getElementById('gameSearchInput').addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                filterAndRenderGrid();
+            });
 
-            cards.forEach(card => {
-                let title = card.querySelector('h3') ? card.querySelector('h3').innerText.toLowerCase() : '';
-                let description = card.querySelector('p') ? card.querySelector('p').innerText.toLowerCase() : '';
-                
-                if (title.includes(input) || description.includes(input)) {
-                    card.style.display = "";
-                } else {
-                    card.style.display = "none";
-                }
-            });
-        }
+            // Category Pill buttons listener
+            document.querySelectorAll('.cat-pill').forEach(pill => {
+                pill.addEventListener('click', (e) => {
+                    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+                    e.target.classList.add('active');
+                    activeCategory = e.target.getAttribute('data-cat');
+                    filterAndRenderGrid();
+                });
+            });
 
-        function filterByCategory(category, buttonElement) {
-            document.querySelectorAll('.cat-pill').forEach(btn => btn.classList.remove('active'));
-            buttonElement.classList.add('active');
+            // Top Header Nav Tabs listener
+            document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.portal-navbar .nav-tab').forEach(t => t.classList.remove('active'));
+                    e.target.classList.add('active');
+                    activeCategory = e.target.getAttribute('data-category');
+                    
+                    // Sync category pill UI if applicable
+                    document.querySelectorAll('.cat-pill').forEach(p => {
+                        if (p.getAttribute('data-cat') === activeCategory) {
+                            p.classList.add('active');
+                        } else {
+                            p.classList.remove('active');
+                        }
+                    });
 
-            let cards = document.querySelectorAll('.game-grid .game-card');
+                    filterAndRenderGrid();
+                });
+            });
+        }
 
-            cards.forEach(card => {
-                let categoryTag = card.querySelector('.category-tag') ? card.querySelector('.category-tag').innerText.toLowerCase() : '';
-                let badge = card.querySelector('.card-badge') ? card.querySelector('.card-badge').innerText.toLowerCase() : '';
-                
-                if (category === 'all') {
-                    card.style.display = "";
-                } else {
-                    if (categoryTag.includes(category.toLowerCase()) || badge.includes(category.toLowerCase())) {
-                        card.style.display = "";
-                    } else {
-                        card.style.display = "none";
-                    }
-                }
-            });
-        }
+        function filterAndRenderGrid() {
+            const grid = document.getElementById('gameGrid');
+            
+            const filtered = allGames.filter(game => {
+                const smartCats = getSmartCategories(game);
+                const matchesCategory = (activeCategory === 'all' || smartCats.includes(activeCategory));
+                const matchesSearch = (game.title.toLowerCase().includes(searchQuery) || (game.description && game.description.toLowerCase().includes(searchQuery)));
+                return matchesCategory && matchesSearch;
+            });
 
-        // --- FEATURED CONTINUOUS MARQUEE LOGIC ---
-        function renderFeaturedMarquee(gameList) {
-            const track = document.getElementById("featured-marquee-track");
-            if (!track) return;
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="loading-state">
+                        <p>No games found matching your search or category.</p>
+                    </div>`;
+                return;
+            }
 
-            const featuredIds = [1, "ets2-mobile", "5", "6", "8", 5, 6, 8];
-            let featuredGames = gameList.filter(g => featuredIds.includes(g.id) || featuredIds.includes(String(g.id)));
-            if (featuredGames.length === 0) featuredGames = gameList.slice(0, 5);
+            grid.innerHTML = filtered.map(game => {
+                const smartCats = getSmartCategories(game);
+                const primaryCat = smartCats[0] ? smartCats[0].toUpperCase() : 'GAME';
+                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
 
-            const marqueeItems = [...featuredGames, ...featuredGames];
-            track.innerHTML = "";
+                return `
+                    <div class="game-card">
+                        <span class="card-badge">${primaryCat}</span>
+                        <div class="game-img-wrapper">
+                            <img class="game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}" loading="lazy">
+                        </div>
+                        <div class="game-details">
+                            <span class="category-tag">${smartCats.join(' • ')}</span>
+                            <h3>${game.title}</h3>
+                            <p>${game.description || 'No description provided.'}</p>
+                            <div class="card-action">
+                                <span class="price">${game.price || 'FREE'}</span>
+                                <div class="action-group">
+                                    <a href="details.html?id=${gameId}" class="btn-details">Details &rarr;</a>
+                                    <a href="${game.downloadLink || '#'}" class="btn-action btn-download" target="_blank">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
-            marqueeItems.forEach(game => {
-                const priceText = String(game.price || "").trim().toUpperCase();
-                const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
-                const btnText = isFree ? "Get" : "Buy";
+        function renderFeaturedAndPopular(games) {
+            // Marquee Track (Featured)
+            const marqueeTrack = document.getElementById('featuredTrack');
+            const featuredGames = games.slice(0, 6); // Take first few for marquee
+            // Duplicate to create smooth infinite loop effect
+            const doubleFeatured = [...featuredGames, ...featuredGames];
 
-                const url = game.downloadUrl || 'https://wa.me/255692752060';
-                const isDrive = url.includes("drive.google.com");
-                const clickAction = (isFree && isDrive) ? `onclick="openGdriveModalLink('${url.replace(/'/g, "\\'")}')"` : '';
-                const hrefAttr = (isFree && isDrive) ? '#' : url;
+            marqueeTrack.innerHTML = doubleFeatured.map(game => {
+                const smartCats = getSmartCategories(game);
+                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                return `
+                    <div class="marquee-game-card">
+                        <img class="marquee-game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}">
+                        <div class="marquee-game-content">
+                            <span class="marquee-game-badge">${smartCats[0]}</span>
+                            <h4>${game.title}</h4>
+                            <p>${game.description || ''}</p>
+                            <div class="marquee-game-footer">
+                                <span class="marquee-price">${game.price || 'FREE'}</span>
+                                <a href="details.html?id=${gameId}" class="btn-details" style="padding: 4px 8px; font-size: 0.75rem;">View</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
 
-                const card = document.createElement("div");
-                card.classList.add("marquee-game-card");
-                card.innerHTML = `
-                    <img src="${game.image}" alt="${game.title}" class="marquee-game-img" onerror="this.src='images/nfsmw-shot1.png';">
-                    <div class="marquee-game-content">
-                        <span class="marquee-game-badge">${game.platform || "PC"}</span>
-                        <h4>${game.title}</h4>
-                        <p>${game.description || ""}</p>
-                        <div class="marquee-game-footer">
-                            <span class="marquee-price">${game.price}</span>
-                            <a href="${hrefAttr}" ${isFree && isDrive ? clickAction : 'target="_blank" rel="noopener"'} class="btn-action ${isFree ? 'btn-get' : 'btn-download'}" style="padding: 5px 10px; font-size: 0.75rem;">${btnText}</a>
-                        </div>
-                    </div>
-                `;
-                track.appendChild(card);
-            });
-        }
+            // Most Popular List
+            const popularList = document.getElementById('popularList');
+            const popularGames = games.slice(0, 5); // Take top items
 
-        // --- MOST POPULAR GAMES LIST LOGIC ---
-        function renderMostPopular(gameList) {
-            const listContainer = document.getElementById("popular-games-list");
-            if (!listContainer) return;
-
-            const popularGames = gameList.slice(0, 4);
-            listContainer.innerHTML = "";
-
-            popularGames.forEach((game, index) => {
-                const item = document.createElement("div");
-                item.classList.add("popular-item");
-                item.onclick = () => openDetails(loadedGamesData.findIndex(g => g.title === game.title));
-                item.innerHTML = `
-                    <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
-                    <div class="popular-item-info">
-                        <h5>${game.title}</h5>
-                        <span>${game.price}</span>
-                    </div>
-                `;
-                listContainer.appendChild(item);
-            });
-        }
-
-        // --- GRID RENDERING ---
-        function renderGameGrid(gameList) {
-            const container = document.getElementById("game-grid");
-            if (!container) return;
-            container.innerHTML = "";
-
-            gameList.forEach((game, index) => {
-                const card = document.createElement("div");
-                card.classList.add("game-card");
-
-                const priceText = String(game.price || "").trim().toUpperCase();
-                const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
-
-                const actionBtnText = isFree ? "Get Game" : "Buy Now";
-                const actionBtnClass = isFree ? "btn-get" : "btn-download";
-                const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
-
-                const isDrive = targetUrl.includes("drive.google.com");
-                const actionAttr = (isFree && isDrive) ? `href="#" onclick="openGdriveModalLink('${targetUrl.replace(/'/g, "\\'")}')"` : `href="${targetUrl}" target="_blank" rel="noopener"`;
-
-                let actionButtonsHTML = `
-                    <a ${actionAttr} class="btn-action ${actionBtnClass}">${actionBtnText}</a>
-                `;
-
-                if (game.altDownloadUrl) {
-                    actionButtonsHTML += `
-                        <a href="${game.altDownloadUrl}" target="_blank" rel="noopener" class="btn-action btn-vodacom" title="Buy via WhatsApp using Vodacom">
-                            💬 Buy (Vodacom)
-                        </a>
-                    `;
-                }
-
-                card.innerHTML = `
-                    <div class="card-badge">${game.platform || "Game"}</div>
-                    <div class="game-img-wrapper">
-                        <img src="${game.image}" alt="${game.title}" class="game-img" loading="lazy" onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
-                    </div>
-                    <div class="game-details">
-                        <span class="category-tag">${game.category || "General"}</span>
-                        <h3>${game.title}</h3>
-                        <p>${game.description || ""}</p>
-                        <div class="card-action">
-                            <span class="price">${game.price}</span>
-                            <div class="action-group">
-                                <button class="btn-details" onclick="openDetails(${index})">Details</button>
-                                ${actionButtonsHTML}
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // --- MODAL HANDLING ---
-        function openDetails(index) {
-            const game = loadedGamesData[index];
-            if (!game) return;
-
-            const priceText = String(game.price || "").trim().toUpperCase();
-            const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
-
-            const modalBtnText = isFree ? "Get Game" : "Buy Now";
-            const modalBtnClass = isFree ? "btn-get" : "btn-download";
-            const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
-
-            const isDrive = targetUrl.includes("drive.google.com");
-            const modalActionAttr = (isFree && isDrive) ? `href="#" onclick="closeModalDirect(); openGdriveModalLink('${targetUrl.replace(/'/g, "\\'")}')"` : `href="${targetUrl}" target="_blank" rel="noopener"`;
-
-            document.getElementById("modal-title").innerText = game.title;
-            document.getElementById("modal-desc").innerText = game.description || "";
-            document.getElementById("modal-req").innerText = game.requirements || "Standard System Requirements";
-            document.getElementById("modal-price").innerText = game.price;
-
-            const actionWrapper = document.getElementById("modal-action-wrapper");
-            let modalButtonsHTML = `
-                <a ${modalActionAttr} class="btn-action ${modalBtnClass}" style="width: 100%; box-sizing: border-box; text-align: center;">${modalBtnText}</a>
-            `;
-
-            if (game.altDownloadUrl) {
-                modalButtonsHTML += `
-                    <a href="${game.altDownloadUrl}" target="_blank" rel="noopener" class="btn-action btn-vodacom" style="width: 100%; box-sizing: border-box; text-align: center;">
-                        💬 Buy via WhatsApp (Vodacom)
-                    </a>
-                `;
-            }
-            actionWrapper.innerHTML = modalButtonsHTML;
-
-            const gallery = document.getElementById("modal-gallery");
-            gallery.innerHTML = "";
-
-            if (game.screenshots && game.screenshots.length > 0) {
-                game.screenshots.forEach((imgSrc) => {
-                    const img = document.createElement("img");
-                    img.src = imgSrc;
-                    img.alt = "Screenshot";
-                    img.loading = "lazy";
-                    img.onerror = function () { this.src = "images/nfsmw-shot1.png"; };
-                    img.onclick = function () { openFullScreen(imgSrc); };
-                    gallery.appendChild(img);
-                });
-            } else {
-                const img = document.createElement("img");
-                img.src = game.image;
-                img.alt = game.title;
-                img.loading = "lazy";
-                img.onclick = function () { openFullScreen(game.image); };
-                gallery.appendChild(img);
-            }
-
-            document.getElementById("details-modal").classList.add("active");
-        }
-
-        function closeModal(event) {
-            if (event.target.classList.contains("modal-overlay")) {
-                closeModalDirect();
-            }
-        }
-
-        function closeModalDirect() {
-            document.getElementById("details-modal").classList.remove("active");
-        }
-
-        // --- GOOGLE DRIVE MODAL POPUP HANDLING ---
-        function openGdriveModalLink(url) {
-            document.getElementById("gdrive-link-input").value = url;
-            document.getElementById("gdrive-open-btn").href = url;
-            document.getElementById("gdrive-copy-alert").style.display = "none";
-            document.getElementById("gdrive-modal").classList.add("active");
-        }
-
-        function closeGdriveModal(event) {
-            if (event.target.classList.contains("modal-overlay")) {
-                closeGdriveModalDirect();
-            }
-        }
-
-        function closeGdriveModalDirect() {
-            document.getElementById("gdrive-modal").classList.remove("active");
-        }
-
-        function copyGdriveLink() {
-            const inputField = document.getElementById("gdrive-link-input");
-            inputField.select();
-            inputField.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(inputField.value).then(() => {
-                const alertBox = document.getElementById("gdrive-copy-alert");
-                alertBox.style.display = "block";
-                setTimeout(() => { alertBox.style.display = "none"; }, 3000);
-            }).catch(err => {
-                console.error("Failed to copy link: ", err);
-            });
-        }
-
-        function openFullScreen(imgSrc) {
-            const fullImg = document.getElementById("fullscreen-img");
-            fullImg.src = imgSrc;
-            document.getElementById("fullscreen-modal").classList.add("active"); 
-        }
-
-        function closeFullScreen() {
-            document.getElementById("fullscreen-modal").classList.remove("active");
-        }
-    </script>
+            popularList.innerHTML = popularGames.map(game => {
+                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                return `
+                    <a href="details.html?id=${gameId}" class="popular-item">
+                        <img src="${game.image || 'images/default.jpg'}" alt="${game.title}">
+                        <div class="popular-item-info">
+                            <h5>${game.title}</h5>
+                            <span>${game.price || 'FREE'}</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                    </a>
+                `;
+            }).join('');
+        }
+    </script>
 </body>
 </html>
