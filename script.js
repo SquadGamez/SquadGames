@@ -22,8 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Fetch games data with a robust local fallback
-    fetch("./games.json")
+    // 3. Fetch games data with a robust local fallback so it never hangs
+    fetch("games.json")
         .then(response => {
             if (!response.ok) throw new Error("Failed to load games.json");
             return response.json();
@@ -243,8 +243,6 @@ function openDetails(index) {
     const modalPrice = document.getElementById("modal-price");
     const modalDetailsModal = document.getElementById("details-modal");
 
-    // If your project uses a separate details.html page instead of a modal, 
-    // you can redirect safely here, otherwise modal elements will populate safely:
     if (!modalDetailsModal) {
         window.location.href = `details.html?id=${game.id || originalIndex}`;
         return;
