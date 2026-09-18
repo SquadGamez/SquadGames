@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+,<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -44,14 +44,39 @@
 
     <!-- Application Script for Details -->
     <script>
+        // Smart auto-categorizer engine matching index.html perfectly
+        function getSmartCategories(game) {
+            let categories = new Set();
+            if (game.category) {
+                game.category.split(',').forEach(c => categories.add(c.trim().toLowerCase()));
+            }
+            if (game.platform) {
+                categories.add(game.platform.trim().toLowerCase());
+            }
+
+            const textCheck = (game.title + " " + (game.description || "")).toLowerCase();
+
+            if (textCheck.match(/gta|grand theft auto|action/)) categories.add('action');
+            if (textCheck.match(/truck|simulator/)) categories.add('simulation');
+            if (textCheck.match(/shooting|fps|call of duty/)) categories.add('shooting');
+            if (textCheck.match(/carx|nfs|racing|need for speed/)) categories.add('racing');
+
+            return Array.from(categories);
+        }
+
         // Fetch game data and render based on URL query parameter ?id=...
         const urlParams = new URLSearchParams(window.location.search);
-        const gameId = urlParams.get('id');
+        const gameIdParam = urlParams.get('id');
 
         fetch('games.json') // Your game catalog JSON
             .then(res => res.json())
             .then(games => {
-                const game = games.find(g => (g.id || g.title.toLowerCase().replace(/[^a-z0-9]/g, '-')) === gameId);
+                // Find game matching either by string or numeric ID, or fallback slug check
+                const game = games.find(g => 
+                    String(g.id) === String(gameIdParam) || 
+                    g.title.toLowerCase().replace(/[^a-z0-9]/g, '-') === gameIdParam
+                );
+                
                 const container = document.getElementById('gameDetailsContainer');
 
                 if (!game) {
@@ -66,8 +91,10 @@
 
                 const smartCats = getSmartCategories(game);
                 
-                // Direct download link from games.json without alerts
-                const downloadUrl = game.downloadLink || '#';
+                // Fixed: Map directly to downloadUrl property from games.json
+                const downloadUrl = game.downloadUrl || '#';
+                const isPaid = game.price && game.price !== 'FREE';
+                const buttonText = isPaid ? 'Buy / Order Game' : 'Download Game (Google Drive)';
 
                 // Render extra screenshots/gallery if provided in your JSON
                 let screenshotsHTML = '';
@@ -100,7 +127,7 @@
                             ${screenshotsHTML}
                         </div>
                         <div>
-                            <span class="card-badge" style="display: inline-block; padding: 4px 10px; background: var(--accent-blue); color: #fff; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px;">${smartCats[0].toUpperCase()}</span>
+                            <span class="card-badge" style="display: inline-block; padding: 4px 10px; background: var(--accent-blue); color: #fff; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px;">${(game.platform || smartCats[0] || 'PC').toUpperCase()}</span>
                             <h1 style="margin: 0 0 10px 0; font-size: 2rem; color: #fff;">${game.title}</h1>
                             <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">${game.description || 'No description provided.'}</p>
                             
@@ -111,10 +138,10 @@
 
                             ${specsHTML}
 
-                            <div style="margin-top: 30px; display: flex; gap: 15px; align-items: center;">
+                            <div style="margin-top: 30px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
                                 <span class="price" style="font-size: 1.6rem; font-weight: 800; color: #fff;">${game.price || 'FREE'}</span>
                                 <a href="${downloadUrl}" class="btn-action btn-download" target="_blank" style="padding: 12px 24px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
-                                    <i class="fa-solid fa-download"></i> Download Game (Google Drive)
+                                    <i class="fa-solid fa-download"></i> ${buttonText}
                                 </a>
                             </div>
                         </div>
@@ -128,39 +155,6 @@
                         <p style="color: #ff4d4d;">Failed to load game details. Please ensure your games.json file is accessible.</p>
                     </div>`;
             });
-
-        // Smart auto-categorizer engine matching index.html
-        function getSmartCategories(game) {
-            let categories = new Set();
-            if (game.category) categories.add(game.category.toLowerCase());
-            if (game.platform) categories.add(game.platform.toLowerCase());
-
-            const textCheck = (game.title + " " + (game.description || "")).toLowerCase();
-
-            if (textCheck.match(/gta|grand theft auto|call of duty|action|battlefield|spiderman|god of war|resident evil/)) {
-                categories.add('action');
-            }
-            if (textCheck.match(/tekken|street fighter|ufc|mortal kombat|boxing|wwe|fight/)) {
-                categories.add('fighting');
-            }
-            if (textCheck.match(/shooting|gun|fps|call of duty|counter strike|pubg|free fire|sniper/)) {
-                categories.add('shooting');
-            }
-            if (textCheck.match(/fifa|pes|efootball|nba|sports|cricket|tennis|madden|fc 24|fc 25/)) {
-                categories.add('sports');
-            }
-            if (textCheck.match(/carx|nfs|need for speed|racing|asphalt|truck|simulator|euro truck/)) {
-                categories.add('racing');
-            }
-
-            if (textCheck.match(/apk|android|ios|mobile|phone|samsung/)) {
-                categories.add('mobile games');
-            } else {
-                categories.add('pc games');
-            }
-
-            return Array.from(categories);
-        }
     </script>
 </body>
 </html>
