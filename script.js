@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // 3. Fetch games data with an absolute/relative path check and instant fallback
-    // This dynamically handles GitHub Pages subfolders safely
     const jsonPath = window.location.hostname.includes("github.io") ? "./games.json" : "games.json";
 
     fetch(jsonPath)
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(err => {
             console.warn("Fetch failed, activating instant backup catalog:", err);
-            // Instant backup so your site never hangs on loading screen
             initStore([
                 {
                     id: 1,
@@ -58,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     id: "ets2-mobile",
                     title: "Tanzania Euro Truck Simulator 2 Mobile",
                     platform: "Android",
-                    category: "Mobile Games",
+                    category: "Mobile",
                     description: "Experience driving heavy trucks across Tanzania directly on your Android phone.",
                     requirements: "OS: Android 8.0+ | RAM: 4 GB minimum",
                     price: "TZS 10,000",
@@ -71,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     id: "ets2-v157",
                     title: "Euro Truck Simulator 2 v1.57.2.2s + 103 DLCs",
                     platform: "PC",
-                    category: "Open World / Simulation",
+                    category: "Action",
                     description: "It includes 103 DLCs + Multiplayer Game",
                     requirements: "OS: Windows 10 | RAM: 8 GB",
                     price: "FREE",
@@ -85,11 +83,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initStore(games) {
     loadedGamesData = games;
-    renderFeaturedSlider(games.slice(0, 5)); 
+    renderFeaturedMarquee(games.slice(0, 5)); 
+    renderPopularList(games.slice(0, 4));
     applyFilters(); 
-    startAutoSlide();
 
-    // Safely bind the search input listener dynamically
+    // Bind Search Input Listener
     const searchInput = document.getElementById('gameSearchInput');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -97,23 +95,63 @@ function initStore(games) {
             applyFilters();
         });
     }
+
+    // Bind Navbar Category Tabs
+    document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.querySelectorAll('.portal-navbar .nav-tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            currentCategory = tab.getAttribute('data-filter').toLowerCase();
+            applyFilters();
+        });
+    });
+
+    // Modal Close Triggers
+    const closeModalBtn = document.getElementById('closeModal');
+    if (closeModalBtn) {
+        closeModalBtn.addEventListener('click', closeModalDirect);
+    }
+
+    const fullscreenCloseBtn = document.getElementById('fullscreenClose');
+    if (fullscreenCloseBtn) {
+        fullscreenCloseBtn.addEventListener('click', closeFullScreen);
+    }
+
+    const closeGdriveBtn = document.getElementById('closeGdriveModal');
+    if (closeGdriveBtn) {
+        closeGdriveBtn.addEventListener('click', () => {
+            document.getElementById('gdriveModal').classList.remove('active');
+        });
+    }
+
+    // Copy Google Drive Link Button
+    const copyBtn = document.getElementById('gdriveCopyBtn');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', () => {
+            const input = document.getElementById('gdriveLinkInput');
+            input.select();
+            document.execCommand('copy');
+            copyBtn.innerText = "✅ Copied!";
+            setTimeout(() => { copyBtn.innerText = "📋 Copy Link"; }, 2000);
+        });
+    }
 }
 
-function renderFeaturedSlider(sliderGames) {
-    const sliderContainer = document.getElementById("featured-slider");
-    if (!sliderContainer) return;
+function renderFeaturedMarquee(sliderGames) {
+    const track = document.getElementById("featuredMarqueeTrack");
+    if (!track) return;
 
-    sliderContainer.innerHTML = sliderGames.map((game, index) => `
-        <div class="slider-item ${index === 0 ? 'active' : ''}">
+    track.innerHTML = sliderGames.map((game, index) => `
+        <div class="featured-card">
             <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
-            <div class="slider-caption">
+            <div class="featured-info">
                 <span class="card-badge">${game.platform || 'Game'}</span>
-                <h3>${game.title}</h3>
-                <p>${game.description || ''}</p>
+                <h4>${game.title}</h4>
                 <div class="slider-actions">
                     <button class="btn-details" onclick="openDetailsById(${loadedGamesData.indexOf(game)})">Details</button>
                     <a href="${game.downloadUrl || '#'}" target="_blank" class="btn-action ${String(game.price).toUpperCase().includes('FREE') ? 'btn-get' : 'btn-download'}">
-                        ${String(game.price).toUpperCase().includes('FREE') ? 'Get Game' : 'Buy Now'}
+                        ${String(game.price).toUpperCase().includes('FREE') ? 'Get' : 'Buy'}
                     </a>
                 </div>
             </div>
@@ -121,39 +159,22 @@ function renderFeaturedSlider(sliderGames) {
     `).join('');
 }
 
-function moveSlide(direction) {
-    const items = document.querySelectorAll(".slider-item");
-    if (items.length === 0) return;
+function renderPopularList(popularGames) {
+    const container = document.getElementById("popularListContainer");
+    if (!container) return;
 
-    items[currentSlideIndex].classList.remove("active");
-    currentSlideIndex = (currentSlideIndex + direction + items.length) % items.length;
-    items[currentSlideIndex].classList.add("active");
-
-    resetAutoSlide();
-}
-
-function startAutoSlide() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(() => {
-        moveSlide(1);
-    }, 5000); 
-}
-
-function resetAutoSlide() {
-    clearInterval(slideInterval);
-    startAutoSlide();
+    container.innerHTML = popularGames.map((game) => `
+        <div class="popular-item" onclick="openDetailsById(${loadedGamesData.indexOf(game)})">
+            <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
+            <div class="popular-info">
+                <h4>${game.title}</h4>
+                <span class="popular-price">${game.price || 'FREE'}</span>
+            </div>
+        </div>
+    `).join('');
 }
 
 /* --- Search and Category Filtering Logic --- */
-function filterByCategory(category, buttonElement) {
-    document.querySelectorAll('.cat-pill, .portal-navbar .nav-tab').forEach(btn => btn.classList.remove('active'));
-    if (buttonElement) {
-        buttonElement.classList.add('active');
-    }
-    currentCategory = category.toLowerCase();
-    applyFilters();
-}
-
 function applyFilters() {
     const filteredGames = loadedGamesData.filter(game => {
         const title = (game.title || "").toLowerCase();
@@ -175,11 +196,8 @@ function applyFilters() {
 }
 
 function renderGameStore(gameList) {
-    const container = document.getElementById("game-grid") || document.getElementById("gameGrid");
-    if (!container) {
-        console.warn("Element with ID 'game-grid' or 'gameGrid' not found in HTML!");
-        return;
-    }
+    const container = document.getElementById("gameGrid") || document.getElementById("game-grid");
+    if (!container) return;
 
     container.innerHTML = "";
 
@@ -205,20 +223,20 @@ function renderGameStore(gameList) {
         const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
         let actionButtonsHTML = `
-            <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
+            <button onclick="handleDownloadAction(${originalIndex})" class="btn-action ${actionBtnClass}">${actionBtnText}</button>
         `;
 
         if (game.altDownloadUrl) {
             actionButtonsHTML += `
-                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" title="Buy via WhatsApp using Vodacom network">
-                    💬 Buy (Vodacom)
+                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" title="Buy via WhatsApp">
+                    💬 WhatsApp
                 </a>
             `;
         }
 
         card.innerHTML = `
             <span class="card-badge">${game.platform || "Game"}</span>
-            <div class="game-img-wrapper">
+            <div class="game-img-wrapper" onclick="openDetails(${originalIndex})" style="cursor: pointer;">
                 <img src="${game.image || 'images/nfsmw-shot1.png'}" alt="${game.title}" class="game-img" loading="lazy" onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
             </div>
             <div class="game-details">
@@ -239,6 +257,27 @@ function renderGameStore(gameList) {
     });
 }
 
+function handleDownloadAction(index) {
+    const game = loadedGamesData[index];
+    if (!game) return;
+
+    const url = game.downloadUrl || "";
+    // If it's a Google Drive link, open the custom popup modal
+    if (url.includes("drive.google.com")) {
+        const gdriveModal = document.getElementById("gdriveModal");
+        const titleSpan = document.getElementById("modalGameTitle");
+        const linkInput = document.getElementById("gdriveLinkInput");
+        const directBtn = document.getElementById("gdriveDirectBtn");
+
+        if (titleSpan) titleSpan.innerText = game.title;
+        if (linkInput) linkInput.value = url;
+        if (directBtn) directBtn.href = url;
+        if (gdriveModal) gdriveModal.classList.add("active");
+    } else {
+        window.open(url, '_blank');
+    }
+}
+
 function openDetailsById(index) {
     openDetails(index);
 }
@@ -247,94 +286,50 @@ function openDetails(index) {
     const game = loadedGamesData[index];
     if (!game) return;
 
-    const modalDetailsModal = document.getElementById("details-modal");
-
-    // If modal doesn't exist on this page layout, safely redirect to details.html with game ID
-    if (!modalDetailsModal) {
+    const modal = document.getElementById("detailsModal");
+    if (!modal) {
         window.location.href = `details.html?id=${game.id || index}`;
         return;
     }
 
-    const modalTitle = document.getElementById("modal-title");
-    const modalDesc = document.getElementById("modal-desc");
-    const modalReq = document.getElementById("modal-req");
-    const modalPrice = document.getElementById("modal-price");
+    // Populate Modal Content dynamically
+    modal.innerHTML = `
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModalDirect()">&times;</span>
+            <h2 style="color: #fff; margin-bottom: 10px;">${game.title}</h2>
+            <p style="color: #a0aec0; margin-bottom: 15px;">${game.description || ""}</p>
+            <div style="background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; margin-bottom: 15px;">
+                <strong style="color: var(--accent-blue);">System Requirements:</strong>
+                <p style="color: #cbd5e1; font-size: 13px; margin-top: 5px;">${game.requirements || "Standard specs apply."}</p>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 20px;">
+                <span style="font-size: 18px; font-weight: bold; color: #48bb78;">${game.price || "FREE"}</span>
+                <button onclick="handleDownloadAction(${index})" class="btn-action ${String(game.price).toUpperCase().includes('FREE') ? 'btn-get' : 'btn-download'}">
+                    ${String(game.price).toUpperCase().includes('FREE') ? 'Get Game' : 'Buy Now'}
+                </button>
+            </div>
+            <div style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px;">
+                ${(game.screenshots || [game.image]).map(img => `<img src="${img}" style="width: 120px; height: 75px; object-fit: cover; border-radius: 6px; cursor: pointer;" onclick="openFullScreen('${img}')" onerror="this.src='images/nfsmw-shot1.png'">`).join('')}
+            </div>
+        </div>
+    `;
 
-    if (modalTitle) modalTitle.innerText = game.title;
-    if (modalDesc) modalDesc.innerText = game.description || "";
-    
-    // Dynamically pulls and shows the exact PC specifications/requirements written in your games.json
-    if (modalReq) {
-        modalReq.innerText = game.requirements || "Standard System Requirements not specified.";
-    }
-    
-    if (modalPrice) modalPrice.innerText = game.price || "FREE";
-
-    const priceText = String(game.price || "").trim().toUpperCase();
-    const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
-
-    const modalBtnText = isFree ? "Get" : "Buy Now";
-    const modalBtnClass = isFree ? "btn-get" : "btn-download";
-    const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
-
-    const modalBtnGroup = document.getElementById("modal-btn-group");
-    if (modalBtnGroup) {
-        let modalButtonsHTML = `
-            <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
-        `;
-
-        if (game.altDownloadUrl) {
-            modalButtonsHTML += `
-                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;">
-                    💬 Buy via WhatsApp (Vodacom)
-                </a>
-            `;
-        }
-        modalBtnGroup.innerHTML = modalButtonsHTML;
-    }
-
-    const gallery = document.getElementById("modal-gallery");
-    if (gallery) {
-        gallery.innerHTML = "";
-        if (game.screenshots && game.screenshots.length > 0) {
-            game.screenshots.forEach((imgSrc) => {
-                const img = document.createElement("img");
-                img.src = imgSrc;
-                img.alt = "Screenshot";
-                img.onerror = function () { this.src = "images/nfsmw-shot1.png"; };
-                img.onclick = function () { openFullScreen(imgSrc); };
-                gallery.appendChild(img);
-            });
-        } else {
-            const img = document.createElement("img");
-            img.src = game.image || 'images/nfsmw-shot1.png';
-            img.onclick = function () { openFullScreen(game.image); };
-            gallery.appendChild(img);
-        }
-    }
-
-    modalDetailsModal.classList.add("active");
-}
-
-function closeModal(event) {
-    if (event.target.classList.contains("modal-overlay")) {
-        closeModalDirect();
-    }
+    modal.classList.add("active");
 }
 
 function closeModalDirect() {
-    const modal = document.getElementById("details-modal");
+    const modal = document.getElementById("detailsModal");
     if (modal) modal.classList.remove("active");
 }
 
 function openFullScreen(imgSrc) {
-    const fullModal = document.getElementById("fullscreen-modal");
-    const fullImg = document.getElementById("fullscreen-img");
+    const fullModal = document.getElementById("fullscreenOverlay");
+    const fullImg = document.getElementById("fullscreenImg");
     if (fullImg) fullImg.src = imgSrc;
     if (fullModal) fullModal.classList.add("active");
 }
 
 function closeFullScreen() {
-    const fullModal = document.getElementById("fullscreen-modal");
+    const fullModal = document.getElementById("fullscreenOverlay");
     if (fullModal) fullModal.classList.remove("active");
 }
