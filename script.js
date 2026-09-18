@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Fetch games data with an absolute/relative path check and instant fallback
+    // 3. Fetch games data with an absolute/relative path check and robust fallback
     const jsonPath = window.location.hostname.includes("github.io") ? "./games.json" : "games.json";
 
     fetch(jsonPath)
@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             initStore(games);
         })
         .catch(err => {
-            console.warn("Fetch failed, activating instant backup catalog:", err);
+            console.warn("Fetch failed, activating comprehensive fallback catalog:", err);
             initStore([
                 {
                     id: 1,
@@ -49,6 +49,30 @@ document.addEventListener("DOMContentLoaded", () => {
                     screenshots: ["images/4193b766a912970fac32e8b171d693df.webp"],
                     downloadUrl: "https://selar.com/8z3yp9tnyv",
                     altDownloadUrl: "https://wa.me/255692752060?text=Hello%20Squad%20Games%2C%20I%20want%20to%20buy%20ETS2%20PC."
+                },
+                {
+                    id: 12,
+                    title: "Marvel’s Spider-Man: Miles Morales",
+                    platform: "PC",
+                    category: "Action",
+                    description: "Experience the rise of Miles Morales as new powers unfold.",
+                    requirements: "OS: Windows 10 (64-bit) | RAM: 8 GB",
+                    price: "FREE",
+                    image: "images/spider-man.jpg",
+                    screenshots: [],
+                    downloadUrl: "https://wa.me/255692752060"
+                },
+                {
+                    id: 13,
+                    title: "FIFA 22",
+                    platform: "PC",
+                    category: "Sports",
+                    description: "Powered by Football, FIFA 22 brings the game even closer to the real thing.",
+                    requirements: "OS: Windows 10 (64-bit) | RAM: 8 GB",
+                    price: "FREE",
+                    image: "images/fifa22.jpg",
+                    screenshots: [],
+                    downloadUrl: "https://wa.me/255692752060"
                 }
             ]);
         });
@@ -58,7 +82,7 @@ function initStore(games) {
     loadedGamesData = games;
     
     // --- SMART GUIDANCE LOGIC ---
-    // Automatically selects featured games by matching IDs or titles (removes NFS, includes FIFA 22)
+    // Automatically selects featured games by matching titles
     const featuredGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
         return title.includes("euro truck simulator") || 
@@ -66,7 +90,7 @@ function initStore(games) {
                title.includes("carx street") || 
                title.includes("fifa 22");
     });
-    renderFeaturedMarquee(featuredGames); 
+    renderFeaturedMarquee(featuredGames.length ? featuredGames : games); 
 
     // Automatically selects popular games including FIFA 22 and Spider-Man
     const popularGames = games.filter(game => {
@@ -76,7 +100,7 @@ function initStore(games) {
                title.includes("spider-man") || 
                title.includes("fifa 22");
     });
-    renderPopularList(popularGames);
+    renderPopularList(popularGames.length ? popularGames : games);
     // ----------------------------
 
     applyFilters(); 
