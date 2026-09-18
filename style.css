@@ -1,1008 +1,136 @@
-:root {
-    --text-muted: #94a3b8;
-    --bg-card: rgba(22, 22, 26, 0.88);
-    --border-color: rgba(255, 255, 255, 0.08);
-    --accent-green: #25d366;
-    --accent-blue: #007aff;
-}
-
-body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: linear-gradient(rgba(10, 10, 12, 0.88), rgba(10, 10, 12, 0.88)), 
-                url('images/background.png') no-repeat center center fixed;
-    background-size: cover;
-    color: #ffffff;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-}
-
-/* Header Navbar */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 28px;
-    background-color: rgba(18, 18, 22, 0.9);
-    border-bottom: 1px solid var(--border-color);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-
-/* --- Permanent Portal Header & Styled Navigation Box --- */
-.portal-header-wrapper {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 18px 24px;
-    margin-bottom: 24px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    position: sticky;
-    top: 0;
-    z-index: 999;
-}
-
-.portal-logo-area {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 14px;
-}
-
-.portal-logo {
-    font-weight: 800;
-    font-size: 1.2rem;
-    color: #ffffff;
-    letter-spacing: -0.3px;
-    margin: 0;
-}
-
-.portal-navbar {
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    scrollbar-width: none;
-}
-
-.portal-navbar::-webkit-scrollbar {
-    display: none;
-}
-
-.nav-tab {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-muted);
-    padding: 7px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-decoration: none;
-    white-space: nowrap;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.nav-tab:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.nav-tab.active {
-    background: var(--accent-blue);
-    color: #ffffff;
-    border-color: var(--accent-blue);
-    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
-}
-
-.brand {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.avatar-glow {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.avatar-glow::after {
-    content: '';
-    position: absolute;
-    inset: -3px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
-    z-index: -1;
-    opacity: 0.7;
-    filter: blur(4px);
-}
-
-.nav-avatar {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #1a1a1e;
-    flex-shrink: 0;
-}
-
-.brand-text {
-    display: flex;
-    flex-direction: column;
-}
-
-.brand-title {
-    font-weight: 800;
-    font-size: 1.2rem;
-    color: #ffffff;
-    letter-spacing: -0.3px;
-}
-
-.brand-sub {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-}
-
-.nav-btn {
-    background: linear-gradient(135deg, #25d366, #128c7e);
-    color: #ffffff;
-    text-decoration: none;
-    padding: 9px 16px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    transition: all 0.25s ease;
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.nav-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
-}
-
-/* Main Container */
-.container {
-    max-width: 1120px;
-    margin: 0 auto;
-    padding: 24px 20px;
-}
-
-/* Intro Banner */
-.intro-banner {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 20px 24px;
-    border-radius: 14px;
-    margin-bottom: 24px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.intro-banner h2 {
-    margin: 0 0 8px 0;
-    font-size: 1.3rem;
-    color: #ffffff;
-}
-
-.intro-banner p {
-    margin: 0;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-/* --- Search and Category Filter Section UI Styles --- */
-.search-filter-section {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 18px 24px;
-    border-radius: 14px;
-    margin-bottom: 24px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.search-bar-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.search-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    pointer-events: none;
-}
-
-#gameSearchInput {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 12px 16px 12px 42px;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 0.9rem;
-    outline: none;
-    transition: all 0.25s ease;
-    box-sizing: border-box;
-}
-
-#gameSearchInput:focus {
-    border-color: var(--accent-blue);
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 0 15px rgba(0, 122, 255, 0.2);
-}
-
-.category-pills-container {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.cat-pill {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--text-muted);
-    padding: 7px 14px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.cat-pill:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.cat-pill.active {
-    background: var(--accent-blue);
-    color: #ffffff;
-    border-color: var(--accent-blue);
-    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
-}
-
-/* --- Updated Top Section Split Layout (Forced Flexbox 65% / 35%) --- */
-.top-split-container {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 20px !important;
-    margin-bottom: 24px !important;
-    align-items: stretch !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-}
-
-.top-split-container > .featured-epic-wrapper {
-    width: 65% !important;
-    flex: 0 0 65% !important;
-    box-sizing: border-box !important;
-}
-
-.top-split-container > .most-popular-wrapper {
-    width: 35% !important;
-    flex: 0 0 35% !important;
-    box-sizing: border-box !important;
-}
-
-@media (max-width: 900px) {
-    .top-split-container {
-        flex-direction: column !important;
-    }
-    .top-split-container > .featured-epic-wrapper,
-    .top-split-container > .most-popular-wrapper {
-        width: 100% !important;
-        flex: 1 1 100% !important;
-    }
-}
-
-/* Featured Section */
-.featured-epic-wrapper {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.section-title {
-    font-size: 1.05rem;
-    font-weight: 800;
-    margin: 0 0 12px 0;
-    color: #ff9500;
-    letter-spacing: 0.3px;
-}
-
-/* Continuous Right-to-Left Marquee Slider */
-.featured-marquee-container {
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-}
-
-.featured-marquee-track {
-    display: flex;
-    gap: 16px;
-    width: max-content;
-    animation: scrollRightToLeft 25s linear infinite;
-}
-
-.featured-marquee-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scrollRightToLeft {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.marquee-game-card {
-    width: 270px;
-    background: #121216;
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid var(--border-color);
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-}
-
-.marquee-game-img {
-    width: 100%;
-    height: 140px;
-    object-fit: cover;
-    background-color: #000;
-}
-
-.marquee-game-content {
-    padding: 12px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.marquee-game-badge {
-    background: var(--accent-blue);
-    color: #fff;
-    font-size: 0.65rem;
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-weight: 700;
-    text-transform: uppercase;
-    align-self: flex-start;
-    margin-bottom: 6px;
-}
-
-.marquee-game-content h4 {
-    margin: 0 0 4px 0;
-    font-size: 0.9rem;
-    color: #fff;
-    font-weight: 700;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-.marquee-game-content p {
-    margin: 0 0 10px 0;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.3;
-}
-
-.marquee-game-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: auto;
-    padding-top: 8px;
-    border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-.marquee-price {
-    font-size: 0.85rem;
-    font-weight: 800;
-    color: #fff;
-}
-
-/* Most Popular Games Section */
-.most-popular-wrapper {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 16px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-    display: flex;
-    flex-direction: column;
-}
-
-.popular-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    overflow-y: auto;
-    max-height: 220px;
-    padding-right: 4px;
-}
-
-.popular-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.03);
-    padding: 8px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    transition: all 0.2s ease;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.popular-item:hover {
-    background: rgba(0, 122, 255, 0.1);
-    border-color: rgba(0, 122, 255, 0.3);
-}
-
-.popular-item img {
-    width: 44px;
-    height: 44px;
-    object-fit: cover;
-    border-radius: 6px;
-    background: #000;
-}
-
-.popular-item-info {
-    flex-grow: 1;
-    overflow: hidden;
-}
-
-.popular-item-info h5 {
-    margin: 0 0 2px 0;
-    font-size: 0.82rem;
-    color: #fff;
-    font-weight: 700;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.popular-item-info span {
-    font-size: 0.72rem;
-    color: var(--accent-green);
-    font-weight: 700;
-}
-
-/* Trust Bar */
-.trust-bar {
-    display: flex;
-    justify-content: space-around;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 14px 16px;
-    border-radius: 12px;
-    margin-bottom: 24px;
-    flex-wrap: wrap;
-    gap: 12px;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.trust-item {
-    font-size: 0.85rem;
-    color: #e2e8f0;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-}
-
-.trust-icon {
-    font-size: 1rem;
-}
-
-/* Loading State */
-.loading-state {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 60px 20px;
-    color: var(--text-muted);
-}
-
-.spinner {
-    width: 36px;
-    height: 36px;
-    border: 3px solid rgba(255, 255, 255, 0.1);
-    border-top-color: var(--accent-blue);
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    margin: 0 auto 12px auto;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* Game Cards Grid */
-.game-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
-    padding: 10px 0;
-}
-
-.game-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 14px;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.game-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(0, 122, 255, 0.3);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 122, 255, 0.15);
-}
-
-.card-badge {
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    background: rgba(0, 122, 255, 0.85);
-    backdrop-filter: blur(4px);
-    color: #fff;
-    font-size: 0.7rem;
-    padding: 5px 10px;
-    border-radius: 6px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    z-index: 2;
-    box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
-}
-
-.game-img-wrapper {
-    overflow: hidden;
-    width: 100%;
-    height: 170px;
-    background: #000;
-}
-
-.game-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.game-card:hover .game-img {
-    transform: scale(1.06);
-}
-
-.game-details {
-    padding: 18px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.game-details h3 {
-    margin: 8px 0;
-    font-size: 1.05rem;
-    font-weight: 700;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    height: 2.6em;
-    color: #ffffff;
-}
-
-.game-details p {
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    margin: 0;
-    line-height: 1.4;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 2.8em;
-}
-
-.category-tag {
-    color: #ff9500;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.card-action {
-    margin-top: auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 18px;
-}
-
-.price {
-    font-weight: 800;
-    color: #ffffff;
-    font-size: 1.1rem;
-}
-
-/* Action Group & Buttons */
-.action-group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    align-items: flex-end;
-}
-
-.btn-details {
-    background: rgba(255, 255, 255, 0.06);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.82rem;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.btn-details:hover {
-    background: rgba(255, 255, 255, 0.12);
-    border-color: rgba(255, 255, 255, 0.2);
-}
-
-.btn-action {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: none;
-    text-align: center;
-}
-
-.btn-download {
-    background: var(--accent-green);
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.25);
-}
-
-.btn-download:hover {
-    background: #1da851;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
-}
-
-.btn-vodacom {
-    background: linear-gradient(135deg, #e60000, #b30000);
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(230, 0, 0, 0.25);
-}
-
-.btn-vodacom:hover {
-    background: linear-gradient(135deg, #ff1a1a, #cc0000);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(230, 0, 0, 0.4);
-}
-
-.btn-get {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-}
-
-.btn-get:hover {
-    background: linear-gradient(135deg, #34d399, #10b981);
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
-    transform: translateY(-1px);
-}
-
-/* Bottom Information Box */
-.bottom-info-box {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    padding: 24px;
-    border-radius: 14px;
-    margin-top: 40px;
-    backdrop-filter: blur(10px);
-}
-
-.bottom-info-box h3 {
-    margin-top: 0;
-    color: #ffffff;
-    font-size: 1.15rem;
-}
-
-.bottom-info-box p {
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 0;
-}
-
-.footer-note {
-    text-align: center;
-    margin-top: 30px;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    padding: 16px 0;
-    border-top: 1px solid var(--border-color);
-}
-
-/* Details Modal Styles */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.modal-content {
-    background: #18181c;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    padding: 24px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 85vh;
-    overflow-y: auto;
-    position: relative;
-    color: #ffffff;
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-    transform: scale(0.95);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.modal-overlay.active .modal-content {
-    transform: scale(1);
-}
-
-.modal-content p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #cbd5e1;
-}
-
-.close-btn {
-    position: absolute;
-    top: 14px;
-    right: 18px;
-    font-size: 1.5rem;
-    color: var(--text-muted);
-    cursor: pointer;
-    line-height: 1;
-    transition: color 0.2s ease;
-}
-
-.close-btn:hover {
-    color: #fff;
-}
-
-.specs-box {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 14px;
-    border-left: 3px solid var(--accent-blue);
-    border-radius: 8px;
-    font-size: 0.85rem;
-    margin: 16px 0;
-    color: #cbd5e1;
-    line-height: 1.45;
-}
-
-.screenshots-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.screenshots-container img {
-    width: 100%;
-    height: 100px;
-    border-radius: 8px;
-    object-fit: cover;
-    border: 1px solid var(--border-color);
-    cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.screenshots-container img:hover {
-    transform: scale(1.04);
-    border-color: var(--accent-blue);
-}
-
-/* Full Screen Lightbox */
-.fullscreen-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    backdrop-filter: blur(10px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-.fullscreen-overlay.active {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.fullscreen-img {
-    max-width: 90%;
-    max-height: 90vh;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
-    object-fit: contain;
-}
-
-.fullscreen-close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    font-size: 2.5rem;
-    color: #ffffff;
-    cursor: pointer;
-    z-index: 2001;
-    opacity: 0.8;
-}
-
-.fullscreen-close:hover {
-    opacity: 1;
-}
-
-/* Google Drive Download Popup Styles */
-.gdrive-popup-box {
-    background: rgba(0, 122, 255, 0.1);
-    border: 1px solid rgba(0, 122, 255, 0.3);
-    padding: 16px;
-    border-radius: 12px;
-    margin-top: 16px;
-    text-align: center;
-}
-.gdrive-link-input {
-    width: 100%;
-    padding: 10px 12px;
-    background: rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #fff;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-    text-align: center;
-}
-.gdrive-btn-row {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-}
-.btn-gdrive-primary {
-    background: var(--accent-blue);
-    color: #fff;
-    border: none;
-    padding: 9px 16px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
-    transition: all 0.2s;
-}
-.btn-gdrive-primary:hover {
-    background: #0062cc;
-    transform: translateY(-1px);
-}
-.btn-gdrive-copy {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 9px 14px;
-    border-radius: 8px;
-    font-weight: 700;
-    font-size: 0.85rem;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-.btn-gdrive-copy:hover {
-    background: rgba(255, 255, 255, 0.2);
-}
-
-@media (max-width: 600px) {
-    .navbar {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-        padding: 12px 16px;
-    }
-    .portal-header-wrapper {
-        padding: 12px 16px;
-    }
-    .nav-links {
-        width: 100%;
-    }
-    .nav-btn {
-        display: flex;
-        text-align: center;
-        width: 100%;
-        box-sizing: border-box;
-        justify-content: center;
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squad Games Store TZ</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Portal Header / Navbar Wrapper -->
+        <div class="portal-header-wrapper">
+            <div class="portal-logo-area">
+                <h1 class="portal-logo">Squad Games Store TZ</h1>
+                <a href="https://wa.me/" target="_blank" class="nav-btn">💬 Support Chat</a>
+            </div>
+            <div class="portal-navbar">
+                <a href="#" class="nav-tab active" data-filter="all">All Games</a>
+                <a href="#" class="nav-tab" data-filter="PC">PC Games</a>
+                <a href="#" class="nav-tab" data-filter="Mobile">Mobile</a>
+                <a href="#" class="nav-tab" data-filter="Racing">Racing</a>
+                <a href="#" class="nav-tab" data-filter="Action">Action</a>
+            </div>
+        </div>
+
+        <!-- Intro Banner -->
+        <div class="intro-banner">
+            <h2>Welcome to Your Ultimate Game Hub</h2>
+            <p>Explore high-performance PC repacks, mobile titles, racing simulators, and exclusive mods. Fast, secure, and ready to play.</p>
+        </div>
+
+        <!-- Search and Category Filter Section -->
+        <div class="search-filter-section">
+            <div class="search-bar-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="gameSearchInput" placeholder="Search games by title, genre, or description...">
+            </div>
+            <div class="category-pills-container" id="categoryPills">
+                <!-- Dynamically filled or static filters -->
+            </div>
+        </div>
+
+        <!-- Top Section Split Layout (65% Featured Marquee / 35% Most Popular) -->
+        <div class="top-split-container">
+            <!-- Featured Marquee Section (65%) -->
+            <div class="featured-epic-wrapper">
+                <h3 class="section-title">🔥 Featured Releases</h3>
+                <div class="featured-marquee-container">
+                    <div class="featured-marquee-track" id="featuredMarqueeTrack">
+                        <!-- Filled dynamically by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Most Popular Games Section (35%) -->
+            <div class="most-popular-wrapper">
+                <h3 class="section-title">⭐ Most Popular</h3>
+                <div class="popular-list" id="popularListContainer">
+                    <!-- Filled dynamically by JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Trust Bar -->
+        <div class="trust-bar">
+            <div class="trust-item"><span class="trust-icon">⚡</span> Direct High-Speed Links</div>
+            <div class="trust-item"><span class="trust-icon">🛡️</span> Verified Clean Files</div>
+            <div class="trust-item"><span class="trust-icon">🇹🇿</span> Local Support Ready</div>
+        </div>
+
+        <!-- Main Game Cards Grid -->
+        <div class="game-grid" id="gameGrid">
+            <!-- Loading State Placeholder -->
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading game catalog...</p>
+            </div>
+        </div>
+
+        <!-- Bottom Information Box -->
+        <div class="bottom-info-box">
+            <h3>About Squad Games Store TZ</h3>
+            <p>Built for gamers in Tanzania and beyond, providing seamless access to top-tier repack setups, racing simulation addons, and custom modifications. Enjoy clean installation guides and direct downloads.</p>
+        </div>
+
+        <div class="footer-note">
+            &copy; 2026 Squad Games Store TZ. All rights reserved. Designed for ultimate gaming performance.
+        </div>
+
+    </div>
+
+    <!-- Details Modal -->
+    <div class="modal-overlay" id="detailsModal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeModal">&times;</span>
+            <div id="modalBodyContent">
+                <!-- Dynamically populated game details -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Screen Lightbox for Screenshots -->
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <span class="fullscreen-close" id="fullscreenClose">&times;</span>
+        <img src="" alt="Fullscreen Screenshot" class="fullscreen-img" id="fullscreenImg">
+    </div>
+
+    <!-- Google Drive Download Modal -->
+    <div class="modal-overlay" id="gdriveModal">
+        <div class="modal-content gdrive-modal-box">
+            <span class="close-btn" id="closeGdriveModal">&times;</span>
+            <div class="modal-header-icon">📥</div>
+            <h3>Ready to Download</h3>
+            <p>Your secure direct link for <span id="modalGameTitle" style="color: var(--accent-blue); font-weight: 700;">Game Name</span> is ready. Click below to proceed or copy the link.</p>
+            
+            <div class="gdrive-popup-box">
+                <input type="text" id="gdriveLinkInput" class="gdrive-link-input" readonly value="">
+                <div class="gdrive-btn-row">
+                    <a href="#" id="gdriveDirectBtn" target="_blank" class="btn-gdrive-primary">
+                        🚀 Open Download Link
+                    </a>
+                    <button type="button" id="gdriveCopyBtn" class="btn-gdrive-copy">
+                        📋 Copy Link
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
