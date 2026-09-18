@@ -33,23 +33,25 @@ body {
     z-index: 999;
 }
 
-/* --- Permanent Portal Header & Navigation Tabs --- */
+/* --- Permanent Portal Header & Styled Navigation Box --- */
 .portal-header-wrapper {
-    background-color: rgba(18, 18, 22, 0.9);
-    border-bottom: 1px solid var(--border-color);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 18px 24px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     position: sticky;
     top: 0;
     z-index: 999;
-    padding: 14px 28px;
 }
 
 .portal-logo-area {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
 }
 
 .portal-logo {
@@ -77,11 +79,12 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.08);
     color: var(--text-muted);
     padding: 7px 14px;
-    border-radius: 8px;
+    border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
+    cursor: pointer;
     transition: all 0.2s ease;
 }
 
