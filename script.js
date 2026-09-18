@@ -49,31 +49,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     screenshots: ["images/4193b766a912970fac32e8b171d693df.webp"],
                     downloadUrl: "https://selar.com/8z3yp9tnyv",
                     altDownloadUrl: "https://wa.me/255692752060?text=Hello%20Squad%20Games%2C%20I%20want%20to%20buy%20ETS2%20PC."
-                },
-                {
-                    id: "ets2-mobile",
-                    title: "Tanzania Euro Truck Simulator 2 Mobile",
-                    platform: "Android",
-                    category: "Mobile",
-                    description: "Experience driving heavy trucks across Tanzania directly on your Android phone.",
-                    requirements: "OS: Android 8.0+ | RAM: 4 GB minimum",
-                    price: "TZS 10,000",
-                    image: "images/ets-2-mobile.jpg",
-                    screenshots: ["images/Screenshot_20260902_131001_TikTok.jpg"],
-                    downloadUrl: "https://selar.com/8002i2803s",
-                    altDownloadUrl: "https://wa.me/255692752060?text=Hello%20Squad%20Games%2C%20I%20want%20to%20buy%20ETS2%20Mobile."
-                },
-                {
-                    id: "ets2-v157",
-                    title: "Euro Truck Simulator 2 v1.57.2.2s + 103 DLCs",
-                    platform: "PC",
-                    category: "Action",
-                    description: "It includes 103 DLCs + Multiplayer Game",
-                    requirements: "OS: Windows 10 | RAM: 8 GB",
-                    price: "FREE",
-                    image: "images/ets 2 1.57.png",
-                    screenshots: ["images/Annotation 2026-09-02 125957.png"],
-                    downloadUrl: "https://drive.google.com/file/d/1i5fqqoHh8MwYoLDL3LCuGsGt6M-B9LUk/view?usp=drive_link"
                 }
             ]);
         });
@@ -82,25 +57,27 @@ document.addEventListener("DOMContentLoaded", () => {
 function initStore(games) {
     loadedGamesData = games;
     
-    // Configured Featured Games: Replaced NFS Most Wanted with FIFA 22 (Index 12)
-    const featuredGames = [
-        games[0], // ETS2 PC
-        games[1], // ETS2 Mobile
-        games[2], // ETS2 v1.57
-        games[5], // Call of Duty: Advanced Warfare
-        games[6], // CarX Street
-        games[12] // FIFA 22
-    ].filter(Boolean);
+    // --- SMART GUIDANCE LOGIC ---
+    // Automatically selects featured games by matching IDs or titles (removes NFS, includes FIFA 22)
+    const featuredGames = games.filter(game => {
+        const title = (game.title || "").toLowerCase();
+        return title.includes("euro truck simulator") || 
+               title.includes("call of duty") || 
+               title.includes("carx street") || 
+               title.includes("fifa 22");
+    });
     renderFeaturedMarquee(featuredGames); 
 
-    // Configured Popular Games: Includes Spider-Man (Index 11) and FIFA 22 (Index 12)
-    const popularGames = [
-        games[0], // ETS2 PC
-        games[7], // GTA V Legacy
-        games[11], // Marvel’s Spider-Man: Miles Morales
-        games[12]  // FIFA 22
-    ].filter(Boolean);
+    // Automatically selects popular games including FIFA 22 and Spider-Man
+    const popularGames = games.filter(game => {
+        const title = (game.title || "").toLowerCase();
+        return title.includes("euro truck simulator") || 
+               title.includes("gta") || 
+               title.includes("spider-man") || 
+               title.includes("fifa 22");
+    });
     renderPopularList(popularGames);
+    // ----------------------------
 
     applyFilters(); 
 
@@ -113,7 +90,7 @@ function initStore(games) {
         });
     }
 
-    // Bind Navbar Category Tabs (Fixed data-category attribute)
+    // Bind Navbar Category Tabs
     document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
         tab.addEventListener('click', (e) => {
             e.preventDefault();
@@ -137,7 +114,7 @@ function initStore(games) {
 }
 
 function renderFeaturedMarquee(sliderGames) {
-    const track = document.getElementById("featuredTrack"); // Fixed ID to match HTML
+    const track = document.getElementById("featuredTrack");
     if (!track) return;
 
     track.innerHTML = sliderGames.map((game) => `
@@ -157,7 +134,7 @@ function renderFeaturedMarquee(sliderGames) {
 }
 
 function renderPopularList(popularGames) {
-    const container = document.getElementById("popularList"); // Fixed ID to match HTML
+    const container = document.getElementById("popularList");
     if (!container) return;
 
     container.innerHTML = popularGames.map((game) => `
@@ -259,7 +236,7 @@ function openDetails(index) {
     const game = loadedGamesData[index];
     if (!game) return;
 
-    const modal = document.getElementById("details-modal"); // Fixed ID to match HTML
+    const modal = document.getElementById("details-modal");
     if (!modal) {
         window.location.href = `details.html?id=${game.id || index}`;
         return;
@@ -332,8 +309,8 @@ function closeModalDirect() {
 }
 
 function openFullScreen(imgSrc) {
-    const fullModal = document.getElementById("fullscreen-modal"); // Fixed ID to match HTML
-    const fullImg = document.getElementById("fullscreen-img"); // Fixed ID to match HTML
+    const fullModal = document.getElementById("fullscreen-modal");
+    const fullImg = document.getElementById("fullscreen-img");
     if (fullImg) fullImg.src = imgSrc;
     if (fullModal) fullModal.classList.add("active");
 }
