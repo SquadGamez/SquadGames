@@ -1,14 +1,13 @@
-,<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Details - Squad Games Store TZ</title>
-    <link rel="stylesheet" href="style.css"> <!-- Your main stylesheet -->
+    <link rel="stylesheet" href="style.css">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* --- Cool Box Category Navigation Styling (Matched to Index) --- */
         .portal-header-wrapper {
             background: var(--bg-card, rgba(22, 22, 26, 0.88));
             border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
@@ -17,6 +16,46 @@
             margin-bottom: 24px;
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        /* Mobile responsive grid fix */
+        @media (max-width: 768px) {
+            .details-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+        /* Fullscreen Image Overlay Styling */
+        .fullscreen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .fullscreen-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .fullscreen-overlay img {
+            max-width: 90%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .fullscreen-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2.5rem;
+            color: #fff;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -35,16 +74,21 @@
     <div class="container" style="margin-top: 20px; margin-bottom: 50px;">
         <div id="gameDetailsContainer" class="game-details-page-wrapper">
             <!-- Dynamic content loaded via JS -->
-            <div class="loading-state">
+            <div class="loading-state" style="text-align: center; padding: 50px;">
                 <div class="spinner"></div>
-                <p>Loading game details...</p>
+                <p style="color: var(--text-muted); margin-top: 10px;">Loading game details...</p>
             </div>
         </div>
     </div>
 
+    <!-- Fullscreen Image Preview Overlay -->
+    <div id="fullscreenOverlay" class="fullscreen-overlay" onclick="closeFullScreen()">
+        <span class="fullscreen-close">&times;</span>
+        <img id="fullscreenImg" src="" alt="Full Screen Preview">
+    </div>
+
     <!-- Application Script for Details -->
     <script>
-        // Smart auto-categorizer engine matching index.html perfectly
         function getSmartCategories(game) {
             let categories = new Set();
             if (game.category) {
@@ -64,14 +108,12 @@
             return Array.from(categories);
         }
 
-        // Fetch game data and render based on URL query parameter ?id=...
         const urlParams = new URLSearchParams(window.location.search);
         const gameIdParam = urlParams.get('id');
 
-        fetch('games.json') // Your game catalog JSON
+        fetch('games.json')
             .then(res => res.json())
             .then(games => {
-                // Find game matching either by string or numeric ID, or fallback slug check
                 const game = games.find(g => 
                     String(g.id) === String(gameIdParam) || 
                     g.title.toLowerCase().replace(/[^a-z0-9]/g, '-') === gameIdParam
@@ -81,49 +123,61 @@
 
                 if (!game) {
                     container.innerHTML = `
-                        <div class="loading-state">
+                        <div class="loading-state" style="text-align: center; padding: 40px;">
                             <h2 style="color: #ff4d4d;">Game not found</h2>
-                            <p>The game you are looking for does not exist or was removed.</p>
-                            <a href="index.html" class="btn-details" style="margin-top: 15px; display: inline-block;">Return to Home</a>
+                            <p style="color: var(--text-muted); margin: 10px 0;">The game you are looking for does not exist or was removed.</p>
+                            <a href="index.html" class="btn-details" style="margin-top: 15px; display: inline-block; text-decoration: none;">Return to Home</a>
                         </div>`;
                     return;
                 }
 
                 const smartCats = getSmartCategories(game);
-                
-                // Fixed: Map directly to downloadUrl property from games.json
                 const downloadUrl = game.downloadUrl || '#';
-                const isPaid = game.price && game.price !== 'FREE';
-                const buttonText = isPaid ? 'Buy / Order Game' : 'Download Game (Google Drive)';
+                
+                const priceText = String(game.price || "").trim().toUpperCase();
+                const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
+                const buttonText = isFree ? 'Get / Download Game' : 'Buy / Order Game';
+                const buttonClass = isFree ? 'btn-get' : 'btn-download';
 
-                // Render extra screenshots/gallery if provided in your JSON
+                // Screenshots gallery rendering
                 let screenshotsHTML = '';
                 if (game.screenshots && Array.isArray(game.screenshots) && game.screenshots.length > 0) {
                     screenshotsHTML = `
-                        <div style="margin-top: 30px;">
+                        <div style="margin-top: 25px;">
                             <h3 style="color: #fff; margin-bottom: 12px; font-size: 1.1rem;"><i class="fa-solid fa-images"></i> Screenshots & Gallery</h3>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
-                                ${game.screenshots.map(img => `<img src="${img}" alt="Screenshot" style="width: 100%; height: 90px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color);">`).join('')}
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px;">
+                                ${game.screenshots.map(img => `<img src="${img}" alt="Screenshot" style="width: 100%; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); cursor: pointer;" onclick="openFullScreen('${img}')" onerror="this.src='images/nfsmw-shot1.png'">`).join('')}
                             </div>
                         </div>
                     `;
                 }
 
-                // Render system specs if provided in your JSON
+                // Requirements specs box mapping correctly to game.requirements
                 let specsHTML = '';
-                if (game.specs) {
+                const gameRequirements = game.requirements || game.specs;
+                if (gameRequirements) {
                     specsHTML = `
                         <div class="specs-box" style="margin-top: 20px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 10px; border: 1px solid var(--border-color);">
                             <strong style="color: #fff; display: block; margin-bottom: 8px;"><i class="fa-solid fa-sliders"></i> System Requirements & Specifications:</strong>
-                            <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; white-space: pre-line;">${game.specs}</p>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; white-space: pre-line;">${gameRequirements}</p>
                         </div>
+                    `;
+                }
+
+                // Optional WhatsApp alternate checkout button
+                let altButtonHTML = '';
+                if (game.altDownloadUrl) {
+                    altButtonHTML = `
+                        <a href="${game.altDownloadUrl}" class="btn-action" target="_blank" style="padding: 12px 20px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; font-weight: 600;">
+                            <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
+                        </a>
                     `;
                 }
 
                 container.innerHTML = `
                     <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px;" class="details-grid">
                         <div>
-                            <img src="${game.image || 'images/default.jpg'}" alt="${game.title}" style="width: 100%; border-radius: 12px; object-fit: cover; border: 1px solid var(--border-color); box-shadow: 0 8px 24px rgba(0,0,0,0.4);">
+                            <img src="${game.image || 'images/nfsmw-shot1.png'}" alt="${game.title}" style="width: 100%; border-radius: 12px; object-fit: cover; border: 1px solid var(--border-color); box-shadow: 0 8px 24px rgba(0,0,0,0.4); cursor: pointer;" onclick="openFullScreen('${game.image || 'images/nfsmw-shot1.png'}')" onerror="this.src='images/nfsmw-shot1.png';">
                             ${screenshotsHTML}
                         </div>
                         <div>
@@ -132,17 +186,18 @@
                             <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">${game.description || 'No description provided.'}</p>
                             
                             <div class="specs-box" style="margin-top: 15px; color: var(--text-muted); font-size: 0.9rem;">
-                                <strong style="color: #fff;">Detected Categories:</strong> ${smartCats.join(' • ')}<br>
-                                <strong style="color: #fff;">Platform:</strong> ${game.platform || 'PC / Windows / Mobile'}
+                                <strong style="color: #fff;">Categories:</strong> ${smartCats.join(' • ')}<br>
+                                <strong style="color: #fff;">Platform:</strong> ${game.platform || 'PC / Android'}
                             </div>
 
                             ${specsHTML}
 
                             <div style="margin-top: 30px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
                                 <span class="price" style="font-size: 1.6rem; font-weight: 800; color: #fff;">${game.price || 'FREE'}</span>
-                                <a href="${downloadUrl}" class="btn-action btn-download" target="_blank" style="padding: 12px 24px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                                <a href="${downloadUrl}" class="btn-action ${buttonClass}" target="_blank" style="padding: 12px 24px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
                                     <i class="fa-solid fa-download"></i> ${buttonText}
                                 </a>
+                                ${altButtonHTML}
                             </div>
                         </div>
                     </div>
@@ -151,10 +206,22 @@
             .catch(error => {
                 console.error('Error loading game details:', error);
                 document.getElementById('gameDetailsContainer').innerHTML = `
-                    <div class="loading-state">
+                    <div class="loading-state" style="text-align: center; padding: 40px;">
                         <p style="color: #ff4d4d;">Failed to load game details. Please ensure your games.json file is accessible.</p>
                     </div>`;
             });
+
+        function openFullScreen(imgSrc) {
+            const fullModal = document.getElementById("fullscreenOverlay");
+            const fullImg = document.getElementById("fullscreenImg");
+            if (fullImg) fullImg.src = imgSrc;
+            if (fullModal) fullModal.classList.add("active");
+        }
+
+        function closeFullScreen() {
+            const fullModal = document.getElementById("fullscreenOverlay");
+            if (fullModal) fullModal.classList.remove("active");
+        }
     </script>
 </body>
 </html>
