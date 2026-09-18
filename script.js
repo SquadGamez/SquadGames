@@ -262,7 +262,12 @@ function openDetails(index) {
 
     if (modalTitle) modalTitle.innerText = game.title;
     if (modalDesc) modalDesc.innerText = game.description || "";
-    if (modalReq) modalReq.innerText = game.requirements || "Standard System Requirements";
+    
+    // Dynamically pulls and shows the exact PC specifications/requirements written in your games.json
+    if (modalReq) {
+        modalReq.innerText = game.requirements || "Standard System Requirements not specified.";
+    }
+    
     if (modalPrice) modalPrice.innerText = game.price || "FREE";
 
     const priceText = String(game.price || "").trim().toUpperCase();
