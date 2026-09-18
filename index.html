@@ -1,304 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Squad Games Store TZ</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squad Games Store TZ</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-    <!-- Permanent Portal Header Navigation Bar -->
-    <div class="portal-header-wrapper">
-        <div class="portal-logo-area">
-            <h1 class="portal-logo">SQUAD GAMES <span style="color: var(--accent-blue);">STORE TZ</span></h1>
-        </div>
-        <nav class="portal-navbar">
-            <a href="index.html" class="nav-tab active" data-category="all">Home</a>
-            <a href="#" class="nav-tab" data-category="action">Action</a>
-            <a href="#" class="nav-tab" data-category="fighting">Fighting</a>
-            <a href="#" class="nav-tab" data-category="shooting">Shooting</a>
-            <a href="#" class="nav-tab" data-category="sports">Sports</a>
-            <a href="#" class="nav-tab" data-category="racing">Racing</a>
-            <a href="#" class="nav-tab" data-category="all">All Categories</a>
-            <a href="#" class="nav-tab" data-category="pc games">PC Games List</a>
-            <a href="#" class="nav-tab" data-category="mobile games">Mobile Games</a>
-        </nav>
-    </div>
+    <!-- Permanent Portal Header Navigation Bar with Profile Logo & SquadGames Name -->
+    <div class="portal-header-wrapper">
+        <div class="portal-logo-area" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+                <img src="images/profile.jpg" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-blue);">
+                <h1 class="portal-logo" style="margin: 0;">SquadGames <span style="color: var(--accent-blue);">Store TZ</span></h1>
+            </div>
+        </div>
+        <nav class="portal-navbar">
+            <a href="index.html" class="nav-tab active" data-category="all">Home</a>
+            <a href="#" class="nav-tab" data-category="action">Action</a>
+            <a href="#" class="nav-tab" data-category="fighting">Fighting</a>
+            <a href="#" class="nav-tab" data-category="shooting">Shooting</a>
+            <a href="#" class="nav-tab" data-category="sports">Sports</a>
+            <a href="#" class="nav-tab" data-category="racing">Racing</a>
+            <a href="#" class="nav-tab" data-category="all">All Categories</a>
+            <a href="#" class="nav-tab" data-category="pc games">PC Games List</a>
+            <a href="#" class="nav-tab" data-category="mobile games">Mobile Games</a>
+        </nav>
+    </div>
 
-    <!-- Main Container -->
-    <div class="container">
+    <!-- Main Container -->
+    <div class="container">
 
-        <!-- Intro Banner -->
-        <div class="intro-banner">
-            <h2>Welcome to Squad Games Store TZ</h2>
-            <p>Your ultimate destination for high-speed racing, action-packed adventures, and top-tier repacks. Download safely and level up your library!</p>
-        </div>
+        <!-- Intro Banner -->
+        <div class="intro-banner">
+            <h2>Welcome to Squad Games Store TZ</h2>
+            <p>Your ultimate destination for high-speed racing, action-packed adventures, and top-tier repacks. Download safely and level up your library!</p>
+        </div>
 
-        <!-- Search Section -->
-        <div class="search-filter-section">
-            <div class="search-bar-wrapper">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="gameSearchInput" placeholder="Search games by title, keyword, or genre...">
-            </div>
-            <div class="category-pills-container" id="categoryPills">
-                <button class="cat-pill active" data-cat="all">All</button>
-                <button class="cat-pill" data-cat="action">Action</button>
-                <button class="cat-pill" data-cat="fighting">Fighting</button>
-                <button class="cat-pill" data-cat="shooting">Shooting</button>
-                <button class="cat-pill" data-cat="sports">Sports</button>
-                <button class="cat-pill" data-cat="racing">Racing</button>
-                <button class="cat-pill" data-cat="pc games">PC Games</button>
-                <button class="cat-pill" data-cat="mobile games">Mobile Games</button>
-            </div>
-        </div>
+        <!-- Search Section (Old category pills removed, search bar kept intact) -->
+        <div class="search-filter-section">
+            <div class="search-bar-wrapper">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="gameSearchInput" placeholder="Search games by title, keyword, or genre...">
+            </div>
+        </div>
 
-        <!-- Top Split Section (Featured Marquee & Popular Games) -->
-        <div class="top-split-container">
-            
-            <!-- Featured Section (3/5) -->
-            <div class="featured-epic-wrapper">
-                <h3 class="section-title"><i class="fa-solid fa-fire"></i> Featured Epic Games</h3>
-                <div class="featured-marquee-container">
-                    <div class="featured-marquee-track" id="featuredTrack">
-                        <!-- Loaded dynamically via script -->
-                    </div>
-                </div>
-            </div>
+        <!-- Top Split Section (Featured Marquee & Popular Games) -->
+        <div class="top-split-container">
 
-            <!-- Most Popular Games Section (2/5) -->
-            <div class="most-popular-wrapper">
-                <h3 class="section-title"><i class="fa-solid fa-bolt"></i> Most Popular</h3>
-                <div class="popular-list" id="popularList">
-                    <!-- Loaded dynamically via script -->
-                </div>
-            </div>
+            <!-- Featured Section (3/5) -->
+            <div class="featured-epic-wrapper">
+                <h3 class="section-title"><i class="fa-solid fa-fire"></i> Featured Epic Games</h3>
+                <div class="featured-marquee-container">
+                    <div class="featured-marquee-track" id="featuredTrack">
+                        <!-- Loaded dynamically via script -->
+                    </div>
+                </div>
+            </div>
 
-        </div>
+            <!-- Most Popular Games Section (2/5) -->
+            <div class="most-popular-wrapper">
+                <h3 class="section-title"><i class="fa-solid fa-bolt"></i> Most Popular</h3>
+                <div class="popular-list" id="popularList">
+                    <!-- Loaded dynamically via script -->
+                </div>
+            </div>
 
-        <!-- Trust Bar -->
-        <div class="trust-bar">
-            <div class="trust-item"><i class="fa-solid fa-shield-halved trust-icon" style="color: var(--accent-green);"></i> Verified Safe Downloads</div>
-            <div class="trust-item"><i class="fa-solid fa-bolt trust-icon" style="color: var(--accent-blue);"></i> High-Speed Torrents & Repacks</div>
-            <div class="trust-item"><i class="fa-solid fa-headset trust-icon" style="color: #ff9500;"></i> 24/7 Community Support</div>
-        </div>
+        </div>
 
-        <!-- Main Game Catalog Grid -->
-        <h2 style="font-size: 1.2rem; font-weight: 800; margin: 30px 0 15px 0; color: #fff;">Game Library</h2>
-        <div class="game-grid" id="gameGrid">
-            <div class="loading-state">
-                <div class="spinner"></div>
-                <p>Loading game catalog...</p>
-            </div>
-        </div>
+        <!-- Trust Bar -->
+        <div class="trust-bar">
+            <div class="trust-item"><i class="fa-solid fa-shield-halved trust-icon" style="color: var(--accent-green);"></i> Verified Safe Downloads</div>
+            <div class="trust-item"><i class="fa-solid fa-bolt trust-icon" style="color: var(--accent-blue);"></i> High-Speed Torrents & Repacks</div>
+            <div class="trust-item"><i class="fa-solid fa-headset trust-icon" style="color: #ff9500;"></i> 24/7 Community Support</div>
+        </div>
 
-        <!-- Bottom Information Box -->
-        <div class="bottom-info-box">
-            <h3>About Squad Games Store TZ</h3>
-            <p>We provide streamlined access to top-quality PC repacks, custom mods for Euro Truck Simulator 2, and mobile racing titles. Enjoy clean navigation, quick downloads, and optimized performance tracking.</p>
-        </div>
+        <!-- Main Game Catalog Grid -->
+        <h2 style="font-size: 1.2rem; font-weight: 800; margin: 30px 0 15px 0; color: #fff;">Game Library</h2>
+        <div class="game-grid" id="gameGrid">
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading game catalog...</p>
+            </div>
+        </div>
 
-        <div class="footer-note">
-            &copy; 2026 Squad Games Store TZ. Hosted via GitHub Pages. All rights reserved.
-        </div>
+        <!-- Bottom Information Box -->
+        <div class="bottom-info-box">
+            <h3>About Squad Games Store TZ</h3>
+            <p>We provide streamlined access to top-quality PC repacks, custom mods for Euro Truck Simulator 2, and mobile racing titles. Enjoy clean navigation, quick downloads, and optimized performance tracking.</p>
+        </div>
 
-    </div>
+        <div class="footer-note">
+            &copy; 2026 Squad Games Store TZ. Hosted via GitHub Pages. All rights reserved.
+        </div>
 
-    <!-- Full Screen Lightbox for Screenshots -->
-    <div class="fullscreen-overlay" id="fullscreenOverlay">
-        <span class="fullscreen-close" id="fullscreenClose">&times;</span>
-        <img class="fullscreen-img" id="fullscreenImg" src="" alt="Fullscreen Screenshot">
-    </div>
+    </div>
 
-    <!-- Application Script -->
-    <script>
-        // --- SMART AUTO-CATEGORIZER ENGINE ---
-        function getSmartCategories(game) {
-            let categories = new Set();
-            
-            if (game.category) categories.add(game.category.toLowerCase());
-            if (game.platform) categories.add(game.platform.toLowerCase());
+    <!-- Full Screen Lightbox for Screenshots -->
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+        <span class="fullscreen-close" id="fullscreenClose">&times;</span>
+        <img class="fullscreen-img" id="fullscreenImg" src="" alt="Fullscreen Screenshot">
+    </div>
 
-            const textCheck = (game.title + " " + (game.description || "")).toLowerCase();
+    <!-- Application Script -->
+    <script>
+        // --- SMART AUTO-CATEGORIZER ENGINE ---
+        function getSmartCategories(game) {
+            let categories = new Set();
 
-            if (textCheck.match(/gta|grand theft auto|call of duty|action|battlefield|spiderman|god of war|resident evil/)) {
-                categories.add('action');
-            }
-            if (textCheck.match(/tekken|street fighter|ufc|mortal kombat|boxing|wwe|fight/)) {
-                categories.add('fighting');
-            }
-            if (textCheck.match(/shooting|gun|fps|call of duty|counter strike|pubg|free fire|sniper/)) {
-                categories.add('shooting');
-            }
-            if (textCheck.match(/fifa|pes|efootball|nba|sports|cricket|tennis|madden|fc 24|fc 25/)) {
-                categories.add('sports');
-            }
-            if (textCheck.match(/carx|nfs|need for speed|racing|asphalt|truck|simulator|euro truck/)) {
-                categories.add('racing');
-            }
+            if (game.category) categories.add(game.category.toLowerCase());
+            if (game.platform) categories.add(game.platform.toLowerCase());
 
-            if (textCheck.match(/apk|android|ios|mobile|phone|samsung/)) {
-                categories.add('mobile games');
-            } else {
-                categories.add('pc games');
-            }
+            const textCheck = (game.title + " " + (game.description || "")).toLowerCase();
 
-            return Array.from(categories);
-        }
+            if (textCheck.match(/gta|grand theft auto|call of duty|action|battlefield|spiderman|god of war|resident evil/)) {
+                categories.add('action');
+            }
+            if (textCheck.match(/tekken|street fighter|ufc|mortal kombat|boxing|wwe|fight/)) {
+                categories.add('fighting');
+            }
+            if (textCheck.match(/shooting|gun|fps|call of duty|counter strike|pubg|free fire|sniper/)) {
+                categories.add('shooting');
+            }
+            if (textCheck.match(/fifa|pes|efootball|nba|sports|cricket|tennis|madden|fc 24|fc 25/)) {
+                categories.add('sports');
+            }
+            if (textCheck.match(/carx|nfs|need for speed|racing|asphalt|truck|simulator|euro truck/)) {
+                categories.add('racing');
+            }
 
-        let allGames = [];
-        let activeCategory = 'all';
-        let searchQuery = '';
+            if (textCheck.match(/apk|android|ios|mobile|phone|samsung/)) {
+                categories.add('mobile games');
+            } else {
+                categories.add('pc games');
+            }
 
-        // Fetch Games Catalog JSON
-        fetch('games.json')
-            .then(response => response.json())
-            .then(data => {
-                allGames = data;
-                initStore();
-            })
-            .catch(error => {
-                console.error('Error loading games catalog:', error);
-                document.getElementById('gameGrid').innerHTML = `
-                    <div class="loading-state">
-                        <p style="color: #ff4d4d;">Failed to load game catalog. Please check your games.json file path.</p>
-                    </div>`;
-            });
+            return Array.from(categories);
+        }
 
-        function initStore() {
-            renderFeaturedAndPopular(allGames);
-            filterAndRenderGrid();
+        let allGames = [];
+        let activeCategory = 'all';
+        let searchQuery = '';
 
-            // Search input listener
-            document.getElementById('gameSearchInput').addEventListener('input', (e) => {
-                searchQuery = e.target.value.toLowerCase();
-                filterAndRenderGrid();
-            });
+        // Fetch Games Catalog JSON
+        fetch('games.json')
+            .then(response => response.json())
+            .then(data => {
+                allGames = data;
+                initStore();
+            })
+            .catch(error => {
+                console.error('Error loading games catalog:', error);
+                document.getElementById('gameGrid').innerHTML = `
+                    <div class="loading-state">
+                        <p style="color: #ff4d4d;">Failed to load game catalog. Please check your games.json file path.</p>
+                    </div>`;
+            });
 
-            // Category Pill buttons listener
-            document.querySelectorAll('.cat-pill').forEach(pill => {
-                pill.addEventListener('click', (e) => {
-                    document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
-                    e.target.classList.add('active');
-                    activeCategory = e.target.getAttribute('data-cat');
-                    filterAndRenderGrid();
-                });
-            });
+        function initStore() {
+            renderFeaturedAndPopular(allGames);
+            filterAndRenderGrid();
 
-            // Top Header Nav Tabs listener
-            document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
-                tab.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    document.querySelectorAll('.portal-navbar .nav-tab').forEach(t => t.classList.remove('active'));
-                    e.target.classList.add('active');
-                    activeCategory = e.target.getAttribute('data-category');
-                    
-                    // Sync category pill UI if applicable
-                    document.querySelectorAll('.cat-pill').forEach(p => {
-                        if (p.getAttribute('data-cat') === activeCategory) {
-                            p.classList.add('active');
-                        } else {
-                            p.classList.remove('active');
-                        }
-                    });
+            // Search input listener
+            document.getElementById('gameSearchInput').addEventListener('input', (e) => {
+                searchQuery = e.target.value.toLowerCase();
+                filterAndRenderGrid();
+            });
 
-                    filterAndRenderGrid();
-                });
-            });
-        }
+            // Top Header Nav Tabs listener
+            document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.querySelectorAll('.portal-navbar .nav-tab').forEach(t => t.classList.remove('active'));
+                    e.target.classList.add('active');
+                    activeCategory = e.target.getAttribute('data-category');
 
-        function filterAndRenderGrid() {
-            const grid = document.getElementById('gameGrid');
-            
-            const filtered = allGames.filter(game => {
-                const smartCats = getSmartCategories(game);
-                const matchesCategory = (activeCategory === 'all' || smartCats.includes(activeCategory));
-                const matchesSearch = (game.title.toLowerCase().includes(searchQuery) || (game.description && game.description.toLowerCase().includes(searchQuery)));
-                return matchesCategory && matchesSearch;
-            });
+                    filterAndRenderGrid();
+                });
+            });
+        }
 
-            if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="loading-state">
-                        <p>No games found matching your search or category.</p>
-                    </div>`;
-                return;
-            }
+        function filterAndRenderGrid() {
+            const grid = document.getElementById('gameGrid');
 
-            grid.innerHTML = filtered.map(game => {
-                const smartCats = getSmartCategories(game);
-                const primaryCat = smartCats[0] ? smartCats[0].toUpperCase() : 'GAME';
-                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+            const filtered = allGames.filter(game => {
+                const smartCats = getSmartCategories(game);
+                const matchesCategory = (activeCategory === 'all' || smartCats.includes(activeCategory));
+                const matchesSearch = (game.title.toLowerCase().includes(searchQuery) || (game.description && game.description.toLowerCase().includes(searchQuery)));
+                return matchesCategory && matchesSearch;
+            });
 
-                return `
-                    <div class="game-card">
-                        <span class="card-badge">${primaryCat}</span>
-                        <div class="game-img-wrapper">
-                            <img class="game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}" loading="lazy">
-                        </div>
-                        <div class="game-details">
-                            <span class="category-tag">${smartCats.join(' • ')}</span>
-                            <h3>${game.title}</h3>
-                            <p>${game.description || 'No description provided.'}</p>
-                            <div class="card-action">
-                                <span class="price">${game.price || 'FREE'}</span>
-                                <div class="action-group">
-                                    <a href="details.html?id=${gameId}" class="btn-details">Details &rarr;</a>
-                                    <a href="${game.downloadLink || '#'}" class="btn-action btn-download" target="_blank">Download</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="loading-state">
+                        <p>No games found matching your search or category.</p>
+                    </div>`;
+                return;
+            }
 
-        function renderFeaturedAndPopular(games) {
-            // Marquee Track (Featured)
-            const marqueeTrack = document.getElementById('featuredTrack');
-            const featuredGames = games.slice(0, 6); // Take first few for marquee
-            // Duplicate to create smooth infinite loop effect
-            const doubleFeatured = [...featuredGames, ...featuredGames];
+            grid.innerHTML = filtered.map(game => {
+                const smartCats = getSmartCategories(game);
+                const primaryCat = smartCats[0] ? smartCats[0].toUpperCase() : 'GAME';
+                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
 
-            marqueeTrack.innerHTML = doubleFeatured.map(game => {
-                const smartCats = getSmartCategories(game);
-                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
-                return `
-                    <div class="marquee-game-card">
-                        <img class="marquee-game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}">
-                        <div class="marquee-game-content">
-                            <span class="marquee-game-badge">${smartCats[0]}</span>
-                            <h4>${game.title}</h4>
-                            <p>${game.description || ''}</p>
-                            <div class="marquee-game-footer">
-                                <span class="marquee-price">${game.price || 'FREE'}</span>
-                                <a href="details.html?id=${gameId}" class="btn-details" style="padding: 4px 8px; font-size: 0.75rem;">View</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
+                return `
+                    <div class="game-card">
+                        <span class="card-badge">${primaryCat}</span>
+                        <div class="game-img-wrapper">
+                            <img class="game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}" loading="lazy">
+                        </div>
+                        <div class="game-details">
+                            <span class="category-tag">${smartCats.join(' • ')}</span>
+                            <h3>${game.title}</h3>
+                            <p>${game.description || 'No description provided.'}</p>
+                            <div class="card-action">
+                                <span class="price">${game.price || 'FREE'}</span>
+                                <div class="action-group">
+                                    <a href="details.html?id=${gameId}" class="btn-details">Details &rarr;</a>
+                                    <a href="${game.downloadLink || '#'}" class="btn-action btn-download" target="_blank">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
 
-            // Most Popular List
-            const popularList = document.getElementById('popularList');
-            const popularGames = games.slice(0, 5); // Take top items
+        function renderFeaturedAndPopular(games) {
+            // Marquee Track (Featured)
+            const marqueeTrack = document.getElementById('featuredTrack');
+            const featuredGames = games.slice(0, 6);
+            const doubleFeatured = [...featuredGames, ...featuredGames];
 
-            popularList.innerHTML = popularGames.map(game => {
-                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
-                return `
-                    <a href="details.html?id=${gameId}" class="popular-item">
-                        <img src="${game.image || 'images/default.jpg'}" alt="${game.title}">
-                        <div class="popular-item-info">
-                            <h5>${game.title}</h5>
-                            <span>${game.price || 'FREE'}</span>
-                        </div>
-                        <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
-                    </a>
-                `;
-            }).join('');
-        }
-    </script>
+            marqueeTrack.innerHTML = doubleFeatured.map(game => {
+                const smartCats = getSmartCategories(game);
+                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                return `
+                    <div class="marquee-game-card">
+                        <img class="marquee-game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}">
+                        <div class="marquee-game-content">
+                            <span class="marquee-game-badge">${smartCats[0]}</span>
+                            <h4>${game.title}</h4>
+                            <p>${game.description || ''}</p>
+                            <div class="marquee-game-footer">
+                                <span class="marquee-price">${game.price || 'FREE'}</span>
+                                <a href="details.html?id=${gameId}" class="btn-details" style="padding: 4px 8px; font-size: 0.75rem;">View</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            // Most Popular List
+            const popularList = document.getElementById('popularList');
+            const popularGames = games.slice(0, 5);
+
+            popularList.innerHTML = popularGames.map(game => {
+                const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                return `
+                    <a href="details.html?id=${gameId}" class="popular-item">
+                        <img src="${game.image || 'images/default.jpg'}" alt="${game.title}">
+                        <div class="popular-item-info">
+                            <h5>${game.title}</h5>
+                            <span>${game.price || 'FREE'}</span>
+                        </div>
+                        <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
+                    </a>
+                `;
+            }).join('');
+        }
+    </script>
 </body>
 </html>
