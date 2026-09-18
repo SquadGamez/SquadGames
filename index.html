@@ -152,6 +152,31 @@
 
     </div>
 
+    <!-- Details Modal Structure (Required for displaying PC specs from games.json) -->
+    <div class="modal-overlay" id="details-modal" onclick="closeModal(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModalDirect()">&times;</span>
+            <h2 id="modal-title">Game Title</h2>
+            <p id="modal-desc">Game description goes here...</p>
+            
+            <!-- This ID pulls requirements from your script/games.json -->
+            <div class="specs-box" id="modal-req">
+                OS: Windows 10 | RAM: 8 GB
+            </div>
+
+            <div id="modal-price" class="price" style="margin: 10px 0;">TZS 0</div>
+            <div id="modal-btn-group" class="action-group" style="margin-top: 14px;"></div>
+            
+            <div class="screenshots-container" id="modal-gallery"></div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Image Modal -->
+    <div class="fullscreen-overlay" id="fullscreen-modal" onclick="closeFullScreen()">
+        <span class="fullscreen-close">&times;</span>
+        <img class="fullscreen-img" id="fullscreen-img" src="" alt="Fullscreen Screenshot">
+    </div>
+
     <!-- Application Script -->
     <script>
         // --- SMART AUTO-CATEGORIZER ENGINE ---
@@ -238,7 +263,7 @@
             grid.innerHTML = filtered.map(game => {
                 const smartCats = getSmartCategories(game);
                 const primaryCat = game.platform || 'PC';
-                const gameId = game.id; 
+                const originalIndex = allGames.indexOf(game);
                 
                 const downloadUrl = game.downloadUrl || '#';
                 const isPaid = game.price && game.price !== 'FREE';
@@ -257,7 +282,7 @@
                             <div class="card-action">
                                 <span class="price">${game.price || 'FREE'}</span>
                                 <div class="action-group">
-                                    <a href="details.html?id=${gameId}" class="btn-details">Details &rarr;</a>
+                                    <button class="btn-details" onclick="openDetails(${originalIndex})">Details &rarr;</button>
                                     <a href="${downloadUrl}" class="btn-action btn-download" target="_blank">${buttonText}</a>
                                 </div>
                             </div>
@@ -275,6 +300,7 @@
 
             marqueeTrack.innerHTML = doubleFeatured.map(game => {
                 const smartCats = getSmartCategories(game);
+                const originalIndex = allGames.indexOf(game);
                 return `
                     <div class="marquee-game-card">
                         <img class="marquee-game-img" src="${game.image || 'images/default.jpg'}" alt="${game.title}">
@@ -284,7 +310,7 @@
                             <p>${game.description || ''}</p>
                             <div class="marquee-game-footer">
                                 <span class="marquee-price">${game.price || 'FREE'}</span>
-                                <a href="details.html?id=${game.id}" class="btn-details" style="padding: 4px 8px; font-size: 0.75rem;">View</a>
+                                <button class="btn-details" onclick="openDetails(${originalIndex})" style="padding: 4px 8px; font-size: 0.75rem;">View</button>
                             </div>
                         </div>
                     </div>
@@ -296,17 +322,107 @@
             const popularGames = games.slice(0, 5);
 
             popularList.innerHTML = popularGames.map(game => {
+                const originalIndex = allGames.indexOf(game);
                 return `
-                    <a href="details.html?id=${game.id}" class="popular-item">
+                    <div onclick="openDetails(${originalIndex})" class="popular-item" style="cursor: pointer;">
                         <img src="${game.image || 'images/default.jpg'}" alt="${game.title}">
                         <div class="popular-item-info">
                             <h5>${game.title}</h5>
                             <span>${game.price || 'FREE'}</span>
                         </div>
                         <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
-                    </a>
+                    </div>
                 `;
             }).join('');
+        }
+
+        // Modal Functionality for PC Requirements
+        function openDetails(index) {
+            const game = allGames[index];
+            if (!game) return;
+
+            const modalDetailsModal = document.getElementById("details-modal");
+            if (!modalDetailsModal) {
+                window.location.href = `details.html?id=${game.id || index}`;
+                return;
+            }
+
+            const modalTitle = document.getElementById("modal-title");
+            const modalDesc = document.getElementById("modal-desc");
+            const modalReq = document.getElementById("modal-req");
+            const modalPrice = document.getElementById("modal-price");
+
+            if (modalTitle) modalTitle.innerText = game.title;
+            if (modalDesc) modalDesc.innerText = game.description || "";
+            if (modalReq) modalReq.innerText = game.requirements || "Standard System Requirements not specified.";
+            if (modalPrice) modalPrice.innerText = game.price || "FREE";
+
+            const priceText = String(game.price || "").trim().toUpperCase();
+            const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
+
+            const modalBtnText = isFree ? "Get" : "Buy Now";
+            const modalBtnClass = isFree ? "btn-get" : "btn-download";
+            const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+
+            const modalBtnGroup = document.getElementById("modal-btn-group");
+            if (modalBtnGroup) {
+                let modalButtonsHTML = `
+                    <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
+                `;
+                if (game.altDownloadUrl) {
+                    modalButtonsHTML += `
+                        <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;">
+                            💬 Buy via WhatsApp (Vodacom)
+                        </a>
+                    `;
+                }
+                modalBtnGroup.innerHTML = modalButtonsHTML;
+            }
+
+            const gallery = document.getElementById("modal-gallery");
+            if (gallery) {
+                gallery.innerHTML = "";
+                if (game.screenshots && game.screenshots.length > 0) {
+                    game.screenshots.forEach((imgSrc) => {
+                        const img = document.createElement("img");
+                        img.src = imgSrc;
+                        img.alt = "Screenshot";
+                        img.onerror = function () { this.src = "images/nfsmw-shot1.png"; };
+                        img.onclick = function () { openFullScreen(imgSrc); };
+                        gallery.appendChild(img);
+                    });
+                } else {
+                    const img = document.createElement("img");
+                    img.src = game.image || 'images/nfsmw-shot1.png';
+                    img.onclick = function () { openFullScreen(game.image); };
+                    gallery.appendChild(img);
+                }
+            }
+
+            modalDetailsModal.classList.add("active");
+        }
+
+        function closeModal(event) {
+            if (event.target.classList.contains("modal-overlay")) {
+                closeModalDirect();
+            }
+        }
+
+        function closeModalDirect() {
+            const modal = document.getElementById("details-modal");
+            if (modal) modal.classList.remove("active");
+        }
+
+        function openFullScreen(imgSrc) {
+            const fullModal = document.getElementById("fullscreen-modal");
+            const fullImg = document.getElementById("fullscreen-img");
+            if (fullImg) fullImg.src = imgSrc;
+            if (fullModal) fullModal.classList.add("active");
+        }
+
+        function closeFullScreen() {
+            const fullModal = document.getElementById("fullscreen-modal");
+            if (fullModal) fullModal.classList.remove("active");
         }
     </script>
 </body>
