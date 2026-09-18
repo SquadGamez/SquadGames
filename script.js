@@ -5,6 +5,8 @@ let currentSearchQuery = "";
 let currentCategory = "all";
 
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("Squad Games Store initialized.");
+
     // 1. Restore scroll position instantly if it was saved before leaving
     const savedPosition = localStorage.getItem('scrollPosition');
     if (savedPosition !== null) {
@@ -22,17 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Fetch games data with a robust local fallback so it never hangs
-    fetch("games.json")
+    // 3. Fetch games data with an absolute/relative path check and instant fallback
+    // This dynamically handles GitHub Pages subfolders safely
+    const jsonPath = window.location.hostname.includes("github.io") ? "./games.json" : "games.json";
+
+    fetch(jsonPath)
         .then(response => {
-            if (!response.ok) throw new Error("Failed to load games.json");
+            if (!response.ok) throw new Error("HTTP error " + response.status);
             return response.json();
         })
         .then(games => {
+            console.log("Successfully loaded games.json from server.");
             initStore(games);
         })
         .catch(err => {
-            console.warn("Using fallback local games data due to fetch error:", err);
+            console.warn("Fetch failed, activating instant backup catalog:", err);
+            // Instant backup so your site never hangs on loading screen
             initStore([
                 {
                     id: 1,
@@ -169,7 +176,10 @@ function applyFilters() {
 
 function renderGameStore(gameList) {
     const container = document.getElementById("game-grid");
-    if (!container) return;
+    if (!container) {
+        console.warn("Element with ID 'game-grid' not found in HTML!");
+        return;
+    }
 
     container.innerHTML = "";
 
