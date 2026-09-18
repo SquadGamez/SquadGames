@@ -52,6 +52,7 @@ body {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 14px;
+    gap: 16px;
 }
 
 .portal-logo {
@@ -60,6 +61,42 @@ body {
     color: #ffffff;
     letter-spacing: -0.3px;
     margin: 0;
+    white-space: nowrap;
+}
+
+/* Search bar positioned in the top right header area */
+.portal-search-wrapper {
+    position: relative;
+    width: 260px;
+    max-width: 100%;
+}
+
+.portal-search-wrapper .search-icon {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+}
+
+.portal-search-wrapper #gameSearchInput {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 12px 8px 34px;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 0.82rem;
+    outline: none;
+    transition: all 0.25s ease;
+    box-sizing: border-box;
+}
+
+.portal-search-wrapper #gameSearchInput:focus {
+    border-color: var(--accent-blue);
+    background: rgba(0, 0, 0, 0.6);
+    box-shadow: 0 0 15px rgba(0, 122, 255, 0.2);
 }
 
 .portal-navbar {
@@ -203,7 +240,7 @@ body {
     line-height: 1.5;
 }
 
-/* --- Search and Category Filter Section UI Styles (Updated) --- */
+/* --- Search and Category Filter Section (Now exclusively for pills) --- */
 .search-filter-section {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -214,52 +251,14 @@ body {
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 14px;
-}
-
-.search-bar-wrapper {
-    position: relative;
-    width: 33.333%; /* 1/3 of the container width */
-    min-width: 220px;
-    margin-left: auto; /* Pushes the search box to the top right */
-}
-
-.search-icon {
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: var(--text-muted);
-    pointer-events: none;
-}
-
-#gameSearchInput {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 10px 14px 10px 38px;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 0.85rem;
-    outline: none;
-    transition: all 0.25s ease;
-    box-sizing: border-box;
-}
-
-#gameSearchInput:focus {
-    border-color: var(--accent-blue);
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 0 15px rgba(0, 122, 255, 0.2);
 }
 
 .category-pills-container {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
-    flex: 1;
+    width: 100%;
 }
 
 .cat-pill {
@@ -287,7 +286,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
 }
 
-/* --- Updated Top Section Split Layout (Forced Flexbox 65% / 35%) --- */
+/* --- Updated Top Section Split Layout --- */
 .top-split-container {
     display: flex !important;
     flex-direction: row !important;
@@ -998,6 +997,13 @@ body {
 }
 
 @media (max-width: 600px) {
+    .portal-logo-area {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .portal-search-wrapper {
+        width: 100%;
+    }
     .navbar {
         flex-direction: column;
         align-items: stretch;
@@ -1006,9 +1012,6 @@ body {
     }
     .portal-header-wrapper {
         padding: 12px 16px;
-    }
-    .nav-links {
-        width: 100%;
     }
     .nav-btn {
         display: flex;
