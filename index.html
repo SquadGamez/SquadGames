@@ -260,6 +260,8 @@
                 const smartCats = getSmartCategories(game);
                 const primaryCat = smartCats[0] ? smartCats[0].toUpperCase() : 'GAME';
                 const gameId = game.id || game.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+                const downloadTarget = (game.downloadLink && game.downloadLink !== '#') ? game.downloadLink : '#';
+                const downloadAttr = (game.downloadLink && game.downloadLink !== '#') ? 'target="_blank"' : 'onclick="event.preventDefault(); alert(\'Download link coming soon!\');"';
 
                 return `
                     <div class="game-card">
@@ -275,7 +277,7 @@
                                 <span class="price">${game.price || 'FREE'}</span>
                                 <div class="action-group">
                                     <a href="details.html?id=${gameId}" class="btn-details">Details &rarr;</a>
-                                    <a href="${game.downloadLink || '#'}" class="btn-action btn-download" target="_blank">Download</a>
+                                    <a href="${downloadTarget}" class="btn-action btn-download" ${downloadAttr}>Download</a>
                                 </div>
                             </div>
                         </div>
