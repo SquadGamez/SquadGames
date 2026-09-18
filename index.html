@@ -65,12 +65,17 @@
 </head>
 <body>
 
-    <!-- Permanent Portal Header Navigation Bar with Profile Logo & SquadGames Name -->
+    <!-- Permanent Portal Header Navigation Bar with Profile Logo & Search Bar -->
     <div class="portal-header-wrapper">
-        <div class="portal-logo-area" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+        <div class="portal-logo-area" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 12px;">
             <div style="display: flex; align-items: center; gap: 12px;">
                 <img src="images/profile.jpg" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-blue);">
                 <h1 class="portal-logo" style="margin: 0;">SquadGames <span style="color: var(--accent-blue);">Store TZ</span></h1>
+            </div>
+            <!-- Search Bar Moved to Header -->
+            <div class="search-bar-wrapper" style="max-width: 280px; width: 100%; flex-grow: 1; margin: 0;">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="gameSearchInput" placeholder="Search games by title, keyword...">
             </div>
         </div>
         <nav class="portal-navbar">
@@ -91,14 +96,6 @@
         <div class="intro-banner">
             <h2>Welcome to Squad Games Store TZ</h2>
             <p>Your ultimate destination for high-speed racing, action-packed adventures, and top-tier repacks. Download safely and level up your library!</p>
-        </div>
-
-        <!-- Search Section -->
-        <div class="search-filter-section">
-            <div class="search-bar-wrapper">
-                <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="gameSearchInput" placeholder="Search games by title, keyword, or genre...">
-            </div>
         </div>
 
         <!-- Top Split Section (Featured Marquee & Popular Games) -->
