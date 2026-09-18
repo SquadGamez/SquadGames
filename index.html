@@ -7,67 +7,12 @@
     <link rel="stylesheet" href="style.css">
     <!-- FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* --- Cool Box Category Navigation Styling --- */
-        .portal-header-wrapper {
-            background: var(--bg-card, rgba(22, 22, 26, 0.88));
-            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-            border-radius: 16px;
-            padding: 16px 20px;
-            margin-bottom: 24px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 999;
-        }
-
-        .portal-navbar {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 4px;
-            scrollbar-width: none;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .portal-navbar::-webkit-scrollbar {
-            display: none;
-        }
-
-        .portal-navbar .nav-tab {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            color: var(--text-muted, #94a3b8);
-            padding: 7px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-decoration: none;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .portal-navbar .nav-tab:hover {
-            background: rgba(255, 255, 255, 0.08);
-            color: #ffffff;
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .portal-navbar .nav-tab.active {
-            background: var(--accent-blue, #007aff);
-            color: #ffffff;
-            border-color: var(--accent-blue, #007aff);
-            box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Permanent Portal Header Navigation Bar with Profile Logo & SquadGames Name -->
+    <!-- Portal Header Navigation Bar -->
     <div class="portal-header-wrapper">
-        <div class="portal-logo-area" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+        <div class="portal-logo-area">
             <div style="display: flex; align-items: center; gap: 12px;">
                 <img src="images/profile.jpg" alt="Profile" style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent-blue);">
                 <h1 class="portal-logo" style="margin: 0;">SquadGames <span style="color: var(--accent-blue);">Store TZ</span></h1>
@@ -103,25 +48,17 @@
 
         <!-- Top Split Section (Featured Marquee & Popular Games) -->
         <div class="top-split-container">
-
-            <!-- Featured Section (3/5) -->
             <div class="featured-epic-wrapper">
                 <h3 class="section-title"><i class="fa-solid fa-fire"></i> Featured Epic Games</h3>
                 <div class="featured-marquee-container">
-                    <div class="featured-marquee-track" id="featuredTrack">
-                        <!-- Loaded dynamically via script -->
-                    </div>
+                    <div class="featured-marquee-track" id="featuredTrack"></div>
                 </div>
             </div>
 
-            <!-- Most Popular Games Section (2/5) -->
             <div class="most-popular-wrapper">
                 <h3 class="section-title"><i class="fa-solid fa-bolt"></i> Most Popular</h3>
-                <div class="popular-list" id="popularList">
-                    <!-- Loaded dynamically via script -->
-                </div>
+                <div class="popular-list" id="popularList"></div>
             </div>
-
         </div>
 
         <!-- Trust Bar -->
@@ -152,22 +89,16 @@
 
     </div>
 
-    <!-- Details Modal Structure (Required for displaying PC specs from games.json) -->
+    <!-- Details Modal -->
     <div class="modal-overlay" id="details-modal" onclick="closeModal(event)">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModalDirect()">&times;</span>
-            <h2 id="modal-title">Game Title</h2>
+            <h2 id="modal-title" style="margin-top:0;">Game Title</h2>
             <p id="modal-desc">Game description goes here...</p>
-            
-            <!-- This ID pulls requirements from your script/games.json -->
-            <div class="specs-box" id="modal-req">
-                OS: Windows 10 | RAM: 8 GB
-            </div>
-
+            <div class="specs-box" id="modal-req" style="background: rgba(255,255,255,0.03); padding: 10px; border-radius: 8px; font-size: 0.8rem; margin: 10px 0;">OS: Windows 10 | RAM: 8 GB</div>
             <div id="modal-price" class="price" style="margin: 10px 0;">TZS 0</div>
             <div id="modal-btn-group" class="action-group" style="margin-top: 14px;"></div>
-            
-            <div class="screenshots-container" id="modal-gallery"></div>
+            <div class="screenshots-container" id="modal-gallery" style="display: flex; gap: 8px; overflow-x: auto; margin-top: 15px;"></div>
         </div>
     </div>
 
@@ -179,24 +110,19 @@
 
     <!-- Application Script -->
     <script>
-        // --- SMART AUTO-CATEGORIZER ENGINE ---
         function getSmartCategories(game) {
             let categories = new Set();
-
             if (game.category) {
                 game.category.split(',').forEach(c => categories.add(c.trim().toLowerCase()));
             }
             if (game.platform) {
                 categories.add(game.platform.trim().toLowerCase());
             }
-
             const textCheck = (game.title + " " + (game.description || "")).toLowerCase();
-
             if (textCheck.match(/gta|grand theft auto|action/)) categories.add('action');
             if (textCheck.match(/truck|simulator/)) categories.add('simulation');
             if (textCheck.match(/shooting|fps|call of duty/)) categories.add('shooting');
             if (textCheck.match(/carx|nfs|racing|need for speed/)) categories.add('racing');
-
             return Array.from(categories);
         }
 
@@ -204,7 +130,6 @@
         let activeCategory = 'all';
         let searchQuery = '';
 
-        // Fetch Games Catalog JSON
         fetch('games.json')
             .then(response => response.json())
             .then(data => {
@@ -223,20 +148,17 @@
             renderFeaturedAndPopular(allGames);
             filterAndRenderGrid();
 
-            // Search input listener
             document.getElementById('gameSearchInput').addEventListener('input', (e) => {
                 searchQuery = e.target.value.toLowerCase();
                 filterAndRenderGrid();
             });
 
-            // Top Header Nav Tabs listener
             document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
                 tab.addEventListener('click', (e) => {
                     e.preventDefault();
                     document.querySelectorAll('.portal-navbar .nav-tab').forEach(t => t.classList.remove('active'));
                     e.target.classList.add('active');
                     activeCategory = e.target.getAttribute('data-category');
-
                     filterAndRenderGrid();
                 });
             });
@@ -244,7 +166,6 @@
 
         function filterAndRenderGrid() {
             const grid = document.getElementById('gameGrid');
-
             const filtered = allGames.filter(game => {
                 const smartCats = getSmartCategories(game);
                 const matchesCategory = (activeCategory === 'all' || smartCats.includes(activeCategory));
@@ -253,10 +174,7 @@
             });
 
             if (filtered.length === 0) {
-                grid.innerHTML = `
-                    <div class="loading-state">
-                        <p>No games found matching your search or category.</p>
-                    </div>`;
+                grid.innerHTML = `<div class="loading-state"><p>No games found matching your search or category.</p></div>`;
                 return;
             }
 
@@ -264,7 +182,6 @@
                 const smartCats = getSmartCategories(game);
                 const primaryCat = game.platform || 'PC';
                 const originalIndex = allGames.indexOf(game);
-                
                 const downloadUrl = game.downloadUrl || '#';
                 const isPaid = game.price && game.price !== 'FREE';
                 const buttonText = isPaid ? 'Buy / Order' : 'Download';
@@ -293,7 +210,6 @@
         }
 
         function renderFeaturedAndPopular(games) {
-            // Marquee Track (Featured)
             const marqueeTrack = document.getElementById('featuredTrack');
             const featuredGames = games.slice(0, 6);
             const doubleFeatured = [...featuredGames, ...featuredGames];
@@ -317,7 +233,6 @@
                 `;
             }).join('');
 
-            // Most Popular List
             const popularList = document.getElementById('popularList');
             const popularGames = games.slice(0, 5);
 
@@ -336,48 +251,24 @@
             }).join('');
         }
 
-        // Modal Functionality for PC Requirements
         function openDetails(index) {
             const game = allGames[index];
             if (!game) return;
+            const modal = document.getElementById("details-modal");
+            if (!modal) return;
 
-            const modalDetailsModal = document.getElementById("details-modal");
-            if (!modalDetailsModal) {
-                window.location.href = `details.html?id=${game.id || index}`;
-                return;
-            }
-
-            const modalTitle = document.getElementById("modal-title");
-            const modalDesc = document.getElementById("modal-desc");
-            const modalReq = document.getElementById("modal-req");
-            const modalPrice = document.getElementById("modal-price");
-
-            if (modalTitle) modalTitle.innerText = game.title;
-            if (modalDesc) modalDesc.innerText = game.description || "";
-            if (modalReq) modalReq.innerText = game.requirements || "Standard System Requirements not specified.";
-            if (modalPrice) modalPrice.innerText = game.price || "FREE";
+            document.getElementById("modal-title").innerText = game.title;
+            document.getElementById("modal-desc").innerText = game.description || "";
+            document.getElementById("modal-req").innerText = game.requirements || "Standard System Requirements not specified.";
+            document.getElementById("modal-price").innerText = game.price || "FREE";
 
             const priceText = String(game.price || "").trim().toUpperCase();
             const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
-
             const modalBtnText = isFree ? "Get" : "Buy Now";
             const modalBtnClass = isFree ? "btn-get" : "btn-download";
-            const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+            const targetUrl = game.downloadUrl || "#";
 
-            const modalBtnGroup = document.getElementById("modal-btn-group");
-            if (modalBtnGroup) {
-                let modalButtonsHTML = `
-                    <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
-                `;
-                if (game.altDownloadUrl) {
-                    modalButtonsHTML += `
-                        <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;">
-                            💬 Buy via WhatsApp (Vodacom)
-                        </a>
-                    `;
-                }
-                modalBtnGroup.innerHTML = modalButtonsHTML;
-            }
+            document.getElementById("modal-btn-group").innerHTML = `<a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>`;
 
             const gallery = document.getElementById("modal-gallery");
             if (gallery) {
@@ -387,42 +278,30 @@
                         const img = document.createElement("img");
                         img.src = imgSrc;
                         img.alt = "Screenshot";
-                        img.onerror = function () { this.src = "images/nfsmw-shot1.png"; };
+                        img.style.cssText = "width: 80px; height: 50px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 1px solid rgba(255,255,255,0.1);";
                         img.onclick = function () { openFullScreen(imgSrc); };
                         gallery.appendChild(img);
                     });
-                } else {
-                    const img = document.createElement("img");
-                    img.src = game.image || 'images/nfsmw-shot1.png';
-                    img.onclick = function () { openFullScreen(game.image); };
-                    gallery.appendChild(img);
                 }
             }
-
-            modalDetailsModal.classList.add("active");
+            modal.classList.add("active");
         }
 
         function closeModal(event) {
-            if (event.target.classList.contains("modal-overlay")) {
-                closeModalDirect();
-            }
+            if (event.target.classList.contains("modal-overlay")) closeModalDirect();
         }
 
         function closeModalDirect() {
-            const modal = document.getElementById("details-modal");
-            if (modal) modal.classList.remove("active");
+            document.getElementById("details-modal").classList.remove("active");
         }
 
         function openFullScreen(imgSrc) {
-            const fullModal = document.getElementById("fullscreen-modal");
-            const fullImg = document.getElementById("fullscreen-img");
-            if (fullImg) fullImg.src = imgSrc;
-            if (fullModal) fullModal.classList.add("active");
+            document.getElementById("fullscreen-img").src = imgSrc;
+            document.getElementById("fullscreen-modal").classList.add("active");
         }
 
         function closeFullScreen() {
-            const fullModal = document.getElementById("fullscreen-modal");
-            if (fullModal) fullModal.classList.remove("active");
+            document.getElementById("fullscreen-modal").classList.remove("active");
         }
     </script>
 </body>
