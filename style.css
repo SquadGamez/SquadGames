@@ -64,39 +64,61 @@ body {
     white-space: nowrap;
 }
 
-/* Search bar positioned in the top right header area */
+/* --- Sleek Modern Upgraded Search Bar --- */
 .portal-search-wrapper {
     position: relative;
-    width: 260px;
+    width: 280px;
     max-width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+.portal-search-wrapper:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.portal-search-wrapper:focus-within {
+    background: rgba(0, 122, 255, 0.05);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 16px rgba(0, 122, 255, 0.25);
 }
 
 .portal-search-wrapper .search-icon {
     position: absolute;
-    left: 12px;
+    left: 16px;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
+    font-size: 0.85rem;
     pointer-events: none;
+    transition: color 0.3s ease;
+}
+
+.portal-search-wrapper:focus-within .search-icon {
+    color: var(--accent-blue);
 }
 
 .portal-search-wrapper #gameSearchInput {
     width: 100%;
-    background: rgba(0, 0, 0, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 8px 12px 8px 34px;
-    border-radius: 10px;
-    color: #ffffff;
-    font-size: 0.82rem;
+    background: transparent;
+    border: none;
     outline: none;
-    transition: all 0.25s ease;
+    color: #ffffff;
+    font-size: 0.85rem;
+    padding: 10px 16px 10px 40px;
     box-sizing: border-box;
+    font-family: inherit;
 }
 
-.portal-search-wrapper #gameSearchInput:focus {
-    border-color: var(--accent-blue);
-    background: rgba(0, 0, 0, 0.6);
-    box-shadow: 0 0 15px rgba(0, 122, 255, 0.2);
+.portal-search-wrapper #gameSearchInput::placeholder {
+    color: var(--text-muted);
+    opacity: 0.7;
 }
 
 .portal-navbar {
