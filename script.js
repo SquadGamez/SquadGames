@@ -1,6 +1,8 @@
 let loadedGamesData = [];
 let currentSlideIndex = 0;
 let slideInterval;
+let currentSearchQuery = "";
+let currentCategory = "all";
 
 document.addEventListener("DOMContentLoaded", () => {
     // 1. Restore scroll position instantly if it was saved before leaving
@@ -78,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function initStore(games) {
     loadedGamesData = games;
     renderFeaturedSlider(games.slice(0, 5)); // Show top 5 in slider
-    renderGameStore(games);
+    applyFilters(); // Renders game store based on initial filters
     startAutoSlide();
 }
 
@@ -111,7 +113,7 @@ function moveSlide(direction) {
     items[currentSlideIndex].classList.remove("active");
     currentSlideIndex = (currentSlideIndex + direction + items.length) % items.length;
     items[currentSlideIndex].classList.add("active");
-    
+
     resetAutoSlide();
 }
 
@@ -126,13 +128,66 @@ function resetAutoSlide() {
     startAutoSlide();
 }
 
+/* --- Search and Category Filtering Logic --- */
+function filterGames() {
+    const searchInput = document.getElementById('gameSearchInput');
+    if (searchInput) {
+        currentSearchQuery = searchInput.value.toLowerCase().trim();
+    }
+    applyFilters();
+}
+
+function filterByCategory(category, buttonElement) {
+    // Update active state on category pills
+    document.querySelectorAll('.cat-pill').forEach(btn => btn.classList.remove('active'));
+    if (buttonElement) {
+        buttonElement.classList.add('active');
+    }
+    currentCategory = category.toLowerCase();
+    applyFilters();
+}
+
+function applyFilters() {
+    const filteredGames = loadedGamesData.filter(game => {
+        const title = (game.title || "").toLowerCase();
+        const description = (game.description || "").toLowerCase();
+        const category = (game.category || "").toLowerCase();
+        const platform = (game.platform || "").toLowerCase();
+
+        // Check search query match
+        const matchesSearch = title.includes(currentSearchQuery) || description.includes(currentSearchQuery);
+
+        // Check category/platform match
+        let matchesCategory = true;
+        if (currentCategory !== 'all') {
+            matchesCategory = category.includes(currentCategory) || platform.includes(currentCategory);
+        }
+
+        return matchesSearch && matchesCategory;
+    });
+
+    renderGameStore(filteredGames);
+}
+
 function renderGameStore(gameList) {
     const container = document.getElementById("game-grid");
     if (!container) return;
 
     container.innerHTML = "";
 
-    gameList.forEach((game, index) => {
+    if (gameList.length === 0) {
+        container.innerHTML = `
+            <div class="loading-state">
+                <p>No games found matching your search or category.</p>
+            </div>
+        `;
+        return;
+    }
+
+    gameList.forEach((game) => {
+        // Find the correct index in the original loadedGamesData array for modal opening
+        const originalIndex = loadedGamesData.indexOf(game);
+
         const card = document.createElement("div");
         card.classList.add("game-card");
 
@@ -168,7 +223,7 @@ function renderGameStore(gameList) {
                 <div class="card-action">
                     <span class="price">${game.price}</span>
                     <div class="action-group">
-                        <button class="btn-details" onclick="openDetails(${index})">Details</button>
+                        <button class="btn-details" onclick="openDetails(${originalIndex})">Details</button>
                         ${actionButtonsHTML}
                     </div>
                 </div>
