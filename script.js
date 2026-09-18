@@ -17,12 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Save scroll position whenever any action/download button is clicked
     document.addEventListener('click', function(e) {
-        if (e.target.closest('.btn-action')) {
+        if (e.target.closest('.btn-action') || e.target.closest('.btn-details')) {
             localStorage.setItem('scrollPosition', window.scrollY);
         }
     });
 
-    // 3. Fetch games data
+    // 3. Fetch games data with a robust local fallback
     fetch("./games.json")
         .then(response => {
             if (!response.ok) throw new Error("Failed to load games.json");
@@ -32,8 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             initStore(games);
         })
         .catch(err => {
-            console.warn("Using fallback local games data:", err);
-            // Fallback array if fetch fails locally
+            console.warn("Using fallback local games data due to fetch error:", err);
             initStore([
                 {
                     id: 1,
@@ -79,9 +78,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initStore(games) {
     loadedGamesData = games;
-    renderFeaturedSlider(games.slice(0, 5)); // Show top 5 in slider
-    applyFilters(); // Renders game store based on initial filters
+    renderFeaturedSlider(games.slice(0, 5)); 
+    applyFilters(); 
     startAutoSlide();
+
+    // Safely bind the search input listener dynamically
+    const searchInput = document.getElementById('gameSearchInput');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            currentSearchQuery = e.target.value.toLowerCase().trim();
+            applyFilters();
+        });
+    }
 }
 
 function renderFeaturedSlider(sliderGames) {
@@ -92,13 +100,13 @@ function renderFeaturedSlider(sliderGames) {
         <div class="slider-item ${index === 0 ? 'active' : ''}">
             <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
             <div class="slider-caption">
-                <span class="card-badge">${game.platform}</span>
+                <span class="card-badge">${game.platform || 'Game'}</span>
                 <h3>${game.title}</h3>
-                <p>${game.description}</p>
+                <p>${game.description || ''}</p>
                 <div class="slider-actions">
                     <button class="btn-details" onclick="openDetailsById(${loadedGamesData.indexOf(game)})">Details</button>
-                    <a href="${game.downloadUrl}" target="_blank" class="btn-action ${game.price === 'FREE' ? 'btn-get' : 'btn-download'}">
-                        ${game.price === 'FREE' ? 'Get Game' : 'Buy Now'}
+                    <a href="${game.downloadUrl || '#'}" target="_blank" class="btn-action ${String(game.price).toUpperCase().includes('FREE') ? 'btn-get' : 'btn-download'}">
+                        ${String(game.price).toUpperCase().includes('FREE') ? 'Get Game' : 'Buy Now'}
                     </a>
                 </div>
             </div>
@@ -118,9 +126,10 @@ function moveSlide(direction) {
 }
 
 function startAutoSlide() {
+    clearInterval(slideInterval);
     slideInterval = setInterval(() => {
         moveSlide(1);
-    }, 5000); // Slide every 5 seconds automatically
+    }, 5000); 
 }
 
 function resetAutoSlide() {
@@ -129,16 +138,7 @@ function resetAutoSlide() {
 }
 
 /* --- Search and Category Filtering Logic --- */
-function filterGames() {
-    const searchInput = document.getElementById('gameSearchInput');
-    if (searchInput) {
-        currentSearchQuery = searchInput.value.toLowerCase().trim();
-    }
-    applyFilters();
-}
-
 function filterByCategory(category, buttonElement) {
-    // Update active state on category pills
     document.querySelectorAll('.cat-pill').forEach(btn => btn.classList.remove('active'));
     if (buttonElement) {
         buttonElement.classList.add('active');
@@ -154,10 +154,8 @@ function applyFilters() {
         const category = (game.category || "").toLowerCase();
         const platform = (game.platform || "").toLowerCase();
 
-        // Check search query match
         const matchesSearch = title.includes(currentSearchQuery) || description.includes(currentSearchQuery);
 
-        // Check category/platform match
         let matchesCategory = true;
         if (currentCategory !== 'all') {
             matchesCategory = category.includes(currentCategory) || platform.includes(currentCategory);
@@ -177,7 +175,7 @@ function renderGameStore(gameList) {
 
     if (gameList.length === 0) {
         container.innerHTML = `
-            <div class="loading-state">
+            <div class="loading-state" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
                 <p>No games found matching your search or category.</p>
             </div>
         `;
@@ -185,9 +183,7 @@ function renderGameStore(gameList) {
     }
 
     gameList.forEach((game) => {
-        // Find the correct index in the original loadedGamesData array for modal opening
         const originalIndex = loadedGamesData.indexOf(game);
-
         const card = document.createElement("div");
         card.classList.add("game-card");
 
@@ -202,7 +198,6 @@ function renderGameStore(gameList) {
             <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
         `;
 
-        // Add Vodacom alternate WhatsApp payment button ONLY if altDownloadUrl is present (Paid games)
         if (game.altDownloadUrl) {
             actionButtonsHTML += `
                 <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" title="Buy via WhatsApp using Vodacom network">
@@ -214,14 +209,14 @@ function renderGameStore(gameList) {
         card.innerHTML = `
             <div class="card-badge">${game.platform || "Game"}</div>
             <div class="game-img-wrapper">
-                <img src="${game.image}" alt="${game.title}" class="game-img" loading="lazy" onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
+                <img src="${game.image || 'images/nfsmw-shot1.png'}" alt="${game.title}" class="game-img" loading="lazy" onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
             </div>
             <div class="game-details">
                 <span class="category-tag">${game.category || "General"}</span>
                 <h3>${game.title}</h3>
                 <p>${game.description || ""}</p>
                 <div class="card-action">
-                    <span class="price">${game.price}</span>
+                    <span class="price">${game.price || 'FREE'}</span>
                     <div class="action-group">
                         <button class="btn-details" onclick="openDetails(${originalIndex})">Details</button>
                         ${actionButtonsHTML}
@@ -242,6 +237,24 @@ function openDetails(index) {
     const game = loadedGamesData[index];
     if (!game) return;
 
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-desc");
+    const modalReq = document.getElementById("modal-req");
+    const modalPrice = document.getElementById("modal-price");
+    const modalDetailsModal = document.getElementById("details-modal");
+
+    // If your project uses a separate details.html page instead of a modal, 
+    // you can redirect safely here, otherwise modal elements will populate safely:
+    if (!modalDetailsModal) {
+        window.location.href = `details.html?id=${game.id || originalIndex}`;
+        return;
+    }
+
+    if (modalTitle) modalTitle.innerText = game.title;
+    if (modalDesc) modalDesc.innerText = game.description || "";
+    if (modalReq) modalReq.innerText = game.requirements || "Standard System Requirements";
+    if (modalPrice) modalPrice.innerText = game.price || "FREE";
+
     const priceText = String(game.price || "").trim().toUpperCase();
     const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
 
@@ -249,45 +262,43 @@ function openDetails(index) {
     const modalBtnClass = isFree ? "btn-get" : "btn-download";
     const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
-    document.getElementById("modal-title").innerText = game.title;
-    document.getElementById("modal-desc").innerText = game.description || "";
-    document.getElementById("modal-req").innerText = game.requirements || "Standard System Requirements";
-    document.getElementById("modal-price").innerText = game.price;
-
     const modalBtnGroup = document.getElementById("modal-btn-group");
-    let modalButtonsHTML = `
-        <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
-    `;
-
-    if (game.altDownloadUrl) {
-        modalButtonsHTML += `
-            <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;">
-                💬 Buy via WhatsApp (Vodacom)
-            </a>
+    if (modalBtnGroup) {
+        let modalButtonsHTML = `
+            <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
         `;
+
+        if (game.altDownloadUrl) {
+            modalButtonsHTML += `
+                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;">
+                    💬 Buy via WhatsApp (Vodacom)
+                </a>
+            `;
+        }
+        modalBtnGroup.innerHTML = modalButtonsHTML;
     }
-    modalBtnGroup.innerHTML = modalButtonsHTML;
 
     const gallery = document.getElementById("modal-gallery");
-    gallery.innerHTML = "";
-
-    if (game.screenshots && game.screenshots.length > 0) {
-        game.screenshots.forEach((imgSrc) => {
+    if (gallery) {
+        gallery.innerHTML = "";
+        if (game.screenshots && game.screenshots.length > 0) {
+            game.screenshots.forEach((imgSrc) => {
+                const img = document.createElement("img");
+                img.src = imgSrc;
+                img.alt = "Screenshot";
+                img.onerror = function () { this.src = "images/nfsmw-shot1.png"; };
+                img.onclick = function () { openFullScreen(imgSrc); };
+                gallery.appendChild(img);
+            });
+        } else {
             const img = document.createElement("img");
-            img.src = imgSrc;
-            img.alt = "Screenshot";
-            img.onerror = function () { this.src = "images/nfsmw-shot1.png"; };
-            img.onclick = function () { openFullScreen(imgSrc); };
+            img.src = game.image || 'images/nfsmw-shot1.png';
+            img.onclick = function () { openFullScreen(game.image); };
             gallery.appendChild(img);
-        });
-    } else {
-        const img = document.createElement("img");
-        img.src = game.image;
-        img.onclick = function () { openFullScreen(game.image); };
-        gallery.appendChild(img);
+        }
     }
 
-    document.getElementById("details-modal").classList.add("active");
+    modalDetailsModal.classList.add("active");
 }
 
 function closeModal(event) {
@@ -297,15 +308,18 @@ function closeModal(event) {
 }
 
 function closeModalDirect() {
-    document.getElementById("details-modal").classList.remove("active");
+    const modal = document.getElementById("details-modal");
+    if (modal) modal.classList.remove("active");
 }
 
 function openFullScreen(imgSrc) {
+    const fullModal = document.getElementById("fullscreen-modal");
     const fullImg = document.getElementById("fullscreen-img");
-    fullImg.src = imgSrc;
-    document.getElementById("fullscreen-modal").classList.add("active");
+    if (fullImg) fullImg.src = imgSrc;
+    if (fullModal) fullModal.classList.add("active");
 }
 
 function closeFullScreen() {
-    document.getElementById("fullscreen-modal").classList.remove("active");
+    const fullModal = document.getElementById("fullscreen-modal");
+    if (fullModal) fullModal.classList.remove("active");
 }
