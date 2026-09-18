@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.removeItem('scrollPosition');
     }
 
-    // 2. Save scroll position whenever any action/download button is clicked
+    // 2. Save scroll position whenever any action/download/details button is clicked
     document.addEventListener('click', function(e) {
         if (e.target.closest('.btn-action') || e.target.closest('.btn-details')) {
             localStorage.setItem('scrollPosition', window.scrollY);
@@ -146,7 +146,7 @@ function resetAutoSlide() {
 
 /* --- Search and Category Filtering Logic --- */
 function filterByCategory(category, buttonElement) {
-    document.querySelectorAll('.cat-pill').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.cat-pill, .portal-navbar .nav-tab').forEach(btn => btn.classList.remove('active'));
     if (buttonElement) {
         buttonElement.classList.add('active');
     }
@@ -175,9 +175,9 @@ function applyFilters() {
 }
 
 function renderGameStore(gameList) {
-    const container = document.getElementById("game-grid");
+    const container = document.getElementById("game-grid") || document.getElementById("gameGrid");
     if (!container) {
-        console.warn("Element with ID 'game-grid' not found in HTML!");
+        console.warn("Element with ID 'game-grid' or 'gameGrid' not found in HTML!");
         return;
     }
 
@@ -217,7 +217,7 @@ function renderGameStore(gameList) {
         }
 
         card.innerHTML = `
-            <div class="card-badge">${game.platform || "Game"}</div>
+            <span class="card-badge">${game.platform || "Game"}</span>
             <div class="game-img-wrapper">
                 <img src="${game.image || 'images/nfsmw-shot1.png'}" alt="${game.title}" class="game-img" loading="lazy" onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
             </div>
@@ -228,7 +228,7 @@ function renderGameStore(gameList) {
                 <div class="card-action">
                     <span class="price">${game.price || 'FREE'}</span>
                     <div class="action-group">
-                        <button class="btn-details" onclick="openDetails(${originalIndex})">Details</button>
+                        <button class="btn-details" onclick="openDetails(${originalIndex})">Details &rarr;</button>
                         ${actionButtonsHTML}
                     </div>
                 </div>
@@ -247,16 +247,18 @@ function openDetails(index) {
     const game = loadedGamesData[index];
     if (!game) return;
 
+    const modalDetailsModal = document.getElementById("details-modal");
+
+    // If modal doesn't exist on this page layout, safely redirect to details.html with game ID
+    if (!modalDetailsModal) {
+        window.location.href = `details.html?id=${game.id || index}`;
+        return;
+    }
+
     const modalTitle = document.getElementById("modal-title");
     const modalDesc = document.getElementById("modal-desc");
     const modalReq = document.getElementById("modal-req");
     const modalPrice = document.getElementById("modal-price");
-    const modalDetailsModal = document.getElementById("details-modal");
-
-    if (!modalDetailsModal) {
-        window.location.href = `details.html?id=${game.id || originalIndex}`;
-        return;
-    }
 
     if (modalTitle) modalTitle.innerText = game.title;
     if (modalDesc) modalDesc.innerText = game.description || "";
