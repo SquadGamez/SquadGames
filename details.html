@@ -84,7 +84,7 @@
     <!-- Fullscreen Image Preview Overlay -->
     <div id="fullscreenOverlay" class="fullscreen-overlay" onclick="closeFullScreen()">
         <span class="fullscreen-close">&times;</span>
-        <img id="fullscreenImg" src="" alt="Full Screen Preview">
+        <img id="fullscreenImg" alt="Full Screen Preview">
     </div>
 
     <!-- Application Script for Details -->
@@ -114,10 +114,9 @@
         fetch('games.json')
             .then(res => res.json())
             .then(games => {
-                const game = games.find(g => 
-                    String(g.id) === String(gameIdParam) || 
-                    g.title.toLowerCase().replace(/[^a-z0-9]/g, '-') === gameIdParam
-                );
+                const game = games.find(g => String(g.id) === String(gameIdParam)) || 
+                             games[parseInt(gameIdParam)] ||
+                             games.find(g => g.title && g.title.toLowerCase().replace(/[^a-z0-9]/g, '-') === gameIdParam);
                 
                 const container = document.getElementById('gameDetailsContainer');
 
