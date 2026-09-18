@@ -195,5 +195,21 @@
       "images/sm3.png"
     ],
     "downloadUrl": "https://drive.google.com/file/d/1jvc3KFNGQK5qLJH4hyKt41MM2woSTJ45/view?usp=drive_link"
+  },
+  {
+    "id": 13,
+    "title": "FIFA 22",
+    "platform": "PC",
+    "category": "Sports, Simulation",
+    "description": "FIFA 22 (53.5 GB) is an Sports, Simulation video game. Developed and published by EA Canada & EA Romania, Electronic Arts. It was released on October 1, 2021 for Windows. FIFA 22 delivers realistic football gameplay powered by improved player movement and ball physics, creating smoother and more responsive matches. With features like HyperMotion technology on supported platforms, players experience more lifelike animations, tactical depth, and intense one-on-one battles that closely mirror real-world football.",
+    "requirements": "OS: Windows 10 – 64-Bit (Latest Update) Processor: Intel Core i3-6100 @ 3.7GHz or AMD Athlon X4 880K @4GHz RAM: 8 GB Hard Disk: 50 GB available space Graphics Card: NVIDIA GTX 660 2GB or AMD Radeon HD 7850 2GB DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/fifa.png",
+    "screenshots": [
+      "images/fifa1.png",
+      "images/fifa2.png",
+      "images/fifa3.png"
+    ],
+    "downloadUrl": "https://drive.google.com/file/d/1DSwwzAj-H4pP8TWtSLHs747YzoJGFy_F/view?usp=drive_link"
   }
 ]
