@@ -22,7 +22,33 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Fetch games data with an absolute/relative path check and robust fallback
+    // 3. Sleek loading animation handler for download / get buttons
+    document.addEventListener('click', function(e) {
+        const downloadBtn = e.target.closest('.btn-download, .btn-get');
+        if (!downloadBtn) return;
+
+        const targetUrl = downloadBtn.getAttribute('href');
+        if (!targetUrl || targetUrl === '#') return;
+        if (downloadBtn.classList.contains('preparing')) return;
+
+        e.preventDefault();
+        downloadBtn.classList.add('preparing');
+        
+        const originalHTML = downloadBtn.innerHTML;
+        downloadBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Preparing Link...`;
+
+        setTimeout(() => {
+            downloadBtn.innerHTML = `<i class="fa-solid fa-check"></i> Redirecting...`;
+            window.open(targetUrl, '_blank');
+
+            setTimeout(() => {
+                downloadBtn.innerHTML = originalHTML;
+                downloadBtn.classList.remove('preparing');
+            }, 2000);
+        }, 1000);
+    });
+
+    // 4. Fetch games data with an absolute/relative path check and robust fallback
     const jsonPath = window.location.hostname.includes("github.io") ? "./games.json" : "games.json";
 
     fetch(jsonPath)
@@ -80,9 +106,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initStore(games) {
     loadedGamesData = games;
-    
+
     // --- SMART GUIDANCE LOGIC ---
-    // Automatically selects featured games by matching titles
     const featuredGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
         return title.includes("euro truck simulator") || 
@@ -92,7 +117,6 @@ function initStore(games) {
     });
     renderFeaturedMarquee(featuredGames.length ? featuredGames : games); 
 
-    // Automatically selects popular games including FIFA 22 and Spider-Man
     const popularGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
         return title.includes("euro truck simulator") || 
