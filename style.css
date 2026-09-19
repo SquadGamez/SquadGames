@@ -742,7 +742,7 @@ body {
     font-size: 0.82rem;
     font-weight: 700;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     border: none;
     text-align: center;
@@ -756,8 +756,8 @@ body {
 
 .btn-download:hover {
     background: #1da851;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
 }
 
 .btn-vodacom {
@@ -768,8 +768,8 @@ body {
 
 .btn-vodacom:hover {
     background: linear-gradient(135deg, #ff1a1a, #cc0000);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(230, 0, 0, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(230, 0, 0, 0.4);
 }
 
 .btn-get {
@@ -780,8 +780,8 @@ body {
 
 .btn-get:hover {
     background: linear-gradient(135deg, #34d399, #10b981);
-    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.5);
-    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5);
+    transform: translateY(-2px);
 }
 
 /* Bottom Information Box */
