@@ -47,7 +47,10 @@
       "images/Annotation 2026-09-02 130017.png",
       "images/Annotation 2026-09-02 125943.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1i5fqqoHh8MwYoLDL3LCuGsGt6M-B9LUk/view?usp=sharing"
+    "downloadParts": [
+      { "part": "Part 1", "url": "https://www.mediafire.com/file_premium/h9kaupu38m7c63n/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part1.rar/file" },
+      { "part": "Part 2", "url": "https://www.mediafire.com/file_premium/kkzoiiat3obg47e/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part2.rar/file" }
+    ]
   },
   {
     "id": 4,
@@ -63,7 +66,9 @@
       "images/nfsmw-shot2.png",
       "images/nfsmw-shot3.png"
     ],
-    "downloadUrl": "https://www.mediafire.com/file_premium/adkj9ovmehh2mva/NFS_Most_Wanted_2005_-_%2528www.apunkagames.com%2529.zip/file"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" }
+    ]
   },
   {
     "id": 5,
@@ -80,7 +85,10 @@
       "images/nfspb5.png",
       "images/nfspb4.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1EcqRQoaAxUYdiAF5cYJk66-xzVYhTioE/view?usp=sharing"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" },
+      { "part": "Part 2", "url": "" }
+    ]
   },
   {
     "id": 6,
@@ -96,7 +104,10 @@
       "images/codaw3.png",
       "images/codaw4.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1AViNgFCiyE-l7U488YC2FIyg8TZI3nMb/view?usp=sharing"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" },
+      { "part": "Part 2", "url": "" }
+    ]
   },
   {
     "id": 7,
@@ -112,7 +123,10 @@
       "images/carxstreet2.png",
       "images/carxstreet3.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1Vk6GuvYLslrG9CGLa-vDihXkoHOGScmO/view?usp=sharing"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" },
+      { "part": "Part 2", "url": "" }
+    ]
   },
   {
     "id": 8,
@@ -128,7 +142,11 @@
       "images/gta52.png",
       "images/gta53.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1QeO0_5yfWy4B9LkzKzAT5YKi7WnNcnfJ/view?usp=sharing"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" },
+      { "part": "Part 2", "url": "" },
+      { "part": "Part 3", "url": "" }
+    ]
   },
   {
     "id": 9,
@@ -145,7 +163,10 @@
       "images/gta43.png",
       "images/gta44.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1agvSrTvs6oQ9BbwttdbhTqqJPIZ2h6Pf/view?usp=sharing"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" },
+      { "part": "Part 2", "url": "" }
+    ]
   },
   {
     "id": 10,
@@ -162,7 +183,9 @@
       "images/codbo3.png",
       "images/codbo4.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/18ZrwpQ_uZwY3eW7mM_EpgQsie_vnxqY_/view?usp=sharing"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" }
+    ]
   },
   {
     "id": 11,
@@ -178,7 +201,10 @@
       "images/codiw2.png",
       "images/codiw3.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1rvLh9KRmUwsGFeHKW6KRguU1t_RipJsM/view?usp=sharing"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" },
+      { "part": "Part 2", "url": "" }
+    ]
   },
   {
     "id": 12,
@@ -194,7 +220,10 @@
       "images/sm2.png",
       "images/sm3.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1jvc3KFNGQK5qLJH4hyKt41MM2woSTJ45/view?usp=drive_link"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" },
+      { "part": "Part 2", "url": "" }
+    ]
   },
   {
     "id": 13,
@@ -210,6 +239,10 @@
       "images/fifa2.png",
       "images/fifa3.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1DSwwzAj-H4pP8TWtSLHs747YzoJGFy_F/view?usp=drive_link"
+    "downloadParts": [
+      { "part": "Part 1", "url": "" },
+      { "part": "Part 2", "url": "" },
+      { "part": "Part 3", "url": "" }
+    ]
   }
 ]
