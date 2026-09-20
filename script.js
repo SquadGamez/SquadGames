@@ -27,12 +27,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const downloadBtn = e.target.closest('.btn-download, .btn-get, .btn-action');
         if (!downloadBtn) return;
 
-        e.preventDefault();
+        // Skip interception if it's the WhatsApp alternate button
+        if (downloadBtn.classList.contains('btn-vodacom') || downloadBtn.href.includes('wa.me')) return;
 
         const gameIndex = downloadBtn.getAttribute('data-game-index');
         if (gameIndex !== null && loadedGamesData[gameIndex]) {
             const game = loadedGamesData[gameIndex];
             if (game.downloadParts && game.downloadParts.length > 0) {
+                e.preventDefault(); // Stop normal redirection so the modal can pop up
                 showDownloadPartsModal(game);
                 return;
             }
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!targetUrl || targetUrl === '#') return;
         if (downloadBtn.classList.contains('preparing')) return;
 
+        e.preventDefault();
         downloadBtn.classList.add('preparing');
         
         const originalHTML = downloadBtn.innerHTML;
@@ -110,8 +113,8 @@ async function loadGameCatalog() {
                 price: "TZS 20,000",
                 image: "images/ets-2-pc.jpg",
                 screenshots: [],
-                downloadUrl: "[https://selar.com/8z3yp9tnyv](https://selar.com/8z3yp9tnyv)",
-                altDownloadUrl: "[https://wa.me/255692752060?text=Hello%20Squad%20Games](https://wa.me/255692752060?text=Hello%20Squad%20Games)"
+                downloadUrl: "https://selar.com/8z3yp9tnyv",
+                altDownloadUrl: "https://wa.me/255692752060?text=Hello%20Squad%20Games"
             },
             {
                 id: 2,
@@ -123,7 +126,7 @@ async function loadGameCatalog() {
                 price: "FREE",
                 image: "images/spider-man.jpg",
                 screenshots: [],
-                downloadUrl: "[https://wa.me/255692752060](https://wa.me/255692752060)"
+                downloadUrl: "https://wa.me/255692752060"
             }
         ];
     }
@@ -258,7 +261,7 @@ function renderGameStore(gameList) {
 
         const actionBtnText = isFree ? "Get" : "Buy Now";
         const actionBtnClass = isFree ? "btn-get" : "btn-download";
-        const targetUrl = game.downloadUrl || "[https://wa.me/255692752060](https://wa.me/255692752060)";
+        const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
         let actionButtonsHTML = `
             <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}" data-game-index="${originalIndex}">${actionBtnText}</a>
