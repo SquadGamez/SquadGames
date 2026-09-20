@@ -24,6 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Sleek loading animation handler & Universal Multi-part popup trigger for all current & future games
     document.addEventListener('click', function(e) {
+        // Bypass interception if the click happens inside the download parts modal so links open normally
+        if (e.target.closest('#download-parts-modal')) return;
+
         const downloadBtn = e.target.closest('.btn-download, .btn-get, .btn-action');
         if (!downloadBtn) return;
 
