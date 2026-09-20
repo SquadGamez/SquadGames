@@ -4,34 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Squad Games Store TZ</title>
+    <!-- FontAwesome Icons for buttons & spinners -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Main Header / Store Navigation -->
-    <header>
+
+    <!-- Main Header -->
+    <header class="store-header">
         <h1>Squad Games Store TZ</h1>
         <p>Get your favorite PC and Mobile games & mods in Tanzania</p>
+        
+        <!-- Search Bar -->
+        <div class="search-container" style="margin-top: 15px;">
+            <input type="text" id="gameSearchInput" placeholder="Search games, mods, simulator..." class="search-input">
+        </div>
     </header>
 
-    <!-- Games Container Grid -->
-    <main>
-        <div id="games-grid" class="games-grid">
-            <!-- Game cards will be loaded here dynamically from your games.json -->
-        </div>
+    <!-- Portal Navigation Tabs (Categories) -->
+    <nav class="portal-navbar">
+        <button class="nav-tab active" data-category="all">All Games</button>
+        <button class="nav-tab" data-category="pc">PC Games</button>
+        <button class="nav-tab" data-category="simulation">Simulation</button>
+        <button class="nav-tab" data-category="action">Action</button>
+        <button class="nav-tab" data-category="android">Mobile / Android</button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="store-layout-container">
+        
+        <!-- Left / Sidebar Section (Featured & Popular) -->
+        <aside class="store-sidebar">
+            <div class="sidebar-section">
+                <h3>🔥 Featured</h3>
+                <div id="featuredTrack" class="marquee-track">
+                    <!-- Featured items load here -->
+                </div>
+            </div>
+
+            <div class="sidebar-section" style="margin-top: 20px;">
+                <h3>⭐ Popular</h3>
+                <div id="popularList" class="popular-list-container">
+                    <!-- Popular items load here -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Game Catalog Grid -->
+        <section class="games-section">
+            <div id="games-grid" class="games-grid">
+                <!-- Dynamic game cards load here -->
+            </div>
+        </section>
+
     </main>
 
-    <!-- Game Details & Download Parts Modal Popup -->
-    <div id="game-modal" class="modal" style="display: none;">
+    <!-- Game Details Modal Popup -->
+    <div id="details-modal" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content">
-            <span class="close-btn">&times;</span>
+            <button class="close-btn" onclick="closeModalDirect()">&times;</button>
             <h2 id="modal-title">Game Title</h2>
-            <p id="modal-description">Description goes here...</p>
-            <p id="modal-requirements"><strong>Requirements:</strong> <span id="req-text"></span></p>
+            <p id="modal-desc" style="color: #ccc; margin: 10px 0;"></p>
             
-            <div id="download-section">
-                <!-- Single or Multi-part download buttons will be injected here -->
+            <div class="modal-specs" style="margin: 15px 0; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
+                <p><strong>Requirements:</strong> <span id="modal-req" style="color: #bbb;"></span></p>
+                <p style="margin-top: 5px;"><strong>Price:</strong> <span id="modal-price" style="color: #4cd137; font-weight: bold;"></span></p>
+            </div>
+
+            <div id="modal-gallery" class="modal-gallery" style="display: flex; gap: 10px; overflow-x: auto; margin-bottom: 15px;">
+                <!-- Screenshots load here -->
+            </div>
+
+            <div id="modal-btn-group" class="modal-btn-group" style="display: flex; flex-direction: column; gap: 8px;">
+                <!-- Action buttons load here -->
             </div>
         </div>
+    </div>
+
+    <!-- Fullscreen Image Modal -->
+    <div id="fullscreen-modal" class="modal-overlay" onclick="closeFullScreen()">
+        <span class="fullscreen-close" style="position: absolute; top: 20px; right: 30px; font-size: 2rem; color: #fff; cursor: pointer;">&times;</span>
+        <img id="fullscreen-img" src="" alt="Fullscreen View" style="max-width: 90%; max-height: 90%; margin: auto; display: block;">
     </div>
 
     <!-- Script File -->
