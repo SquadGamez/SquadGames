@@ -117,6 +117,27 @@
             color: #fff;
             cursor: pointer;
         }
+
+        /* Modal Styles for Multi-Part Downloads */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
     </style>
 </head>
 <body>
@@ -149,6 +170,8 @@
 
     <!-- Application Script for Details -->
     <script>
+        let currentGame = null; // Global reference for active game data
+
         function getSmartCategories(game) {
             let categories = new Set();
             if (game.category) {
@@ -190,6 +213,7 @@
                     return;
                 }
 
+                currentGame = game; // Assign to global scope for modal checking
                 const smartCats = getSmartCategories(game);
                 const downloadUrl = game.downloadUrl || '#';
                 
@@ -236,7 +260,7 @@
                     `;
                 }
 
-                // Main ApunkaGames-style layout: Words on top, large stacked screenshots below
+                // Main layout rendering
                 container.innerHTML = `
                     <div class="apunka-details-layout">
                         <!-- Top Box: Title, Description, Requirements & Download Buttons -->
@@ -280,6 +304,65 @@
                         <p style="color: #ff4d4d;">Failed to load game details. Please ensure your games.json file is accessible.</p>
                     </div>`;
             });
+
+        // Intercept clicks to check for multi-part downloads dynamically
+        document.addEventListener('click', function(e) {
+            const downloadBtn = e.target.closest('.btn-download, .btn-get, .btn-action');
+            if (!downloadBtn) return;
+
+            // If it's a WhatsApp or external alternate link, let it proceed normally
+            if (downloadBtn.href && downloadBtn.href.includes('whatsapp')) return;
+
+            // Check if parts exist for the current game
+            if (currentGame && currentGame.downloadParts && currentGame.downloadParts.length > 0) {
+                e.preventDefault();
+                showDownloadPartsModal(currentGame);
+            }
+        });
+
+        function showDownloadPartsModal(game) {
+            let modal = document.getElementById('download-parts-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'download-parts-modal';
+                modal.className = 'modal-overlay';
+                modal.innerHTML = `
+                    <div class="modal-content" style="max-width: 450px; background: #1e1e1e; padding: 25px; border-radius: 12px; color: #fff; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1);">
+                        <button onclick="closeDownloadPartsModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: #aaa; font-size: 1.2rem; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+                        <h3 id="parts-modal-title" style="margin-bottom: 8px; font-size: 1.25rem;">Select Download Part</h3>
+                        
+                        <p style="color: #f1c40f; font-size: 0.85rem; margin-bottom: 12px; font-weight: 600; line-height: 1.4;">
+                            <i class="fa-solid fa-triangle-exclamation"></i> To get this game you are required to download all these parts for proper installation and extraction of the game.
+                        </p>
+
+                        <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Choose a specific part series below to start your direct download link:</p>
+                        <div id="parts-list-container" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                modal.addEventListener('click', function(event) {
+                    if (event.target === modal) closeDownloadPartsModal();
+                });
+            }
+
+            document.getElementById('parts-modal-title').innerText = `Download: ${game.title}`;
+            
+            const container = document.getElementById('parts-list-container');
+            container.innerHTML = game.downloadParts.map((part, idx) => `
+                <a href="${part.url}" target="_blank" class="btn-action btn-get" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; text-decoration: none; border-radius: 6px;">
+                    <span><i class="fa-solid fa-download"></i> ${part.name || `Part ${idx + 1}`}</span>
+                    <i class="fa-solid fa-external-link-alt" style="font-size: 0.8rem;"></i>
+                </a>
+            `).join('');
+
+            modal.classList.add('active');
+        }
+
+        function closeDownloadPartsModal() {
+            const modal = document.getElementById('download-parts-modal');
+            if (modal) modal.classList.remove('active');
+        }
 
         function openFullScreen(imgSrc) {
             const fullModal = document.getElementById("fullscreenOverlay");
