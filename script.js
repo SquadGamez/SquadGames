@@ -295,53 +295,13 @@ function renderGameStore(gameList) {
     });
 }
 
+// Updated to seamlessly route every game click to our new full-page details.html layout
 function openDetails(index) {
     const game = loadedGamesData[index];
     if (!game) return;
 
-    const modal = document.getElementById("details-modal");
-    if (!modal) {
-        window.location.href = `details.html?id=${game.id || index}`;
-        return;
-    }
-
-    const modalTitle = document.getElementById("modal-title");
-    const modalDesc = document.getElementById("modal-desc");
-    const modalReq = document.getElementById("modal-req");
-    const modalPrice = document.getElementById("modal-price");
-
-    if (modalTitle) modalTitle.innerText = game.title;
-    if (modalDesc) modalDesc.innerText = game.description || "";
-    if (modalReq) modalReq.innerText = game.requirements || "Standard System Requirements not specified.";
-    if (modalPrice) modalPrice.innerText = game.price || "FREE";
-
-    // Cleared out download and buy action buttons from the details popup window so it shows details only
-    const modalBtnGroup = document.getElementById("modal-btn-group");
-    if (modalBtnGroup) {
-        modalBtnGroup.innerHTML = "";
-    }
-
-    const gallery = document.getElementById("modal-gallery");
-    if (gallery) {
-        gallery.innerHTML = "";
-        if (game.screenshots && game.screenshots.length > 0) {
-            game.screenshots.forEach((imgSrc) => {
-                const img = document.createElement("img");
-                img.src = imgSrc;
-                img.alt = "Screenshot";
-                img.onerror = function () { this.src = "images/nfsmw-shot1.png"; };
-                img.onclick = function () { openFullScreen(imgSrc); };
-                gallery.appendChild(img);
-            });
-        } else {
-            const img = document.createElement("img");
-            img.src = game.image || 'images/nfsmw-shot1.png';
-            img.onclick = function () { openFullScreen(game.image); };
-            gallery.appendChild(img);
-        }
-    }
-
-    modal.classList.add("active");
+    const identifier = game.id !== undefined ? game.id : index;
+    window.location.href = `details.html?id=${identifier}`;
 }
 
 function closeModal(event) {
