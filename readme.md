@@ -16,4 +16,5 @@ Check out the live website here: [SquadGames](https://squadgamez.github.io/Squad
 
 1. Visit the live website link above.
 2. Click the **Buy Now** button to complete your secure payment.
-3. Once paid, you will be instantly redirected to your download links.
+3. Click on the **Get** or **Download game**to get all free games available in the website.
+4. Once paid, you will be instantly redirected to your download links.
