@@ -27,10 +27,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const downloadBtn = e.target.closest('.btn-download, .btn-get, .btn-action');
         if (!downloadBtn) return;
 
-        // ALWAYS prevent default first to stop page jumping or home page redirects
         e.preventDefault();
 
-        // Check if this game has multiple download parts configured
         const gameIndex = downloadBtn.getAttribute('data-game-index');
         if (gameIndex !== null && loadedGamesData[gameIndex]) {
             const game = loadedGamesData[gameIndex];
@@ -60,12 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 1000);
     });
 
-    // 4. Robust multi-path fetch handler for GitHub Pages subfolders
+    // 4. Load Game Catalog
     loadGameCatalog();
 });
 
 async function loadGameCatalog() {
-    // Automatically detect GitHub Pages repository path structure
     const pathSegments = window.location.pathname.split('/').filter(Boolean);
     const repoPrefix = (window.location.hostname.includes("github.io") && pathSegments.length > 0) ? `/${pathSegments[0]}/` : './';
 
@@ -75,17 +72,15 @@ async function loadGameCatalog() {
         'games.json'
     ];
 
-    let gamesLoaded = false;
+    let rawData = null;
 
     for (const path of possiblePaths) {
         try {
             console.log("Attempting to fetch games.json from:", path);
             const response = await fetch(path);
             if (response.ok) {
-                const games = await response.json();
-                console.log("Successfully loaded games.json from server using path:", path);
-                initStore(games);
-                gamesLoaded = true;
+                rawData = await response.json();
+                console.log("Successfully loaded games.json from:", path);
                 break;
             }
         } catch (err) {
@@ -93,10 +88,18 @@ async function loadGameCatalog() {
         }
     }
 
-    // Fallback if all fetch paths fail
-    if (!gamesLoaded) {
-        console.warn("All fetch attempts failed, activating comprehensive fallback catalog.");
-        initStore([
+    // Safely extract games array whether games.json is an Array or an Object containing games
+    let gamesArray = [];
+    if (Array.isArray(rawData)) {
+        gamesArray = rawData;
+    } else if (rawData && typeof rawData === 'object') {
+        gamesArray = rawData.games || rawData.data || rawData.list || Object.values(rawData).find(Array.isArray) || [];
+    }
+
+    // Fallback if fetch failed or data is empty
+    if (gamesArray.length === 0) {
+        console.warn("Using fallback catalog data.");
+        gamesArray = [
             {
                 id: 1,
                 title: "Tanzania Euro Truck Simulator 2 + 50 TZ mods packs",
@@ -106,12 +109,12 @@ async function loadGameCatalog() {
                 requirements: "OS: Windows 10/11 (64-bit) | RAM: 8 GB | Storage: 25 GB",
                 price: "TZS 20,000",
                 image: "images/ets-2-pc.jpg",
-                screenshots: ["images/4193b766a912970fac32e8b171d693df.webp"],
+                screenshots: [],
                 downloadUrl: "https://selar.com/8z3yp9tnyv",
-                altDownloadUrl: "https://wa.me/255692752060?text=Hello%20Squad%20Games%2C%20I%20want%20to%20buy%20ETS2%20PC."
+                altDownloadUrl: "https://wa.me/255692752060?text=Hello%20Squad%20Games"
             },
             {
-                id: 12,
+                id: 2,
                 title: "Marvel’s Spider-Man: Miles Morales",
                 platform: "PC",
                 category: "Action",
@@ -121,49 +124,30 @@ async function loadGameCatalog() {
                 image: "images/spider-man.jpg",
                 screenshots: [],
                 downloadUrl: "https://wa.me/255692752060"
-            },
-            {
-                id: 13,
-                title: "FIFA 22",
-                platform: "PC",
-                category: "Sports",
-                description: "Powered by Football, FIFA 22 brings the game even closer to the real thing.",
-                requirements: "OS: Windows 10 (64-bit) | RAM: 8 GB",
-                price: "FREE",
-                image: "images/fifa22.jpg",
-                screenshots: [],
-                downloadUrl: "https://wa.me/255692752060"
             }
-        ]);
+        ];
     }
+
+    initStore(gamesArray);
 }
 
 function initStore(games) {
     loadedGamesData = games;
 
-    // --- SMART GUIDANCE LOGIC ---
     const featuredGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
-        return title.includes("euro truck simulator") || 
-               title.includes("call of duty") || 
-               title.includes("carx street") || 
-               title.includes("fifa 22");
+        return title.includes("euro truck simulator") || title.includes("call of duty") || title.includes("carx street");
     });
     renderFeaturedMarquee(featuredGames.length ? featuredGames : games); 
 
     const popularGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
-        return title.includes("euro truck simulator") || 
-               title.includes("gta") || 
-               title.includes("spider-man") || 
-               title.includes("fifa 22");
+        return title.includes("euro truck simulator") || title.includes("gta") || title.includes("spider-man");
     });
     renderPopularList(popularGames.length ? popularGames : games);
-    // ----------------------------
 
     applyFilters(); 
 
-    // Bind Search Input Listener
     const searchInput = document.getElementById('gameSearchInput');
     if (searchInput) {
         searchInput.addEventListener('input', (e) => {
@@ -172,7 +156,6 @@ function initStore(games) {
         });
     }
 
-    // Bind Navbar Category Tabs
     document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
         tab.addEventListener('click', (e) => {
             e.preventDefault();
@@ -183,16 +166,11 @@ function initStore(games) {
         });
     });
 
-    // Modal Close Triggers
     const closeModalBtn = document.querySelector('.close-btn');
-    if (closeModalBtn) {
-        closeModalBtn.addEventListener('click', closeModalDirect);
-    }
+    if (closeModalBtn) closeModalBtn.addEventListener('click', closeModalDirect);
 
     const fullscreenCloseBtn = document.querySelector('.fullscreen-close');
-    if (fullscreenCloseBtn) {
-        fullscreenCloseBtn.addEventListener('click', closeFullScreen);
-    }
+    if (fullscreenCloseBtn) fullscreenCloseBtn.addEventListener('click', closeFullScreen);
 }
 
 function renderFeaturedMarquee(sliderGames) {
@@ -231,7 +209,6 @@ function renderPopularList(popularGames) {
     `).join('');
 }
 
-/* --- Search and Category Filtering Logic --- */
 function applyFilters() {
     const filteredGames = loadedGamesData.filter(game => {
         const title = (game.title || "").toLowerCase();
@@ -260,7 +237,7 @@ function renderGameStore(gameList) {
 
     if (gameList.length === 0) {
         container.innerHTML = `
-            <div class="loading-state" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+            <div class="loading-state" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #fff;">
                 <p>No games found matching your search or category.</p>
             </div>
         `;
@@ -285,7 +262,7 @@ function renderGameStore(gameList) {
 
         if (game.altDownloadUrl) {
             actionButtonsHTML += `
-                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;" title="Buy via WhatsApp">
+                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;">
                     💬 WhatsApp
                 </a>
             `;
@@ -345,7 +322,6 @@ function openDetails(index) {
     if (modalBtnGroup) {
         let modalButtonsHTML = "";
 
-        // Render multiple parts inside modal if available
         if (game.downloadParts && game.downloadParts.length > 0) {
             game.downloadParts.forEach((part, idx) => {
                 modalButtonsHTML += `
@@ -417,7 +393,6 @@ function closeFullScreen() {
     if (fullModal) fullModal.classList.remove("active");
 }
 
-// --- Dynamic Download Parts Series Popup Modal Helpers ---
 function showDownloadPartsModal(game) {
     let modal = document.getElementById('download-parts-modal');
     if (!modal) {
