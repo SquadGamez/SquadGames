@@ -278,7 +278,16 @@ function renderGameStore(gameList) {
 
         const actionBtnText = isFree ? "Get" : "Buy Now";
         const actionBtnClass = isFree ? "btn-get" : "btn-download";
-        const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+        
+        // FIXED URL LOGIC: Checks downloadUrl -> then checks downloadParts -> falls back to WhatsApp only if both are missing
+        let targetUrl = game.downloadUrl;
+        if (!targetUrl) {
+            if (game.downloadParts && game.downloadParts.length > 0) {
+                targetUrl = "#"; 
+            } else {
+                targetUrl = "https://wa.me/255692752060";
+            }
+        }
 
         let actionButtonsHTML = `
             <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}" data-game-index="${originalIndex}">${actionBtnText}</a>
@@ -362,7 +371,7 @@ function showDownloadPartsModal(game) {
                 </p>
 
                 <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Choose a specific part series below to start your direct download link:</p>
-                <div id="parts-list-container" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                <div id="parts-list-container" style="display: flex; flex-direction: column; gap: ___10px___; gap: 10px;"></div>
             </div>
         `;
         document.body.appendChild(modal);
