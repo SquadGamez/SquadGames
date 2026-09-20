@@ -17,18 +17,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Save scroll position whenever any action/download/details button is clicked
     document.addEventListener('click', function(e) {
-        if (e.target.closest('.btn-action') || e.target.closest('.btn-details') || e.target.closest('.part-btn')) {
+        if (e.target.closest('.btn-action') || e.target.closest('.btn-details')) {
             localStorage.setItem('scrollPosition', window.scrollY);
         }
     });
 
     // 3. Sleek loading animation handler for download / get buttons
     document.addEventListener('click', function(e) {
-        const downloadBtn = e.target.closest('.btn-download, .btn-get, .part-btn');
+        const downloadBtn = e.target.closest('.btn-download, .btn-get');
         if (!downloadBtn) return;
 
         const targetUrl = downloadBtn.getAttribute('href');
-        if (!targetUrl || targetUrl === '#') return;
+        if (!targetUrl || targetUrl === '#' || targetUrl === '') return;
         if (downloadBtn.classList.contains('preparing')) return;
 
         e.preventDefault();
@@ -218,24 +218,14 @@ function applyFilters() {
     renderGameStore(filteredGames);
 }
 
-// Helper function to generate action buttons whether single URL or multi-parts
+// Helper function to generate standard single download/get buttons
 function generateActionButtons(game) {
     const priceText = String(game.price || "").trim().toUpperCase();
     const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
 
-    // Check if the game contains multi-part download links
-    if (game.downloadParts && game.downloadParts.length > 0) {
-        let partsHTML = game.downloadParts.map(part => {
-            const partUrl = part.url && part.url.trim() !== "" ? part.url : "#";
-            return `<a href="${partUrl}" target="_blank" class="btn-action btn-get part-btn" style="margin-bottom: 4px;">📥 ${part.part}</a>`;
-        }).join('');
-        return `<div class="download-parts-container" style="display: flex; flex-direction: column; width: 100%;">${partsHTML}</div>`;
-    }
-
-    // Standard single link logic (Free or Paid)
     const actionBtnText = isFree ? "Get" : "Buy Now";
     const actionBtnClass = isFree ? "btn-get" : "btn-download";
-    const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+    const targetUrl = game.downloadUrl && game.downloadUrl.trim() !== "" ? game.downloadUrl : "#";
 
     let actionButtonsHTML = `
         <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
@@ -283,8 +273,8 @@ function renderGameStore(gameList) {
                 <p>${game.description || ""}</p>
                 <div class="card-action">
                     <span class="price">${game.price || 'FREE'}</span>
-                    <div class="action-group" style="width: 100%;">
-                        <button class="btn-details" onclick="openDetails(${originalIndex})" style="margin-bottom: 6px; width: 100%;">Details &rarr;</button>
+                    <div class="action-group">
+                        <button class="btn-details" onclick="openDetails(${originalIndex})">Details &rarr;</button>
                         ${generateActionButtons(game)}
                     </div>
                 </div>
