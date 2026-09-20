@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!downloadBtn) return;
 
         const targetUrl = downloadBtn.getAttribute('href');
-        if (!targetUrl || targetUrl === '#' || targetUrl === '') return;
+        if (!targetUrl || targetUrl === '#') return;
         if (downloadBtn.classList.contains('preparing')) return;
 
         e.preventDefault();
@@ -218,30 +218,6 @@ function applyFilters() {
     renderGameStore(filteredGames);
 }
 
-// Helper function to generate standard single download/get buttons
-function generateActionButtons(game) {
-    const priceText = String(game.price || "").trim().toUpperCase();
-    const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
-
-    const actionBtnText = isFree ? "Get" : "Buy Now";
-    const actionBtnClass = isFree ? "btn-get" : "btn-download";
-    const targetUrl = game.downloadUrl && game.downloadUrl.trim() !== "" ? game.downloadUrl : "#";
-
-    let actionButtonsHTML = `
-        <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
-    `;
-
-    if (game.altDownloadUrl) {
-        actionButtonsHTML += `
-            <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;" title="Buy via WhatsApp">
-                💬 WhatsApp
-            </a>
-        `;
-    }
-
-    return actionButtonsHTML;
-}
-
 function renderGameStore(gameList) {
     const container = document.getElementById("gameGrid");
     if (!container) return;
@@ -262,6 +238,25 @@ function renderGameStore(gameList) {
         const card = document.createElement("div");
         card.classList.add("game-card");
 
+        const priceText = String(game.price || "").trim().toUpperCase();
+        const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
+
+        const actionBtnText = isFree ? "Get" : "Buy Now";
+        const actionBtnClass = isFree ? "btn-get" : "btn-download";
+        const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+
+        let actionButtonsHTML = `
+            <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
+        `;
+
+        if (game.altDownloadUrl) {
+            actionButtonsHTML += `
+                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;" title="Buy via WhatsApp">
+                    💬 WhatsApp
+                </a>
+            `;
+        }
+
         card.innerHTML = `
             <span class="card-badge">${game.platform || "PC"}</span>
             <div class="game-img-wrapper" onclick="openDetails(${originalIndex})" style="cursor: pointer;">
@@ -275,7 +270,7 @@ function renderGameStore(gameList) {
                     <span class="price">${game.price || 'FREE'}</span>
                     <div class="action-group">
                         <button class="btn-details" onclick="openDetails(${originalIndex})">Details &rarr;</button>
-                        ${generateActionButtons(game)}
+                        ${actionButtonsHTML}
                     </div>
                 </div>
             </div>
@@ -305,9 +300,26 @@ function openDetails(index) {
     if (modalReq) modalReq.innerText = game.requirements || "Standard System Requirements not specified.";
     if (modalPrice) modalPrice.innerText = game.price || "FREE";
 
+    const priceText = String(game.price || "").trim().toUpperCase();
+    const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
+
+    const modalBtnText = isFree ? "Get" : "Buy Now";
+    const modalBtnClass = isFree ? "btn-get" : "btn-download";
+    const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+
     const modalBtnGroup = document.getElementById("modal-btn-group");
     if (modalBtnGroup) {
-        modalBtnGroup.innerHTML = generateActionButtons(game);
+        let modalButtonsHTML = `
+            <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
+        `;
+        if (game.altDownloadUrl) {
+            modalButtonsHTML += `
+                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;">
+                    💬 Buy via WhatsApp (Vodacom)
+                </a>
+            `;
+        }
+        modalBtnGroup.innerHTML = modalButtonsHTML;
     }
 
     const gallery = document.getElementById("modal-gallery");
