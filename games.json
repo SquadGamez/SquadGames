@@ -47,7 +47,12 @@
       "images/Annotation 2026-09-02 130017.png",
       "images/Annotation 2026-09-02 125943.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1i5fqqoHh8MwYoLDL3LCuGsGt6M-B9LUk/view?usp=sharing"
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/h9kaupu38m7c63n/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/kkzoiiat3obg47e/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file_premium/2bd19ue2w9imnlw/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part3.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file_premium/j432j4lkjnrde2w/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part4.rar/file" }
+    ]
   },
   {
     "id": 4,
@@ -80,7 +85,13 @@
       "images/nfspb5.png",
       "images/nfspb4.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1EcqRQoaAxUYdiAF5cYJk66-xzVYhTioE/view?usp=sharing"
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/mcj809iu65qw7y2/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/pfd1b1koti6lgsa/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file_premium/6vv71eoclwwpdmf/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part3.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file_premium/8wrylygn5u8vvjj/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part4.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file_premium/0ghqv14m6xact3s/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part5.rar/file" }
+    ]
   },
   {
     "id": 6,
@@ -96,15 +107,21 @@
       "images/codaw3.png",
       "images/codaw4.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1AViNgFCiyE-l7U488YC2FIyg8TZI3nMb/view?usp=sharing"
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://thefileslocker.net/g8jcqswgume2.html" },
+      { "name": "Part 2", "url": "https://thefileslocker.net/bswnqizltceh.html" },
+      { "name": "Part 3", "url": "https://thefileslocker.net/il2j0xyoumf2.html" },
+      { "name": "Part 4", "url": "https://thefileslocker.net/zpnlzg3phztl.html" },
+      { "name": "Part 5", "url": "https://thefileslocker.net/5m0g4xomvi27.html" }
+    ]
   },
   {
     "id": 7,
     "title": "CarX Street",
     "platform": "PC",
     "category": "Racing, Sports",
-    "description": "CarX Street (10.8 GB) is an Racing, Sports video game. Developed and published by CarX Technologies, LLC. It was released on August 29, 2024 for Windows.CarX Street is an open-world driving game that blends street racing, car customization, and exploration.",
-    "requirements": "OS: Windows 10 or higher (64‑bit) Processor: Ryzen 5 2600 @ 3.4 GHz / Intel® Core™ I5-8400 @ 2.5 GHz RAM: 8 GB Hard Disk: 20 GB available space Graphics Card: Nvidia Geforce GTX 1050 TI 4 GB / Radeon RX 570 8 GB Network: Broadband Internet connection DirectX: Version 11",
+    "description": "CarX Street (10.8 GB) is an open-world driving game that blends street racing, car customization, and exploration.",
+    "requirements": "OS: Windows 10 or higher (64‑bit) | RAM: 8 GB | Storage: 20 GB",
     "price": "FREE",
     "image": "images/carxstreet.png",
     "screenshots": [
@@ -112,15 +129,19 @@
       "images/carxstreet2.png",
       "images/carxstreet3.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1Vk6GuvYLslrG9CGLa-vDihXkoHOGScmO/view?usp=sharing"
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/l394foa9co0wwpb/CarX_Street_-_%2528Www.ApunkaGames.Com%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/o6d3wxvl11ukjbn/CarX_Street_-_%2528Www.ApunkaGames.Com%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file_premium/r085iug73w2qnol/CarX_Street_-_%2528Www.ApunkaGames.Com%2529.part3.rar/file" }
+    ]
   },
   {
     "id": 8,
     "title": "Grand Theft Auto V Legacy",
     "platform": "PC",
     "category": "Action-adventure, Open world",
-    "description": "Grand Theft Auto V Legacy (53.7 GB) is an Action-adventure, Open World video game. Developed and published by Rockstar North, Rockstar Games. It was released on April 14, 2015 for Windows. GTA V Legacy combines cinematic storytelling with classic GTA sandbox gameplay, featuring a massive open world, memorable characters, intense missions, and countless ways to interact with the city of Los Santos",
-    "requirements": "OS: Windows 10 (64‑bit) Processor: Intel Core 2 Quad CPU Q6600 @ 2.40GHz (4 CPUs) / AMD Phenom 9850 Quad-Core (4 CPUs) @ 2.5GHz RAM: 4 GB Hard Disk: 125 GB available space Graphics Card: NVIDIA 9800 GT 1GB / AMD HD 4870 1GB (DX 10, 10.1, 11) Sound Card: 100% DirectX 10 compatible DirectX: Version 11",
+    "description": "Grand Theft Auto V Legacy combines cinematic storytelling with classic GTA sandbox gameplay in Los Santos.",
+    "requirements": "OS: Windows 10 (64‑bit) | RAM: 4 GB | Hard Disk: 125 GB",
     "price": "FREE",
     "image": "images/gta5.png",
     "screenshots": [
@@ -128,15 +149,27 @@
       "images/gta52.png",
       "images/gta53.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1QeO0_5yfWy4B9LkzKzAT5YKi7WnNcnfJ/view?usp=sharing"
+    "downloadParts": [
+      { "name": "Part 01", "url": "https://www.mediafire.com/file_premium/lt5qanoluv4xcxv/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part01.rar/file" },
+      { "name": "Part 02", "url": "https://www.mediafire.com/file_premium/dtxadlu1hoo754y/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part02.rar/file" },
+      { "name": "Part 03", "url": "https://www.mediafire.com/file_premium/rdpm1wrrnpmto6h/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part03.rar/file" },
+      { "name": "Part 04", "url": "https://www.mediafire.com/file_premium/j83929m3fdt7av3/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part04.rar/file" },
+      { "name": "Part 05", "url": "https://www.mediafire.com/file_premium/1luc2mvxfm38r99/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part05.rar/file" },
+      { "name": "Part 06", "url": "https://www.mediafire.com/file_premium/qx2cri8brglyhaw/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part06.rar/file" },
+      { "name": "Part 07", "url": "https://www.mediafire.com/file_premium/cptuso4okrz4ud2/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part07.rar/file" },
+      { "name": "Part 08", "url": "https://www.mediafire.com/file_premium/6oi1ujyk838g3tp/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part08.rar/file" },
+      { "name": "Part 09", "url": "https://www.mediafire.com/file_premium/b1lh8gl8ng6jy9i/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part09.rar/file" },
+      { "name": "Part 10", "url": "https://www.mediafire.com/file_premium/zw6f6mrqwnjcpo7/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part10.rar/file" },
+      { "name": "Part 11", "url": "https://www.mediafire.com/file_premium/c70nbnfe4dodbvz/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part11.rar/file" }
+    ]
   },
   {
     "id": 9,
     "title": "GTA 4",
     "platform": "PC",
     "category": "Action-adventure, Open World",
-    "description": "GTA 4 (13.2 GB) is a popular open-world action video game. Developed and published by Rockstar North, Rockstar Games. It was released on December 2, 2008 for Windows.GTA IV is a legendary open-world game centered on Niko Bellic’s journey through Liberty City",
-    "requirements": "OS: Windows XP/Vista/7 Processor: Intel Core 2 DUO @ 1.8 GHz / AMD Athlon 64 X2 @ 2.4 GHz RAM: 2 GB Hard Disk: 16 GB available space Graphics Card: 256 MB, nVidia GeForce 7900 / ATI Radeon X1900 Sound Card: DirectX Compatible DirectX: Version 9.0c DVD Rom Drive",
+    "description": "GTA 4 (13.2 GB) is a legendary open-world game centered on Niko Bellic’s journey through Liberty City.",
+    "requirements": "OS: Windows XP/Vista/7 | RAM: 2 GB | Storage: 16 GB",
     "price": "FREE",
     "image": "images/gta4.png",
     "screenshots": [
@@ -145,15 +178,19 @@
       "images/gta43.png",
       "images/gta44.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1agvSrTvs6oQ9BbwttdbhTqqJPIZ2h6Pf/view?usp=sharing"
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://thefileslocker.net/qxaumncytfd4.html" },
+      { "name": "Part 2", "url": "https://thefileslocker.net/8tz8chin1o7w.html" },
+      { "name": "Part 3", "url": "https://thefileslocker.net/857lfzdfaw8a.html" }
+    ]
   },
   {
     "id": 10,
     "title": "Call of Duty: Black Ops 1",
     "platform": "PC",
     "category": "First-person shooter",
-    "description": "Call of Duty: Black Ops 1 (7.27 GB) is a classic action, first-person shooter set during the Cold War, placing players in intense covert missions across global hotspots. Experience gripping single-player campaigns, tactical combat, and realistic weapons as you complete stealthy objectives.",
-    "requirements": "OS: Windows XP/Vista/7 CPU: Intel Core2 Duo E6600 or AMD Phenom X3 8750 or better RAM: 2 GB Hard Drive Space: 12 GB Video Card: Shader 3.0 or better 256MB NVIDIA GeForce 8600GT or better Sound Card: DirectX 9.0 Compliant DirectX: 9.0c",
+    "description": "Call of Duty: Black Ops 1 is a classic action first-person shooter set during the Cold War.",
+    "requirements": "OS: Windows XP/Vista/7 | RAM: 2 GB | Storage: 12 GB",
     "price": "FREE",
     "image": "images/codbo.png",
     "screenshots": [
@@ -162,15 +199,18 @@
       "images/codbo3.png",
       "images/codbo4.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/18ZrwpQ_uZwY3eW7mM_EpgQsie_vnxqY_/view?usp=sharing"
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/qzakjeyt3b5itm6/Call_of_Duty_-_BO1_%2528Www.ApunkaGames.Net%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/66n2ktmz51krl4q/Call_of_Duty_-_BO1_%2528Www.ApunkaGames.Net%2529.part2.rar/file" }
+    ]
   },
   {
     "id": 11,
     "title": "Call of Duty: Infinite Warfare",
     "platform": "PC",
     "category": "Action, Adventure, Shooting",
-    "description": "Call of Duty: Infinite Warfare (39.8 GB) is a first-person shooter video game. Developed by Infinity Ward and published by Activision. It was released on November 4, 2016 for Windows. Call of Duty: Infinite Warfare is a futuristic FPS that takes the battle beyond Earth into intense space warfare",
-    "requirements": "OS: Windows 7 (64-Bit) or later Processor: Intel Core i3-3225 @ 3.30GHz or equivalent RAM: 8 GB Hard Drive: 70 GB available space Video Card: NVIDIA GeForce GTX 660 2GB / AMD Radeon HD 7850 2GB Network: Broadband Internet connection DirectX: Version 11",
+    "description": "Call of Duty: Infinite Warfare is a futuristic FPS that takes the battle beyond Earth into space warfare.",
+    "requirements": "OS: Windows 7 (64-Bit) or later | RAM: 8 GB | Storage: 70 GB",
     "price": "FREE",
     "image": "images/codiw.png",
     "screenshots": [
@@ -178,15 +218,30 @@
       "images/codiw2.png",
       "images/codiw3.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1rvLh9KRmUwsGFeHKW6KRguU1t_RipJsM/view?usp=sharing"
+    "downloadParts": [
+      { "name": "Part 01", "url": "https://www.mediafire.com/file_premium/h952zcj647k9ysd/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part01.rar/file" },
+      { "name": "Part 02", "url": "https://www.mediafire.com/file_premium/2sutrejzezmf73r/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part02.rar/file" },
+      { "name": "Part 03", "url": "https://www.mediafire.com/file_premium/ub1q3djse2hrlwb/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part03.rar/file" },
+      { "name": "Part 04", "url": "https://www.mediafire.com/file_premium/tn6psqzbd2x6362/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part04.rar/file" },
+      { "name": "Part 05", "url": "https://www.mediafire.com/file_premium/p4woyf9nkf0nsvl/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part05.rar/file" },
+      { "name": "Part 06", "url": "https://www.mediafire.com/file_premium/pnk6hxd1urdiyul/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part06.rar/file" },
+      { "name": "Part 07", "url": "https://www.mediafire.com/file_premium/1bqt1w0juuh6hbx/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part07.rar/file" },
+      { "name": "Part 08", "url": "https://www.mediafire.com/file_premium/ywbnpax4dr3eaho/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part08.rar/file" },
+      { "name": "Part 09", "url": "https://www.mediafire.com/file_premium/960so1y1efk57iz/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part09.rar/file" },
+      { "name": "Part 10", "url": "https://www.mediafire.com/file_premium/lni4lfvox3lab2p/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part10.rar/file" },
+      { "name": "Part 11", "url": "https://www.mediafire.com/file_premium/ni20lkl8fsmfae0/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part11.rar/file" },
+      { "name": "Part 12", "url": "https://www.mediafire.com/file_premium/3o1dbivpajsluyy/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part12.rar/file" },
+      { "name": "Part 13", "url": "https://www.mediafire.com/file_premium/8z146r532b9pihd/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part13.rar/file" },
+      { "name": "Part 14", "url": "https://www.mediafire.com/file_premium/od6wk2ap2nzj7bw/UNCHARTED_Legacy_of_Thieves_Collection_-_%2528Www.ApunKaGames.Net%2529.part14.rar/file" }
+    ]
   },
   {
     "id": 12,
     "title": "Marvel’s Spider-Man: Miles Morales",
     "platform": "PC",
     "category": "Action-adventure",
-    "description": "Marvel’s Spider-Man: Miles Morales (36.7 GB) is an Action-adventure video game. Developed and published by Insomniac Games, Nixxes Software, PlayStation Publishing LLC. It was released on November 18, 2022 for Windows. Marvel’s Spider-Man: Miles Morales delivers a thrilling superhero adventure as Miles protects New York City with new bio-electric and camouflage powers",
-    "requirements": "OS: Windows 10 64-bit 1909 Processor: Intel Core i3-4160, 3.6 GHz or AMD equivalent RAM: 8 GB Hard Disk: 75 GB available space Graphics Card: NVIDIA GTX 950 or AMD Radeon RX 470 DirectX: Version 12",
+    "description": "Marvel’s Spider-Man: Miles Morales delivers a thrilling superhero adventure as Miles protects New York City.",
+    "requirements": "OS: Windows 10 64-bit | RAM: 8 GB | Storage: 75 GB",
     "price": "FREE",
     "image": "images/sm.png",
     "screenshots": [
@@ -194,15 +249,24 @@
       "images/sm2.png",
       "images/sm3.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1jvc3KFNGQK5qLJH4hyKt41MM2woSTJ45/view?usp=drive_link"
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://thefileslocker.net/7yv9j0lytzxn.html" },
+      { "name": "Part 2", "url": "https://thefileslocker.net/fam031gob15b.html" },
+      { "name": "Part 3", "url": "https://thefileslocker.net/da40c7vglbnu.html" },
+      { "name": "Part 4", "url": "https://thefileslocker.net/rk8qx2j0upi1.html" },
+      { "name": "Part 5", "url": "https://thefileslocker.net/zyf21oe3ec0n.html" },
+      { "name": "Part 6", "url": "https://thefileslocker.net/r4hkztih9j3m.html" },
+      { "name": "Part 7", "url": "https://thefileslocker.net/igwmbx2n22qp.html" },
+      { "name": "Part 8", "url": "https://thefileslocker.net/i98swjh3pw5c.html" }
+    ]
   },
   {
     "id": 13,
     "title": "FIFA 22",
     "platform": "PC",
     "category": "Sports, Simulation",
-    "description": "FIFA 22 (53.5 GB) is an Sports, Simulation video game. Developed and published by EA Canada & EA Romania, Electronic Arts. It was released on October 1, 2021 for Windows. FIFA 22 delivers realistic football gameplay powered by improved player movement and ball physics, creating smoother and more responsive matches. With features like HyperMotion technology on supported platforms, players experience more lifelike animations, tactical depth, and intense one-on-one battles that closely mirror real-world football.",
-    "requirements": "OS: Windows 10 – 64-Bit (Latest Update) Processor: Intel Core i3-6100 @ 3.7GHz or AMD Athlon X4 880K @4GHz RAM: 8 GB Hard Disk: 50 GB available space Graphics Card: NVIDIA GTX 660 2GB or AMD Radeon HD 7850 2GB DirectX: Version 11",
+    "description": "FIFA 22 delivers realistic football gameplay powered by improved player movement and ball physics.",
+    "requirements": "OS: Windows 10 – 64-Bit | RAM: 8 GB | Storage: 50 GB",
     "price": "FREE",
     "image": "images/fifa.png",
     "screenshots": [
@@ -210,6 +274,17 @@
       "images/fifa2.png",
       "images/fifa3.png"
     ],
-    "downloadUrl": "https://drive.google.com/file/d/1DSwwzAj-H4pP8TWtSLHs747YzoJGFy_F/view?usp=drive_link"
+    "downloadParts": [
+      { "name": "Part 01", "url": "https://www.mediafire.com/file_premium/kw5c1itj06orok5/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part01.rar/file" },
+      { "name": "Part 02", "url": "https://www.mediafire.com/file_premium/1sr655r3ws0z144/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part02.rar/file" },
+      { "name": "Part 03", "url": "https://www.mediafire.com/file_premium/9v4c780w5ls7fcv/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part03.rar/file" },
+      { "name": "Part 04", "url": "https://www.mediafire.com/file_premium/f03ebci78g2aza6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part04.rar/file" },
+      { "name": "Part 6", "url": "https://www.mediafire.com/file_premium/orlyw9dos4q14j6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part06.rar/file" },
+      { "name": "Part 07", "url": "https://www.mediafire.com/file_premium/mitgzfrj0lij0a6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part07.rar/file" },
+      { "name": "Part 08", "url": "https://www.mediafire.com/file_premium/x6zxyo6zb21ix99/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part08.rar/file" },
+      { "name": "Part 09", "url": "https://www.mediafire.com/file_premium/f6nuu38e0lwvow0/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part09.rar/file" },
+      { "name": "Part 10", "url": "https://www.mediafire.com/file_premium/knjvmfvol33riz8/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part10.rar/file" },
+      { "name": "Part 11", "url": "https://www.mediafire.com/file_premium/sodw2pmzqi7bnpc/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part11.rar/file" }
+    ]
   }
 ]
