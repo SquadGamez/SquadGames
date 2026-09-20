@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "title": "Tanzania Euro Truck Simulator 2 + 50 TZ mods packs",
     "platform": "PC",
     "category": "Simulation / PC",
@@ -55,7 +55,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": "4",
     "title": "Need for Speed Most Wanted 2005",
     "platform": "PC",
     "category": "Racing / Open world",
@@ -71,7 +71,7 @@
     "downloadUrl": "https://www.mediafire.com/file_premium/adkj9ovmehh2mva/NFS_Most_Wanted_2005_-_%2528www.apunkagames.com%2529.zip/file"
   },
   {
-    "id": 5,
+    "id": "5",
     "title": "Need for Speed Payback",
     "platform": "PC",
     "category": "Racing",
@@ -94,7 +94,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": "6",
     "title": "Call of Duty: Advanced Warfare",
     "platform": "PC",
     "category": "Action, Shooting",
@@ -116,7 +116,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": "7",
     "title": "CarX Street",
     "platform": "PC",
     "category": "Racing, Sports",
@@ -136,7 +136,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": "8",
     "title": "Grand Theft Auto V Legacy",
     "platform": "PC",
     "category": "Action-adventure, Open world",
@@ -164,7 +164,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": "9",
     "title": "GTA 4",
     "platform": "PC",
     "category": "Action-adventure, Open World",
@@ -185,7 +185,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": "10",
     "title": "Call of Duty: Black Ops 1",
     "platform": "PC",
     "category": "First-person shooter",
@@ -205,7 +205,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": "11",
     "title": "Call of Duty: Infinite Warfare",
     "platform": "PC",
     "category": "Action, Adventure, Shooting",
@@ -236,7 +236,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": "12",
     "title": "Marvel’s Spider-Man: Miles Morales",
     "platform": "PC",
     "category": "Action-adventure",
@@ -261,7 +261,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": "13",
     "title": "FIFA 22",
     "platform": "PC",
     "category": "Sports, Simulation",
@@ -279,12 +279,12 @@
       { "name": "Part 02", "url": "https://www.mediafire.com/file_premium/1sr655r3ws0z144/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part02.rar/file" },
       { "name": "Part 03", "url": "https://www.mediafire.com/file_premium/9v4c780w5ls7fcv/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part03.rar/file" },
       { "name": "Part 04", "url": "https://www.mediafire.com/file_premium/f03ebci78g2aza6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part04.rar/file" },
-      { "name": "Part 6", "url": "https://www.mediafire.com/file_premium/orlyw9dos4q14j6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part06.rar/file" },
-      { "name": "Part 07", "url": "https://www.mediafire.com/file_premium/mitgzfrj0lij0a6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part07.rar/file" },
-      { "name": "Part 08", "url": "https://www.mediafire.com/file_premium/x6zxyo6zb21ix99/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part08.rar/file" },
-      { "name": "Part 09", "url": "https://www.mediafire.com/file_premium/f6nuu38e0lwvow0/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part09.rar/file" },
-      { "name": "Part 10", "url": "https://www.mediafire.com/file_premium/knjvmfvol33riz8/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part10.rar/file" },
-      { "name": "Part 11", "url": "https://www.mediafire.com/file_premium/sodw2pmzqi7bnpc/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part11.rar/file" }
+      { "name": "Part 05", "url": "https://www.mediafire.com/file_premium/orlyw9dos4q14j6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part06.rar/file" }, 
+      { "name": "Part 06", "url": "https://www.mediafire.com/file_premium/mitgzfrj0lij0a6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part07.rar/file" },
+      { "name": "Part 07", "url": "https://www.mediafire.com/file_premium/x6zxyo6zb21ix99/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part08.rar/file" },
+      { "name": "Part 08", "url": "https://www.mediafire.com/file_premium/f6nuu38e0lwvow0/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part09.rar/file" },
+      { "name": "Part 09", "url": "https://www.mediafire.com/file_premium/knjvmfvol33riz8/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part10.rar/file" },
+      { "name": "Part 10", "url": "https://www.mediafire.com/file_premium/sodw2pmzqi7bnpc/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part11.rar/file" }
     ]
   }
 ]
