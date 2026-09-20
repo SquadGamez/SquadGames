@@ -230,15 +230,11 @@ function applyFilters() {
 }
 
 function renderGameStore(gameList) {
-    // Ultimate container finder: checks multiple common ID & class names automatically
-    const container = document.getElementById("gameGrid") || 
-                      document.getElementById("games-grid") || 
-                      document.getElementById("store-grid") || 
-                      document.querySelector(".game-grid") || 
-                      document.querySelector(".games-container");
+    // Specifically target the exact grid IDs to prevent grabbing sidebars or panels
+    const container = document.getElementById("gameGrid") || document.getElementById("games-grid");
 
     if (!container) {
-        console.error("CRITICAL ERROR: Could not find any grid container element in your index.html! Please check your HTML structure.");
+        console.error("Error: Could not find element with ID 'gameGrid' or 'games-grid'.");
         return;
     }
 
@@ -440,5 +436,5 @@ function showDownloadPartsModal(game) {
 
 function closeDownloadPartsModal() {
     const modal = document.getElementById('download-parts-modal');
-    if (modal) modal.classList.res('active');
+    if (modal) modal.classList.remove('active');
 }
