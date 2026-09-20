@@ -24,15 +24,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Sleek loading animation handler for download / get buttons & Multi-part popup trigger
     document.addEventListener('click', function(e) {
-        const downloadBtn = e.target.closest('.btn-download, .btn-get');
+        const downloadBtn = e.target.closest('.btn-download, .btn-get, .btn-action');
         if (!downloadBtn) return;
+
+        // ALWAYS prevent default first to stop page jumping or home page redirects
+        e.preventDefault();
 
         // Check if this game has multiple download parts configured
         const gameIndex = downloadBtn.getAttribute('data-game-index');
         if (gameIndex !== null && loadedGamesData[gameIndex]) {
             const game = loadedGamesData[gameIndex];
             if (game.downloadParts && game.downloadParts.length > 0) {
-                e.preventDefault();
                 showDownloadPartsModal(game);
                 return;
             }
@@ -42,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!targetUrl || targetUrl === '#') return;
         if (downloadBtn.classList.contains('preparing')) return;
 
-        e.preventDefault();
         downloadBtn.classList.add('preparing');
         
         const originalHTML = downloadBtn.innerHTML;
