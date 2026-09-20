@@ -241,7 +241,7 @@
                 let altButtonHTML = '';
                 if (game.altDownloadUrl) {
                     altButtonHTML = `
-                        <a href="${game.altDownloadUrl}" class="btn-action" target="_blank" style="padding: 12px 20px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; font-weight: 600;">
+                        <a href="${game.altDownloadUrl}" class="btn-action btn-vodacom" target="_blank" style="padding: 12px 20px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; background: #25d366; color: #fff; font-weight: 600;">
                             <i class="fa-brands fa-whatsapp"></i> Buy via WhatsApp
                         </a>
                     `;
@@ -292,8 +292,10 @@
             const downloadBtn = e.target.closest('.btn-download, .btn-get, .btn-action');
             if (!downloadBtn) return;
 
-            if (downloadBtn.href && downloadBtn.href.includes('whatsapp')) return;
+            // If this specific click was on the WhatsApp alternate button, let it open normally
+            if (downloadBtn.classList.contains('btn-vodacom') || (downloadBtn.href && downloadBtn.href.includes('wa.me') && !currentGame?.downloadParts)) return;
 
+            // If the game has multi-parts, ALWAYS open the modal instead of redirecting
             if (currentGame && currentGame.downloadParts && currentGame.downloadParts.length > 0) {
                 e.preventDefault();
                 showDownloadPartsModal(currentGame);
