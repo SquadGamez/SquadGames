@@ -10,81 +10,105 @@
 </head>
 <body>
 
-    <!-- Main Header -->
-    <header class="store-header">
-        <h1>Squad Games Store TZ</h1>
-        <p>Get your favorite PC and Mobile games & mods in Tanzania</p>
-        
-        <!-- Search Bar -->
-        <div class="search-container" style="margin-top: 15px;">
-            <input type="text" id="gameSearchInput" placeholder="Search games, mods, simulator..." class="search-input">
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Permanent Portal Header & Styled Navigation Box -->
+        <div class="portal-header-wrapper">
+            <div class="portal-logo-area">
+                <h1 class="portal-logo">Squad Games Store TZ</h1>
+                
+                <!-- Sleek Modern Search Box Styling -->
+                <div class="portal-search-wrapper">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="gameSearchInput" placeholder="Search games, mods, simulator...">
+                </div>
+            </div>
+
+            <!-- Portal Navigation Tabs (Categories) -->
+            <nav class="portal-navbar">
+                <button class="nav-tab active" data-category="all">All Games</button>
+                <button class="nav-tab" data-category="pc">PC Games</button>
+                <button class="nav-tab" data-category="simulation">Simulation</button>
+                <button class="nav-tab" data-category="action">Action</button>
+                <button class="nav-tab" data-category="android">Mobile / Android</button>
+            </nav>
         </div>
-    </header>
 
-    <!-- Portal Navigation Tabs (Categories) -->
-    <nav class="portal-navbar">
-        <button class="nav-tab active" data-category="all">All Games</button>
-        <button class="nav-tab" data-category="pc">PC Games</button>
-        <button class="nav-tab" data-category="simulation">Simulation</button>
-        <button class="nav-tab" data-category="action">Action</button>
-        <button class="nav-tab" data-category="android">Mobile / Android</button>
-    </nav>
+        <!-- Intro Banner -->
+        <div class="intro-banner">
+            <h2>Welcome to Squad Games Store TZ</h2>
+            <p>Get your favorite PC and Mobile games & mods in Tanzania</p>
+        </div>
 
-    <!-- Main Content Area -->
-    <main class="store-layout-container">
-        
-        <!-- Left / Sidebar Section (Featured & Popular) -->
-        <aside class="store-sidebar">
-            <div class="sidebar-section">
-                <h3>🔥 Featured</h3>
-                <div id="featuredTrack" class="marquee-track">
-                    <!-- Featured items load here -->
+        <!-- Top Split Section Layout (Featured Marquee & Most Popular) -->
+        <div class="top-split-container">
+            <!-- Featured Marquee Section -->
+            <div class="featured-epic-wrapper">
+                <h3 class="section-title">🔥 Featured</h3>
+                <div class="featured-marquee-container">
+                    <div id="featuredTrack" class="featured-marquee-track">
+                        <!-- Featured items load here via JavaScript -->
+                    </div>
                 </div>
             </div>
 
-            <div class="sidebar-section" style="margin-top: 20px;">
-                <h3>⭐ Popular</h3>
-                <div id="popularList" class="popular-list-container">
-                    <!-- Popular items load here -->
+            <!-- Most Popular Games Section -->
+            <div class="most-popular-wrapper">
+                <h3 class="section-title">⭐ Popular</h3>
+                <div id="popularList" class="popular-list">
+                    <!-- Popular items load here via JavaScript -->
                 </div>
             </div>
-        </aside>
+        </div>
 
-        <!-- Main Game Catalog Grid -->
-        <section class="games-section">
-            <div id="games-grid" class="games-grid">
-                <!-- Dynamic game cards load here -->
+        <!-- Trust Bar -->
+        <div class="trust-bar">
+            <div class="trust-item"><span class="trust-icon">⚡</span> Fast Downloads</div>
+            <div class="trust-item"><span class="trust-icon">🛡️</span> Verified Safe Files</div>
+            <div class="trust-item"><span class="trust-icon">🇹🇿</span> Local TZ Support</div>
+        </div>
+
+        <!-- Main Game Catalog Grid Section -->
+        <section>
+            <div id="games-grid" class="game-grid">
+                <!-- Dynamic game cards load here via JavaScript -->
+                <div class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading games catalog...</p>
+                </div>
             </div>
         </section>
 
-    </main>
+    </div>
 
     <!-- Game Details Modal Popup -->
     <div id="details-modal" class="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content">
-            <button class="close-btn" onclick="closeModalDirect()">&times;</button>
-            <h2 id="modal-title">Game Title</h2>
-            <p id="modal-desc" style="color: #ccc; margin: 10px 0;"></p>
+            <span class="close-btn" onclick="closeModalDirect()">&times;</span>
+            <h2 id="modal-title" style="margin-top: 0;">Game Title</h2>
+            <p id="modal-desc"></p>
             
-            <div class="modal-specs" style="margin: 15px 0; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;">
-                <p><strong>Requirements:</strong> <span id="modal-req" style="color: #bbb;"></span></p>
-                <p style="margin-top: 5px;"><strong>Price:</strong> <span id="modal-price" style="color: #4cd137; font-weight: bold;"></span></p>
+            <div class="specs-box">
+                <p style="margin: 0 0 6px 0;"><strong>Requirements:</strong> <span id="modal-req"></span></p>
+                <p style="margin: 0;"><strong>Price:</strong> <span id="modal-price" style="color: var(--accent-green); font-weight: bold;"></span></p>
             </div>
 
-            <div id="modal-gallery" class="modal-gallery" style="display: flex; gap: 10px; overflow-x: auto; margin-bottom: 15px;">
+            <p style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); margin-bottom: 8px;">Screenshots</p>
+            <div id="modal-gallery" class="screenshots-container">
                 <!-- Screenshots load here -->
             </div>
 
-            <div id="modal-btn-group" class="modal-btn-group" style="display: flex; flex-direction: column; gap: 8px;">
+            <div id="modal-btn-group" style="margin-top: 20px; display: flex; flex-direction: column; gap: 8px;">
                 <!-- Action buttons load here -->
             </div>
         </div>
     </div>
 
     <!-- Fullscreen Image Modal -->
-    <div id="fullscreen-modal" class="modal-overlay" onclick="closeFullScreen()">
-        <span class="fullscreen-close" style="position: absolute; top: 20px; right: 30px; font-size: 2rem; color: #fff; cursor: pointer;">&times;</span>
-        <img id="fullscreen-img" src="" alt="Fullscreen View" style="max-width: 90%; max-height: 90%; margin: auto; display: block;">
+    <div id="fullscreen-modal" class="fullscreen-overlay" onclick="closeFullScreen()">
+        <span class="fullscreen-close">&times;</span>
+        <img id="fullscreen-img" class="fullscreen-img" src="" alt="Fullscreen View">
     </div>
 
     <!-- Script File -->
