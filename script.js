@@ -335,14 +335,14 @@ function closeModalDirect() {
 }
 
 function openFullScreen(imgSrc) {
-    const fullModal = document.getElementById("fullscreen-modal");
-    const fullImg = document.getElementById("fullscreen-img");
+    const fullModal = document.getElementById("fullscreenOverlay");
+    const fullImg = document.getElementById("fullscreenImg");
     if (fullImg) fullImg.src = imgSrc;
     if (fullModal) fullModal.classList.add("active");
 }
 
 function closeFullScreen() {
-    const fullModal = document.getElementById("fullscreen-modal");
+    const fullModal = document.getElementById("fullscreenOverlay");
     if (fullModal) fullModal.classList.remove("active");
 }
 
