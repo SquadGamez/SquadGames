@@ -110,8 +110,8 @@ async function loadGameCatalog() {
                 price: "TZS 20,000",
                 image: "images/ets-2-pc.jpg",
                 screenshots: [],
-                downloadUrl: "https://selar.com/8z3yp9tnyv",
-                altDownloadUrl: "https://wa.me/255692752060?text=Hello%20Squad%20Games"
+                downloadUrl: "[https://selar.com/8z3yp9tnyv](https://selar.com/8z3yp9tnyv)",
+                altDownloadUrl: "[https://wa.me/255692752060?text=Hello%20Squad%20Games](https://wa.me/255692752060?text=Hello%20Squad%20Games)"
             },
             {
                 id: 2,
@@ -123,7 +123,7 @@ async function loadGameCatalog() {
                 price: "FREE",
                 image: "images/spider-man.jpg",
                 screenshots: [],
-                downloadUrl: "https://wa.me/255692752060"
+                downloadUrl: "[https://wa.me/255692752060](https://wa.me/255692752060)"
             }
         ];
     }
@@ -258,7 +258,7 @@ function renderGameStore(gameList) {
 
         const actionBtnText = isFree ? "Get" : "Buy Now";
         const actionBtnClass = isFree ? "btn-get" : "btn-download";
-        const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+        const targetUrl = game.downloadUrl || "[https://wa.me/255692752060](https://wa.me/255692752060)";
 
         let actionButtonsHTML = `
             <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}" data-game-index="${originalIndex}">${actionBtnText}</a>
@@ -295,7 +295,6 @@ function renderGameStore(gameList) {
     });
 }
 
-// Updated to seamlessly route every game click to our new full-page details.html layout
 function openDetails(index) {
     const game = loadedGamesData[index];
     if (!game) return;
