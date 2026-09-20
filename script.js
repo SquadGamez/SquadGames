@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const targetUrl = downloadBtn.getAttribute('href');
-        if (!targetUrl || targetUrl === '#') return;
+        if (!targetUrl || targetUrl === '#' || targetUrl === 'undefined' || targetUrl === '') return;
         if (downloadBtn.classList.contains('preparing')) return;
 
         e.preventDefault();
@@ -278,7 +278,9 @@ function renderGameStore(gameList) {
 
         const actionBtnText = isFree ? "Get" : "Buy Now";
         const actionBtnClass = isFree ? "btn-get" : "btn-download";
-        const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
+        
+        // FIX APPLIED HERE: Only use downloadUrl if available, do not fallback to WhatsApp link
+        const targetUrl = game.downloadUrl || (game.downloadParts && game.downloadParts.length > 0 ? "#" : "");
 
         let actionButtonsHTML = `
             <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}" data-game-index="${originalIndex}">${actionBtnText}</a>
