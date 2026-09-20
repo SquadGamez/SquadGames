@@ -230,7 +230,6 @@ function applyFilters() {
 }
 
 function renderGameStore(gameList) {
-    // Specifically target the exact grid IDs to prevent grabbing sidebars or panels
     const container = document.getElementById("gameGrid") || document.getElementById("games-grid");
 
     if (!container) {
@@ -316,40 +315,10 @@ function openDetails(index) {
     if (modalReq) modalReq.innerText = game.requirements || "Standard System Requirements not specified.";
     if (modalPrice) modalPrice.innerText = game.price || "FREE";
 
-    const priceText = String(game.price || "").trim().toUpperCase();
-    const isFree = priceText === "FREE" || priceText === "0" || priceText.includes("FREE");
-
-    const modalBtnText = isFree ? "Get" : "Buy Now";
-    const modalBtnClass = isFree ? "btn-get" : "btn-download";
-    const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
-
+    // Cleared out download and buy action buttons from the details popup window so it shows details only
     const modalBtnGroup = document.getElementById("modal-btn-group");
     if (modalBtnGroup) {
-        let modalButtonsHTML = "";
-
-        if (game.downloadParts && game.downloadParts.length > 0) {
-            game.downloadParts.forEach((part, idx) => {
-                modalButtonsHTML += `
-                    <a href="${part.url}" target="_blank" class="btn-action btn-get" style="margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
-                        <span><i class="fa-solid fa-download"></i> ${part.name || `Part ${idx + 1}`}</span>
-                        <i class="fa-solid fa-external-link-alt" style="font-size: 0.8rem;"></i>
-                    </a>
-                `;
-            });
-        } else {
-            modalButtonsHTML += `
-                <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
-            `;
-        }
-
-        if (game.altDownloadUrl) {
-            modalButtonsHTML += `
-                <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;">
-                    💬 Buy via WhatsApp (Vodacom)
-                </a>
-            `;
-        }
-        modalBtnGroup.innerHTML = modalButtonsHTML;
+        modalBtnGroup.innerHTML = "";
     }
 
     const gallery = document.getElementById("modal-gallery");
