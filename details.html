@@ -17,12 +17,72 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
-        /* Mobile responsive grid fix */
-        @media (max-width: 768px) {
-            .details-grid {
-                grid-template-columns: 1fr !important;
-            }
+        
+        /* ApunkaGames Style Layout Container */
+        .apunka-details-layout {
+            max-width: 850px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
         }
+
+        /* Top Header Content Box */
+        .game-main-info-box {
+            background: var(--bg-card, #1e1e1e);
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Hero Image Container at Top */
+        .hero-banner-wrapper {
+            width: 100%;
+            max-height: 450px;
+            overflow: hidden;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+            cursor: pointer;
+        }
+        .hero-banner-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .hero-banner-wrapper img:hover {
+            transform: scale(1.02);
+        }
+
+        /* Vertical Stacked Screenshots Section */
+        .stacked-screenshots-section {
+            background: var(--bg-card, #1e1e1e);
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        .stacked-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .stacked-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .stacked-gallery img:hover {
+            transform: scale(1.01);
+        }
+
         /* Fullscreen Image Overlay Styling */
         .fullscreen-overlay {
             position: fixed;
@@ -138,27 +198,30 @@
                 const buttonText = isFree ? 'Get / Download Game' : 'Buy / Order Game';
                 const buttonClass = isFree ? 'btn-get' : 'btn-download';
 
-                // Screenshots gallery rendering
+                // Vertical Stacked Screenshots gallery rendering
                 let screenshotsHTML = '';
-                if (game.screenshots && Array.isArray(game.screenshots) && game.screenshots.length > 0) {
-                    screenshotsHTML = `
-                        <div style="margin-top: 25px;">
-                            <h3 style="color: #fff; margin-bottom: 12px; font-size: 1.1rem;"><i class="fa-solid fa-images"></i> Screenshots & Gallery</h3>
-                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px;">
-                                ${game.screenshots.map(img => `<img src="${img}" alt="Screenshot" style="width: 100%; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); cursor: pointer;" onclick="openFullScreen('${img}')" onerror="this.src='images/nfsmw-shot1.png'">`).join('')}
-                            </div>
+                const imagesList = (game.screenshots && Array.isArray(game.screenshots) && game.screenshots.length > 0) 
+                    ? game.screenshots 
+                    : [game.image || 'images/nfsmw-shot1.png'];
+
+                screenshotsHTML = `
+                    <div class="stacked-screenshots-section">
+                        <h3 style="color: #fff; margin-bottom: 5px; font-size: 1.3rem;"><i class="fa-solid fa-images"></i> Gameplay Screenshots</h3>
+                        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 15px;">Scroll down to view high-resolution screenshots of the game.</p>
+                        <div class="stacked-gallery">
+                            ${imagesList.map(img => `<img src="${img}" alt="Screenshot" onclick="openFullScreen('${img}')" onerror="this.src='images/nfsmw-shot1.png'">`).join('')}
                         </div>
-                    `;
-                }
+                    </div>
+                `;
 
                 // Requirements specs box mapping correctly to game.requirements
                 let specsHTML = '';
                 const gameRequirements = game.requirements || game.specs;
                 if (gameRequirements) {
                     specsHTML = `
-                        <div class="specs-box" style="margin-top: 20px; background: rgba(255,255,255,0.03); padding: 15px; border-radius: 10px; border: 1px solid var(--border-color);">
-                            <strong style="color: #fff; display: block; margin-bottom: 8px;"><i class="fa-solid fa-sliders"></i> System Requirements & Specifications:</strong>
-                            <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; white-space: pre-line;">${gameRequirements}</p>
+                        <div class="specs-box" style="margin-top: 20px; background: rgba(255,255,255,0.03); padding: 18px; border-radius: 10px; border: 1px solid var(--border-color);">
+                            <strong style="color: #fff; display: block; margin-bottom: 8px; font-size: 1.05rem;"><i class="fa-solid fa-sliders"></i> System Requirements & Specifications:</strong>
+                            <p style="margin: 0; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; white-space: pre-line;">${gameRequirements}</p>
                         </div>
                     `;
                 }
@@ -173,32 +236,40 @@
                     `;
                 }
 
+                // Main ApunkaGames-style layout: Words on top, large stacked screenshots below
                 container.innerHTML = `
-                    <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px;" class="details-grid">
-                        <div>
-                            <img src="${game.image || 'images/nfsmw-shot1.png'}" alt="${game.title}" style="width: 100%; border-radius: 12px; object-fit: cover; border: 1px solid var(--border-color); box-shadow: 0 8px 24px rgba(0,0,0,0.4); cursor: pointer;" onclick="openFullScreen('${game.image || 'images/nfsmw-shot1.png'}')" onerror="this.src='images/nfsmw-shot1.png';">
-                            ${screenshotsHTML}
-                        </div>
-                        <div>
-                            <span class="card-badge" style="display: inline-block; padding: 4px 10px; background: var(--accent-blue); color: #fff; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px;">${(game.platform || smartCats[0] || 'PC').toUpperCase()}</span>
-                            <h1 style="margin: 0 0 10px 0; font-size: 2rem; color: #fff;">${game.title}</h1>
-                            <p style="color: var(--text-muted); font-size: 1rem; line-height: 1.6;">${game.description || 'No description provided.'}</p>
+                    <div class="apunka-details-layout">
+                        <!-- Top Box: Title, Description, Requirements & Download Buttons -->
+                        <div class="game-main-info-box">
+                            <span class="card-badge" style="display: inline-block; padding: 4px 10px; background: var(--accent-blue); color: #fff; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 12px;">${(game.platform || smartCats[0] || 'PC').toUpperCase()}</span>
                             
-                            <div class="specs-box" style="margin-top: 15px; color: var(--text-muted); font-size: 0.9rem;">
-                                <strong style="color: #fff;">Categories:</strong> ${smartCats.join(' • ')}<br>
+                            <h1 style="margin: 0 0 12px 0; font-size: 2.2rem; color: #fff; line-height: 1.2;">${game.title}</h1>
+                            
+                            <div class="specs-box" style="margin-bottom: 20px; color: var(--text-muted); font-size: 0.9rem;">
+                                <strong style="color: #fff;">Categories:</strong> ${smartCats.join(' • ')} &nbsp;|&nbsp; 
                                 <strong style="color: #fff;">Platform:</strong> ${game.platform || 'PC / Android'}
+                            </div>
+
+                            <p style="color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px;">${game.description || 'No description provided.'}</p>
+                            
+                            <!-- Hero Featured Image Preview -->
+                            <div class="hero-banner-wrapper" onclick="openFullScreen('${game.image || 'images/nfsmw-shot1.png'}')">
+                                <img src="${game.image || 'images/nfsmw-shot1.png'}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
                             </div>
 
                             ${specsHTML}
 
-                            <div style="margin-top: 30px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
-                                <span class="price" style="font-size: 1.6rem; font-weight: 800; color: #fff;">${game.price || 'FREE'}</span>
-                                <a href="${downloadUrl}" class="btn-action ${buttonClass}" target="_blank" style="padding: 12px 24px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
+                            <div style="margin-top: 30px; display: flex; gap: 15px; align-items: center; flex-wrap: wrap; padding-top: 15px; border-top: 1px solid var(--border-color);">
+                                <span class="price" style="font-size: 1.8rem; font-weight: 800; color: #fff;">${game.price || 'FREE'}</span>
+                                <a href="${downloadUrl}" class="btn-action ${buttonClass}" target="_blank" style="padding: 12px 28px; font-size: 1rem; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;">
                                     <i class="fa-solid fa-download"></i> ${buttonText}
                                 </a>
                                 ${altButtonHTML}
                             </div>
                         </div>
+
+                        <!-- Bottom Section: Big Stacked Screenshots Gallery for Scrolling -->
+                        ${screenshotsHTML}
                     </div>
                 `;
             })
