@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Sleek loading animation handler for download / get buttons & Multi-part popup trigger
+    // 3. Sleek loading animation handler & Universal Multi-part popup trigger for all current & future games
     document.addEventListener('click', function(e) {
         const downloadBtn = e.target.closest('.btn-download, .btn-get, .btn-action');
         if (!downloadBtn) return;
@@ -30,14 +30,24 @@ document.addEventListener("DOMContentLoaded", () => {
         // Skip interception if it's the WhatsApp alternate button
         if (downloadBtn.classList.contains('btn-vodacom') || downloadBtn.href.includes('wa.me')) return;
 
+        let targetGame = null;
+
+        // Method A: Check via data-game-index attribute
         const gameIndex = downloadBtn.getAttribute('data-game-index');
         if (gameIndex !== null && loadedGamesData[gameIndex]) {
-            const game = loadedGamesData[gameIndex];
-            if (game.downloadParts && game.downloadParts.length > 0) {
-                e.preventDefault(); // Stop normal redirection so the modal can pop up
-                showDownloadPartsModal(game);
-                return;
-            }
+            targetGame = loadedGamesData[gameIndex];
+        }
+
+        // Method B: Fallback search by matching downloadUrl if index wasn't present
+        if (!targetGame && downloadBtn.href) {
+            targetGame = loadedGamesData.find(g => g.downloadUrl && downloadBtn.href.includes(g.downloadUrl));
+        }
+
+        // If the game has multi-parts configured in games.json, open modal instantly
+        if (targetGame && targetGame.downloadParts && targetGame.downloadParts.length > 0) {
+            e.preventDefault();
+            showDownloadPartsModal(targetGame);
+            return;
         }
 
         const targetUrl = downloadBtn.getAttribute('href');
@@ -91,7 +101,6 @@ async function loadGameCatalog() {
         }
     }
 
-    // Safely extract games array whether games.json is an Array or an Object containing games
     let gamesArray = [];
     if (Array.isArray(rawData)) {
         gamesArray = rawData;
@@ -99,7 +108,6 @@ async function loadGameCatalog() {
         gamesArray = rawData.games || rawData.data || rawData.list || Object.values(rawData).find(Array.isArray) || [];
     }
 
-    // Fallback if fetch failed or data is empty
     if (gamesArray.length === 0) {
         console.warn("Using fallback catalog data.");
         gamesArray = [
@@ -180,36 +188,42 @@ function renderFeaturedMarquee(sliderGames) {
     const track = document.getElementById("featuredTrack");
     if (!track) return;
 
-    track.innerHTML = sliderGames.map((game) => `
-        <div class="marquee-game-card">
-            <img class="marquee-game-img" src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
-            <div class="marquee-game-content">
-                <span class="marquee-game-badge">${game.platform || 'Game'}</span>
-                <h4>${game.title}</h4>
-                <p>${game.description || ''}</p>
-                <div class="marquee-game-footer">
-                    <span class="marquee-price">${game.price || 'FREE'}</span>
-                    <button class="btn-details" onclick="openDetails(${loadedGamesData.indexOf(game)})" style="padding: 4px 8px; font-size: 0.75rem;">View</button>
+    track.innerHTML = sliderGames.map((game) => {
+        const originalIndex = loadedGamesData.indexOf(game);
+        return `
+            <div class="marquee-game-card">
+                <img class="marquee-game-img" src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
+                <div class="marquee-game-content">
+                    <span class="marquee-game-badge">${game.platform || 'Game'}</span>
+                    <h4>${game.title}</h4>
+                    <p>${game.description || ''}</p>
+                    <div class="marquee-game-footer">
+                        <span class="marquee-price">${game.price || 'FREE'}</span>
+                        <button class="btn-details" onclick="openDetails(${originalIndex})" style="padding: 4px 8px; font-size: 0.75rem;">View</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function renderPopularList(popularGames) {
     const container = document.getElementById("popularList");
     if (!container) return;
 
-    container.innerHTML = popularGames.map((game) => `
-        <div class="popular-item" onclick="openDetails(${loadedGamesData.indexOf(game)})" style="cursor: pointer;">
-            <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
-            <div class="popular-item-info">
-                <h5>${game.title}</h5>
-                <span>${game.price || 'FREE'}</span>
+    container.innerHTML = popularGames.map((game) => {
+        const originalIndex = loadedGamesData.indexOf(game);
+        return `
+            <div class="popular-item" onclick="openDetails(${originalIndex})" style="cursor: pointer;">
+                <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
+                <div class="popular-item-info">
+                    <h5>${game.title}</h5>
+                    <span>${game.price || 'FREE'}</span>
+                </div>
+                <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
             </div>
-            <i class="fa-solid fa-chevron-right" style="font-size: 0.75rem; color: var(--text-muted);"></i>
-        </div>
-    `).join('');
+        `;
+    }).join('');
 }
 
 function applyFilters() {
