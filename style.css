@@ -85,7 +85,6 @@ body {
     border-color: rgba(255, 255, 255, 0.15);
 }
 
-/* Glowing accent border when you click/type in the search box */
 .portal-search-wrapper:focus-within {
     background: rgba(0, 122, 255, 0.05);
     border-color: var(--accent-blue);
@@ -266,7 +265,7 @@ body {
     line-height: 1.5;
 }
 
-/* --- Search and Category Filter Section (Now exclusively for pills) --- */
+/* --- Search and Category Filter Section --- */
 .search-filter-section {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -312,7 +311,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
 }
 
-/* --- Updated Top Section Split Layout --- */
+/* --- Top Section Split Layout --- */
 .top-split-container {
     display: flex !important;
     flex-direction: row !important;
@@ -366,7 +365,6 @@ body {
     letter-spacing: 0.3px;
 }
 
-/* Continuous Right-to-Left Marquee Slider */
 .featured-marquee-container {
     overflow: hidden;
     width: 100%;
@@ -388,12 +386,8 @@ body {
 }
 
 @keyframes scrollRightToLeft {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .marquee-game-card {
@@ -588,16 +582,16 @@ body {
     to { transform: rotate(360deg); }
 }
 
-/* Game Cards Grid (Updated with justify-content: start) */
+/* Game Cards Grid */
 .game-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 22px;
     padding: 10px 0;
-    justify-content: start; /* Prevents a single card from stretching full-width */
+    justify-content: start;
 }
 
-/* Game Card (Updated with max-width for consistent box sizing) */
+/* Game Card */
 .game-card {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -607,7 +601,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100%;
-    max-width: 320px; /* Keeps individual cards in a proper proportional size */
+    max-width: 320px;
     width: 100%;
     backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
@@ -694,18 +688,21 @@ body {
     letter-spacing: 0.5px;
 }
 
+/* --- FIXED: Card Action & Action Group Layout --- */
 .card-action {
     margin-top: auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding-top: 18px;
+    align-items: flex-end; /* Aligns items cleanly to the bottom */
+    padding-top: 14px;
+    gap: 8px;
 }
 
 .price {
     font-weight: 800;
     color: #ffffff;
     font-size: 1.1rem;
+    align-self: center;
 }
 
 /* Action Group & Buttons */
@@ -713,7 +710,17 @@ body {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    align-items: flex-end;
+    width: 100%;
+    max-width: 130px; /* Constrains width so buttons fit neatly */
+}
+
+/* Ensures all grouped buttons stretch properly to avoid truncation */
+.action-group .btn-details,
+.action-group .btn-action {
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    white-space: nowrap;
 }
 
 .btn-details {
