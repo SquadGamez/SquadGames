@@ -1,4 +1,30 @@
-<script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Details - Squad Games Store TZ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container" style="padding-top: 30px;">
+        <a href="index.html" class="btn-details" style="display: inline-block; margin-bottom: 20px; text-decoration: none;">&larr; Back to Store</a>
+        <div id="gameDetailsContainer">
+            <div class="loading-state" style="text-align: center; padding: 40px;">
+                <div class="spinner"></div>
+                <p style="color: #fff;">Loading game details...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen Image Modal Overlay (Added so image zoom works correctly) -->
+    <div id="fullscreenOverlay" class="fullscreen-overlay" onclick="closeFullScreen()">
+        <span class="fullscreen-close">&times;</span>
+        <img id="fullscreenImg" class="fullscreen-img" src="" alt="Fullscreen Screenshot">
+    </div>
+
+    <script>
         let currentGame = null;
 
         function getSmartCategories(game) {
@@ -197,3 +223,5 @@
             if (fullModal) fullModal.classList.remove("active");
         }
     </script>
+</body>
+</html>
