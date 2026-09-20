@@ -22,10 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 3. Sleek loading animation handler for download / get buttons
+    // 3. Sleek loading animation handler for download / get buttons & Multi-part popup trigger
     document.addEventListener('click', function(e) {
         const downloadBtn = e.target.closest('.btn-download, .btn-get');
         if (!downloadBtn) return;
+
+        // Check if this game has multiple download parts configured
+        const gameIndex = downloadBtn.getAttribute('data-game-index');
+        if (gameIndex !== null && loadedGamesData[gameIndex]) {
+            const game = loadedGamesData[gameIndex];
+            if (game.downloadParts && game.downloadParts.length > 0) {
+                e.preventDefault();
+                showDownloadPartsModal(game);
+                return;
+            }
+        }
 
         const targetUrl = downloadBtn.getAttribute('href');
         if (!targetUrl || targetUrl === '#') return;
@@ -268,7 +279,7 @@ function renderGameStore(gameList) {
         const targetUrl = game.downloadUrl || "https://wa.me/255692752060";
 
         let actionButtonsHTML = `
-            <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}">${actionBtnText}</a>
+            <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}" data-game-index="${originalIndex}">${actionBtnText}</a>
         `;
 
         if (game.altDownloadUrl) {
@@ -331,9 +342,24 @@ function openDetails(index) {
 
     const modalBtnGroup = document.getElementById("modal-btn-group");
     if (modalBtnGroup) {
-        let modalButtonsHTML = `
-            <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
-        `;
+        let modalButtonsHTML = "";
+
+        // Render multiple parts inside modal if available
+        if (game.downloadParts && game.downloadParts.length > 0) {
+            game.downloadParts.forEach((part, idx) => {
+                modalButtonsHTML += `
+                    <a href="${part.url}" target="_blank" class="btn-action btn-get" style="margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center;">
+                        <span><i class="fa-solid fa-download"></i> ${part.name || `Part ${idx + 1}`}</span>
+                        <i class="fa-solid fa-external-link-alt" style="font-size: 0.8rem;"></i>
+                    </a>
+                `;
+            });
+        } else {
+            modalButtonsHTML += `
+                <a href="${targetUrl}" target="_blank" class="btn-action ${modalBtnClass}">${modalBtnText}</a>
+            `;
+        }
+
         if (game.altDownloadUrl) {
             modalButtonsHTML += `
                 <a href="${game.altDownloadUrl}" target="_blank" class="btn-action btn-vodacom" style="margin-top: 6px;">
@@ -388,4 +414,46 @@ function openFullScreen(imgSrc) {
 function closeFullScreen() {
     const fullModal = document.getElementById("fullscreen-modal");
     if (fullModal) fullModal.classList.remove("active");
+}
+
+// --- Dynamic Download Parts Series Popup Modal Helpers ---
+function showDownloadPartsModal(game) {
+    let modal = document.getElementById('download-parts-modal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'download-parts-modal';
+        modal.className = 'modal-overlay';
+        modal.innerHTML = `
+            <div class="modal-content" style="max-width: 450px; background: var(--bg-card, #1e1e1e); padding: 25px; border-radius: 12px; color: #fff; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.5);">
+                <button onclick="closeDownloadPartsModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: #aaa; font-size: 1.2rem; cursor: pointer;"><i class="fa-solid fa-xmark"></i></button>
+                <h3 id="parts-modal-title" style="margin-bottom: 8px; font-size: 1.25rem;">Select Download Part</h3>
+                <p style="color: #aaa; font-size: 0.85rem; margin-bottom: 20px;">Choose a specific part series below to start your direct download link:</p>
+                <div id="parts-list-container" style="display: flex; flex-direction: column; gap: 10px;"></div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+        
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeDownloadPartsModal();
+            }
+        });
+    }
+
+    document.getElementById('parts-modal-title').innerText = `Download: ${game.title}`;
+    
+    const container = document.getElementById('parts-list-container');
+    container.innerHTML = game.downloadParts.map((part, idx) => `
+        <a href="${part.url}" target="_blank" class="btn-action btn-get" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; text-decoration: none;">
+            <span><i class="fa-solid fa-download"></i> ${part.name || `Part ${idx + 1}`}</span>
+            <i class="fa-solid fa-external-link-alt" style="font-size: 0.8rem;"></i>
+        </a>
+    `).join('');
+
+    modal.classList.add('active');
+}
+
+function closeDownloadPartsModal() {
+    const modal = document.getElementById('download-parts-modal');
+    if (modal) modal.classList.remove('active');
 }
