@@ -75,6 +75,12 @@
     <div class="admin-container">
         <h1>🎮 Add New Game Entry</h1>
         <form id="game-form">
+            <!-- Gemini API Key Input Field Added Here -->
+            <div class="form-group">
+                <label>Gemini API Key</label>
+                <input type="password" id="geminiApiKey" placeholder="Paste your API key here..." required>
+            </div>
+
             <div class="form-group">
                 <label>Game Title</label>
                 <div style="display: flex; gap: 10px;">
@@ -136,7 +142,15 @@
         async function generateGameDetailsWithAI() {
             const titleInput = document.getElementById('title');
             const aiBtn = document.getElementById('aiAutoFillBtn');
+            const apiKeyInput = document.getElementById('geminiApiKey');
             const gameName = titleInput.value.trim();
+            const apiKey = apiKeyInput.value.trim();
+
+            if (!apiKey) {
+                alert("Please paste your Gemini API key in the API Key field first!");
+                apiKeyInput.focus();
+                return;
+            }
 
             if (!gameName) {
                 alert("Please enter a game title first so the AI knows what to write about!");
@@ -148,8 +162,6 @@
             aiBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Writing...`;
             aiBtn.disabled = true;
 
-            // Replace with your Google AI Studio Gemini API Key
-            const apiKey = "YOUR_GEMINI_API_KEY"; 
             const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
 
             const prompt = `You are a video game catalog assistant. Given the game title "${gameName}", generate standard store details. 
