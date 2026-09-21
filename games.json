@@ -351,5 +351,21 @@
       { "name": "Part 6", "url": "https://www.mediafire.com/file/bdxyod0ud9iqnp5/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part6.rar/file" },
       { "name": "Part 7", "url": "https://www.mediafire.com/file/30v3kb02v1imimj/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part7.rar/file" }
     ]
+  },
+  {
+    "id": "18",
+    "title": "Need for Speed: Most Wanted Black Edition",
+    "platform": "PC",
+    "category": "Racing",
+    "description": "Need for Speed: Most Wanted Black Edition, developed and published by Electronic Arts for Windows on November 15, 2005, is an intense, 2.54 GB street racing video game that challenges players to climb the ranks and become the most wanted driver in Rockport City. The gameplay combines arcade-style racing, deep car upgrades, and thrilling open-city pursuits as you race high-speed vehicles, outsmart aggressive police chases, and defeat formidable rivals on the Blacklist to deliver an unforgettable experience for speed fans.",
+    "requirements": "OS: Windows XP/Vista/7 Processor: Intel Pentium 4 1.60GHz / AMD Athlon XP 1600+ RAM: 256 MB Hard Disk: 3 GB available space Graphics Card: 64 MB, (NVIDIA GeForce2 MX+ / ATI Radeon 7500+ / Intel 915+) DirectX: Version 9.0c",
+    "price": "FREE",
+    "image": "images/nfsmwbe.png",
+    "screenshots": [
+        "images/nfsmwbe1.png",
+        "images/nfsmwbe2.png",
+        "images/nfsmwbe3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/q29hs8zhu9ktuyp/NFS_MW_2005_Black_Edition_%2528RG_Mechanics_Setup%2529.rar/file"
   }
 ]
