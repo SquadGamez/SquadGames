@@ -320,12 +320,36 @@
     "description": "Need for Speed: Most Wanted 2012 Unofficial Remake, developed and published by Tiny Repack as a custom modification for Windows with a file size of 3.48 GB, is an open-world racing video game that delivers high-speed driving action paired with enhanced visuals and intense police chases. Players can freely explore the city, customize a variety of high-performance cars, and dominate challenging events scattered across the map, all while experiencing fast-paced arcade handling and nonstop action that captures the true essence of the classic Most Wanted gameplay.",
     "requirements": "OS: Windows 7 or later (64‑bit) Processor: Intel i3 6300 / 3.8GHz or AMD FX 8150 @ 3.6GHz with 4 hardware threads RAM: 6 GB Hard Disk: 30 GB available space Graphics Card: NVIDIA GeForce GTX 750 Ti or AMD Radeon™ HD 7850 or equivalent DX11 compatible Network: Broadband Internet connection DirectX: Version 11",
     "price": "FREE",
-    "image": "images/nfsmw2012.png",
+    "image": "nfsmw2012.png",
     "screenshots": [
         "images/nfsmw20121.png",
         "images/nfsmw20122.png",
         "images/nfsmw20123.png"
     ],
     "downloadUrl": "https://www.mediafire.com/file/xipwd29nh4dc20f/NFS_MW_2012_Unofficial_Remake_-_%2528Www.ApunKaGames.Net%2529.rar/file"
+  },
+  {
+    "id": "17",
+    "title": "Need for Speed Hot Pursuit Remastered",
+    "platform": "PC",
+    "category": "Racing, Action and Sports",
+    "description": "Need for Speed Hot Pursuit Remastered, released by Electronic Arts and developed by Stellar Entertainment Limited for Windows on November 6, 2020, is an action-packed, 30.1 GB racing video game that lets players experience the thrill of the chase and the rush of escape using the world's hottest high-performance cars. The gameplay delivers a savage sense of speed as you play on both sides of the law—either outsmarting the heat as an outlaw or taking down lawbreakers using tactical weaponry—all within a heart-pumping, socially competitive racing environment.",
+    "requirements": "OS: Windows 10 (64‑bit) Processor: (AMD) Phenom II X4 965 or equivalent (Intel) Corei3-2120 or equivalent RAM: 8 GB Hard Disk: 45 GB available space Graphics Card: (AMD) Radeon HD 5870 or equivalent (Nvidia) GeForce GT 640 or equivalent Network: Broadband Internet connection DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/nfshp.png",
+    "screenshots": [
+        "images/nfshp1.png",
+        "images/nfshp2.png",
+        "images/nfshp3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/r6ioytcekv5sn5h/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/0a53fi0nzxvnqso/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/sjqp6wjg80va4eg/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part3.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file/gpp0vr70275ulq8/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part4.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file/l2czk51o223wupx/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part5.rar/file" },
+      { "name": "Part 6", "url": "https://www.mediafire.com/file/bdxyod0ud9iqnp5/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part6.rar/file" },
+      { "name": "Part 7", "url": "https://www.mediafire.com/file/30v3kb02v1imimj/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part7.rar/file" }
+    ]
   }
 ]
