@@ -285,9 +285,9 @@
     "price": "FREE",
     "image": "nfsc.png",
     "screenshots": [
-        "nfsc1.png",
-        "nfsc2.png",
-        "nfsc.png"
+        "images/nfsc1.png",
+        "images/nfsc2.png",
+        "images/nfsc.png"
     ],
     "downloadUrl": "https://thefileslocker.net/iu3wtv5etzw3.html"
   },
@@ -301,9 +301,9 @@
     "price": "FREE",
     "image": "nfspde.png",
     "screenshots": [
-        "nfspde1.png",
-        "nfspde2.png",
-        "nfspde3.png"
+        "images/nfspde1.png",
+        "images/nfspde2.png",
+        "images/nfspde3.png"
     ],
     "downloadParts": [
       { "name": "Part 1", "url": "https://thefileslocker.net/6r30280iy8g7.html" },
