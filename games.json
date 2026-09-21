@@ -367,5 +367,28 @@
         "images/nfsmwbe3.png"
     ],
     "downloadUrl": "https://www.mediafire.com/file/q29hs8zhu9ktuyp/NFS_MW_2005_Black_Edition_%2528RG_Mechanics_Setup%2529.rar/file"
+  },
+  {
+    "id": "19",
+    "title": "Need for Speed: Heat",
+    "platform": "PC",
+    "category": "Racing/Sports/Open World",
+    "description": "Need for Speed: Heat, developed by Ghost Games and published by Electronic Arts for Windows, is a 25.6 GB open-world racing video game set in a vibrant urban environment called Palm City. The gameplay combines fast-paced arcade handling and a large roster of licensed vehicles, allowing players to compete in legal Speedhunter Showdown events by day to earn cash and take part in risky, high-stakes street races by night to build their reputation. Featuring intense police chases, deep car customization options, and both solo and crew challenges, the title delivers a stylish racing experience centered entirely around speed, customization, and survival against corrupt local authorities",
+    "requirements": "OS: Windows 10 Processor: FX-6350 or Equivalent/Core i5-3570 or Equivalent RAM: 8 GB Hard Drive: 50 GB available space Video Card: Radeon 7970/Radeon R9 280x/GeForce GTX 760 or Equivalent DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/nfsh.png",
+    "screenshots": [
+        "images/nfsh1.png",
+        "images/nfsh2.png",
+        "images/nfsh3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/msijpdpa9vjazaw/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/1gd05gc5nml14a1/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/mj5m2gcmvr8qkvp/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part3.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file/d00y1g6s17scwua/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part4.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file/752uhgta13yifp8/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part5.rar/file" },
+      { "name": "Part 6", "url": "https://www.mediafire.com/file/n4o9rhrrlhs1j55/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part6.rar/file" }
+    ]
   }
 ]
