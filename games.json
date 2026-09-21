@@ -320,7 +320,7 @@
     "description": "Need for Speed: Most Wanted 2012 Unofficial Remake, developed and published by Tiny Repack as a custom modification for Windows with a file size of 3.48 GB, is an open-world racing video game that delivers high-speed driving action paired with enhanced visuals and intense police chases. Players can freely explore the city, customize a variety of high-performance cars, and dominate challenging events scattered across the map, all while experiencing fast-paced arcade handling and nonstop action that captures the true essence of the classic Most Wanted gameplay.",
     "requirements": "OS: Windows 7 or later (64‑bit) Processor: Intel i3 6300 / 3.8GHz or AMD FX 8150 @ 3.6GHz with 4 hardware threads RAM: 6 GB Hard Disk: 30 GB available space Graphics Card: NVIDIA GeForce GTX 750 Ti or AMD Radeon™ HD 7850 or equivalent DX11 compatible Network: Broadband Internet connection DirectX: Version 11",
     "price": "FREE",
-    "image": "nfsmw2012.png",
+    "image": "images/nfsmw2012.png",
     "screenshots": [
         "images/nfsmw20121.png",
         "images/nfsmw20122.png",
