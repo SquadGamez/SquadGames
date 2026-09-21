@@ -201,7 +201,7 @@
     ],
     "downloadParts": [
       { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/qzakjeyt3b5itm6/Call_of_Duty_-_BO1_%2528Www.ApunkaGames.Net%2529.part1.rar/file" },
-      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/66n2ktmz51krl4q/Call_of_Duty_-_BO1_%2528Www.ApunkaGames.Net%2529.part2.rar/file" }
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/66n2ktmz51krl4q/Call_of_Duty_-_BO1_%2528Www.ApunKaGames.Net%2529.part2.rar/file" }
     ]
   },
   {
@@ -396,7 +396,7 @@
     "title": "Need for Speed Rivals",
     "platform": "PC",
     "category": "Racing, Open world",
-    "description": "Need for Speed Rivals...",
+    "description": "Need for Speed Rivals, developed by Criterion Games and published by Electronic Arts for Windows on November 19, 2013, is a 7.10 GB open-world racing video game that immerses players in intense street competition within a dynamic environment where they can choose to play as either relentless cops or reckless outlaw racers. The gameplay blends seamless multiplayer action with high-speed pursuits, advanced supercars, and risky challenges that reward aggressive driving, delivering a nonstop, adrenaline-fueled experience of speed and strategy on both sides of the law.",
     "requirements": "OS: Windows Vista/7/8<br>Processor: Intel 2.4 GHz Core 2 Duo or AMD 2.8 GHz Athlon X2<br>RAM: 4 GB Hard Drive: 30 GB available space<br>Video Card: 512 MB, (AMD Radeon 3870 , NVIDIA GeForce 8800 GT or better)<br>Network: Broadband Internet connection<br>DirectX: 10.1",
     "price": "FREE",
     "image": "images/nfsr.png",
@@ -413,7 +413,7 @@
     "platform": "PC",
     "category": "Racing",
     "description": "Need for Speed: The Run, developed by EA Black Box and published by Electronic Arts for PC in 2011, is a 4.64 GB racing video game that follows street racer Jack Rourke through a high-stakes, cross-country race stretching all the way from San Francisco to New York. Utilizing one of the first implementations of the Frostbite 2 engine, the gameplay seamlessly mixes fast arcade-style driving across real-world locations with cinematic story moments, a wide range of licensed cars, and competitive multiplayer modes.",
-    "requirements": "Minimum System Requirements  OS: Windows XP/Vista/7/8 Processor: 2.4 GHz Intel Core 2 Duo or AMD Equivalent RAM: 3 GB Hard Drive: 18 GB available space Video Card: 512 MB, ATI Radeon 4870 or NVIDIA GeForce 9800 GT DirectX: 10",
+    "requirements": "Minimum System Requirements OS: Windows XP/Vista/7/8 Processor: 2.4 GHz Intel Core 2 Duo or AMD Equivalent RAM: 3 GB Hard Drive: 18 GB available space Video Card: 512 MB, ATI Radeon 4870 or NVIDIA GeForce 9800 GT DirectX: 10",
     "price": "FREE",
     "image": "nfstr.png",
     "screenshots": [
