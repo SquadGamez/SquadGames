@@ -256,7 +256,7 @@
     "description": "FIFA 22 delivers realistic football gameplay powered by improved player movement and ball physics.",
     "requirements": "OS: Windows 10 – 64-Bit (Latest Update)<br>Processor: Intel Core i3-6100 @ 3.7GHz or AMD Athlon X4 880K @4GHz<br>RAM: 8 GB<br>Hard Disk: 50 GB available space<br>Graphics Card: NVIDIA GTX 660 2GB or AMD Radeon HD 7850 2GB<br>DirectX: Version 11",
     "price": "FREE",
-    "image": "images/fifa22.png",
+    "image": "images/fifa1.png",
     "screenshots": [
       "images/fifa1.png",
       "images/fifa2.png",
@@ -320,7 +320,7 @@
     "description": "Need for Speed: Most Wanted 2012 Unofficial Remake, developed and published by Tiny Repack as a custom modification for Windows with a file size of 3.48 GB, is an open-world racing video game that delivers high-speed driving action paired with enhanced visuals and intense police chases. Players can freely explore the city, customize a variety of high-performance cars, and dominate challenging events scattered across the map, all while experiencing fast-paced arcade handling and nonstop action that captures the true essence of the classic Most Wanted gameplay.",
     "requirements": "OS: Windows 7 or later (64‑bit)<br>Processor: Intel i3 6300 / 3.8GHz or AMD FX 8150 @ 3.6GHz with 4 hardware threads<br>RAM: 6 GB<br>Hard Disk: 30 GB available space<br>Graphics Card: NVIDIA GeForce GTX 750 Ti or AMD Radeon™ HD 7850 or equivalent DX11 compatible<br>Network: Broadband Internet connection<br>DirectX: Version 11",
     "price": "FREE",
-    "image": "nfsmw2012.png",
+    "image": "images/nfsmw2012.png",
     "screenshots": [
         "images/nfsmw20121.png",
         "images/nfsmw20122.png",
