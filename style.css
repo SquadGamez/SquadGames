@@ -898,6 +898,31 @@ body {
     line-height: 1.45;
 }
 
+/* --- MODERN SPECIFICATIONS LIST STYLING (Added) --- */
+.specs-box ul, .requirements-list, .specs-container ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 6px 0;
+}
+
+.specs-box li, .requirements-list li, .specs-container li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #d1d5db;
+}
+
+.specs-box li::before, .requirements-list li::before, .specs-container li::before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+    font-size: 13px;
+}
+/* -------------------------------------------------- */
+
 .screenshots-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
