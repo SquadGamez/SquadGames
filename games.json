@@ -374,7 +374,7 @@
     "platform": "PC",
     "category": "Racing/Sports/Open World",
     "description": "Need for Speed: Heat, developed by Ghost Games and published by Electronic Arts for Windows, is a 25.6 GB open-world racing video game set in a vibrant urban environment called Palm City. The gameplay combines fast-paced arcade handling and a large roster of licensed vehicles, allowing players to compete in legal Speedhunter Showdown events by day to earn cash and take part in risky, high-stakes street races by night to build their reputation. Featuring intense police chases, deep car customization options, and both solo and crew challenges, the title delivers a stylish racing experience centered entirely around speed, customization, and survival against corrupt local authorities",
-    "requirements": "OS: Windows 10 Processor: FX-6350 or Equivalent/Core i5-3570 or Equivalent RAM: 8 GB Hard Drive: 50 GB available space Video Card: Radeon 7970/Radeon R9 280x/GeForce GTX 760 or Equivalent DirectX: Version 11",
+    "requirements": "OS: Windows 10<br>Processor: FX-6350 or Equivalent/Core i5-3570 or Equivalent<br>RAM: 8 GB Hard Drive: 50 GB available space<br>Video Card: Radeon 7970/Radeon R9 280x/GeForce GTX 760 or Equivalent<br>DirectX: Version 11",
     "price": "FREE",
     "image": "images/nfsh.png",
     "screenshots": [
@@ -390,5 +390,21 @@
       { "name": "Part 5", "url": "https://www.mediafire.com/file/752uhgta13yifp8/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part5.rar/file" },
       { "name": "Part 6", "url": "https://www.mediafire.com/file/n4o9rhrrlhs1j55/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part6.rar/file" }
     ]
-  }
+  },
+  {
+    "id": "20",
+    "title": "Need for Speed Rivals",
+    "platform": "PC",
+    "category": "Racing, Open world",
+    "description": "Need for Speed Rivals, developed by Criterion Games and published by Electronic Arts for Windows on November 19, 2013, is a 7.10 GB open-world racing video game that immerses players in intense street competition within a dynamic environment where they can choose to play as either relentless cops or reckless outlaw racers. The gameplay blends seamless multiplayer action with high-speed pursuits, advanced supercars, and risky challenges that reward aggressive driving, delivering a nonstop, adrenaline-fueled experience of speed and strategy on both sides of the law.",
+    "requirements": "OS: Windows Vista/7/8<br>Processor: Intel 2.4 GHz Core 2 Duo or AMD 2.8 GHz Athlon X2<br>RAM: 4 GB Hard Drive: 30 GB available space<br>Video Card: 512 MB, (AMD Radeon 3870 , NVIDIA GeForce 8800 GT or better)<br>Network: Broadband Internet connection<br>DirectX: 10.1",
+    "price": "FREE",
+    "image": "images/nfsr.png",
+    "screenshots": [
+        "images/nfsr1.png",
+        "images/nfsr2.png",
+        "images/nfsr3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/c7x2za1nx3odcmh/Need_for_Speed_Rivals_-_%2528Www.ApunKaGames.Biz%2529.rar/file"
+},
 ]
