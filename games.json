@@ -280,7 +280,7 @@
     "title": "Need for Speed: Carbon Collector’s Edition",
     "platform": "PC",
     "category": "Racing, Sports",
-    "description": "Need for Speed: Carbon Collector’s Edition (3.93 GB) is a racing  gameplay. It is made and published by EA Black Box, Electronic Arts. It was released on October 31, 2006 for Windows. Need for Speed: Carbon Collector’s Edition throws players into dangerous nighttime street racing where crews battle for city control. Customize high-performance cars, dominate canyon duels, and build your racing team. The gameplay focuses on aggressive racing, territory wars, and intense high-speed action across open city roads.",
+    "description": "Need for Speed: Carbon Collector’s Edition (3.93 GB) is a racing gameplay. It is made and published by EA Black Box, Electronic Arts. It was released on October 31, 2006 for Windows. Need for Speed: Carbon Collector’s Edition throws players into dangerous nighttime street racing where crews battle for city control. Customize high-performance cars, dominate canyon duels, and build your racing team. The gameplay focuses on aggressive racing, territory wars, and intense high-speed action across open city roads.",
     "requirements": "OS: Windows 2000 Service Pack 4 / Windows XP Service Pack 2 Processor: Intel Pentium 4 or equivalent, 1.7 GHz RAM: 512 MB Hard Disk: 5.3 GB available space Graphics Card: 64 MB, (NVIDIA Geforce4 Ti+/ATI Radeon 8500+) DirectX: Version 9.0c",
     "price": "FREE",
     "image": "nfsc.png",
@@ -289,6 +289,27 @@
         "nfsc2.png",
         "nfsc.png"
     ],
-    "downloadUrl": "https://thefileslocker.net/iu3wtv5etzw3.html."
+    "downloadUrl": "https://thefileslocker.net/iu3wtv5etzw3.html"
+  },
+  {
+    "id": "15",
+    "title": "Need for Speed Payback Deluxe Edition",
+    "platform": "PC",
+    "category": "Racing, Sports",
+    "description": "Need for Speed Payback Deluxe Edition, released by Electronic Arts and developed by Ghost Games for Windows on November 6, 2017, is a 15.5 GB open-world racing video game that immerses players in a cinematic, story-driven action adventure filled with high-stakes driving and revenge. Featuring accessible arcade-style handling and all the bonus content included in the Deluxe bundle, the gameplay combines intense street racing events, deep vehicle customization options, and thrilling, movie-like heists where you build powerful cars and fight to take down a corrupt cartel across a vast landscape.",
+    "requirements": "OS: Windows 7 or later (64‑bit) Processor: Intel i3 6300 / 3.8GHz or AMD FX 8150 @ 3.6GHz with 4 hardware threads RAM: 6 GB Hard Disk: 30 GB available space Graphics Card: NVIDIA GeForce GTX 750 Ti or AMD Radeon™ HD 7850 or equivalent DX11 compatible Network: Broadband Internet connection DirectX: Version 11",
+    "price": "FREE",
+    "image": "nfspde.png",
+    "screenshots": [
+        "nfspde1.png",
+        "nfspde2.png",
+        "nfspde3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://thefileslocker.net/6r30280iy8g7.html" },
+      { "name": "Part 2", "url": "https://thefileslocker.net/uokrp72o74rs.html" },
+      { "name": "Part 3", "url": "https://thefileslocker.net/zwn2acfu0pzl.html" },
+      { "name": "Part 4", "url": "https://thefileslocker.net/m2qvlrjguj0o.html" }
+    ]
   }
 ]
