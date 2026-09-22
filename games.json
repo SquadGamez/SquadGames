@@ -1,5 +1,456 @@
-{
-    "id": "cod-mw-2019",
+[
+  {
+    "id": "1",
+    "title": "Tanzania Euro Truck Simulator 2 + 50 TZ mods packs",
+    "platform": "PC",
+    "category": "Simulation / PC",
+    "description": "Full Euro Truck Simulator 2 PC game bundled with 50 custom TZ mods.",
+    "requirements": "OS: Windows 10/11 (64-bit)<br>RAM: 8 GB<br>Storage: 25 GB<br>GPU: Intel HD 620 / NVIDIA GTX 660",
+    "price": "TZS 20,000",
+    "image": "images/ets-2-pc.jpg",
+    "screenshots": [
+      "images/4193b766a912970fac32e8b171d693df.webp",
+      "images/f645a854f358ea2a930c5be36d485616.webp",
+      "images/Screenshot_20260902_131118_TikTok.jpg"
+    ],
+    "downloadUrl": "https://selar.com/8z3yp9tnyv",
+    "altDownloadUrl": "https://wa.me/255692752060?text=Hello%20SquadGames%2C%20I%20want%20to%20buy%20Tanzania%20Euro%20Truck%20Simulator%202%20%2B%2050%20TZ%20mods%20packs%20(TZS%2020%2C000)%20via%20Vodacom."
+  },
+  {
+    "id": "2",
+    "title": "Tanzania Euro Truck Simulator 2 Mobile",
+    "platform": "Android",
+    "category": "Mobile Games",
+    "description": "Experience driving heavy trucks across Tanzania directly on your Android phone.",
+    "requirements": "OS: Android 8.0+<br>RAM: 4 GB minimum<br>Storage: 3 GB free space",
+    "price": "TZS 10,000",
+    "image": "images/ets-2-mobile.jpg",
+    "screenshots": [
+      "images/Screenshot_20260902_131001_TikTok.jpg",
+      "images/Screenshot_20260902_130935_TikTok.jpg",
+      "images/be9b02184c2d31b4c53e8500366db61e.webp"
+    ],
+    "downloadUrl": "https://selar.com/8002i2803s",
+    "altDownloadUrl": "https://wa.me/255692752060?text=Hello%20SquadGames%2C%20I%20want%20to%20buy%20Tanzania%20Euro%20Truck%20Simulator%202%20Mobile%20(TZS%2010%2C000)%20via%20Vodacom."
+  },
+  {
+    "id": "3",
+    "title": "Euro Truck Simulator 2 v1.57.2.2s + 103 DLCs + Multiplayer Game",
+    "platform": "PC",
+    "category": "Open World / Simulation",
+    "description": "It includes 103 DLCs + Multiplayer Game",
+    "requirements": "OS: Windows 10 (64‑bit)<br>Processor: Intel Core i5-6400 or AMD Ryzen 3 1200 or similar<br>RAM: 8 GB<br>Hard Disk: 25 GB available space (Euro Truck Simulator 2 base game)<br>Graphics Card: NVIDIA GeForce GTX 660 or AMD Radeon RX 460 or Intel HD 630 (2GB VRAM)<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/ets 2 1.57.png",
+    "screenshots": [
+      "images/Annotation 2026-09-02 125957.png",
+      "images/Annotation 2026-09-02 130017.png",
+      "images/Annotation 2026-09-02 125943.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/h9kaupu38m7c63n/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/kkzoiiat3obg47e/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file_premium/2bd19ue2w9imnlw/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part3.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file_premium/j432j4lkjnrde2w/Euro_Truck_Simulator_2_v1.57.2.2s_-_%2528Www.ApunKaGames.Com%2529.part4.rar/file" }
+    ]
+  },
+  {
+    "id": "4",
+    "title": "Need for Speed Most Wanted 2005",
+    "platform": "PC",
+    "category": "Racing / Open world",
+    "description": "Need for Speed Most Wanted 2005 or NFS mw is one of the racing games nowadays, wherein you can simply download it 100 percent of its free version for free, working no survey and any charges.",
+    "requirements": "OS: Windows 2000/XP/7<br>CPU: 1.4GHz Processor<br>RAM: 256 MB<br>Storage: 3 GB<br>GPU: 64 MB<br>DirectX: Version 9.0c",
+    "price": "FREE",
+    "image": "images/nfsmw-shot4.png",
+    "screenshots": [
+      "images/nfsmw-shot1.png",
+      "images/nfsmw-shot2.png",
+      "images/nfsmw-shot3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file_premium/adkj9ovmehh2mva/NFS_Most_Wanted_2005_-_%2528www.apunkagames.com%2529.zip/file"
+  },
+  {
+    "id": "5",
+    "title": "Need for Speed Payback",
+    "platform": "PC",
+    "category": "Racing",
+    "description": "Need for Speed Payback (21.8 GB) is an action-packed arcade racing video game featuring intense police pursuits, off-road races, and custom car builds.",
+    "requirements": "OS: Windows 7/8/10 (64-bit)<br>Processor: Intel i3 6300 @ 3.8GHz<br>RAM: 6 GB<br>Storage: 30 GB<br>Graphics: NVIDIA GTX 750 Ti / AMD HD 7870<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/nfspb1.png",
+    "screenshots": [
+      "images/nfspb2.png",
+      "images/nfspb3.png",
+      "images/nfspb5.png",
+      "images/nfspb4.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/mcj809iu65qw7y2/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/pfd1b1koti6lgsa/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file_premium/6vv71eoclwwpdmf/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part3.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file_premium/8wrylygn5u8vvjj/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part4.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file_premium/0ghqv14m6xact3s/Need_for_Speed_Payback_-_%2528Www.ApunKaGames.Biz%2529.part5.rar/file" }
+    ]
+  },
+  {
+    "id": "6",
+    "title": "Call of Duty: Advanced Warfare",
+    "platform": "PC",
+    "category": "Action, Shooting",
+    "description": "Call of Duty: Advanced Warfare (24.4 GB) is a first-person shooter featuring futuristic exoskeletons and holographic projections relayed directly from equipped weapons.",
+    "requirements": "OS: Windows 7/8/8.1 (64-Bit)<br>Processor: Intel Core i3-530 @ 2.93 GHz<br>RAM: 6 GB<br>Storage: 55 GB<br>Graphics: NVIDIA GTS 450 / ATI HD 5870<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/codaw1.png",
+    "screenshots": [
+      "images/codaw2.png",
+      "images/codaw3.png",
+      "images/codaw4.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://thefileslocker.net/g8jcqswgume2.html" },
+      { "name": "Part 2", "url": "https://thefileslocker.net/bswnqizltceh.html" },
+      { "name": "Part 3", "url": "https://thefileslocker.net/il2j0xyoumf2.html" },
+      { "name": "Part 4", "url": "https://thefileslocker.net/zpnlzg3phztl.html" },
+      { "name": "Part 5", "url": "https://thefileslocker.net/5m0g4xomvi27.html" }
+    ]
+  },
+  {
+    "id": "7",
+    "title": "CarX Street",
+    "platform": "PC",
+    "category": "Racing, Sports",
+    "description": "CarX Street (10.8 GB) is an open-world driving game that blends street racing, car customization, and exploration.",
+    "requirements": "OS: Windows 10 or higher (64‑bit)<br>Processor: Ryzen 5 2600 @ 3.4 GHz / Intel® Core™ I5-8400 @ 2.5 GHz<br>RAM: 8 GB<br>Hard Disk: 20 GB available space<br>Graphics Card: Nvidia Geforce GTX 1050 TI 4 GB / Radeon RX 570 8 GB<br>Network: Broadband Internet connection<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/carxstreet.png",
+    "screenshots": [
+      "images/carxstreet1.png",
+      "images/carxstreet2.png",
+      "images/carxstreet3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/l394foa9co0wwpb/CarX_Street_-_%2528Www.ApunkaGames.Com%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/o6d3wxvl11ukjbn/CarX_Street_-_%2528Www.ApunkaGames.Com%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file_premium/r085iug73w2qnol/CarX_Street_-_%2528Www.ApunkaGames.Com%2529.part3.rar/file" }
+    ]
+  },
+  {
+    "id": "8",
+    "title": "Grand Theft Auto V Legacy",
+    "platform": "PC",
+    "category": "Action-adventure, Open world",
+    "description": "Grand Theft Auto V Legacy combines cinematic storytelling with classic GTA sandbox gameplay in Los Santos.",
+    "requirements": "OS: Windows 10 (64‑bit)<br>Processor: Intel Core 2 Quad CPU Q6600 @ 2.40GHz (4 CPUs) / AMD Phenom 9850 Quad-Core (4 CPUs) @ 2.5GHz<br>RAM: 4 GB<br>Hard Disk: 125 GB available space<br>Graphics Card: NVIDIA 9800 GT 1GB / AMD HD 4870 1GB (DX 10, 10.1, 11)<br>Sound Card: 100% DirectX 10 compatible<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/gta5.png",
+    "screenshots": [
+      "images/gta51.png",
+      "images/gta52.png",
+      "images/gta53.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 01", "url": "https://www.mediafire.com/file_premium/lt5qanoluv4xcxv/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part01.rar/file" },
+      { "name": "Part 02", "url": "https://www.mediafire.com/file_premium/dtxadlu1hoo754y/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part02.rar/file" },
+      { "name": "Part 03", "url": "https://www.mediafire.com/file_premium/rdpm1wrrnpmto6h/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part03.rar/file" },
+      { "name": "Part 04", "url": "https://www.mediafire.com/file_premium/j83929m3fdt7av3/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part04.rar/file" },
+      { "name": "Part 05", "url": "https://www.mediafire.com/file_premium/1luc2mvxfm38r99/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part05.rar/file" },
+      { "name": "Part 06", "url": "https://www.mediafire.com/file_premium/qx2cri8brglyhaw/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part06.rar/file" },
+      { "name": "Part 07", "url": "https://www.mediafire.com/file_premium/cptuso4okrz4ud2/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part07.rar/file" },
+      { "name": "Part 08", "url": "https://www.mediafire.com/file_premium/6oi1ujyk838g3tp/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part08.rar/file" },
+      { "name": "Part 09", "url": "https://www.mediafire.com/file_premium/b1lh8gl8ng6jy9i/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part09.rar/file" },
+      { "name": "Part 10", "url": "https://www.mediafire.com/file_premium/zw6f6mrqwnjcpo7/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part10.rar/file" },
+      { "name": "Part 11", "url": "https://www.mediafire.com/file_premium/c70nbnfe4dodbvz/Grand_Theft_Auto_V_Legacy_-_%2528Www.ApunKaGames.Net%2529.part11.rar/file" }
+    ]
+  },
+  {
+    "id": "9",
+    "title": "GTA 4",
+    "platform": "PC",
+    "category": "Action-adventure, Open World",
+    "description": "GTA 4 (13.2 GB) is a legendary open-world game centered on Niko Bellic’s journey through Liberty City.",
+    "requirements": "OS: Windows XP/Vista/7<br>Processor: Intel Core 2 DUO @ 1.8 GHz / AMD Athlon 64 X2 @ 2.4 GHz<br>RAM: 2 GB<br>Hard Disk: 16 GB available space<br>Graphics Card: 256 MB, nVidia GeForce 7900 / ATI Radeon X1900<br>Sound Card: DirectX Compatible<br>DirectX: Version 9.0c<br>DVD Rom Drive",
+    "price": "FREE",
+    "image": "images/gta4.png",
+    "screenshots": [
+      "images/gta41.png",
+      "images/gta42.png",
+      "images/gta43.png",
+      "images/gta44.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://thefileslocker.net/qxaumncytfd4.html" },
+      { "name": "Part 2", "url": "https://thefileslocker.net/8tz8chin1o7w.html" },
+      { "name": "Part 3", "url": "https://thefileslocker.net/857lfzdfaw8a.html" }
+    ]
+  },
+  {
+    "id": "10",
+    "title": "Call of Duty: Black Ops 1",
+    "platform": "PC",
+    "category": "First-person shooter",
+    "description": "Call of Duty: Black Ops 1 is a classic action first-person shooter set during the Cold War.",
+    "requirements": "OS: Windows XP/Vista/7<br>CPU: Intel Core2 Duo E6600 or AMD Phenom X3 8750 or better<br>RAM: 2 GB<br>Hard Drive Space: 12 GB<br>Video Card: Shader 3.0 or better 256MB NVIDIA GeForce 8600GT or better<br>Sound Card: DirectX 9.0 Compliant<br>DirectX: 9.0c",
+    "price": "FREE",
+    "image": "images/codbo.png",
+    "screenshots": [
+      "images/codbo1.png",
+      "images/codbo2.png",
+      "images/codbo3.png",
+      "images/codbo4.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/qzakjeyt3b5itm6/Call_of_Duty_-_BO1_%2528Www.ApunkaGames.Net%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/66n2ktmz51krl4q/Call_of_Duty_-_BO1_%2528Www.ApunkaGames.Net%2529.part2.rar/file" }
+    ]
+  },
+  {
+    "id": "11",
+    "title": "Call of Duty: Infinite Warfare",
+    "platform": "PC",
+    "category": "Action, Adventure, Shooting",
+    "description": "Call of Duty: Infinite Warfare is a futuristic FPS that takes the battle beyond Earth into space warfare.",
+    "requirements": "OS: Windows 7 (64-Bit) or later<br>Processor: Intel Core i3-3225 @ 3.30GHz or equivalent<br>RAM: 8 GB<br>Hard Drive: 70 GB available space<br>Video Card: NVIDIA GeForce GTX 660 2GB / AMD Radeon HD 7850 2GB<br>Network: Broadband Internet connection<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/codiw.png",
+    "screenshots": [
+      "images/codiw1.png",
+      "images/codiw2.png",
+      "images/codiw3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file_premium/placeholder1/Call_of_Duty_Infinite_Warfare_part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file_premium/placeholder2/Call_of_Duty_Infinite_Warfare_part2.rar/file" }
+    ]
+  },
+  {
+    "id": "12",
+    "title": "Marvel’s Spider-Man: Miles Morales",
+    "platform": "PC",
+    "category": "Action-adventure",
+    "description": "Marvel’s Spider-Man: Miles Morales delivers a thrilling superhero adventure as Miles protects New York City.",
+    "requirements": "OS: Windows 10 64-bit 1909<br>Processor: Intel Core i3-4160, 3.6 GHz or AMD equivalent<br>RAM: 8 GB<br>Hard Disk: 75 GB available space<br>Graphics Card: NVIDIA GTX 950 or AMD Radeon RX 470<br>DirectX: Version 12",
+    "price": "FREE",
+    "image": "images/sm.png",
+    "screenshots": [
+      "images/sm1.png",
+      "images/sm2.png",
+      "images/sm3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://thefileslocker.net/7yv9j0lytzxn.html" },
+      { "name": "Part 2", "url": "https://thefileslocker.net/fam031gob15b.html" },
+      { "name": "Part 3", "url": "https://thefileslocker.net/da40c7vglbnu.html" },
+      { "name": "Part 4", "url": "https://thefileslocker.net/rk8qx2j0upi1.html" },
+      { "name": "Part 5", "url": "https://thefileslocker.net/zyf21oe3ec0n.html" },
+      { "name": "Part 6", "url": "https://thefileslocker.net/r4hkztih9j3m.html" },
+      { "name": "Part 7", "url": "https://thefileslocker.net/igwmbx2n22qp.html" },
+      { "name": "Part 8", "url": "https://thefileslocker.net/i98swjh3pw5c.html" }
+    ]
+  },
+  {
+    "id": "13",
+    "title": "FIFA 22",
+    "platform": "PC",
+    "category": "Sports, Simulation",
+    "description": "FIFA 22 delivers realistic football gameplay powered by improved player movement and ball physics.",
+    "requirements": "OS: Windows 10 – 64-Bit (Latest Update)<br>Processor: Intel Core i3-6100 @ 3.7GHz or AMD Athlon X4 880K @4GHz<br>RAM: 8 GB<br>Hard Disk: 50 GB available space<br>Graphics Card: NVIDIA GTX 660 2GB or AMD Radeon HD 7850 2GB<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/fifa1.png",
+    "screenshots": [
+      "images/fifa1.png",
+      "images/fifa2.png",
+      "images/fifa3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 01", "url": "https://www.mediafire.com/file_premium/kw5c1itj06orok5/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part01.rar/file" },
+      { "name": "Part 02", "url": "https://www.mediafire.com/file_premium/1sr655r3ws0z144/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part02.rar/file" },
+      { "name": "Part 03", "url": "https://www.mediafire.com/file_premium/9v4c780w5ls7fcv/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part03.rar/file" },
+      { "name": "Part 04", "url": "https://www.mediafire.com/file_premium/f03ebci78g2aza6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part04.rar/file" },
+      { "name": "Part 05", "url": "https://www.mediafire.com/file_premium/orlyw9dos4q14j6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part05.rar/file" },
+      { "name": "Part 06", "url": "https://www.mediafire.com/file_premium/mitgzfrj0lij0a6/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part07.rar/file" },
+      { "name": "Part 07", "url": "https://www.mediafire.com/file_premium/x6zxyo6zb21ix99/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part08.rar/file" },
+      { "name": "Part 08", "url": "https://www.mediafire.com/file_premium/f6nuu38e0lwvow0/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part09.rar/file" },
+      { "name": "Part 09", "url": "https://www.mediafire.com/file_premium/knjvmfvol33riz8/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part10.rar/file" },
+      { "name": "Part 10", "url": "https://www.mediafire.com/file_pressum/sodw2pmzqi7bnpc/FIFA_22_-_%2528Www.ApunKaGames.Net%2529.part11.rar/file" }
+    ]
+  },
+  {
+    "id": "14",
+    "title": "Need for Speed: Carbon Collector’s Edition",
+    "platform": "PC",
+    "category": "Racing, Sports",
+    "description": "Need for Speed: Carbon Collector’s Edition (3.93 GB) is a racing gameplay. It is made and published by EA Black Box, Electronic Arts. It was released on October 31, 2006 for Windows. Need for Speed: Carbon Collector’s Edition throws players into dangerous nighttime street racing where crews battle for city control. Customize high-performance cars, dominate canyon duels, and build your racing team. The gameplay focuses on aggressive racing, territory wars, and intense high-speed action across open city roads.",
+    "requirements": "OS: Windows 2000 Service Pack 4 / Windows XP Service Pack 2<br>Processor: Intel Pentium 4 or equivalent, 1.7 GHz<br>RAM: 512 MB<br>Hard Disk: 5.3 GB available space<br>Graphics Card: 64 MB, (NVIDIA Geforce4 Ti+/ATI Radeon 8500+)<br>DirectX: Version 9.0c",
+    "price": "FREE",
+    "image": "images/nfsc.png",
+    "screenshots": [
+        "images/nfsc1.png",
+        "images/nfsc2.png",
+        "images/nfsc.png"
+    ],
+    "downloadUrl": "https://thefileslocker.net/iu3wtv5etzw3.html"
+  },
+  {
+    "id": "15",
+    "title": "Need for Speed Payback Deluxe Edition",
+    "platform": "PC",
+    "category": "Racing, Sports",
+    "description": "Need for Speed Payback Deluxe Edition, released by Electronic Arts and developed by Ghost Games for Windows on November 6, 2017, is a 15.5 GB open-world racing video game that immerses players in a cinematic, story-driven action adventure filled with high-stakes driving and revenge. Featuring accessible arcade-style handling and all the bonus content included in the Deluxe bundle, the gameplay combines intense street racing events, deep vehicle customization options, and thrilling, movie-like heists where you build powerful cars and fight to take down a corrupt cartel across a vast landscape.",
+    "requirements": "OS: Windows 7 or later (64‑bit)<br>Processor: Intel i3 6300 / 3.8GHz or AMD FX 8150 @ 3.6GHz with 4 hardware threads<br>RAM: 6 GB<br>Hard Disk: 30 GB available space<br>Graphics Card: NVIDIA GeForce GTX 750 Ti or AMD Radeon™ HD 7850 or equivalent DX11 compatible<br>Network: Broadband Internet connection<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/nfspde.png",
+    "screenshots": [
+        "images/nfspde1.png",
+        "images/nfspde2.png",
+        "images/nfspde3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://thefileslocker.net/6r30280iy8g7.html" },
+      { "name": "Part 2", "url": "https://thefileslocker.net/uokrp72o74rs.html" },
+      { "name": "Part 3", "url": "https://thefileslocker.net/zwn2acfu0pzl.html" },
+      { "name": "Part 4", "url": "https://thefileslocker.net/m2qvlrjguj0o.html" }
+    ]
+  },
+  {
+    "id": "16",
+    "title": "Need for Speed: Most Wanted 2012 Unofficial Remake",
+    "platform": "PC",
+    "category": "Racing, Sports",
+    "description": "Need for Speed: Most Wanted 2012 Unofficial Remake, developed and published by Tiny Repack as a custom modification for Windows with a file size of 3.48 GB, is an open-world racing video game that delivers high-speed driving action paired with enhanced visuals and intense police chases. Players can freely explore the city, customize a variety of high-performance cars, and dominate challenging events scattered across the map, all while experiencing fast-paced arcade handling and nonstop action that captures the true essence of the classic Most Wanted gameplay.",
+    "requirements": "OS: Windows 7 or later (64‑bit)<br>Processor: Intel i3 6300 / 3.8GHz or AMD FX 8150 @ 3.6GHz with 4 hardware threads<br>RAM: 6 GB<br>Hard Disk: 30 GB available space<br>Graphics Card: NVIDIA GeForce GTX 750 Ti or AMD Radeon™ HD 7850 or equivalent DX11 compatible<br>Network: Broadband Internet connection<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/nfsmw2012.png",
+    "screenshots": [
+        "images/nfsmw20121.png",
+        "images/nfsmw20122.png",
+        "images/nfsmw20123.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/xipwd29nh4dc20f/NFS_MW_2012_Unofficial_Remake_-_%2528Www.ApunKaGames.Net%2529.rar/file"
+  },
+  {
+    "id": "17",
+    "title": "Need for Speed Hot Pursuit Remastered",
+    "platform": "PC",
+    "category": "Racing, Action and Sports",
+    "description": "Need for Speed Hot Pursuit Remastered, released by Electronic Arts and developed by Stellar Entertainment Limited for Windows on November 6, 2020, is an action-packed, 30.1 GB racing video game that lets players experience the thrill of the chase and the rush of escape using the world's hottest high-performance cars. The gameplay delivers a savage sense of speed as you play on both sides of the law—either outsmarting the heat as an outlaw or taking down lawbreakers using tactical weaponry—all within a heart-pumping, socially competitive racing environment.",
+    "requirements": "OS: Windows 10 (64‑bit)<br>Processor: (AMD) Phenom II X4 965 or equivalent (Intel) Corei3-2120 or equivalent<br>RAM: 8 GB<br>Hard Disk: 45 GB available space<br>Graphics Card: (AMD) Radeon HD 5870 or equivalent (Nvidia) GeForce GT 640 or equivalent<br>Network: Broadband Internet connection<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/nfshp.png",
+    "screenshots": [
+        "images/nfshp1.png",
+        "images/nfshp2.png",
+        "images/nfshp3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/r6ioytcekv5sn5h/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/0a53fi0nzxvnqso/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/sjqp6wjg80va4eg/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part3.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file/gpp0vr70275ulq8/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part4.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file/l2czk51o223wupx/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part5.rar/file" },
+      { "name": "Part 6", "url": "https://www.mediafire.com/file/bdxyod0ud9iqnp5/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part6.rar/file" },
+      { "name": "Part 7", "url": "https://www.mediafire.com/file/30v3kb02v1imimj/Need_for_Speed_HP_Remastered_-_%2528Www.ApunKaGames.Com%2529%2529.part7.rar/file" }
+    ]
+  },
+  {
+    "id": "18",
+    "title": "Need for Speed: Most Wanted Black Edition",
+    "platform": "PC",
+    "category": "Racing",
+    "description": "Need for Speed: Most Wanted Black Edition, developed and published by Electronic Arts for Windows on November 15, 2005, is an intense, 2.54 GB street racing video game that challenges players to climb the ranks and become the most wanted driver in Rockport City. The gameplay combines arcade-style racing, deep car upgrades, and thrilling open-city pursuits as you race high-speed vehicles, outsmart aggressive police chases, and defeat formidable rivals on the Blacklist to deliver an unforgettable experience for speed fans.",
+    "requirements": "OS: Windows XP/Vista/7<br>Processor: Intel Pentium 4 1.60GHz / AMD Athlon XP 1600+<br>RAM: 256 MB<br>Hard Disk: 3 GB available space<br>Graphics Card: 64 MB, (NVIDIA GeForce2 MX+ / ATI Radeon 7500+ / Intel 915+)<br>DirectX: Version 9.0c",
+    "price": "FREE",
+    "image": "images/nfsmwbe.png",
+    "screenshots": [
+        "images/nfsmwbe1.png",
+        "images/nfsmwbe2.png",
+        "images/nfsmwbe3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/q29hs8zhu9ktuyp/NFS_MW_2005_Black_Edition_%2528RG_Mechanics_Setup%2529.rar/file"
+  },
+  {
+    "id": "19",
+    "title": "Need for Speed: Heat",
+    "platform": "PC",
+    "category": "Racing/Sports/Open World",
+    "description": "Need for Speed: Heat, developed by Ghost Games and published by Electronic Arts for Windows, is a 25.6 GB open-world racing video game set in a vibrant urban environment called Palm City. The gameplay combines fast-paced arcade handling and a large roster of licensed vehicles, allowing players to compete in legal Speedhunter Showdown events by day to earn cash and take part in risky, high-stakes street races by night to build their reputation. Featuring intense police chases, deep car customization options, and both solo and crew challenges, the title delivers a stylish racing experience centered entirely around speed, customization, and survival against corrupt local authorities",
+    "requirements": "OS: Windows 10<br>Processor: FX-6350 or Equivalent/Core i5-3570 or Equivalent<br>RAM: 8 GB Hard Drive: 50 GB available space<br>Video Card: Radeon 7970/Radeon R9 280x/GeForce GTX 760 or Equivalent<br>DirectX: Version 11",
+    "price": "FREE",
+    "image": "images/nfsh.png",
+    "screenshots": [
+        "images/nfsh1.png",
+        "images/nfsh2.png",
+        "images/nfsh3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/msijpdpa9vjazaw/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/1gd05gc5nml14a1/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/mj5m2gcmvr8qkvp/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part3.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file/d00y1g6s17scwua/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part4.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file/752uhgta13yifp8/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part5.rar/file" },
+      { "name": "Part 6", "url": "https://www.mediafire.com/file/n4o9rhrrlhs1j55/Need_For_Speed_Heat_-_%2528Www.ApunKaGames.Biz%2529.part6.rar/file" }
+    ]
+  },
+  {
+    "id": "20",
+    "title": "Need for Speed Rivals",
+    "platform": "PC",
+    "category": "Racing, Open world",
+    "description": "Need for Speed Rivals, developed by Criterion Games and published by Electronic Arts for Windows on November 19, 2013, is a 7.10 GB open-world racing video game that immerses players in intense street competition within a dynamic environment where they can choose to play as either relentless cops or reckless outlaw racers. The gameplay blends seamless multiplayer action with high-speed pursuits, advanced supercars, and risky challenges that reward aggressive driving, delivering a nonstop, adrenaline-fueled experience of speed and strategy on both sides of the law.",
+    "requirements": "OS: Windows Vista/7/8<br>Processor: Intel 2.4 GHz Core 2 Duo or AMD 2.8 GHz Athlon X2<br>RAM: 4 GB Hard Drive: 30 GB available space<br>Video Card: 512 MB, (AMD Radeon 3870 , NVIDIA GeForce 8800 GT or better)<br>Network: Broadband Internet connection<br>DirectX: 10.1",
+    "price": "FREE",
+    "image": "images/nfsr.png",
+    "screenshots": [
+        "images/nfsr1.png",
+        "images/nfsr2.png",
+        "images/nfsr3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/c7x2za1nx3odcmh/Need_for_Speed_Rivals_-_%2528Www.ApunKaGames.Biz%2529.rar/file"
+  },
+  {
+    "id": "21",
+    "title": "Need for Speed: The Run",
+    "platform": "PC",
+    "category": "Racing",
+    "description": "Need for Speed: The Run, developed by EA Black Box and published by Electronic Arts for PC in 2011, is a 4.64 GB racing video game that follows street racer Jack Rourke through a high-stakes, cross-country race stretching all the way from San Francisco to New York. Utilizing one of the first implementations of the Frostbite 2 engine, the gameplay seamlessly mixes fast arcade-style driving across real-world locations with cinematic story moments, a wide range of licensed cars, and competitive multiplayer modes.",
+    "requirements": "Minimum System Requirements OS: Windows XP/Vista/7/8 Processor: 2.4 GHz Intel Core 2 Duo or AMD Equivalent RAM: 3 GB Hard Drive: 18 GB available space Video Card: 512 MB, ATI Radeon 4870 or NVIDIA GeForce 9800 GT DirectX: 10",
+    "price": "FREE",
+    "image": "images/nfstr.png",
+    "screenshots": [
+        "images/nfstr1.png",
+        "images/nfstr2.png",
+        "images/nfstr3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/iv1p6ntyfhwh3k7/Need_For_Speed_-_The_Run_-_%2528Www.ApunKaGames.Biz%2529.rar/file"
+  },
+  {
+    "id": "22",
+    "title": "Call of Duty: Modern Warfare III",
+    "platform": "PC",
+    "category": "Action, First-person shooter",
+    "description": "Call of Duty: Modern Warfare III, developed by Sledgehammer Games and published by Activision for Windows on November 10, 2023, is a 41.5 GB action-packed first-person shooter video game that continues the gripping high-stakes global conflict of the modern military series. The gameplay features fast-paced gunfights, cinematic campaign missions, competitive multiplayer modes, and fluid tactical movement utilizing an arsenal of modern weapons to deliver a continuous wave of intense combat action.",
+    "requirements": "OS: Windows 10 (64‑bit Latest update)<br>Processor: Intel Core™ i5-6600 or AMD Ryzen™ 5 1400<br>RAM: 8 GB<br>Hard Disk: SSD with 102 GB<br>Graphics Card: NVIDIA GeForce GTX 960 / GTX 1650 or AMD Radeon™ RX 470<br>DirectX: Version 12",
+    "price": "FREE",
+    "image": "images/codmw3.png",
+    "screenshots": [
+        "images/codmw31.png",
+        "images/codmw32.png",
+        "images/codmw33.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/cbtxdyacljilon5/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part01.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/w6tg7ubml4nhv4z/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part02.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/nrydd14slw2oyz1/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part03.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file/lf4gmq9ybktun0u/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part04.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file/1wy177gqr8gfoqp/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part05.rar/file" },
+      { "name": "Part 6", "url": "https://www.mediafire.com/file/jp4eyd7k0db5i8w/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part06.rar/file" },
+      { "name": "Part 7", "url": "https://www.mediafire.com/file/plbbkbpepah4l4c/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part07.rar/file" },
+      { "name": "Part 8", "url": "https://www.mediafire.com/file/mocfs9pgj26b6r4/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part08.rar/file" },
+      { "name": "Part 9", "url": "https://www.mediafire.com/file/c4781yed9f5dzgw/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part09.rar/file" }
+    ]
+  },
+  {
+    "id": "23",
     "title": "Call of Duty: Modern Warfare 2019",
     "platform": "PC",
     "category": "Action, First-person shooter",
@@ -38,4 +489,5 @@
       { "name": "Part 23", "url": "https://www.mediafire.com/file/t3bmgm58kg906vv/Call_of_Duty_MW_2019_-_%2528Www.ApunKaGames.Net%2529.part23.rar/file" },
       { "name": "Part 24", "url": "https://www.mediafire.com/file/f3bfk5bmf3vuns6/Call_of_Duty_MW_2019_-_%2528Www.ApunKaGames.Net%2529.part24.rar/file" }
     ]
-}
+  }
+]
