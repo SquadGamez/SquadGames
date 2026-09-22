@@ -655,7 +655,7 @@
     "platform": "PC",
     "category": "Action, Shooting",
     "description": "Call of Duty: Modern Warfare 2 Campaign Remastered, developed by Raven Software and published by Activision for Windows on May 4, 2020, is a 47.3 GB action-packed shooter video game that invites players to relive the epic, story-driven single-player campaign of the 2009 blockbuster in stunning, high-definition quality. The gameplay lets you experience legendary missions like Cliffhanger, The Gulag, and Whiskey Hotel as you fight alongside Soap MacTavish, Captain Price, Ghost, and the rest of Task Force 141 across a globe-spanning journey to restore global order against desperate threats.",
-    "requirements": "OS: Windows 7 (64-bit) Processor: Intel Core i3-4340 3.6GHz / AMD FX-6300 Graphics: AMD Radeon HD 7950 or NVIDIA GeForce GTX 670 System Memory: 8 GB RAM Storage: 80 GB Hard drive space",
+    "requirements": "OS: Windows 7 (64-bit)<br>Processor: Intel Core i3-4340 3.6GHz / AMD FX-6300 Graphics: AMD Radeon HD 7950 or NVIDIA GeForce GTX 670<br>System Memory: 8 GB RAM<br>Storage: 80 GB Hard drive space",
     "price": "FREE",
     "image": "images/codmw2cr.png",
     "screenshots": [
@@ -682,7 +682,7 @@
     "platform": "PC",
     "category": "Shooting",
     "description": "Call of Duty: WWII, developed by Sledgehammer Games and published by Activision for Windows on November 3, 2017, is a 54 GB first-person shooter video game that takes the franchise back to its historical roots by removing the advanced movement mechanics of recent titles—such as double jumping and wall running—in favor of a traditional, immersive \"boots on the ground\" combat style. Set across the brutal battlefields of World War II, the gameplay combines a gritty historical campaign with a convenient unlimited sprint mechanic, delivering a classic and grounded tactical shooting experience.",
-    "requirements": "OS: Windows Vista/7/8/10 (32/64bits) Processor: Windows 7 64-Bit or later RAM: 8 GB Hard Drive: 90 GB available space Video Card: Nvidia GeForce GTX 660 @ 2 GB / GTX 1050 or ATI Radeon HD 7850 @ 2GB / AMD RX 550 DirectX: Version 9.0c",
+    "requirements": "OS: Windows Vista/7/8/10 (32/64bits)<br>Processor: Windows 7 64-Bit or later<br>RAM: 8 GB<br>Hard Drive: 90 GB available space<br>Video Card: Nvidia GeForce GTX 660 @ 2 GB / GTX 1050 or ATI Radeon HD 7850 @ 2GB / AMD RX 550<br>DirectX: Version 9.0c",
     "price": "FREE",
     "image": "images/codwwII.png",
     "screenshots": [
