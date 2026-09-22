@@ -455,5 +455,31 @@
       { "name": "Part 15", "url": "https://www.mediafire.com/file/afikp2ubdzqfooy/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part15.rar/file" },
       { "name": "Part 16", "url": "https://www.mediafire.com/file/w3vvyq850cnx65z/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part16.rar/file" }
     ]
-  }
+  }, 
+  {
+    "id": "23",
+    "title": "Call of Duty: Modern Warfare III",
+    "platform": "PC",
+    "category": "Action, First-person shooter",
+    "description": "Call of Duty: Modern Warfare III, developed by Sledgehammer Games and published by Activision for Windows on November 10, 2023, is a 41.5 GB action-packed first-person shooter video game that continues the gripping high-stakes global conflict of the modern military series. The gameplay features fast-paced gunfights, cinematic campaign missions, competitive multiplayer modes, and fluid tactical movement utilizing an arsenal of modern weapons to deliver a continuous wave of intense combat action.",
+    "requirements": "OS: Windows 10 (64‑bit Latest update)<br>Processor: Intel Core™ i5-6600 or AMD Ryzen™ 5 1400<br>RAM: 8 GB<br>Hard Disk: SSD with 102 GB<br>Graphics Card: NVIDIA GeForce GTX 960 / GTX 1650 or AMD Radeon™ RX 470<br>DirectX: Version 12",
+    "price": "FREE",
+    "image": "images/codmw3.png",
+    "screenshots": [
+        "images/codmw31.png",
+        "images/codmw32.png",
+        "images/codmw33.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/cbtxdyacljilon5/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part01.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/w6tg7ubml4nhv4z/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part02.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/nrydd14slw2oyz1/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part03.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file/lf4gmq9ybktun0u/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part04.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file/1wy177gqr8gfoqp/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part05.rar/file" },
+      { "name": "Part 6", "url": "https://www.mediafire.com/file/jp4eyd7k0db5i8w/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part06.rar/file" },
+      { "name": "Part 7", "url": "https://www.mediafire.com/file/plbbkbpepah4l4c/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part07.rar/file" },
+      { "name": "Part 8", "url": "https://www.mediafire.com/file/mocfs9pgj26b6r4/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part08.rar/file" },
+      { "name": "Part 9", "url": "https://www.mediafire.com/file/c4781yed9f5dzgw/Call_of_Duty_MW_III_Campaign_-_%2528Www.ApunKaGames.Net%2529.part09.rar/file" }
+    ]
+}
 ]
