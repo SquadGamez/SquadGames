@@ -407,6 +407,22 @@
     ],
     "downloadUrl": "https://www.mediafire.com/file/c7x2za1nx3odcmh/Need_for_Speed_Rivals_-_%2528Www.ApunKaGames.Biz%2529.rar/file"
   },
+ {
+    "id": "20",
+    "title": "Need for Speed Rivals",
+    "platform": "PC",
+    "category": "Racing, Open world",
+    "description": "Need for Speed Rivals, developed by Criterion Games and published by Electronic Arts for Windows on November 19, 2013, is a 7.10 GB open-world racing video game that immerses players in intense street competition within a dynamic environment where they can choose to play as either relentless cops or reckless outlaw racers. The gameplay blends seamless multiplayer action with high-speed pursuits, advanced supercars, and risky challenges that reward aggressive driving, delivering a nonstop, adrenaline-fueled experience of speed and strategy on both sides of the law.",
+    "requirements": "OS: Windows Vista/7/8<br>Processor: Intel 2.4 GHz Core 2 Duo or AMD 2.8 GHz Athlon X2<br>RAM: 4 GB Hard Drive: 30 GB available space<br>Video Card: 512 MB, (AMD Radeon 3870 , NVIDIA GeForce 8800 GT or better)<br>Network: Broadband Internet connection<br>DirectX: 10.1",
+    "price": "FREE",
+    "image": "images/nfsr.png",
+    "screenshots": [
+        "images/nfsr1.png",
+        "images/nfsr2.png",
+        "images/nfsr3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/c7x2za1nx3odcmh/Need_for_Speed_Rivals_-_%2528Www.ApunKaGames.Biz%2529.rar/file"
+  },
   {
     "id": "21",
     "title": "Need for Speed: The Run",
@@ -427,32 +443,32 @@
     "id": "22",
     "title": "Call of Duty: Modern Warfare 2019 (Campaign)",
     "platform": "PC",
-    "category": " Action, First-person shooter",
+    "category": "Action, First-person shooter",
     "description": "Call of Duty: Modern Warfare 2019 (Campaign), developed by Infinity Ward and published by Activision for Windows on October 25, 2019, is a 76.3 GB action-packed first-person shooter video game that blends cinematic storytelling with a gritty depiction of realistic modern warfare. The gameplay features varied, high-stakes missions, tactical decision-making, and intense, immersive firefights that put players right in the middle of covert global operations.",
     "requirements": "OS: Windows 10 (64‑bit)<br>Processor: Intel Core™ i3-4340 or AMD FX-6300<br>RAM: 8 GB Hard Disk: 100 GB available space<br>Graphics Card: NVIDIA GeForce GTX 670 / NVIDIA GeForce GTX 1650 or AMD Radeon™ HD 7950<br>Network: Broadband Internet connection<br>DirectX: Version 12",
     "price": "FREE",
     "image": "images/codmw2019.png",
     "screenshots": [
         "images/codmw20191.png",
-        "images/codmw20191.png",
+        "images/codmw20192.png",
         "images/codmw20193.png"
     ],
     "downloadParts": [
-      { "name": "Part 1", "url": "https://www.mediafire.com/file/zqjubr5pyd6oqjk/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part01.rar/file"
-      { "name": "Part 2", "url": "https://www.mediafire.com/file/hthhrdyngx5uuxm/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part02.rar/file"
-      { "name": "Part 3", "url": "https://www.mediafire.com/file/ra1h8uw9c4wyokt/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part03.rar/file"
-      { "name": "Part 4", "url": "https://www.mediafire.com/file/8akc9016zuuw481/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part04.rar/file"
-      { "name": "Part 5", "url": "https://www.mediafire.com/file/cd1nk1osz23u2jm/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part05.rar/file"
-      { "name": "Part 6", "url": "https://www.mediafire.com/file/2lvm6tu2maapyok/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part06.rar/file"
-      { "name": "Part 7", "url": "https://www.mediafire.com/file/fuswk1pdg1fknj8/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part07.rar/file"
-      { "name": "Part 8", "url": "https://www.mediafire.com/file/nd6q07zons83zvr/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part08.rar/file"
-      { "name": "Part 9", "url": "https://www.mediafire.com/file/8ivdj23utgw8s0r/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part09.rar/file"
-      { "name": "Part 10", "url": "https://www.mediafire.com/file/tga3jtc20l1zgt3/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part10.rar/file"
-      { "name": "Part 11", "url": "https://www.mediafire.com/file/0yncq8jftj043jr/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part11.rar/file"
-      { "name": "Part 12", "url": "https://www.mediafire.com/file/5aouwhnl1wm7r12/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part12.rar/file"
-      { "name": "Part 13", "url": "https://www.mediafire.com/file/jvktc101wxwm2g0/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part13.rar/file"
-      { "name": "Part 14", "url": "https://www.mediafire.com/file/5t6xyiik7nkih5v/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part14.rar/file"
-      { "name": "Part 15", "url": "https://www.mediafire.com/file/afikp2ubdzqfooy/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part15.rar/file"
-      { "name": "Part 16", "url": "https://www.mediafire.com/file/w3vvyq850cnx65z/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part16.rar/file"
-}
-]
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/zqjubr5pyd6oqjk/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part01.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/hthhrdyngx5uuxm/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part02.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/ra1h8uw9c4wyokt/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part03.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file/8akc9016zuuw481/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part04.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file/cd1nk1osz23u2jm/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part05.rar/file" },
+      { "name": "Part 6", "url": "https://www.mediafire.com/file/2lvm6tu2maapyok/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part06.rar/file" },
+      { "name": "Part 7", "url": "https://www.mediafire.com/file/fuswk1pdg1fknj8/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part07.rar/file" },
+      { "name": "Part 8", "url": "https://www.mediafire.com/file/nd6q07zons83zvr/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part08.rar/file" },
+      { "name": "Part 9", "url": "https://www.mediafire.com/file/8ivdj23utgw8s0r/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part09.rar/file" },
+      { "name": "Part 10", "url": "https://www.mediafire.com/file/tga3jtc20l1zgt3/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part10.rar/file" },
+      { "name": "Part 11", "url": "https://www.mediafire.com/file/0yncq8jftj043jr/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part11.rar/file" },
+      { "name": "Part 12", "url": "https://www.mediafire.com/file/5aouwhnl1wm7r12/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part12.rar/file" },
+      { "name": "Part 13", "url": "https://www.mediafire.com/file/jvktc101wxwm2g0/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part13.rar/file" },
+      { "name": "Part 14", "url": "https://www.mediafire.com/file/5t6xyiik7nkih5v/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part14.rar/file" },
+      { "name": "Part 15", "url": "https://www.mediafire.com/file/afikp2ubdzqfooy/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part15.rar/file" },
+      { "name": "Part 16", "url": "https://www.mediafire.com/file/w3vvyq850cnx65z/Call_of_Duty_MW_2019_Campaign_-_%2528Www.ApunkaGames.Net%2529.part16.rar/file" }
+    ]
+  }
