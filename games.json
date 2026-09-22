@@ -623,5 +623,30 @@
       { "name": "Part 21", "url": "https://thefileslocker.net/acm2aswerxal.html" },
       { "name": "Part 22", "url": "https://thefileslocker.net/3fimsqvbpnfc.html" }
     ]
-}
+},
+  {
+    "id": "28",
+    "title": "Call of Duty: WWII Digital Deluxe Edition",
+    "platform": "PC",
+    "category": "Action, First person-shooter",
+    "description": "Call of Duty: WWII Digital Deluxe Edition, developed by Sledgehammer Games and published by Activision for Windows, is a 36.5 GB first-person shooter video game set across the brutal and historic frontlines of World War II. The game follows a squad of Allied soldiers through major European battles, blending cinematic, story-driven missions with intense, boots-on-the-ground combat. Featuring the full base game alongside bonus digital content for players seeking extra value, the title delivers a comprehensive war-themed experience complete with a dramatic campaign mode, competitive multiplayer battles, and terrifying cooperative Nazi Zombie action.",
+    "requirements": "OS: Windows 7/10 (64-Bit)<br>Processor: Intel Core i3-3225<br>RAM: 8 GB<br>Hard Drive: 90 GB available space<br>Video Card: AMD Radeon HD 7850<br>DirectX: Version 11<br>Network: Broadband Internet connection",
+    "price": "FREE",
+    "image": "images/codww2.png",
+    "screenshots": [
+      "images/codww21.png",
+      "images/codww22.png",
+      "images/codww23.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/mpwpys7id36juai/Call_of_Duty_-_WWII_DDE_%2528Www.ApunKaGames.Biz%2529.part01.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/ttnhoha7jf00h2e/Call_of_Duty_-_WWII_DDE_%2528Www.ApunKaGames.Biz%2529.part02.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/2a81o9iql6rbjgn/Call_of_Duty_-_WWII_DDE_%2528Www.ApunKaGames.Biz%2529.part03.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file/n38ysp5uiq1c594/Call_of_Duty_-_WWII_DDE_%2528Www.ApunKaGames.Biz%2529.part04.rar/file" },
+      { "name": "Part 5", "url": "https://www.mediafire.com/file/42olxxnljwc6lgn/Call_of_Duty_-_WWII_DDE_%2528Www.ApunKaGames.Biz%2529.part05.rar/file" },
+      { "name": "Part 6", "url": "https://www.mediafire.com/file/srmegiyrwi1guai/Call_of_Duty_-_WWII_DDE_%2528Www.ApunKaGames.Biz%2529.part06.rar/file" },
+      { "name": "Part 7", "url": "https://www.mediafire.com/file/adn5epa20bmxxdf/Call_of_Duty_-_WWII_DDE_%2528Www.ApunKaGames.Biz%2529.part07.rar/file" },
+      { "name": "Part 8", "url": "https://www.mediafire.com/file/3en31nfnowqyc7c/Call_of_Duty_-_WWII_DDE_%2528Www.ApunKaGames.Biz%2529.part08.rar/file" }
+    ]
+  }
 ]
