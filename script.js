@@ -148,9 +148,15 @@ function initStore(games) {
     populateCategoryDropdown(games);
     populateFranchiseDropdown(games);
 
+    // Custom Featured Games Filter matching your exact specifications
     const featuredGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
-        return title.includes("euro truck simulator") || title.includes("call of duty") || title.includes("carx street");
+        return (title.includes("euro truck simulator") && (title.includes("pc") || title.includes("android"))) ||
+               title.includes("gta v legacy") ||
+               title.includes("spider-man") ||
+               (title.includes("black ops 3") && title.includes("zombie chronicles")) ||
+               title.includes("need for speed heat") ||
+               title.includes("fifa 23");
     });
     renderFeaturedMarquee(featuredGames.length ? featuredGames : games); 
 
@@ -170,15 +176,15 @@ function initStore(games) {
         });
     }
 
-    // Handle normal navigation tab clicks
+    // Handle normal navigation tab click ("Home Store" button reset)
     document.querySelectorAll('.portal-navbar .nav-tab:not(select)').forEach(tab => {
         tab.addEventListener('click', (e) => {
             e.preventDefault();
             document.querySelectorAll('.portal-navbar .nav-tab:not(select)').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            currentCategory = tab.getAttribute('data-category').toLowerCase();
+            currentCategory = "all";
             
-            // Reset dropdowns when clicking standard tabs
+            // Reset dropdowns when clicking standard tab
             const categoryDropdown = document.getElementById('categoryDropdown');
             if (categoryDropdown) categoryDropdown.value = "all";
             const franchiseDropdown = document.getElementById('franchiseDropdown');
@@ -258,6 +264,7 @@ function populateFranchiseDropdown(games) {
             else if (title.includes("euro truck simulator")) franchise = "Euro Truck Simulator";
             else if (title.includes("spider-man")) franchise = "Spider-Man";
             else if (title.includes("carx street")) franchise = "CarX Street";
+            else if (title.includes("fifa")) franchise = "FIFA";
         }
 
         if (franchise) {
