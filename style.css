@@ -378,7 +378,7 @@ body {
     display: flex;
     gap: 16px;
     width: max-content;
-    animation: scrollRightToLeft 25s linear infinite;
+    animation: scrollRightToLeft 15s linear infinite; /* Restored speed back to default 15s */
 }
 
 .featured-marquee-track:hover {
@@ -693,7 +693,7 @@ body {
     margin-top: auto;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end; /* Aligns items cleanly to the bottom */
+    align-items: flex-end;
     padding-top: 14px;
     gap: 8px;
 }
@@ -711,10 +711,9 @@ body {
     flex-direction: column;
     gap: 6px;
     width: 100%;
-    max-width: 130px; /* Constrains width so buttons fit neatly */
+    max-width: 130px;
 }
 
-/* Ensures all grouped buttons stretch properly to avoid truncation */
 .action-group .btn-details,
 .action-group .btn-action {
     width: 100%;
@@ -898,7 +897,7 @@ body {
     line-height: 1.45;
 }
 
-/* --- MODERN SPECIFICATIONS LIST STYLING (Added) --- */
+/* --- MODERN SPECIFICATIONS LIST STYLING --- */
 .specs-box ul, .requirements-list, .specs-container ul {
     list-style: none;
     padding-left: 0;
@@ -921,7 +920,6 @@ body {
     color: var(--accent-blue);
     font-size: 13px;
 }
-/* -------------------------------------------------- */
 
 .screenshots-container {
     display: grid;
