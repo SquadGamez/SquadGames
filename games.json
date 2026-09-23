@@ -776,5 +776,25 @@
       { "name": "Part 3", "url": "https://www.mediafire.com/file/w4oosbi3wh4y5bf/Call_of_Duty_Ghosts_-_%2528Www.ApunkaGames.Biz%2529.part3.rar/file" },
       { "name": "Part 4", "url": "https://www.mediafire.com/file/yj13gi9abc11dpy/Call_of_Duty_Ghosts_-_%2528Www.ApunkaGames.Biz%2529.part4.rar/file" }
     ]
+  },
+  {
+    "id": "34",
+    "title": "Call of Duty: Black Ops 2",
+    "platform": "PC",
+    "category": "First-person shooter",
+    "description": "Call of Duty: Black Ops 2, developed by Treyarch and published by Activision for Windows on November 12, 2012, is a 12.09 GB action-packed first-person shooter video game that immerses players in a thrilling futuristic global conflict featuring high-tech weaponry and strategic tactical combat. The gameplay seamlessly blends cinematic storytelling with fast-paced campaign missions, competitive multiplayer battles, and strategic objectives, delivering a nonstop, highly engaging FPS experience that bridges the gap between historical operations and near-future warfare.",
+    "requirements": "OS: Windows Vista SP2/7/10 (Windows XP is not supported) Processor: Intel Core2 Duo E8200 2.66 GHz or AMD Phenom X3 8750 2.4 GHz RAM: 2 GB for 32-bit OS or 4 GB for 64-bit OS Hard Disk: 16 GB available space Graphics Card: 512 MB, Nvidia GeForce 8800GT or ATI Radeon HD 3870 Network: Broadband Internet Connection for Online Multiplayer DirectX: Version 9.0c",
+    "price": "FREE",
+    "image": "images/codbo2.png",
+    "screenshots": [
+        "images/codbo21.png",
+        "images/codbo22.png",
+        "images/codbo23.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/5wtawydplpcls7s/Call_of_Duty_Black_Ops_2_-_%2528Www.ApunkaGames.Net%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/2llothm3b7swgf5/Call_of_Duty_Black_Ops_2_-_%2528Www.ApunkaGames.Net%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/6pdjvkc1baloc2l/Call_of_Duty_Black_Ops_2_-_%2528Www.ApunkaGames.Net%2529.part3.rar/file" }
+    ]
   }
 ]
