@@ -755,5 +755,26 @@
       { "name": "Part 9", "url": "https://www.mediafire.com/file/4k166zt8qfug4qe/Call_of_Duty_Black_Ops_3_-_%2528Www.ApunkaGames.Net%2529.part09.rar/file" },
       { "name": "Part 10", "url": "https://www.mediafire.com/file/ifyr8mdoinma4ct/Call_of_Duty_Black_Ops_3_-_%2528Www.ApunkaGames.Net%2529.part10.rar/file" }
     ]
+  },
+  {
+    "id": "33",
+    "title": "Call of Duty: Ghosts",
+    "platform": "PC",
+    "category": "Action/Shooting",
+    "description": "Call of Duty: Ghosts, developed by Infinity Ward and published by Activision for Windows, is a 19.6 GB first-person shooter video game set in a near-future world where the United States has been crippled by a devastating orbital strike, leaving an elite remnant known as the Ghosts to wage a desperate guerrilla war against a powerful global federation. The gameplay combines cinematic storytelling, dynamic and interactive multiplayer maps, and modern combat mechanics with a thrilling single-player campaign alongside the unique cooperative Extinction mode, delivering a diverse and action-packed military shooter experience.",
+    "requirements": "OS: Windows 7 64-Bit / Windows 8 64-Bit Processor: Intel Core™ 2 Duo E8200 2.66 GHZ /AMD Phenom™ X3 8750 2.4 GHZ or better RAM: 6 GB Hard Drive: 40 GB available space Video Card: NVIDIA GeForce™ GTS 450 / ATI® Radeon™ HD 5870 or better DirectX: 11 Internet: Broadband Internet connection for Steam and Online Multiplayer",
+    "price": "FREE",
+    "image": "images/codg.png",
+    "screenshots": [
+        "images/codg1.png",
+        "images/codg2.png",
+        "images/codg3.png"
+    ],
+    "downloadParts": [
+      { "name": "Part 1", "url": "https://www.mediafire.com/file/q9vbwsgj8qfxinm/Call_of_Duty_Ghosts_-_%2528Www.ApunKaGames.Biz%2529.part1.rar/file" },
+      { "name": "Part 2", "url": "https://www.mediafire.com/file/q6j608s3apito9t/Call_of_Duty_Ghosts_-_%2528Www.ApunkaGames.Biz%2529.part2.rar/file" },
+      { "name": "Part 3", "url": "https://www.mediafire.com/file/w4oosbi3wh4y5bf/Call_of_Duty_Ghosts_-_%2528Www.ApunkaGames.Biz%2529.part3.rar/file" },
+      { "name": "Part 4", "url": "https://www.mediafire.com/file/yj13gi9abc11dpy/Call_of_Duty_Ghosts_-_%2528Www.ApunkaGames.Biz%2529.part4.rar/file" }
+    ]
   }
 ]
