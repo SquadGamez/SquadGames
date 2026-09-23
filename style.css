@@ -378,7 +378,7 @@ body {
     display: flex;
     gap: 16px;
     width: max-content;
-    animation: scrollRightToLeft 15s linear infinite; /* Restored speed back to default 15s */
+    animation: scrollRightToLeft 18s linear infinite; /* Updated to 18s (6 cards × 3 seconds per card) */
 }
 
 .featured-marquee-track:hover {
@@ -897,7 +897,6 @@ body {
     line-height: 1.45;
 }
 
-/* --- MODERN SPECIFICATIONS LIST STYLING --- */
 .specs-box ul, .requirements-list, .specs-container ul {
     list-style: none;
     padding-left: 0;
@@ -943,7 +942,6 @@ body {
     border-color: var(--accent-blue);
 }
 
-/* Full Screen Lightbox */
 .fullscreen-overlay {
     position: fixed;
     top: 0;
@@ -989,7 +987,6 @@ body {
     opacity: 1;
 }
 
-/* Google Drive Download Popup Styles */
 .gdrive-popup-box {
     background: rgba(0, 122, 255, 0.1);
     border: 1px solid rgba(0, 122, 255, 0.3);
