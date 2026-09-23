@@ -148,15 +148,22 @@ function initStore(games) {
     populateCategoryDropdown(games);
     populateFranchiseDropdown(games);
 
-    // Flexible Featured Games Filter (Catches partial title matches reliably)
+    // Exact Custom Featured Games Filter matching your specified titles:
+    // 1. Euro Truck Simulator 2 (PC & Android)
+    // 2. Spider-Man
+    // 3. GTA 5 / GTA V Legacy
+    // 4. Need for Speed Heat (NFS Heat)
+    // 5. FIFA 22
+    // 6. Call of Duty Black Ops 3 Zombie Chronicles
     const featuredGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
         return title.includes("euro truck") || 
-               title.includes("heat") || 
                title.includes("spider-man") || 
-               title.includes("black ops") || 
-               title.includes("fifa 23") || 
-               title.includes("gta");
+               title.includes("gta v") || 
+               title.includes("gta 5") || 
+               title.includes("heat") || 
+               title.includes("fifa 22") || 
+               title.includes("black ops 3");
     });
     renderFeaturedMarquee(featuredGames.length ? featuredGames : games); 
 
