@@ -148,6 +148,9 @@ async function loadGameCatalog() {
 function initStore(games) {
     loadedGamesData = games;
 
+    // Populate the dropdown menu dynamically with all available categories
+    populateCategoryDropdown(games);
+
     const featuredGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
         return title.includes("euro truck simulator") || title.includes("call of duty") || title.includes("carx street");
@@ -170,21 +173,64 @@ function initStore(games) {
         });
     }
 
-    document.querySelectorAll('.portal-navbar .nav-tab').forEach(tab => {
+    // Handle normal navigation tab clicks (excluding the dropdown select element)
+    document.querySelectorAll('.portal-navbar .nav-tab:not(select)').forEach(tab => {
         tab.addEventListener('click', (e) => {
             e.preventDefault();
-            document.querySelectorAll('.portal-navbar .nav-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.portal-navbar .nav-tab:not(select)').forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
             currentCategory = tab.getAttribute('data-category').toLowerCase();
+            
+            // Reset dropdown selection when clicking top category tabs
+            const dropdown = document.getElementById('categoryDropdown');
+            if (dropdown) dropdown.value = "all";
+
             applyFilters();
         });
     });
+
+    // Handle dropdown category selection changes
+    const dropdown = document.getElementById('categoryDropdown');
+    if (dropdown) {
+        dropdown.addEventListener('change', (e) => {
+            currentCategory = e.target.value.toLowerCase();
+            
+            // Remove active state from top tabs when using the dropdown selector
+            document.querySelectorAll('.portal-navbar .nav-tab:not(select)').forEach(t => t.classList.remove('active'));
+            
+            applyFilters();
+        });
+    }
 
     const closeModalBtn = document.querySelector('.close-btn');
     if (closeModalBtn) closeModalBtn.addEventListener('click', closeModalDirect);
 
     const fullscreenCloseBtn = document.querySelector('.fullscreen-close');
     if (fullscreenCloseBtn) fullscreenCloseBtn.addEventListener('click', closeFullScreen);
+}
+
+// Helper function to dynamically pull all unique categories into the dropdown
+function populateCategoryDropdown(games) {
+    const dropdown = document.getElementById('categoryDropdown');
+    if (!dropdown) return;
+
+    let uniqueCategories = new Set();
+    games.forEach(game => {
+        if (game.category) {
+            game.category.split('/').forEach(cat => {
+                let cleanCat = cat.trim();
+                if (cleanCat) uniqueCategories.add(cleanCat);
+            });
+        }
+    });
+
+    dropdown.innerHTML = `<option value="all">📁 Select Category...</option>`;
+    uniqueCategories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.toLowerCase();
+        option.textContent = cat;
+        dropdown.appendChild(option);
+    });
 }
 
 function renderFeaturedMarquee(sliderGames) {
@@ -379,7 +425,7 @@ function showDownloadPartsModal(game) {
     
     const container = document.getElementById('parts-list-container');
     container.innerHTML = game.downloadParts.map((part, idx) => `
-        <a href="${part.url}" target="_blank" class="btn-action btn-get" style="display: flex; justify-content: space-linejoin; justify-content: space-between; align-items: center; padding: 12px 16px; text-decoration: none;">
+        <a href="${part.url}" target="_blank" class="btn-action btn-get" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; text-decoration: none;">
             <span><i class="fa-solid fa-download"></i> ${part.name || `Part ${idx + 1}`}</span>
             <i class="fa-solid fa-external-link-alt" style="font-size: 0.8rem;"></i>
         </a>
