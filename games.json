@@ -735,7 +735,7 @@
     "platform": "PC",
     "category": "Action/Adventure/Shooting",
     "description": "Call of Duty: Black Ops III, developed by Treyarch alongside Raven Software and Aspyr and published by Activision for Windows, is a 49.6 GB futuristic first-person shooter video game set in the year 2065 within a world transformed by advanced cybernetic technology that turns soldiers into powerful combat machines. The gameplay delivers a deep and action-packed experience featuring a cinematic campaign, fast-paced competitive multiplayer equipped with fluid advanced movement mechanics, and the iconic, fan-favorite cooperative Zombies mode, all anchored by heavily customizable weapons, unique specialist abilities, and intense futuristic combat scenarios.",
-    "requirements": "OS: Windows 7/Vista/8 (64-Bit) Processor: Intel Core™ i3-530 @ 2.93 GHz / AMD Phenom™ II X4 810 @ 2.60 GHz RAM: 6 GB Hard Drive: 100 GB available space Video Card: 1GB, NVIDIA® GeForce® GTX 470 / ATI® Radeon™ HD 6970 Network: Broadband Internet connection DirectX: Version 11",
+    "requirements": "OS: Windows 7/Vista/8 (64-Bit)<br>Processor: Intel Core™ i3-530 @ 2.93 GHz / AMD Phenom™ II X4 810 @ 2.60 GHz<br>RAM: 6 GB<br>Hard Drive: 100 GB available space<br>Video Card: 1GB, NVIDIA® GeForce® GTX 470 / ATI® Radeon™ HD 6970<br>Network: Broadband Internet connection<br>DirectX: Version 11",
     "price": "FREE",
     "image": "images/codboIII.png",
     "screenshots": [
@@ -762,7 +762,7 @@
     "platform": "PC",
     "category": "Action/Shooting",
     "description": "Call of Duty: Ghosts, developed by Infinity Ward and published by Activision for Windows, is a 19.6 GB first-person shooter video game set in a near-future world where the United States has been crippled by a devastating orbital strike, leaving an elite remnant known as the Ghosts to wage a desperate guerrilla war against a powerful global federation. The gameplay combines cinematic storytelling, dynamic and interactive multiplayer maps, and modern combat mechanics with a thrilling single-player campaign alongside the unique cooperative Extinction mode, delivering a diverse and action-packed military shooter experience.",
-    "requirements": "OS: Windows 7 64-Bit / Windows 8 64-Bit Processor: Intel Core™ 2 Duo E8200 2.66 GHZ /AMD Phenom™ X3 8750 2.4 GHZ or better RAM: 6 GB Hard Drive: 40 GB available space Video Card: NVIDIA GeForce™ GTS 450 / ATI® Radeon™ HD 5870 or better DirectX: 11 Internet: Broadband Internet connection for Steam and Online Multiplayer",
+    "requirements": "OS: Windows 7 64-Bit / Windows 8 64-Bit<br>Processor: Intel Core™ 2 Duo E8200 2.66 GHZ /AMD Phenom™ X3 8750 2.4 GHZ or better<br>RAM: 6 GB Hard Drive: 40 GB available space<br>Video Card: NVIDIA GeForce™ GTS 450 / ATI® Radeon™ HD 5870 or better<br>DirectX: 11<br>Internet:Broadband Internet connection for Steam and Online Multiplayer",
     "price": "FREE",
     "image": "images/codg.png",
     "screenshots": [
