@@ -829,5 +829,21 @@
         "images/codmw2plain4.png"
     ],
     "downloadUrl": "https://www.mediafire.com/file/dqenvt1ac073v34/Call_of_Duty_Modern_Warfare_2_-_%2528Www.ApunKaGames.Biz%2529.rar/file"
+  },
+  {
+    "id": "37",
+    "title": "Call of Duty: World at War",
+    "platform": "PC",
+    "category": "First-person shooter",
+    "description": "Call of Duty: World at War, developed by Treyarch and published by Activision for Windows, is a 4.78 GB first-person shooter that plunges players into the brutal and gritty battlefields of the Pacific and Eastern Fronts during World War II. The gameplay emphasizes cinematic storytelling and explosive gunfights through intense, atmospheric war missions where players utilize authentic period weapons, operate vehicles, and employ tactical combat strategies alongside their squad. Delivering a thrilling military shooter experience, the title also features cooperative missions and proudly introduces the iconic, genre-defining Zombies mode to the franchise.",
+    "requirements": "OS: Windows XP/Vista/7 Processor: Pentium 4, 3 GHz/AMD 64 3200+ RAM: 512 MB (1 GB for Vista) Hard Drive: 8 GB free Video Card: 256 MB (nVidia GeForce 6600/ATI Radeon X1600) Sound Card: DirectX 9.0c Compatible DirectX: 9.0c",
+    "price": "FREE",
+    "image": "images/codwaw.png",
+    "screenshots": [
+        "images/codwaw1.png",
+        "images/codwaw2.png",
+        "images/codwaw3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file_premium/8lz7h41bnpbb369/Call_of_Duty_World_at_War_-_%2528Www.ApunKaGames.Net%2529.zip/file"
   }
 ]
