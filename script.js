@@ -279,7 +279,6 @@ function renderGameStore(gameList) {
         const actionBtnText = isFree ? "Get" : "Buy Now";
         const actionBtnClass = isFree ? "btn-get" : "btn-download";
         
-        // FIX APPLIED HERE: Only use downloadUrl if available, do not fallback to WhatsApp link
         const targetUrl = game.downloadUrl || (game.downloadParts && game.downloadParts.length > 0 ? "#" : "");
 
         let actionButtonsHTML = `
