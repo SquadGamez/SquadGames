@@ -796,5 +796,21 @@
       { "name": "Part 2", "url": "https://www.mediafire.com/file/2llothm3b7swgf5/Call_of_Duty_Black_Ops_2_-_%2528Www.ApunkaGames.Net%2529.part2.rar/file" },
       { "name": "Part 3", "url": "https://www.mediafire.com/file/6pdjvkc1baloc2l/Call_of_Duty_Black_Ops_2_-_%2528Www.ApunkaGames.Net%2529.part3.rar/file" }
     ]
+  },
+  {
+    "id": "35",
+    "title": "Call of Duty: Modern Warfare 3",
+    "platform": "PC",
+    "category": "First-person shooter",
+    "description": "Call of Duty: Modern Warfare 3 (2011), developed by Infinity Ward and Sledgehammer Games alongside Activision for Windows, is a 5.20 GB first-person shooter video game that directly continues the epic Modern Warfare saga amidst a sprawling global conflict. The gameplay delivers a classic and engaging shooter experience through fast-paced combat, cinematic missions across iconic locations worldwide, realistic weapon mechanics, and cooperative modes. Featuring refined tactical action and intense firefights, it stands as a memorable entry that wraps up a legendary trilogy.",
+    "requirements": "OS: Windows XP/Vista/7<br>Processor: Intel Core 2 Duo @ 2.4 GHz / AMD Athlon 64 X2 5000+<br>RAM: 2 GB<br>Hard Drive: 16 GB free<br>Video Card: 256 MB, NVIDIA GeForce 8600 / ATI Radeon HD 2600<br>Pro Sound Card:DirectX Compatible<br>Network: Broadband Internet Connection for Online Multiplayer<br>DirectX: 9.0c",
+    "price": "FREE",
+    "image": "images/codmwIII.png",
+    "screenshots": [
+        "images/codmwIII1.png",
+        "images/codmwIII2.png",
+        "images/codmwIII3.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/s4a2iloqyzbw8i2/Call_of_Duty_-_MW3_%2528Www.ApunKaGames.Biz%2529.rar/file"
   }
 ]
