@@ -379,7 +379,7 @@ function showDownloadPartsModal(game) {
     
     const container = document.getElementById('parts-list-container');
     container.innerHTML = game.downloadParts.map((part, idx) => `
-        <a href="${part.url}" target="_blank" class="btn-action btn-get" style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; text-decoration: none;">
+        <a href="${part.url}" target="_blank" class="btn-action btn-get" style="display: flex; justify-content: space-linejoin; justify-content: space-between; align-items: center; padding: 12px 16px; text-decoration: none;">
             <span><i class="fa-solid fa-download"></i> ${part.name || `Part ${idx + 1}`}</span>
             <i class="fa-solid fa-external-link-alt" style="font-size: 0.8rem;"></i>
         </a>
