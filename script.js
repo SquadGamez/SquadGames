@@ -148,7 +148,7 @@ async function loadGameCatalog() {
 function initStore(games) {
     loadedGamesData = games;
 
-    // Populate the dropdown menu dynamically with all available categories
+    // Populate the dropdown menu dynamically with all available categories safely
     populateCategoryDropdown(games);
 
     const featuredGames = games.filter(game => {
@@ -209,15 +209,20 @@ function initStore(games) {
     if (fullscreenCloseBtn) fullscreenCloseBtn.addEventListener('click', closeFullScreen);
 }
 
-// Helper function to dynamically pull all unique categories into the dropdown
+// Helper function to dynamically pull all unique categories into the dropdown safely
 function populateCategoryDropdown(games) {
     const dropdown = document.getElementById('categoryDropdown');
     if (!dropdown) return;
 
     let uniqueCategories = new Set();
     games.forEach(game => {
-        if (game.category) {
-            game.category.split('/').forEach(cat => {
+        // Check all common variations of category keys to prevent missing data due to capitalization
+        const rawCategory = game.category || game.Category || game.genre || game.tags || "";
+        
+        if (rawCategory) {
+            const catString = Array.isArray(rawCategory) ? rawCategory.join('/') : String(rawCategory);
+            
+            catString.split('/').forEach(cat => {
                 let cleanCat = cat.trim();
                 if (cleanCat) uniqueCategories.add(cleanCat);
             });
@@ -279,7 +284,7 @@ function applyFilters() {
     const filteredGames = loadedGamesData.filter(game => {
         const title = (game.title || "").toLowerCase();
         const description = (game.description || "").toLowerCase();
-        const category = (game.category || "").toLowerCase();
+        const category = (game.category || game.Category || "").toLowerCase();
         const platform = (game.platform || "").toLowerCase();
 
         const matchesSearch = title.includes(currentSearchQuery) || description.includes(currentSearchQuery);
@@ -345,7 +350,7 @@ function renderGameStore(gameList) {
                 <img src="${game.image || 'images/nfsmw-shot1.png'}" alt="${game.title}" class="game-img" loading="lazy" onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
             </div>
             <div class="game-details">
-                <span class="category-tag">${game.category || "General"}</span>
+                <span class="category-tag">${game.category || game.Category || "General"}</span>
                 <h3>${game.title}</h3>
                 <p>${game.description || ""}</p>
                 <div class="card-action">
