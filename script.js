@@ -148,16 +148,15 @@ function initStore(games) {
     populateCategoryDropdown(games);
     populateFranchiseDropdown(games);
 
-    // Custom Featured Games Filter matching your exact requested titles & platforms
+    // Flexible Featured Games Filter (Catches partial title matches reliably)
     const featuredGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
-        return (title.includes("euro truck simulator")) ||
-               title.includes("need for speed heat") ||
-               title.includes("spider-man") ||
-               (title.includes("black ops 3") && title.includes("zombie")) ||
-               title.includes("fifa 23") ||
-               title.includes("gta 5") ||
-               title.includes("gta v");
+        return title.includes("euro truck") || 
+               title.includes("heat") || 
+               title.includes("spider-man") || 
+               title.includes("black ops") || 
+               title.includes("fifa 23") || 
+               title.includes("gta");
     });
     renderFeaturedMarquee(featuredGames.length ? featuredGames : games); 
 
