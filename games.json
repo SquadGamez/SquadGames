@@ -868,7 +868,7 @@
     "platform": "PC",
     "category": "Action, FPS",
     "description": "Call of Duty 2, developed by Infinity Ward and published by Activision for Windows on October 25, 2005, is a 3.48 GB classic first-person shooter that delivers cinematic and immersive battles across the historic frontlines of Europe and North Africa during World War II. The gameplay plunges players into intense infantry combat featuring authentic period weapons, strategic missions, and dynamic, artificial intelligence-driven firefights that capture an authentic, chaotic war atmosphere.",
-    "requirements": "OS: Windows 7/Vista/XP Processor: Pentium IV 1.4GHz or AMD Athlon XP 1700+ RAM: 256 MB Hard Disk: 4 GB available space Graphics Card: 64 MB ATi Radeon 9600 or GeForce FX 5200 Class DirectX: Version 9.0c",
+    "requirements": "OS: Windows 7/Vista/XP<br>Processor: Pentium IV 1.4GHz or AMD Athlon XP 1700+<br>RAM: 256 MB<br>Hard Disk: 4 GB available space<br>Graphics Card: 64 MB ATi Radeon 9600 or GeForce FX 5200 Class,<br>DirectX: Version 9.0c",
     "price": "FREE",
     "image": "images/cod2.png",
     "screenshots": [
@@ -877,5 +877,21 @@
         "images/cod23.png"
     ],
     "downloadUrl": "https://www.mediafire.com/file/d4imx443u5xquiy/Call_of_Duty_2_-_%2528Www.ApunKaGames.Biz%2529.rar/file"
+  },
+  {
+    "id": "40",
+    "title": "Call of Duty 1",
+    "platform": "PC",
+    "category": "Shooting",
+    "description": "Call of Duty 1, developed by Infinity Ward and published by Activision for Windows, is a lightweight 421 MB World War II first-person shooter that laid the foundation for one of the most successful gaming franchises in history. The gameplay immerses players in intense, team-oriented combat across multiple historic campaigns told from American, British, and Soviet perspectives, featuring authentic period weaponry, challenging tactical missions, and cinematic storytelling that collectively set a brand new standard for the war shooter genre.",
+    "requirements": "OS: 98/ME/2000/XP<br>Processor: Pentium III or Athlon 600 MHz<br>Processor (Windows 98/ME) or Pentium III or Athlon 700 MHz Processor (Windows 2000/XP)<br>RAM: 128 MB<br>Graphics card: 32 MB 3D Accelerated DirectX compatible<br>Sound card: 16-bit DirectX compatible<br>Storage: 1.4 GB Hard Disk Space<br>DirectX: 9.0 b",
+    "price": "FREE",
+    "image": "images/cod1.png",
+    "screenshots": [
+        "images/cod11.png",
+        "images/cod12.png",
+        "images/cod13.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/q66yxz8yyjvk38f/Call_of_Duty_1_-_%2528Www.ApunKaGames.Biz%2529.rar/file"
   }
 ]
