@@ -195,7 +195,7 @@ function renderFeaturedMarquee(sliderGames) {
         const originalIndex = loadedGamesData.indexOf(game);
         return `
             <div class="marquee-game-card">
-                <img class="marquee-game-img" src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
+                <img class="marquee-game-img" src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.src='images/nfsmw-shot1.png';">
                 <div class="marquee-game-content">
                     <span class="marquee-game-badge">${game.platform || 'Game'}</span>
                     <h4>${game.title}</h4>
@@ -218,7 +218,7 @@ function renderPopularList(popularGames) {
         const originalIndex = loadedGamesData.indexOf(game);
         return `
             <div class="popular-item" onclick="openDetails(${originalIndex})" style="cursor: pointer;">
-                <img src="${game.image}" alt="${game.title}" onerror="this.src='images/nfsmw-shot1.png';">
+                <img src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.src='images/nfsmw-shot1.png';">
                 <div class="popular-item-info">
                     <h5>${game.title}</h5>
                     <span>${game.price || 'FREE'}</span>
