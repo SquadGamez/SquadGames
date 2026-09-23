@@ -861,5 +861,21 @@
         "images/cod4mw3.png"
     ],
     "downloadUrl": "https://www.mediafire.com/file/mbnf76k86lgwv7b/Call_Of_Duty_4_Moden_Warfare-_%2528Www.ApunKaGames.Biz%2529.exe/file"
+  },
+  {
+    "id": "39",
+    "title": "Call of Duty 2",
+    "platform": "PC",
+    "category": "Action, FPS",
+    "description": "Call of Duty 2, developed by Infinity Ward and published by Activision for Windows on October 25, 2005, is a 3.48 GB classic first-person shooter that delivers cinematic and immersive battles across the historic frontlines of Europe and North Africa during World War II. The gameplay plunges players into intense infantry combat featuring authentic period weapons, strategic missions, and dynamic, artificial intelligence-driven firefights that capture an authentic, chaotic war atmosphere.",
+    "requirements": "OS: Windows 7/Vista/XP Processor: Pentium IV 1.4GHz or AMD Athlon XP 1700+ RAM: 256 MB Hard Disk: 4 GB available space Graphics Card: 64 MB ATi Radeon 9600 or GeForce FX 5200 Class DirectX: Version 9.0c",
+    "price": "FREE",
+    "image": "images/cod2.png",
+    "screenshots": [
+        "images/cod21.png",
+        "images/cod22.png",
+        "images/cod23.png"
+    ],
+    "downloadUrl": "https://www.mediafire.com/file/d4imx443u5xquiy/Call_of_Duty_2_-_%2528Www.ApunKaGames.Biz%2529.rar/file"
   }
 ]
