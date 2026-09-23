@@ -1,6 +1,7 @@
 let loadedGamesData = [];
 let currentSearchQuery = "";
 let currentCategory = "all";
+let currentFranchise = "all";
 
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Squad Games Store initialized.");
@@ -24,29 +25,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 3. Sleek loading animation handler & Universal Multi-part popup trigger for all current & future games
     document.addEventListener('click', function(e) {
-        // Bypass interception if the click happens inside the download parts modal so links open normally
         if (e.target.closest('#download-parts-modal')) return;
 
         const downloadBtn = e.target.closest('.btn-download, .btn-get, .btn-action');
         if (!downloadBtn) return;
 
-        // Skip interception if it's the WhatsApp alternate button
         if (downloadBtn.classList.contains('btn-vodacom') || downloadBtn.href.includes('wa.me')) return;
 
         let targetGame = null;
 
-        // Method A: Check via data-game-index attribute
         const gameIndex = downloadBtn.getAttribute('data-game-index');
         if (gameIndex !== null && loadedGamesData[gameIndex]) {
             targetGame = loadedGamesData[gameIndex];
         }
 
-        // Method B: Fallback search by matching downloadUrl if index wasn't present
         if (!targetGame && downloadBtn.href) {
             targetGame = loadedGamesData.find(g => g.downloadUrl && downloadBtn.href.includes(g.downloadUrl));
         }
 
-        // If the game has multi-parts configured in games.json, open modal instantly
         if (targetGame && targetGame.downloadParts && targetGame.downloadParts.length > 0) {
             e.preventDefault();
             showDownloadPartsModal(targetGame);
@@ -148,8 +144,9 @@ async function loadGameCatalog() {
 function initStore(games) {
     loadedGamesData = games;
 
-    // Populate the dropdown menu dynamically with all available categories safely
+    // Populate both dropdowns dynamically
     populateCategoryDropdown(games);
+    populateFranchiseDropdown(games);
 
     const featuredGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
@@ -173,7 +170,7 @@ function initStore(games) {
         });
     }
 
-    // Handle normal navigation tab clicks (excluding the dropdown select element)
+    // Handle normal navigation tab clicks
     document.querySelectorAll('.portal-navbar .nav-tab:not(select)').forEach(tab => {
         tab.addEventListener('click', (e) => {
             e.preventDefault();
@@ -181,23 +178,32 @@ function initStore(games) {
             tab.classList.add('active');
             currentCategory = tab.getAttribute('data-category').toLowerCase();
             
-            // Reset dropdown selection when clicking top category tabs
-            const dropdown = document.getElementById('categoryDropdown');
-            if (dropdown) dropdown.value = "all";
+            // Reset dropdowns when clicking standard tabs
+            const categoryDropdown = document.getElementById('categoryDropdown');
+            if (categoryDropdown) categoryDropdown.value = "all";
+            const franchiseDropdown = document.getElementById('franchiseDropdown');
+            if (franchiseDropdown) franchiseDropdown.value = "all";
+            currentFranchise = "all";
 
             applyFilters();
         });
     });
 
-    // Handle dropdown category selection changes
-    const dropdown = document.getElementById('categoryDropdown');
-    if (dropdown) {
-        dropdown.addEventListener('change', (e) => {
+    // Handle category dropdown changes
+    const categoryDropdown = document.getElementById('categoryDropdown');
+    if (categoryDropdown) {
+        categoryDropdown.addEventListener('change', (e) => {
             currentCategory = e.target.value.toLowerCase();
-            
-            // Remove active state from top tabs when using the dropdown selector
             document.querySelectorAll('.portal-navbar .nav-tab:not(select)').forEach(t => t.classList.remove('active'));
-            
+            applyFilters();
+        });
+    }
+
+    // Handle franchise dropdown changes
+    const franchiseDropdown = document.getElementById('franchiseDropdown');
+    if (franchiseDropdown) {
+        franchiseDropdown.addEventListener('change', (e) => {
+            currentFranchise = e.target.value.toLowerCase();
             applyFilters();
         });
     }
@@ -209,19 +215,16 @@ function initStore(games) {
     if (fullscreenCloseBtn) fullscreenCloseBtn.addEventListener('click', closeFullScreen);
 }
 
-// Helper function to dynamically pull all unique categories into the dropdown safely
+// Helper to populate category dropdown safely
 function populateCategoryDropdown(games) {
     const dropdown = document.getElementById('categoryDropdown');
     if (!dropdown) return;
 
     let uniqueCategories = new Set();
     games.forEach(game => {
-        // Check all common variations of category keys to prevent missing data due to capitalization
         const rawCategory = game.category || game.Category || game.genre || game.tags || "";
-        
         if (rawCategory) {
             const catString = Array.isArray(rawCategory) ? rawCategory.join('/') : String(rawCategory);
-            
             catString.split('/').forEach(cat => {
                 let cleanCat = cat.trim();
                 if (cleanCat) uniqueCategories.add(cleanCat);
@@ -234,6 +237,39 @@ function populateCategoryDropdown(games) {
         const option = document.createElement('option');
         option.value = cat.toLowerCase();
         option.textContent = cat;
+        dropdown.appendChild(option);
+    });
+}
+
+// Helper to populate franchise/series dropdown safely
+function populateFranchiseDropdown(games) {
+    const dropdown = document.getElementById('franchiseDropdown');
+    if (!dropdown) return;
+
+    let uniqueFranchises = new Set();
+    games.forEach(game => {
+        let franchise = game.franchise || game.series;
+        
+        if (!franchise && game.title) {
+            const title = game.title.toLowerCase();
+            if (title.includes("need for speed")) franchise = "Need for Speed";
+            else if (title.includes("call of duty")) franchise = "Call of Duty";
+            else if (title.includes("grand theft auto") || title.includes("gta")) franchise = "Grand Theft Auto";
+            else if (title.includes("euro truck simulator")) franchise = "Euro Truck Simulator";
+            else if (title.includes("spider-man")) franchise = "Spider-Man";
+            else if (title.includes("carx street")) franchise = "CarX Street";
+        }
+
+        if (franchise) {
+            uniqueFranchises.add(franchise.trim());
+        }
+    });
+
+    dropdown.innerHTML = `<option value="all">🎮 Select Franchise...</option>`;
+    uniqueFranchises.forEach(fran => {
+        const option = document.createElement('option');
+        option.value = fran.toLowerCase();
+        option.textContent = fran;
         dropdown.appendChild(option);
     });
 }
@@ -286,6 +322,8 @@ function applyFilters() {
         const description = (game.description || "").toLowerCase();
         const category = (game.category || game.Category || "").toLowerCase();
         const platform = (game.platform || "").toLowerCase();
+        const franchiseField = (game.franchise || game.series || "").toLowerCase();
+        const fullText = (title + " " + description).toLowerCase();
 
         const matchesSearch = title.includes(currentSearchQuery) || description.includes(currentSearchQuery);
 
@@ -294,7 +332,12 @@ function applyFilters() {
             matchesCategory = category.includes(currentCategory) || platform.includes(currentCategory);
         }
 
-        return matchesSearch && matchesCategory;
+        let matchesFranchise = true;
+        if (currentFranchise !== 'all') {
+            matchesFranchise = franchiseField.includes(currentFranchise) || fullText.includes(currentFranchise);
+        }
+
+        return matchesSearch && matchesCategory && matchesFranchise;
     });
 
     renderGameStore(filteredGames);
@@ -313,7 +356,7 @@ function renderGameStore(gameList) {
     if (gameList.length === 0) {
         container.innerHTML = `
             <div class="loading-state" style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #fff;">
-                <p>No games found matching your search or category.</p>
+                <p>No games found matching your search or filters.</p>
             </div>
         `;
         return;
