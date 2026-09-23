@@ -852,7 +852,7 @@
     "platform": "PC",
     "category": "Action/Shooting",
     "description": "Call of Duty 4: Modern Warfare, developed by Infinity Ward and published by Activision for Windows in 2007, is a 2.56 GB groundbreaking first-person shooter that successfully shifted the franchise away from its historical World War II roots into a tense, contemporary military setting centered around a gripping global conflict. The gameplay delivers fast-paced gunplay and cinematic, highly influential campaign missions—such as the iconic stealth operations—while pioneering deep progression systems and modern combat mechanics in competitive multiplayer that permanently reshaped the entire genre.",
-    "requirements": "OS: Windows XP/Vista (Windows 95/98/ME/2000 are unsupported) Processor: Pentium 4 @ 2.4 GHz / AMD Athlon 2600+ or any Dual Core @ 1.8 GHz RAM: 512 MB Hard Disk: 8 GB available space Graphics Card: nVidia 6600 / ATI Radeon 9800Pro Sound Card: DirectX 9.0c Compatible DirectX: Version 9.0c DVD Rom Drive",
+    "requirements": "OS: Windows XP/Vista (Windows 95/98/ME/2000 are unsupported)<br>Processor: Pentium 4 @ 2.4 GHz / AMD Athlon 2600+ or any Dual Core @ 1.8 GHz<br>RAM: 512 MB<br>Hard Disk: 8 GB available space<br>Graphics Card: nVidia 6600 / ATI Radeon 9800Pro<br>Sound Card:DirectX 9.0c Compatible<br>DirectX: Version 9.0c DVD Rom Drive",
     "price": "FREE",
     "image": "images/cod4mw.png",
     "screenshots": [
