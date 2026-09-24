@@ -296,7 +296,8 @@ function renderFeaturedMarquee(sliderGames) {
     const track = document.getElementById("featuredTrack");
     if (!track) return;
 
-    track.innerHTML = sliderGames.map((game) => {
+    // 1. Generate HTML cards for all selected featured game packs
+    const cardsHTML = sliderGames.map((game) => {
         const originalIndex = loadedGamesData.indexOf(game);
         return `
             <div class="marquee-game-card">
@@ -313,6 +314,42 @@ function renderFeaturedMarquee(sliderGames) {
             </div>
         `;
     }).join('');
+
+    // 2. Duplicate the cards list once to create a seamless infinite looping chain
+    track.innerHTML = cardsHTML + cardsHTML;
+
+    // 3. Initialize smooth continuous marquee animation
+    initSmoothMarquee(track);
+}
+
+function initSmoothMarquee(track) {
+    if (track.dataset.scrollingActive === "true") return;
+    track.dataset.scrollingActive = "true";
+
+    let scrollAmount = 0;
+    const speed = 1.0; // Control scroll speed here (higher = faster, lower = slower)
+    let isPaused = false;
+
+    track.addEventListener('mouseenter', () => isPaused = true);
+    track.addEventListener('mouseleave', () => isPaused = false);
+    track.addEventListener('touchstart', () => isPaused = true);
+    track.addEventListener('touchend', () => isPaused = false);
+
+    function scrollStep() {
+        if (!isPaused) {
+            scrollAmount += speed;
+            
+            // Seamless loop reset at the exact halfway point (end of the first sequence)
+            if (scrollAmount >= track.scrollWidth / 2) {
+                scrollAmount = 0;
+            }
+            
+            track.style.transform = `translateX(-${scrollAmount}px)`;
+        }
+        requestAnimationFrame(scrollStep);
+    }
+
+    requestAnimationFrame(scrollStep);
 }
 
 function renderPopularList(popularGames) {
