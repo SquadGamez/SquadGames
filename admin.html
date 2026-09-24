@@ -64,7 +64,7 @@
             margin-top: 20px;
         }
         textarea.json-output {
-            height: 150px;
+            height: 180px;
             font-family: monospace;
             font-size: 0.85rem;
         }
@@ -75,7 +75,7 @@
     <div class="admin-container">
         <h1>🎮 Add New Game Entry</h1>
         <form id="game-form">
-            <!-- Gemini API Key Input Field Added Here -->
+            <!-- Gemini API Key Input Field -->
             <div class="form-group">
                 <label>Gemini API Key</label>
                 <input type="password" id="geminiApiKey" placeholder="Paste your API key here..." required>
@@ -85,7 +85,7 @@
                 <label>Game Title</label>
                 <div style="display: flex; gap: 10px;">
                     <input type="text" id="title" placeholder="e.g. Need for Speed Most Wanted TZ" required style="flex: 1;">
-                    <button type="button" id="aiAutoFillBtn" onclick="generateGameDetailsWithAI()" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; border: none; padding: 0 16px; border-radius: 6px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px; margin-top: 0; width: auto; font-size: 0.85rem;" title="Auto-fill description, category, and requirements using Gemini AI">
+                    <button type="button" id="aiAutoFillBtn" onclick="generateGameDetailsWithAI()" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; border: none; padding: 0 16px; border-radius: 6px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px; margin-top: 0; width: auto; font-size: 0.85rem;" title="Auto-fill description, category, requirements, and install guide using Gemini AI">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> AI Auto-Fill
                     </button>
                 </div>
@@ -112,6 +112,12 @@
             <div class="form-group">
                 <label>System Requirements</label>
                 <input type="text" id="requirements" placeholder="e.g. RAM: 4 GB | Storage: 10 GB" required>
+            </div>
+
+            <!-- NEW: How to Install Instructions Field Added Here -->
+            <div class="form-group">
+                <label>How to Install Instructions</label>
+                <textarea id="installGuide" rows="3" placeholder="1. Extract the zip file&#10;2. Run setup.exe&#10;3. Copy crack if needed" required></textarea>
             </div>
 
             <div class="form-group">
@@ -168,7 +174,8 @@
             You must return a raw JSON object only (no markdown code blocks, just the pure JSON string) with the following exact keys:
             - "category": A short genre string (e.g., "Action, Open World" or "Racing")
             - "description": A concise, engaging 2-sentence marketing summary of the game.
-            - "requirements": Standard minimum system requirements formatted compactly (e.g., "OS: Windows 10 | RAM: 8 GB | Storage: 30 GB")`;
+            - "requirements": Standard minimum system requirements formatted compactly (e.g., "OS: Windows 10 | RAM: 8 GB | Storage: 30 GB")
+            - "installGuide": Step-by-step standard installation instructions for this game (e.g., "1. Extract archive.\n2. Run setup.exe.\n3. Enjoy playing.")`;
 
             try {
                 const response = await fetch(url, {
@@ -191,6 +198,7 @@
                 if (parsedDetails.category) document.getElementById('category').value = parsedDetails.category;
                 if (parsedDetails.description) document.getElementById('description').value = parsedDetails.description;
                 if (parsedDetails.requirements) document.getElementById('requirements').value = parsedDetails.requirements;
+                if (parsedDetails.installGuide) document.getElementById('installGuide').value = parsedDetails.installGuide;
 
                 aiBtn.innerHTML = `<i class="fa-solid fa-check"></i> Filled!`;
                 setTimeout(() => {
@@ -212,6 +220,7 @@
             const category = document.getElementById('category').value;
             const description = document.getElementById('description').value;
             const requirements = document.getElementById('requirements').value;
+            const installGuide = document.getElementById('installGuide').value;
             const price = document.getElementById('price').value;
             const image = document.getElementById('image').value;
             
@@ -227,6 +236,7 @@
                 category,
                 description,
                 requirements,
+                installGuide,
                 price,
                 image,
                 screenshots,
