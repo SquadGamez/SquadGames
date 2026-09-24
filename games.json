@@ -783,7 +783,7 @@
     "platform": "PC",
     "category": "First-person shooter",
     "description": "Call of Duty: Black Ops 2, developed by Treyarch and published by Activision for Windows on November 12, 2012, is a 12.09 GB action-packed first-person shooter video game that immerses players in a thrilling futuristic global conflict featuring high-tech weaponry and strategic tactical combat. The gameplay seamlessly blends cinematic storytelling with fast-paced campaign missions, competitive multiplayer battles, and strategic objectives, delivering a nonstop, highly engaging FPS experience that bridges the gap between historical operations and near-future warfare.",
-    "requirements": "OS: Windows Vista SP2/7/10 (Windows XP is not supported) Processor: Intel Core2 Duo E8200 2.66 GHz or AMD Phenom X3 8750 2.4 GHz RAM: 2 GB for 32-bit OS or 4 GB for 64-bit OS Hard Disk: 16 GB available space Graphics Card: 512 MB, Nvidia GeForce 8800GT or ATI Radeon HD 3870 Network: Broadband Internet Connection for Online Multiplayer DirectX: Version 9.0c",
+    "requirements": "OS: Windows Vista SP2/7/10 (Windows XP is not supported)<br>Processor: Intel Core2 Duo E8200 2.66 GHz or AMD Phenom X3 8750 2.4 GHz<br>RAM: 2 GB for 32-bit OS or 4 GB for 64-bit OS<br>Hard Disk: 16 GB available space<br>Graphics Card: 512 MB, Nvidia GeForce 8800GT or ATI Radeon HD 3870<br>Network: Broadband Internet Connection for Online Multiplayer<br>DirectX: Version 9.0c",
     "price": "FREE",
     "image": "images/codbo2.png",
     "screenshots": [
@@ -819,7 +819,7 @@
     "platform": "PC",
     "category": "Action-First Person shooter",
     "description": "Developer/Publishers: Infinity Ward, Activision\nCall of Duty: Modern Warfare 2 (2009) (3.65 GB) is an FPS, Action video game. Developed and published by Infinity Ward, Activision. It was released on November 12, 2009 for Windows. Call of Duty: Modern Warfare 2 puts players in the middle of a global conflict through elite special forces operations. Fight across diverse locations using modern weapons, tactical assaults, and explosive combat sequences. The gameplay delivers fast-paced shooting, cinematic missions, and intense battlefield action from start to finish.",
-    "requirements": "OS: Windows XP/Vista/7 Processor: Intel Pentium 4 3.2 GHz or AMD Athlon 64 3200+ or better supported RAM: 1 GB Hard Disk: 12 GB available space Graphics Card: 256 MB, NVIDIA GeForce 6600GT or better or ATI Radeon 1600XT or better DirectX: Version 9.0c Multiplayer/Co-op: Requires a broadband connection.",
+    "requirements": "OS: Windows XP/Vista/7<br>Processor: Intel Pentium 4 3.2 GHz or AMD Athlon 64 3200+ or better supported<br>RAM: 1 GB<br>Hard Disk: 12 GB available space<br>Graphics Card: 256 MB, NVIDIA GeForce 6600GT or better or ATI Radeon 1600XT or better<br>DirectX: Version 9.0c Multiplayer/Co-op: Requires a broadband connection.",
     "price": "FREE",
     "image": "images/codmw2plain.png",
     "screenshots": [
