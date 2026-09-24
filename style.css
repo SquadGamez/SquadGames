@@ -130,6 +130,7 @@ body {
     overflow-x: auto;
     padding-bottom: 4px;
     scrollbar-width: none;
+    align-items: center;
 }
 
 .portal-navbar::-webkit-scrollbar {
@@ -161,6 +162,25 @@ body {
     color: #ffffff;
     border-color: var(--accent-blue);
     box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+/* --- Dynamic Filter Dropdown Styles (Added for script compatibility) --- */
+.portal-navbar select.nav-tab,
+.portal-navbar select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 28px;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 14px;
+    outline: none;
+}
+
+.portal-navbar select.nav-tab option {
+    background: #18181c;
+    color: #ffffff;
 }
 
 .brand {
@@ -378,16 +398,11 @@ body {
     display: flex;
     gap: 16px;
     width: max-content;
-    animation: scrollRightToLeft 25s linear infinite;
+    will-change: transform; /* Optimized for JavaScript smooth continuous ticker */
 }
 
 .featured-marquee-track:hover {
-    animation-play-state: paused;
-}
-
-@keyframes scrollRightToLeft {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    /* Hover pause is handled dynamically via JS loop listeners */
 }
 
 .marquee-game-card {
@@ -693,7 +708,7 @@ body {
     margin-top: auto;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end; /* Aligns items cleanly to the bottom */
+    align-items: flex-end;
     padding-top: 14px;
     gap: 8px;
 }
@@ -711,10 +726,9 @@ body {
     flex-direction: column;
     gap: 6px;
     width: 100%;
-    max-width: 130px; /* Constrains width so buttons fit neatly */
+    max-width: 130px;
 }
 
-/* Ensures all grouped buttons stretch properly to avoid truncation */
 .action-group .btn-details,
 .action-group .btn-action {
     width: 100%;
@@ -898,7 +912,7 @@ body {
     line-height: 1.45;
 }
 
-/* --- MODERN SPECIFICATIONS LIST STYLING (Added) --- */
+/* --- MODERN SPECIFICATIONS LIST STYLING --- */
 .specs-box ul, .requirements-list, .specs-container ul {
     list-style: none;
     padding-left: 0;
@@ -921,7 +935,6 @@ body {
     color: var(--accent-blue);
     font-size: 13px;
 }
-/* -------------------------------------------------- */
 
 .screenshots-container {
     display: grid;
