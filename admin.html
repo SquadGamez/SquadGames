@@ -75,20 +75,9 @@
     <div class="admin-container">
         <h1>🎮 Add New Game Entry</h1>
         <form id="game-form">
-            <!-- Gemini API Key Input Field -->
-            <div class="form-group">
-                <label>Gemini API Key</label>
-                <input type="password" id="geminiApiKey" placeholder="Paste your API key here..." required>
-            </div>
-
             <div class="form-group">
                 <label>Game Title</label>
-                <div style="display: flex; gap: 10px;">
-                    <input type="text" id="title" placeholder="e.g. Need for Speed Most Wanted TZ" required style="flex: 1;">
-                    <button type="button" id="aiAutoFillBtn" onclick="generateGameDetailsWithAI()" style="background: linear-gradient(135deg, #6366f1, #a855f7); color: #fff; border: none; padding: 0 16px; border-radius: 6px; cursor: pointer; font-weight: 600; display: flex; align-items: center; gap: 6px; margin-top: 0; width: auto; font-size: 0.85rem;" title="Auto-fill description, category, requirements, and install guide using Gemini AI">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> AI Auto-Fill
-                    </button>
-                </div>
+                <input type="text" id="title" placeholder="e.g. Need for Speed Most Wanted TZ" required>
             </div>
             
             <div class="form-group">
@@ -114,10 +103,9 @@
                 <input type="text" id="requirements" placeholder="e.g. RAM: 4 GB | Storage: 10 GB" required>
             </div>
 
-            <!-- NEW: How to Install Instructions Field Added Here -->
             <div class="form-group">
                 <label>How to Install Instructions</label>
-                <textarea id="installGuide" rows="3" placeholder="1. Extract the zip file&#10;2. Run setup.exe&#10;3. Copy crack if needed" required></textarea>
+                <textarea id="installGuide" rows="3" placeholder="Type your custom installation steps here..." required></textarea>
             </div>
 
             <div class="form-group">
@@ -145,75 +133,6 @@
     </div>
 
     <script>
-        async function generateGameDetailsWithAI() {
-            const titleInput = document.getElementById('title');
-            const aiBtn = document.getElementById('aiAutoFillBtn');
-            const apiKeyInput = document.getElementById('geminiApiKey');
-            const gameName = titleInput.value.trim();
-            const apiKey = apiKeyInput.value.trim();
-
-            if (!apiKey) {
-                alert("Please paste your Gemini API key in the API Key field first!");
-                apiKeyInput.focus();
-                return;
-            }
-
-            if (!gameName) {
-                alert("Please enter a game title first so the AI knows what to write about!");
-                titleInput.focus();
-                return;
-            }
-
-            const originalBtnHTML = aiBtn.innerHTML;
-            aiBtn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Writing...`;
-            aiBtn.disabled = true;
-
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`;
-
-            const prompt = `You are a video game catalog assistant. Given the game title "${gameName}", generate standard store details. 
-            You must return a raw JSON object only (no markdown code blocks, just the pure JSON string) with the following exact keys:
-            - "category": A short genre string (e.g., "Action, Open World" or "Racing")
-            - "description": A concise, engaging 2-sentence marketing summary of the game.
-            - "requirements": Standard minimum system requirements formatted compactly (e.g., "OS: Windows 10 | RAM: 8 GB | Storage: 30 GB")
-            - "installGuide": Step-by-step standard installation instructions for this game (e.g., "1. Extract archive.\n2. Run setup.exe.\n3. Enjoy playing.")`;
-
-            try {
-                const response = await fetch(url, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: prompt }] }]
-                    })
-                });
-
-                if (!response.ok) throw new Error("Failed to communicate with Gemini API.");
-
-                const data = await response.json();
-                let rawText = data.candidates[0].content.parts[0].text.trim();
-                
-                rawText = rawText.replace(/^```json\s*/, "").replace(/^```\s*/, "").replace(/\s*```$/, "");
-
-                const parsedDetails = JSON.parse(rawText);
-
-                if (parsedDetails.category) document.getElementById('category').value = parsedDetails.category;
-                if (parsedDetails.description) document.getElementById('description').value = parsedDetails.description;
-                if (parsedDetails.requirements) document.getElementById('requirements').value = parsedDetails.requirements;
-                if (parsedDetails.installGuide) document.getElementById('installGuide').value = parsedDetails.installGuide;
-
-                aiBtn.innerHTML = `<i class="fa-solid fa-check"></i> Filled!`;
-                setTimeout(() => {
-                    aiBtn.innerHTML = originalBtnHTML;
-                    aiBtn.disabled = false;
-                }, 2000);
-
-            } catch (error) {
-                console.error("AI Error:", error);
-                alert("Error generating details via AI. Please verify your API key.");
-                aiBtn.innerHTML = originalBtnHTML;
-                aiBtn.disabled = false;
-            }
-        }
-
         function generateGameJSON() {
             const title = document.getElementById('title').value;
             const platform = document.getElementById('platform').value;
@@ -228,7 +147,7 @@
             const screenshots = rawScreenshots ? rawScreenshots.split(',').map(s => s.trim()) : [image];
 
             const whatsappMessage = `Hello Squad Games, I want to buy ${title} (${price}).`;
-            const downloadUrl = `[https://wa.me/255692752060?text=$](https://wa.me/255692752060?text=$){encodeURIComponent(whatsappMessage)}`;
+            const downloadUrl = `https://wa.me/255692752060?text=${encodeURIComponent(whatsappMessage)}`;
 
             const gameObject = {
                 title,
