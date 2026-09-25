@@ -4,7 +4,7 @@ Get the ultimate **Euro Truck Simulator 2 games for Tanzania** and other most **
 
 ## 🚀 Live Demo
 
-Check out the live website here: [SquadGames](https://squadgamez.github.io/SquadGames/)
+Check out the live website here: [SquadGames](https://squadnexus.github.io/SquadGames/)
 
 ## ✨ What You Get
 
