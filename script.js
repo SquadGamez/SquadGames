@@ -117,6 +117,7 @@ async function loadGameCatalog() {
                 category: "Simulation / PC",
                 description: "Full Euro Truck Simulator 2 PC game bundled with 50 custom TZ mods.",
                 requirements: "OS: Windows 10/11 (64-bit) | RAM: 8 GB | Storage: 25 GB",
+                installGuide: "1. Extract the downloaded archive.\n2. Run setup.exe as administrator.\n3. Move mods to documents folder.",
                 price: "TZS 20,000",
                 image: "images/ets-2-pc.jpg",
                 screenshots: [],
@@ -130,6 +131,7 @@ async function loadGameCatalog() {
                 category: "Action",
                 description: "Experience the rise of Miles Morales as new powers unfold.",
                 requirements: "OS: Windows 10 (64-bit) | RAM: 8 GB",
+                installGuide: "1. Extract files.\n2. Install prerequisite runtimes.\n3. Play from shortcut.",
                 price: "FREE",
                 image: "images/spider-man.jpg",
                 screenshots: [],
@@ -296,7 +298,6 @@ function renderFeaturedMarquee(sliderGames) {
     const track = document.getElementById("featuredTrack");
     if (!track) return;
 
-    // 1. Generate HTML cards for all selected featured game packs
     const cardsHTML = sliderGames.map((game) => {
         const originalIndex = loadedGamesData.indexOf(game);
         return `
@@ -315,10 +316,7 @@ function renderFeaturedMarquee(sliderGames) {
         `;
     }).join('');
 
-    // 2. Duplicate the cards list once to create a seamless infinite looping chain
     track.innerHTML = cardsHTML + cardsHTML;
-
-    // 3. Initialize smooth continuous marquee animation
     initSmoothMarquee(track);
 }
 
@@ -327,7 +325,7 @@ function initSmoothMarquee(track) {
     track.dataset.scrollingActive = "true";
 
     let scrollAmount = 0;
-    const speed = 1.0; // Control scroll speed here (higher = faster, lower = slower)
+    const speed = 1.0; 
     let isPaused = false;
 
     track.addEventListener('mouseenter', () => isPaused = true);
@@ -338,12 +336,9 @@ function initSmoothMarquee(track) {
     function scrollStep() {
         if (!isPaused) {
             scrollAmount += speed;
-            
-            // Seamless loop reset at the exact halfway point (end of the first sequence)
             if (scrollAmount >= track.scrollWidth / 2) {
                 scrollAmount = 0;
             }
-            
             track.style.transform = `translateX(-${scrollAmount}px)`;
         }
         requestAnimationFrame(scrollStep);
