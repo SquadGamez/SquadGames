@@ -111,7 +111,7 @@ async function loadGameCatalog() {
         console.warn("Using fallback catalog data.");
         gamesArray = [
             {
-                id: 1,
+                id: "1",
                 title: "Tanzania Euro Truck Simulator 2 + 50 TZ mods packs",
                 platform: "PC",
                 category: "Simulation / PC",
@@ -125,7 +125,7 @@ async function loadGameCatalog() {
                 altDownloadUrl: "https://wa.me/255692752060?text=Hello%20Squad%20Games"
             },
             {
-                id: 2,
+                id: "2",
                 title: "Marvel’s Spider-Man: Miles Morales",
                 platform: "PC",
                 category: "Action",
@@ -146,22 +146,13 @@ async function loadGameCatalog() {
 function initStore(games) {
     loadedGamesData = games;
 
-    // Populate both dropdowns dynamically
     populateCategoryDropdown(games);
     populateFranchiseDropdown(games);
 
-    // Exact Custom Featured Games Filter:
-    // - Excludes any 1.57 version games
-    // - Includes ETS2 Tanzania (PC) and ETS2 Mobile
-    // - Includes Spider-Man, GTA 5 / Legacy, NFS Heat, FIFA 22, and Black Ops 3 Zombie
     const featuredGames = games.filter(game => {
         const title = (game.title || "").toLowerCase();
-        
-        // Exclude unwanted 1.57 versions explicitly
         if (title.includes("1.57")) return false;
-
         const isEtsTanzaniaOrMobile = title.includes("euro truck") && (title.includes("tanzania") || title.includes("tz") || title.includes("mobile") || title.includes("android"));
-        
         return isEtsTanzaniaOrMobile || 
                title.includes("spider-man") || 
                title.includes("gta v") || 
@@ -189,7 +180,6 @@ function initStore(games) {
         });
     }
 
-    // Handle normal navigation tab click ("Home Store" button reset)
     document.querySelectorAll('.portal-navbar .nav-tab:not(select)').forEach(tab => {
         tab.addEventListener('click', (e) => {
             e.preventDefault();
@@ -197,7 +187,6 @@ function initStore(games) {
             tab.classList.add('active');
             currentCategory = "all";
             
-            // Reset dropdowns when clicking standard tab
             const categoryDropdown = document.getElementById('categoryDropdown');
             if (categoryDropdown) categoryDropdown.value = "all";
             const franchiseDropdown = document.getElementById('franchiseDropdown');
@@ -208,7 +197,6 @@ function initStore(games) {
         });
     });
 
-    // Handle category dropdown changes
     const categoryDropdown = document.getElementById('categoryDropdown');
     if (categoryDropdown) {
         categoryDropdown.addEventListener('change', (e) => {
@@ -218,7 +206,6 @@ function initStore(games) {
         });
     }
 
-    // Handle franchise dropdown changes
     const franchiseDropdown = document.getElementById('franchiseDropdown');
     if (franchiseDropdown) {
         franchiseDropdown.addEventListener('change', (e) => {
@@ -234,7 +221,6 @@ function initStore(games) {
     if (fullscreenCloseBtn) fullscreenCloseBtn.addEventListener('click', closeFullScreen);
 }
 
-// Helper to populate category dropdown safely
 function populateCategoryDropdown(games) {
     const dropdown = document.getElementById('categoryDropdown');
     if (!dropdown) return;
@@ -260,7 +246,6 @@ function populateCategoryDropdown(games) {
     });
 }
 
-// Helper to populate franchise/series dropdown safely
 function populateFranchiseDropdown(games) {
     const dropdown = document.getElementById('franchiseDropdown');
     if (!dropdown) return;
@@ -460,6 +445,7 @@ function renderGameStore(gameList) {
     });
 }
 
+// FIX: Safely handles both string IDs (like "42" in your JSON) and array indexes to prevent mismatched page loading
 function openDetails(index) {
     const game = loadedGamesData[index];
     if (!game) return;
