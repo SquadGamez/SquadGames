@@ -34,9 +34,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
         let targetGame = null;
 
-        const gameIndex = downloadBtn.getAttribute('data-game-index');
-        if (gameIndex !== null && loadedGamesData[gameIndex]) {
-            targetGame = loadedGamesData[gameIndex];
+        const gameId = downloadBtn.getAttribute('data-game-id');
+        if (gameId) {
+            targetGame = loadedGamesData.find(g => (g.id || g.title) === gameId);
+        }
+
+        // Fallback check if data-game-id wasn't present
+        if (!targetGame) {
+            const gameIndex = downloadBtn.getAttribute('data-game-index');
+            if (gameIndex !== null && loadedGamesData[gameIndex]) {
+                targetGame = loadedGamesData[gameIndex];
+            }
         }
 
         if (!targetGame && downloadBtn.href) {
@@ -284,6 +292,7 @@ function renderFeaturedMarquee(sliderGames) {
     if (!track) return;
 
     const cardsHTML = sliderGames.map((game) => {
+        const gameId = game.id || game.title;
         const originalIndex = loadedGamesData.indexOf(game);
         return `
             <div class="marquee-game-card">
@@ -294,7 +303,7 @@ function renderFeaturedMarquee(sliderGames) {
                     <p>${game.description || ''}</p>
                     <div class="marquee-game-footer">
                         <span class="marquee-price">${game.price || 'FREE'}</span>
-                        <button class="btn-details" onclick="openDetails(${originalIndex})" style="padding: 4px 8px; font-size: 0.75rem;">View</button>
+                        <button class="btn-details" onclick="openDetailsById('${gameId}')" style="padding: 4px 8px; font-size: 0.75rem;">View</button>
                     </div>
                 </div>
             </div>
@@ -337,9 +346,9 @@ function renderPopularList(popularGames) {
     if (!container) return;
 
     container.innerHTML = popularGames.map((game) => {
-        const originalIndex = loadedGamesData.indexOf(game);
+        const gameId = game.id || game.title;
         return `
-            <div class="popular-item" onclick="openDetails(${originalIndex})" style="cursor: pointer;">
+            <div class="popular-item" onclick="openDetailsById('${gameId}')" style="cursor: pointer;">
                 <img src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.src='images/nfsmw-shot1.png';">
                 <div class="popular-item-info">
                     <h5>${game.title}</h5>
@@ -398,6 +407,7 @@ function renderGameStore(gameList) {
     }
 
     gameList.forEach((game) => {
+        const gameId = game.id || game.title;
         const originalIndex = loadedGamesData.indexOf(game);
         const card = document.createElement("div");
         card.classList.add("game-card");
@@ -411,7 +421,7 @@ function renderGameStore(gameList) {
         const targetUrl = game.downloadUrl || (game.downloadParts && game.downloadParts.length > 0 ? "#" : "");
 
         let actionButtonsHTML = `
-            <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}" data-game-index="${originalIndex}">${actionBtnText}</a>
+            <a href="${targetUrl}" target="_blank" class="btn-action ${actionBtnClass}" data-game-id="${gameId}" data-game-index="${originalIndex}">${actionBtnText}</a>
         `;
 
         if (game.altDownloadUrl) {
@@ -424,7 +434,7 @@ function renderGameStore(gameList) {
 
         card.innerHTML = `
             <span class="card-badge">${game.platform || "PC"}</span>
-            <div class="game-img-wrapper" onclick="openDetails(${originalIndex})" style="cursor: pointer;">
+            <div class="game-img-wrapper" onclick="openDetailsById('${gameId}')" style="cursor: pointer;">
                 <img src="${game.image || 'images/nfsmw-shot1.png'}" alt="${game.title}" class="game-img" loading="lazy" onerror="this.onerror=null; this.src='images/nfsmw-shot1.png';" />
             </div>
             <div class="game-details">
@@ -434,7 +444,7 @@ function renderGameStore(gameList) {
                 <div class="card-action">
                     <span class="price">${game.price || 'FREE'}</span>
                     <div class="action-group">
-                        <button class="btn-details" onclick="openDetails(${originalIndex})">Details &rarr;</button>
+                        <button class="btn-details" onclick="openDetailsById('${gameId}')">Details &rarr;</button>
                         ${actionButtonsHTML}
                     </div>
                 </div>
@@ -445,13 +455,17 @@ function renderGameStore(gameList) {
     });
 }
 
-// FIX: Safely handles both string IDs (like "42" in your JSON) and array indexes to prevent mismatched page loading
+// ID-based detail loader to completely eliminate index misalignment errors
+function openDetailsById(id) {
+    window.location.href = `details.html?id=${id}`;
+}
+
+// Legacy fallback wrapper
 function openDetails(index) {
     const game = loadedGamesData[index];
     if (!game) return;
-
     const identifier = game.id !== undefined ? game.id : index;
-    window.location.href = `details.html?id=${identifier}`;
+    openDetailsById(identifier);
 }
 
 function closeModal(event) {
