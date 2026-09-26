@@ -52,8 +52,9 @@
         fetch('games.json')
             .then(res => res.json())
             .then(games => {
-                const game = games.find(g => String(g.id) === String(gameIdParam)) || 
-                             games[parseInt(gameIdParam)] ||
+                // FIXED: Removed the dangerous array index fallback (games[parseInt(gameIdParam)]) 
+                // so it never fetches the wrong game index (like loading FIFA 23 instead of FIFA 21).
+                const game = games.find(g => g.id !== undefined && String(g.id) === String(gameIdParam)) || 
                              games.find(g => g.title && g.title.toLowerCase().replace(/[^a-z0-9]/g, '-') === gameIdParam);
                 
                 const container = document.getElementById('gameDetailsContainer');
