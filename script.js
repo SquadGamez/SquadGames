@@ -227,6 +227,11 @@ function initStore(games) {
 
     const fullscreenCloseBtn = document.querySelector('.fullscreen-close');
     if (fullscreenCloseBtn) fullscreenCloseBtn.addEventListener('click', closeFullScreen);
+
+    // AUTO-LOAD FOR DETAILS.HTML PAGE IF PRESENT
+    if (window.location.pathname.includes('details.html')) {
+        initDetailsPage(games);
+    }
 }
 
 function populateCategoryDropdown(games) {
@@ -293,7 +298,6 @@ function renderFeaturedMarquee(sliderGames) {
 
     const cardsHTML = sliderGames.map((game) => {
         const gameId = game.id || game.title;
-        const originalIndex = loadedGamesData.indexOf(game);
         return `
             <div class="marquee-game-card">
                 <img class="marquee-game-img" src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.src='images/nfsmw-shot1.png';">
@@ -390,10 +394,7 @@ function applyFilters() {
 function renderGameStore(gameList) {
     const container = document.getElementById("gameGrid") || document.getElementById("games-grid");
 
-    if (!container) {
-        console.error("Error: Could not find element with ID 'gameGrid' or 'games-grid'.");
-        return;
-    }
+    if (!container) return;
 
     container.innerHTML = "";
 
@@ -455,28 +456,15 @@ function renderGameStore(gameList) {
     });
 }
 
-// ID-based detail loader to completely eliminate index misalignment errors
 function openDetailsById(id) {
-    window.location.href = `details.html?id=${id}`;
+    window.location.href = `details.html?id=${encodeURIComponent(id)}`;
 }
 
-// Legacy fallback wrapper
 function openDetails(index) {
     const game = loadedGamesData[index];
     if (!game) return;
-    const identifier = game.id !== undefined ? game.id : index;
+    const identifier = game.id !== undefined ? game.id : game.title;
     openDetailsById(identifier);
-}
-
-function closeModal(event) {
-    if (event.target.classList.contains("modal-overlay")) {
-        closeModalDirect();
-    }
-}
-
-function closeModalDirect() {
-    const modal = document.getElementById("details-modal");
-    if (modal) modal.classList.remove("active");
 }
 
 function openFullScreen(imgSrc) {
@@ -535,4 +523,57 @@ function showDownloadPartsModal(game) {
 function closeDownloadPartsModal() {
     const modal = document.getElementById('download-parts-modal');
     if (modal) modal.classList.remove('active');
+}
+
+// LOGIC TO POPULATE DETAILS.HTML AND THE INSTALL GUIDE
+function initDetailsPage(games) {
+    const params = new URLSearchParams(window.location.search);
+    const gameId = params.get('id');
+
+    if (!gameId) return;
+
+    const currentGame = games.find(g => String(g.id) === String(gameId) || String(g.title) === String(gameId));
+
+    if (!currentGame) return;
+
+    // Populate standard text fields if they exist in your markup
+    const setElementText = (id, text) => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = text;
+    };
+
+    setElementText('detailGameTitle', currentGame.title);
+    setElementText('detailGameCategory', currentGame.category || currentGame.Category || '');
+    setElementText('detailGameDescription', currentGame.description || '');
+    setElementText('detailGameRequirements', currentGame.requirements || '');
+    setElementText('detailGamePrice', currentGame.price || 'FREE');
+
+    const coverImg = document.getElementById('detailGameImage');
+    if (coverImg && currentGame.image) {
+        coverImg.src = currentGame.image;
+    }
+
+    // Populate Install Guide safely with line break formatting
+    const installGuideContainer = document.getElementById('gameInstallGuide');
+    if (installGuideContainer) {
+        if (currentGame.installGuide) {
+            installGuideContainer.innerHTML = currentGame.installGuide.replace(/\n/g, '<br>');
+        } else {
+            installGuideContainer.innerHTML = "<p>Standard installation: Extract archive and run setup executable.</p>";
+        }
+    }
+
+    // Setup Download Action Button
+    const downloadBtn = document.getElementById('detailDownloadBtn');
+    if (downloadBtn) {
+        if (currentGame.downloadParts && currentGame.downloadParts.length > 0) {
+            downloadBtn.href = "#";
+            downloadBtn.onclick = (e) => {
+                e.preventDefault();
+                showDownloadPartsModal(currentGame);
+            };
+        } else {
+            downloadBtn.href = currentGame.downloadUrl || '#';
+        }
+    }
 }
